@@ -1,0 +1,59 @@
+.auth_container{
+
+    position: fixed;
+    width: 100%;
+    z-index: 30;
+    height: 100vh;
+    inset: 0;
+    background: rgb(0, 0,0,0.7);
+}
+.auth{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #eee;
+    width: 350px;
+    
+   
+
+    & div{
+        min-width: 100%;
+        height: inhert;
+    }
+}
+.auth_slider{
+    display: flex;
+    width: 100%;
+    height: inhert;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background-color: #eee;
+    scroll-snap-type: x mandatory;
+}
+.auth_routes{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    padding-block-end: 1rem;
+    background: white;
+    border-bottom :5px solid #ddd;
+    
+    
+    & button{
+        max-width: 80px;
+        background: black;
+        color: white;
+    }
+
+    & button:last-child{
+        border: 2px solid #218838;
+        float: right;
+    }
+}
+
+@media (max-width: 568px) {
+    .auth {
+      width: 80%;
+    }
+  }

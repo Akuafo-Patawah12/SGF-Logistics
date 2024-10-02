@@ -1,0 +1,11 @@
+
+
+@keyframes animate{
+    from{height: 30px;}
+    to{height: 100px;}
+}
+
+@keyframes animateDown{
+    from{height: 100px;}
+    to{height: 30px;}
+}

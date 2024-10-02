@@ -1,0 +1,145 @@
+*{
+  margin: 0;
+}
+
+.Popup{
+  background-color: blue;
+  transition: .2s;
+}
+
+
+.pop{
+ /* height: 300px; */
+  opacity: 1;
+  visibility: visible;
+}
+
+.closePop{
+  /* height: 0; */
+   visibility: hidden;
+   opacity: 0;
+}
+
+.header{
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  align-items: center;
+  position: relative;
+}
+
+.nav{
+  border-radius: 1rem;
+  padding-block: 30px;
+  height:max-content;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  gap: 4px;
+  top: 100px;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  z-index: 30;
+  box-shadow: 0 2px 20px 0px;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #eee;
+
+  & a{
+    width: 85%;
+    margin-inline: auto;
+    height: 30px;
+    padding-inline: 4px;
+    border-radius: 5px;
+    display: flex;
+    font-weight: 500;
+    color: #1C1818;
+    justify-content: space-between;
+    background: #ddd;
+  }
+}
+
+@keyframes navAnimate{
+  from{ left:0;}
+  to{left: 50%;}
+}
+
+
+
+.footer{
+  padding-block: 3rem;
+  background-color: #1C1818;
+  
+
+}
+
+footer a{
+  text-decoration: none;
+  color: white;
+  font-size: x-large;
+}
+
+.About{
+  display: flex;
+  flex-direction: column;
+
+  & button{
+    width: 100%;
+    margin-top: 2px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    background: transparent;
+    color: #ccc;
+    border: none;
+    font-weight:500;
+    font-size: medium;
+  }
+}
+
+.socials_media_handles{
+  height: 40px;
+  background: #251D1D;
+  margin-top: 1rem;
+  
+}
+
+.About > div{
+   overflow: hidden;
+   transition: all 0.3s;
+   height: 30px;
+   border-top: 1px solid #ccc;
+   padding-block: 0.3rem;
+}
+.About > div:nth-child(3){
+  border-bottom: 1px solid #ccc;
+}
+.accordion{
+  transform: translate(2rem,0);
+}
+
+.accordion a{
+   font-size: medium;
+}
+
+.open{
+  height: 30px;
+  width: 30px;
+  position: relative;
+
+  & div{
+      background-color: #1C1818;
+      width: 100%;
+      height: 3px;
+      position: absolute;
+      transition: all .3s;
+      left:0;
+  }
+}
+
+
+
+
+

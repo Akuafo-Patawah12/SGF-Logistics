@@ -1,0 +1,47 @@
+.slide-show{
+    display: flex;
+    margin-inline: auto;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Snap to each image */
+    scrollbar-width: none;
+    border-radius: 20px;
+  }
+  
+  .slide-show > div{
+    border-radius:inherit;
+    min-width: 100%; 
+    height: 100%;
+    scroll-snap-align: start;
+    
+  }
+  
+  .slide_btn{
+     display: flex;
+     position: absolute;
+     gap: 10px;
+     top: 320px;
+     left: 50%;
+     transform: translate(-50%,-50%);
+  
+        & button{
+            height: 6px;
+            width: 30px;
+            border-radius: 10px;
+            border: none;
+        }
+  }
+  
+  .slider{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 11rem;
+    width: 90%;
+    height: 30px;
+  
+    & button{
+      font-size: xx-large;
+      border: none;
+      background-color: transparent;
+    }
+  }
