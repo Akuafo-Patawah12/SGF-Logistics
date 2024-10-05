@@ -2,6 +2,8 @@ const socketIo= require("socket.io")
 const cookie= require("cookie")
 const jwt= require("jsonwebtoken");
 const orderFunc = require("./OrdersNamespace");
+const SignUp = require("../Authentication/SignUp");
+
 
 function initializeSocket(server) {   
     const io = socketIo(server, {   //Creating connect between server and User Interface  "Realtime WebApp"
@@ -16,7 +18,6 @@ function initializeSocket(server) {
       const defaultNamespace= io.of("/")
       const trackingNamespace= io.of("/tracking")
       const shippmentNamespace= io.of('/shippment')
-      const loginNamespace=  io.of("login")
       const signupNamespace= io.of("/signUp")
       const ordersNamespace= io.of("/orders")
 
@@ -30,7 +31,10 @@ function initializeSocket(server) {
             return next(new Error("No cookies found"))
         }
 
+     
         const parsed_cookies= cookie.parse(cookies)
+
+        if(parsed_cookies){
 
         const token = cookies.refreshToken; // Extract the refresh token
          if (!token) return next(new Error('Refresh token expired'));
@@ -42,6 +46,9 @@ function initializeSocket(server) {
             socket.user=user
             next()
         })
+      } else {
+        next(new Error('Authentication error'));
+      }
       }
 
       
@@ -49,6 +56,7 @@ function initializeSocket(server) {
 
    
       defaultNamespace.use((socket,next)=>{
+        
         socketMiddleware(socket,next)
       })
       trackingNamespace.use((socket,next)=>{
@@ -62,18 +70,20 @@ function initializeSocket(server) {
         socketMiddleware(socket,next)
       })
 
-      loginNamespace.use((socket,next)=>{
-        socketMiddleware(socket,next)
-      })
-
       signupNamespace.use((socket,next)=>{
+        
         socketMiddleware(socket,next)
       })
       ordersNamespace.use((socket,next)=>{
          socketMiddleware(socket,next)
       })
+
       
       
+      defaultNamespace.on("connection",(socket)=>{
+
+        console.log("connected to the default namespace")
+      })
 
       trackingNamespace.on("connection",(socket)=>{
 
@@ -85,18 +95,14 @@ function initializeSocket(server) {
         console.log("connected to the shippment namespace")
       })
       
-      loginNamespace.on("connection",(socket)=>{
-
-        console.log("connected to the login namespace")
-      })
 
       ordersNamespace.on("connection",(socket)=>{
           orderFunc(socket)
         console.log("connected to the sign up namespace")
       })
 
-      signupNamespace.on("connection",()=>{
-
+      signupNamespace.on("connection",(socket)=>{
+         SignUp(socket)
         console.log("connected to the sign up namespace")
       })
 

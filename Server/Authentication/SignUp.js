@@ -5,12 +5,13 @@ const SignUp= (socket)=>{
     
         socket.on("signing_up",async(data,callback)=>{
             const {username,email,password,account_type}= data;
+            console.log(username,email,password,account_type)
             try{
                   const encrypted_password= await bcrypt.hash(password,10)
                   const finduser= await users.findOne({email:email})
 
                   if(!finduser){
-                    return callback({status:"error",message:"email does not exit"})
+                    return callback({success:false,message:"email does not exit"})
                   }
                   
                   const user= new users(
@@ -23,11 +24,12 @@ const SignUp= (socket)=>{
                   )
 
                   await user.save()
-                  callback({status:"success",message:"signed up successfull"})
+                  callback({success:true,message:"signed up successfull"})
                   
 
             }catch(error){
                console.log("sign up failed",error)
+               callback({ success: false, message: 'An error occurred during signup' });
             }
 
             

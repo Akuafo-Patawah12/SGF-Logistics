@@ -1,4 +1,16 @@
 
+.questions_info{
+    display: flex;
+    width: 95%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: #A7C756
+    ;
+    margin-inline:auto;
+    padding-block:20px;
+
+} 
 
 @keyframes animate{
     from{height: 30px;}
@@ -8,4 +20,23 @@
 @keyframes animateDown{
     from{height: 100px;}
     to{height: 30px;}
+}
+
+
+
+.child1,.child2{
+    width: 45%;
+}
+
+
+@media (max-width: 768px){
+    .questions_info{
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        
+    }
+    .child1,.child2{
+        width: 95%;
+    }
 }

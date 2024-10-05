@@ -4,8 +4,10 @@ const data= require("../DatabaseModels/UsersSchema")
 require("dotenv").config()
 
 async function login(req,res){
+   
     
     const {email,password,rememberMe }= req.body.formData   //grabing user credentials from the client side.
+    
     try{
         const email_Exist=  data.findOne({email:email}); /* check whether the email exist in the database 
        and store it in email exist variable */

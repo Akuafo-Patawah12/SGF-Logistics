@@ -4,22 +4,23 @@
     overflow-x: auto; /* Enable horizontal scrolling */
     scroll-snap-type: x mandatory; /* Snap to each image */
     scrollbar-width: none;
-    border-radius: 20px;
-  }
-  
-  .slide-show > div{
-    border-radius:inherit;
-    min-width: 100%; 
-    height: 100%;
-    scroll-snap-align: start;
+     
+
+    & div{
+      min-width: 100%;
+      scroll-snap-align: start,
+    }
     
   }
+  
+  
+
   
   .slide_btn{
      display: flex;
      position: absolute;
      gap: 10px;
-     top: 320px;
+     top: 400px;
      left: 50%;
      transform: translate(-50%,-50%);
   
@@ -35,13 +36,226 @@
     display: flex;
     justify-content: space-between;
     position: absolute;
-    top: 11rem;
-    width: 90%;
+    top: 15rem;
+    width: 96.5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     height: 30px;
   
     & button{
       font-size: xx-large;
       border: none;
+      color: #35DFF7;
       background-color: transparent;
+    }
+  }
+ .Description{
+    margin-top: 30px;
+    width: 70%;
+    margin-inline: auto;
+    color:#1C1818;
+ }
+  .welcome_hero{
+    display:flex;
+    width: 95%;
+    margin-top: 30px;
+    justify-content: space-between;
+    height: auto;
+    margin-inline: auto;
+   
+    
+
+  }
+  .welcome_container{
+    width: 48%;
+    position: relative;
+
+    & h3{
+      color: #1C1818;
+    }
+  }
+
+  .welcome_button{
+    background-color: #A7C756
+    ;
+    color: white;
+    border: none;
+    padding: 10px;
+    position: absolute;
+    bottom: 30px;
+  }
+  .welcome_image{
+
+    width: 48%;
+    height: 300px;
+    background-image: url("../../public/SFG_images/Ship.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .services{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5%;
+    background: #A7C756;
+    
+    & div{
+       width: 30%;
+       padding-block-end: 20px;
+    }
+
+    & img{
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      isolation: isolate;
+    }
+    
+  }
+  .services::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color: white;
+   
+  }
+
+  .testimonals > div{
+    padding: 1.5rem 0;
+    
+    border: 2px solid #8B14B1
+    ;
+    width: 30%;
+
+  }
+
+  .Image_Text{
+    position: absolute;
+    z-index: 1;
+    top: 20%;
+    left: 2.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+
+    & h3{
+      font-size: x-large;
+      color: white;
+    }
+
+  }
+
+  .btn{
+    background: rgb(255, 115, 0);
+    padding: 10px;
+    color: white;
+    border: none;
+  }
+
+.quote{
+   position: relative;
+   max-width: 280px;
+   margin-inline: auto;
+}
+ .quote_name  {
+  max-width: 280px;
+   margin-inline: auto;
+   margin-top: 10px;
+}
+
+  .quote::before{
+    content: "\201C  ";
+    position: absolute;
+    font-size: 40px;
+    font-weight: 700;
+    transform: translate(-18px,-12px);
+    color: #8B14B1
+    ;
+  }
+  .quote::after{
+    content: "\201D  ";
+    position: absolute;
+    font-size: 40px;
+    font-weight: 700;
+    transform: translateY(-12px);
+    color: #8B14B1
+    ;
+  }
+
+  .why_choose_us{
+    display:flex;
+    background: #A7C756;
+    padding-block: 30px;
+    padding-inline: 2.5%;
+  }
+
+  
+  @keyframes width{
+    from{width: 0;}
+    to{width: 100%;}
+  }
+
+  @media (max-width: 768px){
+    .services{
+      flex-direction: column;
+    }
+    .testimonals{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .testimonals > div{
+      width: 96.5%;
+    }
+    .testimonals {gap: 10px;}
+
+    .services{
+      gap: 15px;
+      border-radius: 40px;
+
+      & div{
+         width: 95%;
+      }
+    }
+
+    .welcome_hero{
+      height: max-content;
+      gap: 25px;
+      width: 100%;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 40px;
+      border-bottom: 10px solid #eee;
+
+    }
+    .welcome_container{
+      width: 95%;
+      
+    }
+    .welcome_image{
+      background-color: blue;
+      width: 95%;
+      border-radius: 40px;
+    }
+    .why_choose_us{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+
+      & div{
+        width: 95%;
+
+      }
+      & div:nth-child(1),div:nth-child(2){
+        padding-bottom: 20px;
+          border-bottom: 10 px solid #35dff7;
+      }
     }
   }

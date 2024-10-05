@@ -3,7 +3,7 @@ const { login } = require('../Authentication/Login')
 const updatePassword = require('../Authentication/UpdatePassword')
 
 
-router.post("/login", login)
+router.post("/", login)
 router.put("/update_password", updatePassword)
 
 module.exports= router

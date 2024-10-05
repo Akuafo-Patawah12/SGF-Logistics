@@ -15,8 +15,10 @@ const router = require("./AuthRoutes/Router")
 app.use(cookieParser())
 
 app.use(cors({
-    origin:["http://localhost:4040"],
-    credentials:true
+    origin:["http://localhost:3000"],
+    credentials: true,
+    methods:["POST,GET,PUT,DELETE"], 
+    allowedHeaders: ['Content-Type']
 }))
 
 

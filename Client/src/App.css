@@ -27,6 +27,13 @@
   height: 70px;
   align-items: center;
   position: relative;
+  background: #A7C756;
+}
+.nav1{
+  display:flex;
+  gap:8px;
+  font-size: large;
+  font-weight: 600;
 }
 
 .nav{
@@ -34,7 +41,7 @@
   padding-block: 30px;
   height:max-content;
   width: 80%;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-around;
   position: absolute;
@@ -72,6 +79,7 @@
   padding-block: 3rem;
   background-color: #1C1818;
   
+  
 
 }
 
@@ -81,8 +89,13 @@ footer a{
   font-size: x-large;
 }
 
-.About{
+.footer_nav{
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.About{
+  display: none;
   flex-direction: column;
 
   & button{
@@ -128,6 +141,7 @@ footer a{
   height: 30px;
   width: 30px;
   position: relative;
+  display: none;
 
   & div{
       background-color: #1C1818;
@@ -137,6 +151,40 @@ footer a{
       transition: all .3s;
       left:0;
   }
+}
+.nav_1,
+.nav_2{
+  display: block;
+}
+
+@media (max-width: 568px){
+  .nav{
+    display: flex;
+  }
+  .open{
+    display: block;
+}
+.nav1{
+  display: none;
+}
+.About{
+  display: flex;
+}
+.nav_1{
+  display: none;
+}
+}
+
+@media (max-width: 768px){
+  .About{
+    display: flex;
+  }
+  .nav_1{
+  display: none;
+}
+.footer_nav{
+  flex-direction: column;
+}
 }
 
 

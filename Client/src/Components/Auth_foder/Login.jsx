@@ -8,6 +8,7 @@ const Login = () => {
         email: '',
         account_type:"personal",
         password: '',
+        rememberMe:true
        
       });
     
@@ -21,14 +22,14 @@ const Login = () => {
         });
       };
 
-    axios.defaults.withCredentials=true
+    axios.defaults.withCredentials= true
       const handleSubmit = async(e) => {
         e.preventDefault();
 
 
        try{
 
-        const response= await axios.post("http://localhost:4040/login",{formData})
+        const response= await axios.post("http://localhost:4040/",{formData})
         // Validation (you can expand this further)
         const validationErrors = {};
         

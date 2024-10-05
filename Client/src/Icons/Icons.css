@@ -1,0 +1,25 @@
+.Loader {
+    width: 95%;
+    height: 300px;
+    animation: 2000ms infinite color-loading;
+    margin-inline: auto;
+    margin-bottom: 70px;
+    margin-top: 20px;
+}
+
+@keyframes color-loading {
+    0% {
+        background: linear-gradient(
+            to right,
+            #ddd,
+            #eee
+        );
+    }
+    100% {
+        background: linear-gradient(
+            to right,
+            #eee,
+            #ddd
+        );
+    }
+}

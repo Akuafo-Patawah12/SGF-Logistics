@@ -1,11 +1,14 @@
 import React from 'react'
 import FAQsAccordion from './Components/FAQsAccordion'
+import { EnvironmentFilled, MailFilled, PhoneFilled, SendOutlined } from '@ant-design/icons'
 
 const FAQs = () => {
+
+   const InputStyle={padding: "10px"}
   return (
     <div >
         <h2>FREQUENTLY ASKED QUESTIONS</h2>
-     <div style={{width:"100%", display:"flex",flexDirection:"column"}}>
+     <div style={{width:"100%", display:"flex",flexDirection:"column", gap:"10px"}}>
        <FAQsAccordion 
           Questions="What services does SF Ghana Logistics offer? "
 
@@ -44,6 +47,45 @@ const FAQs = () => {
            Answers="Goods remaining in our warehouse for more than 4 days post-arrival incur a 
                     storage charge of GHS 20 per CBM per day." 
         />
+        </div>
+
+        <h2>Have any Questions? Send us a mail</h2>
+        <div className="questions_info" >
+           
+           <form className='child1'>
+            <section style={{display:"flex",width:"100%",gap:"10px",flexDirection:"column"}}>
+              <input type="email" placeholder='Enter your email' style={InputStyle}/>
+              
+              <input type="text" placeholder='Subject'  style={InputStyle}/>
+              <textarea></textarea>
+              <button type='submit' style={InputStyle}>Send <SendOutlined /></button>
+            </section>
+           </form>
+           <section className="child2">
+            <div style={{display:"flex",marginBottom:"5px",gap:"5px"}}>
+                <span style={{color:"white",fontSize:"38px"}}><EnvironmentFilled /></span>
+                <div>
+               <h3>Address</h3>
+               <p>George Bush Highway, Plot No. 67, Dzorwulu, Accra-Ghana</p>
+               </div>
+               </div>
+
+               <div style={{display:"flex",marginBottom:"5px",gap:"5px"}}>
+               <span style={{color:"white",fontSize:"38px",}}><MailFilled /> </span>
+                 <div>
+                  <h3>Email</h3>
+                  <p>sfghanalogistics24@gmail.com</p>
+                  </div>
+               </div>
+
+               <div style={{display:"flex",marginBottom:"5px",gap:"5px"}}>
+                  <span style={{color:"white",fontSize:"38px"}}><PhoneFilled /></span>
+                  <div>
+                  <h4>Telephone</h4>
+                  <p>020 811 6360 / 053 948 0433</p>
+                  </div>
+               </div>
+           </section>
         </div>
     </div>
   )

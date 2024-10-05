@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect ,useMemo} from 'react';
+import {io} from "socket.io-client"
+
 import './Auth.css'; // Import the CSS file
 
 
 const SignUp = () => {
+
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
+
+
+  const socket= useMemo(() =>io("http://localhost:4040/signUp",{
+    transports: ['websocket'],
+  }),[])
+  
+  useEffect(()=>{
+     socket.on("connection",()=>{
+       console.log("connected to the signup path")
+     })
+     socket.on("disconnect",(reasons)=>{
+         console.log(reasons)
+     })
+  
+     return()=>{
+        socket.off("connection")
+        socket.off("disconnect")
+     }
+  },[socket])
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
@@ -22,7 +45,7 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     // Validation (you can expand this further)
     const validationErrors = {};
     if (!formData.username) validationErrors.username = "Username is required";
@@ -36,8 +59,17 @@ const SignUp = () => {
 
     // If there are no validation errors, show success message
     if (Object.keys(validationErrors).length === 0) {
+      socket.emit("signing_up",formData,(response)=>{
+        if (response.success) {
+          console.log(response.message);
+        } else {
+          console.log(response.message);
+        }
+      })
       setSuccess(true);
+      
     }
+    
   };
 
   return (
