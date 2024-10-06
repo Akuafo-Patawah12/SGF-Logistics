@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import Logo from '../Icons/Logo'
 
 
 const Header = ({setShowAuth,buttonDisplay}) => {
@@ -13,7 +14,7 @@ const Header = ({setShowAuth,buttonDisplay}) => {
         const[popNav,setPopNav]= useState(false)
   return (
     <header className="header">
-        <img src="./SFG_images/SFG_logo.jpg" style={{marginLeft:"2.5%",width:"50px",height:"50px"}}></img>
+        <div style={{marginLeft:"2.5%",width:"50px",height:"50px"}}><Logo /> </div>
     
         <nav  className="nav1">
          <Link to={"/"}><span>Home</span> </Link>

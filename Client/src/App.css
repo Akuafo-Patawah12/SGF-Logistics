@@ -24,6 +24,7 @@
   border-bottom: 2px solid #ddd;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 70px;
   align-items: center;
   position: relative;
