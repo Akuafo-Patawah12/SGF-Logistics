@@ -187,15 +187,15 @@ useEffect(() => {
        </div>
 
        <div ref={childRef2} >
-       <LazyLoadImage src='../SFG_images/Ship1.jpg' width={windowWidth} effect='blur' style={{ objectFit: "cover", height: '400px' }}  />
+       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={windowWidth} effect='blur' style={{ objectFit: "cover", height: '400px' }}  />
        </div>
          
          <div ref={childRef3} >
-          <LazyLoadImage src='../SFG_images/pexels-chanaka-318741-906494.jpg' width={windowWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
+          <LazyLoadImage src='../SFG_images/Slider2.jpg' width={windowWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
           </div>
 
           <div ref={childRef4} >
-          <LazyLoadImage src='../SFG_images/Air_Freight.jpg' width={windowWidth} effect='blur' style={{objectFit: "cover", height: '400px' }} />
+          <LazyLoadImage src='../SFG_images/Slider3.jpg' width={windowWidth} effect='blur' style={{objectFit: "cover", height: '400px' }} />
 
           </div>
           
@@ -214,7 +214,7 @@ useEffect(() => {
       
         
       </div>
-      <h3 className='Description'>We're fast,Efficient, Cost effective and Reliable in all areas of shipping, freight forwarding 
+      <h3 className='Description'>We're fast, Efficient, Cost effective and Reliable in all areas of shipping, freight forwarding 
           ,Free procurement and Sourcing Training, Container Clearance & Groupage Services.
       </h3>
       <section className='welcome_hero'>
@@ -243,7 +243,7 @@ useEffect(() => {
 
        <setion className={`services ${isVisible ? 'fade-in' : ''}`} ref={sectionRef}>
           <div>
-             <img src='./SFG_images/Ship.jpg' alt=''></img>
+             <img src='./SFG_images/Sea.jpg' alt=''></img>
              <h4 style={{color:"white",marginTop:"5px"}}>Sea Freight</h4><br/>
              <p style={{color:"white"}}>We have the expertise to manage your large,over-sized 
                 heavy,high-value or mission-critical piecies of cargo.
@@ -251,7 +251,7 @@ useEffect(() => {
              </p>
           </div>
           <div>
-             <img src='./SFG_images/Airplane.jpg' alt=''></img>
+             <img src='./SFG_images/Air.jpg' alt=''></img>
              <h4 style={{color:"white",marginTop:"5px"}}>Air Freight</h4><br/>
              <p style={{color:"white"}}>SF Ghana handles Air freight for all clients who need fast
                 reliable, and secure transportation of their goods. Ideal for high-priority
@@ -259,7 +259,7 @@ useEffect(() => {
              </p>
           </div>
           <div>
-            <img src='./SFG_images/Bus2.jpg' alt=''></img>
+            <img src='./SFG_images/Door-to-door.jpg' alt=''></img>
             <h4 style={{color:"white",marginTop:"5px"}}>Door-to-Door Delivery.</h4><br/>
             <p style={{color:"white"}}>Our Door-to-Door Delivery Service offer a hassle-free solution 
                ,managing the entire logistics process from pickup to final delivery.
