@@ -14,7 +14,7 @@ const Header = ({setShowAuth,buttonDisplay}) => {
         const[popNav,setPopNav]= useState(false)
   return (
     <header className="header">
-        <div style={{marginLeft:"2.5%",width:"50px",height:"50px"}}><Logo /> </div>
+        <Logo />
     
         <nav  className="nav1">
          <Link to={"/"}><span>Home</span> </Link>
