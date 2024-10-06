@@ -288,7 +288,7 @@ const [display1,setDisplay1]  = useState(false)
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={()=> setDisplay1(prev=> !prev)} style={{marginLeft:"auto", marginRight:"2.5%",borderRadius:"50%",background:"#333",color:"#fff",height:"40px",width:"40px",border:"none"}}><ArrowLeftOutlined /></button></div>
       {display1 && <section className='services1'  >
        <div>
-             <img src='./SFG_images/Sea.jpg' alt=''></img>
+             <img src='./SFG_images/procurement.jpg' alt=''></img>
              <h4 style={{color:"white",marginTop:"5px"}}>Free Procurement & Sourcing Training </h4><br/>
              <p style={{color:"white"}}>
                   Our Free Procurement and Sourcing Training empowers businesses with essential skills for 
@@ -297,7 +297,7 @@ const [display1,setDisplay1]  = useState(false)
              </p>
           </div>
           <div>
-             <img src='./SFG_images/Air.jpg' alt=''></img>
+             <img src='./SFG_images/Air2.jpg' alt=''></img>
              <h4 style={{color:"white",marginTop:"5px"}}>Container Clearance </h4><br/>
              <p style={{color:"white"}}>
                     SF Ghana Logistics provides seamless Container Clearance Services, managing all customs
@@ -307,7 +307,7 @@ const [display1,setDisplay1]  = useState(false)
              </p>
           </div>
           <div>
-            <img src='./SFG_images/Door-to-door.jpg' alt=''></img>
+            <img src='./SFG_images/Groupage.jpg' alt=''></img>
             <h4 style={{color:"white",marginTop:"5px"}}>Groupage Services </h4><br/>
             <p style={{color:"white"}}>
                     Our Groupage Services allow businesses with small to medium-sized shipments to save on costs 
