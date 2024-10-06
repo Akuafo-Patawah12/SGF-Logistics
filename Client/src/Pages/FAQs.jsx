@@ -7,7 +7,7 @@ const FAQs = () => {
    const InputStyle={padding: "10px"}
   return (
     <div >
-        <h2>FREQUENTLY ASKED QUESTIONS</h2>
+        <h4 style={{marginTop:"30px",marginLeft:"2.5%",marginBlock:"20px"}}>FREQUENTLY ASKED QUESTIONS</h4>
      <div style={{width:"100%", display:"flex",flexDirection:"column", gap:"10px"}}>
        <FAQsAccordion 
           Questions="What services does SF Ghana Logistics offer? "
@@ -49,7 +49,7 @@ const FAQs = () => {
         />
         </div>
 
-        <h2>Have any Questions? Send us a mail</h2>
+        <h4 style={{marginTop:"30px",marginLeft:"2.5%",marginBlock:"20px"}}>Have any Questions? Get in Touch</h4>
         <div className="questions_info" >
            
            <form className='child1'>
