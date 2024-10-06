@@ -323,7 +323,7 @@ useEffect(() => {
               </p>
            </div>
        </section>
-        {isVideo &&<div style={{position:"fixed",inset:"0",zIndex:"34",background:"rgb(0,0,0,0.8)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+        {isVideo &&<div style={{position:"fixed",inset:"0",zIndex:"34",background:"rgb(0,0,0,0.9)",display:"flex",alignItems:"center",justifyContent:"center"}}>
           <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
            <HowItWorksVideo />
        </div>}
