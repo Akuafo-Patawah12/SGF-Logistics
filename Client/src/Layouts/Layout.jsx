@@ -4,6 +4,7 @@ import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
+import TermsAndCondition from '../Pages/TermsAndCondition'
 const HomePage= lazy(()=>import('../Pages/HomePage'))
 
 const Layout = () => {
@@ -32,7 +33,7 @@ const Layout = () => {
                         <HomePage setShowAuth={setShowAuth} showAuth={showAuth}/>
                     </Suspense> }
                 /> 
-
+                <Route path='/Terms' element={<TermsAndCondition />} />
                 <Route path='/FAQs' element={<FAQs />}/>
             </Routes>
        <Footer />

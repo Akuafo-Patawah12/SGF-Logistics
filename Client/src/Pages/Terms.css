@@ -1,0 +1,16 @@
+.parent-element {
+    counter-reset: my-counter;
+  }
+  
+  .tab {
+    counter-increment: my-counter;
+  }
+  
+  .tab::before {
+    color: black;
+    content: counter(my-counter) " ";
+  }
+
+  .terms{
+    width: 60%;
+  }
