@@ -7,8 +7,9 @@ import MoneyIcon from "../Icons/MoneyIcon"
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css'; 
 import Authentication from "../Components/Authentication"
-import { LeftCircleFilled,PlayCircleFilled,RightCircleFilled } from '@ant-design/icons'
+import { CloseOutlined, LeftCircleFilled,PlayCircleFilled,RightCircleFilled } from '@ant-design/icons'
 import LiftIcon from '../Icons/LiftIcon'
+import HowItWorksVideo from './Components/HowItWorksVideo'
 const HomePage = ({setShowAuth,showAuth}) => {
   const socket1= useMemo(() => io("http://localhost:4040",{
     transports: ['websocket'],
@@ -147,7 +148,7 @@ useEffect(() => {
   }, [windowWidth]);
   
 
-
+  const [isVideo,setIsVideo] = useState(false)
 
 
   return (
@@ -173,7 +174,7 @@ useEffect(() => {
           
           <section style={{display:"flex",gap:"1rem"}}>
             <button className='btn'>Get A Quote</button>
-            <button style={{border: "#5cbbf1",background:"transparent",display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span style={{color:"white"}}>Home It Works?</span></button>
+            <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span style={{color:"white"}}>Home It Works?</span></button>
           </section>
           </div>
        
@@ -290,8 +291,8 @@ useEffect(() => {
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"25px" ,fontWeight:"500"}}>WHY CHOOSE US</p>
        <section ref={sectionRef2} className={`why_choose_us ${isVisible ? 'fade-in' : ''}`} style={{animation:`${isVisible ? "0.3s width" :"0.3s width "}`}}>
            <div>
-            <MoneyIcon />
-              <h4>Competitive Pricing</h4>
+            <div style={{marginInline:"auto",width:"fit-content"}}><MoneyIcon /></div>
+              <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
               <p >
                   We pride ourselves on offering some of the most competitive rates in the market. At $250 
                   per CBM, we ensure our pricing structure is designed to provide value without sacrificing 
@@ -300,8 +301,8 @@ useEffect(() => {
               </p>
            </div>
            <div>
-            <DeliveryIcon />
-           <h4>Timely Delivery</h4>
+            <div style={{marginInline:"auto",width:"fit-content"}}><DeliveryIcon /></div>
+           <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
               <p >
                 When it comes to logistics, time is of the essence. SFGL has built a reputation for 
                 punctuality and reliability, ensuring that your shipments arrive at their destination on 
@@ -311,8 +312,8 @@ useEffect(() => {
               </p>
            </div>
            <div>
-            <LiftIcon />
-           <h4>Expert Handling</h4>
+            <div style={{marginInline:"auto",width:"fit-content"}}><LiftIcon /></div>
+           <h4 style={{marginInline:"auto",width:"fit-content"}}>Expert Handling</h4>
               <p>
                 Entrusting your cargo to SFGL means relying on a team of seasoned professionals who 
                 have extensive experience in the logistics industry. Our expert team handles your goods 
@@ -322,6 +323,10 @@ useEffect(() => {
               </p>
            </div>
        </section>
+        {isVideo &&<div style={{position:"fixed",inset:"0",zIndex:"34",background:"rgb(0,0,0,0.8)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
+           <HowItWorksVideo />
+       </div>}
     </div>
   )
 }
