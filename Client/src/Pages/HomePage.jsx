@@ -174,7 +174,7 @@ useEffect(() => {
           
           <section style={{display:"flex",gap:"1rem"}}>
             <button className='btn'>Get A Quote</button>
-            <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span style={{color:"white"}}>Home It Works?</span></button>
+            <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span style={{color:"white",background:"#A7C756",padding:"10px",marginLeft:"20px"}}>How It Works?</span></button>
           </section>
           </div>
        

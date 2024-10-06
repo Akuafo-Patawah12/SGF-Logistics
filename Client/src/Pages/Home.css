@@ -76,8 +76,7 @@
   }
 
   .welcome_button{
-    background-color: #A7C756
-    ;
+    background-color: #A7C756;
     color: white;
     border: none;
     padding: 10px;
@@ -88,6 +87,7 @@
 
     width: 48%;
     height: 300px;
+    opacity: 1;
     background-image: url("../../public/SFG_images/Ship.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -151,7 +151,7 @@
   }
 
   .btn{
-    background: rgb(255, 115, 0);
+    background: #A7C756;
     padding: 10px;
     color: white;
     border: none;
@@ -182,7 +182,7 @@
     position: absolute;
     font-size: 40px;
     font-weight: 700;
-    transform: translateY(-12px);
+    transform: translateY(-10px);
     color: #8B14B1
     ;
   }
@@ -257,5 +257,14 @@
         padding-bottom: 20px;
           border-bottom: 10 px solid #35dff7;
       }
+    }
+
+    .welcome_button{
+      z-index: 20;
+      top: -190px;
+      padding: 10px;
+      max-height: 50px;
+      left: 50%;
+      transform: translate(-50%,-50%)
     }
   }

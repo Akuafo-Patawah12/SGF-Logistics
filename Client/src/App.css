@@ -114,7 +114,7 @@ footer a{
 }
 
 .socials_media_handles{
-  height: 40px;
+  padding-block: 5px;
   background: #251D1D;
   margin-top: 1rem;
   
