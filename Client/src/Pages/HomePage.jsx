@@ -7,9 +7,12 @@ import MoneyIcon from "../Icons/MoneyIcon"
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css'; 
 import Authentication from "../Components/Authentication"
-import { CloseOutlined, LeftCircleFilled,PlayCircleFilled,RightCircleFilled } from '@ant-design/icons'
+import { ArrowLeftOutlined, CloseOutlined, LeftCircleFilled,PlayCircleFilled,RightCircleFilled } from '@ant-design/icons'
 import LiftIcon from '../Icons/LiftIcon'
 import HowItWorksVideo from './Components/HowItWorksVideo'
+import EndUsersIcon from '../Icons/EndUsersIcon'
+import TrackingIcon from '../Icons/TrackingIcon'
+import ServicesIcon from '../Icons/ServicesIcon'
 const HomePage = ({setShowAuth,showAuth}) => {
   const socket1= useMemo(() => io("http://localhost:4040",{
     transports: ['websocket'],
@@ -150,6 +153,21 @@ useEffect(() => {
 
   const [isVideo,setIsVideo] = useState(false)
 
+  const[seeMore,setSeeMore] =useState("Read More...")
+  const[ see,setSee] = useState(false)
+
+  function ToggleMore(){
+    if(!see){
+      setSeeMore("Read Less...")
+      setSee(true)
+    return
+  }
+  setSeeMore("Read More...")
+  setSee(false)
+}
+
+const [display1,setDisplay1]  = useState(false)
+
 
   return (
     
@@ -267,6 +285,39 @@ useEffect(() => {
           </div>
        </setion>
 
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={()=> setDisplay1(prev=> !prev)} style={{marginLeft:"auto", marginRight:"2.5%",borderRadius:"50%",background:"#333",color:"#fff",height:"40px",width:"40px",border:"none"}}><ArrowLeftOutlined /></button></div>
+      {display1 && <section className='services1'  >
+       <div>
+             <img src='./SFG_images/Sea.jpg' alt=''></img>
+             <h4 style={{color:"white",marginTop:"5px"}}>Free Procurement & Sourcing Training </h4><br/>
+             <p style={{color:"white"}}>
+                  Our Free Procurement and Sourcing Training empowers businesses with essential skills for 
+                  managing logistics, procurement, and international sourcing. This service is designed to help 
+                  businesses improve their operations without additional cost.
+             </p>
+          </div>
+          <div>
+             <img src='./SFG_images/Air.jpg' alt=''></img>
+             <h4 style={{color:"white",marginTop:"5px"}}>Container Clearance </h4><br/>
+             <p style={{color:"white"}}>
+                    SF Ghana Logistics provides seamless Container Clearance Services, managing all customs
+                    related documentation and ensuring regulatory compliance. To support businesses with their 
+                    financial needs, we also offer Container Clearance on Credit, allowing flexibility in payments 
+                    while maintaining efficient logistics operations. 
+             </p>
+          </div>
+          <div>
+            <img src='./SFG_images/Door-to-door.jpg' alt=''></img>
+            <h4 style={{color:"white",marginTop:"5px"}}>Groupage Services </h4><br/>
+            <p style={{color:"white"}}>
+                    Our Groupage Services allow businesses with small to medium-sized shipments to save on costs 
+                    by sharing container space with others. This service is perfect for clients who do not require an 
+                    entire container but still need reliable and timely delivery. 
+            </p>
+          </div>
+       </section> }
+
+
 
 
          <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}}>Clients Testimonals</h3>
@@ -287,7 +338,7 @@ useEffect(() => {
              <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Michael Osei, Owner of GHI Retailers </h4>
           </div>
        </section>
-
+       
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"25px" ,fontWeight:"500"}}>WHY CHOOSE US</p>
        <section ref={sectionRef2} className={`why_choose_us ${isVisible ? 'fade-in' : ''}`} style={{animation:`${isVisible ? "0.3s width" :"0.3s width "}`}}>
            <div>
@@ -323,7 +374,43 @@ useEffect(() => {
               </p>
            </div>
        </section>
-        {isVideo &&<div style={{position:"fixed",inset:"0",zIndex:"34",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ ToggleMore} style={{marginInline:"auto",border:"2px solid #222",background:"transparent", padding:"8px",fontWeight:"600"}}>{seeMore}</button></div>
+       {see &&<section ref={sectionRef2} className="why_choose_us ">
+           <div>
+            <div style={{marginInline:"auto",width:"fit-content"}}><EndUsersIcon /></div>
+              <h4 style={{marginInline:"auto",width:"fit-content"}}>End-to-End Solutions:</h4>
+              <p >
+                  We offer comprehensive logistics services that cover every step of the supply chain—
+                  from customs clearance and regulatory compliance to warehousing and last-mile delivery. 
+                  Our goal is to simplify the shipping process for you, allowing you to focus on your 
+                  business while we handle the logistics.  
+              </p>
+           </div>
+           <div>
+            <div style={{marginInline:"auto",width:"fit-content"}}><TrackingIcon /></div>
+           <h4 style={{marginInline:"auto",width:"fit-content"}}>Cutting-Edge Tracking</h4>
+              <p >
+                Transparency and real-time visibility are key to our operations. With our state-of-the-art 
+                tracking system, you can monitor the progress of your shipment at every stage. This gives 
+                you peace of mind knowing that your cargo is on the right path, with updates available 
+                24/7 through our platform. 
+              </p>
+           </div>
+            <div>
+           <div style={{marginInline:"auto",width:"fit-content"}}><ServicesIcon /> </div>
+           <h4 style={{marginInline:"auto",width:"fit-content"}}> Customer-Centric Approach</h4>
+              <p >
+                  At SFGL, our customers are at the heart of everything we do. We tailor our services to 
+                  meet your unique requirements, providing personalized support and maintaining open 
+                  communication throughout the shipping process. Our dedicated customer service team is 
+                  always available to assist with inquiries, offering prompt responses and solutions to 
+                  ensure your satisfaction.  
+              </p>
+           </div>
+          
+           </section> }
+
+        {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"34",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
           <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
            <HowItWorksVideo />
        </div>}

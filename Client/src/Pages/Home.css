@@ -93,7 +93,7 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .services{
+  .services, .services1{
     display: flex;
     position: relative;
     justify-content: center;
@@ -200,10 +200,14 @@
     to{width: 100%;}
   }
 
+  @keyframes readmore{
+    from{scale: 0;}
+    to{scale: 1;}
+  }
+  
+
   @media (max-width: 768px){
-    .services{
-      flex-direction: column;
-    }
+    
     .testimonals{
       flex-direction: column;
       justify-content: center;
@@ -214,9 +218,9 @@
     }
     .testimonals {gap: 10px;}
 
-    .services{
+    .services, .services1{
       gap: 15px;
-      border-radius: 40px;
+      flex-direction: column;
 
       & div{
          width: 95%;
