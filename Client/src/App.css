@@ -53,19 +53,20 @@
   z-index: 30;
   box-shadow: 0 2px 20px 0px;
   transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  background-color: #eee;
+  background-color: #fff;
 
   & a{
-    width: 85%;
+    width: 80%;
     margin-inline: auto;
     height: 30px;
     padding-inline: 4px;
     border-radius: 5px;
     display: flex;
-    font-weight: 500;
+    font-weight: 400;
+    text-decoration: none;
     color: #1C1818;
     justify-content: space-between;
-    background: #ddd;
+    background: #eee;
   }
 }
 

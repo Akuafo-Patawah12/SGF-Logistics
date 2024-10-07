@@ -42,6 +42,7 @@ const Header = ({setShowAuth,buttonDisplay}) => {
          
 
          <nav style={{animation:`${popUp?"navAnimate 0.3s linear":""}`,visibility:`${popUp?"visible":"hidden"}`}} className="nav">
+          <p style={{width:"95%",height:"25px",borderBottom: "1px solid #ddd",fontWeight:"700",marginLeft:"auto",marginBottom:"10px"}}>Menu</p>
           <Link to={"/"}><span>Home</span> <HomeOutlined/></Link>
           <a><span>About</span><GlobalOutlined/> </a>
           <a><span>Contact</span> <PhoneOutlined /></a>
