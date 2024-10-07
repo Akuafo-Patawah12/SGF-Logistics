@@ -29,8 +29,10 @@ const TermsAndCondition = () => {
       </section>
 
       <section className="terms">
+        <p>Terms Of Service</p>
         <div>
           <h4> Prohibition of Contraband Goods</h4>
+          
          <p>
             
             SF Ghana Logistics (SFGL) strictly prohibits the shipment of contraband or illegal goods. All 

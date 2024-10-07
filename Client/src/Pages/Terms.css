@@ -4,13 +4,16 @@
   
   .tab {
     counter-increment: my-counter;
+    color: black;
   }
   
   .tab::before {
-    color: black;
+    
     content: counter(my-counter) " ";
   }
 
   .terms{
     width: 60%;
+    height: 450px;
+    overflow-y: auto;
   }
