@@ -248,6 +248,7 @@
     .welcome_image{
       background-color: blue;
       width: 95%;
+      height: 460px;
       border-radius: 40px;
     }
     .why_choose_us{
@@ -268,7 +269,7 @@
 
     .welcome_button{
       z-index: 20;
-      top: -190px;
+      top: -250px;
       padding: 10px;
       max-height: 50px;
       left: 50%;

@@ -5,7 +5,7 @@ const orderFunc = require("./OrdersNamespace");
 
 
 
-function initializeSocket(server) {   
+function initializeSocket(server){   
     const io = socketIo(server, {   //Creating connect between server and User Interface  "Realtime WebApp"
         cors: {
           origin:"http://localhost:3000",
