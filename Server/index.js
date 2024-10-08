@@ -1,9 +1,11 @@
 const express= require("express")
+const app=express()
 const cors= require("cors")
 const http= require("http")
 const initializeSocket = require("./WebSockets/Socket")
 const cookieParser= require("cookie-parser")
-const app=express()
+app.use(cookieParser())
+
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
 const DB_connection = require("./DatabaseConnection/Connection")
@@ -12,7 +14,7 @@ const router = require("./AuthRoutes/Router")
 
 
 
-app.use(cookieParser())
+
 
 app.use(cors({
     origin:["http://localhost:3000"],

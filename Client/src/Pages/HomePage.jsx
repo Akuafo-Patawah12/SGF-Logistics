@@ -256,7 +256,7 @@ const [display1,setDisplay1]  = useState(false)
 
       <h3 style={{color:"#1C1818",marginInline:"auto",maxWidth:"210px",textAlign:"center",marginTop:"20px"}}>OUR MAJOR SERVICES.</h3>
       <div style={{width:"100px",height:"2px",background:"#1C1818",marginInline:"auto",marginTop:"4px"}}></div>
-       <p style={{marginInline:"auto",width:"fit-content",marginBlock:"10px"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
+       <p style={{marginInline:"auto",width:"90%",marginBlock:"10px",textAlign:"center"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
 
 
        <setion className={`services ${isVisible ? 'fade-in' : ''}`} ref={sectionRef}>

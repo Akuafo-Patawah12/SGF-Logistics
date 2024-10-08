@@ -17,6 +17,10 @@ const userSchema= Schema({
         type:String,
         require:true
     },
+    account_type:{
+        type:String,
+        enum:["Admin","User"]
+    },
     created_At:{
         type:Date,
         default: Date.now()

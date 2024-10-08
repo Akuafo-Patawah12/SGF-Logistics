@@ -7,13 +7,17 @@ async function login(req,res){
    
     
     const {email,password,rememberMe }= req.body.formData   //grabing user credentials from the client side.
-    
+    console.log(email,password)
     try{
-        const email_Exist=  data.findOne({email:email}); /* check whether the email exist in the database 
+        const email_Exist=  await data.findOne({email:email}); /* check whether the email exist in the database 
        and store it in email exist variable */
-       const password_Is_Correct =  bcrypt.compare(password, email_Exist.password);
+       const password_Is_Correct = await  bcrypt.compare(password, email_Exist.password);
         
-       await Promise.all([email_Exist,password_Is_Correct])
+      console.log(email_Exist)
+       if (email_Exist=== null || "") {
+          res.status(404).json({ message: "invalid email" }); // Email not found
+          return
+        }
        
          const protected= email_Exist.account_type // find the user's account type "whether it's a personal or business account"
 
@@ -42,9 +46,7 @@ async function login(req,res){
                 maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
         });   
         }
-        if (!email_Exist || null) {
-            return res.status(404).json({ message: "invalid email" }); // Email not found
-        }
+       
 
      
 
@@ -53,14 +55,14 @@ async function login(req,res){
         }
 
         switch (protected) {
-            case "Personal":
+            case "User":
                 sendCookie(); // Set the refresh token cookie
                 return res.json({
                     message: "Logged in as a client",
                     accessToken: access_token
                 });
 
-            case "Business":
+            case "Admin":
                 sendCookie(); // Set the refresh token cookie
                 return res.json({
                     message: "Logged in as an admin",

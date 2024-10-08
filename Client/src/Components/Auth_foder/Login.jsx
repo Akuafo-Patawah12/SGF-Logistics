@@ -6,7 +6,7 @@ import axios from "axios"
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
-        account_type:"personal",
+        account_type:"User",
         password: '',
         rememberMe:true
        
@@ -29,11 +29,23 @@ const Login = () => {
 
        try{
 
-        const response= await axios.post("http://localhost:4040/",{formData})
+        const response = await fetch("http://localhost:4040", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({formData}), // example payload
+          credentials: 'include'  // This ensures cookies are sent with the request
+        });
+    
+        const data = await response.json();
+
+        
         // Validation (you can expand this further)
         const validationErrors = {};
         
-        if (response.status===401) validationErrors.password = "Email is required";
+        if (response.status===401) validationErrors.password = "Invalid password";
+        if (response.status===404) validationErrors.password = "Email doesn't exist";
         if (!formData.email) validationErrors.email = "Email is required";
         if (!formData.password) validationErrors.password = "Password is required";
        
@@ -42,6 +54,7 @@ const Login = () => {
     
         // If there are no validation errors, show success message
         if (Object.keys(validationErrors).length === 0) {
+          if(data.message==="Logged in as a client"|| data.message==="Logged in as an admin")
           setSuccess(true);
         }
 

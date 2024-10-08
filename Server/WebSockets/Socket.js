@@ -2,7 +2,7 @@ const socketIo= require("socket.io")
 const cookie= require("cookie")
 const jwt= require("jsonwebtoken");
 const orderFunc = require("./OrdersNamespace");
-const SignUp = require("../Authentication/SignUp");
+
 
 
 function initializeSocket(server) {   
@@ -18,7 +18,6 @@ function initializeSocket(server) {
       const defaultNamespace= io.of("/")
       const trackingNamespace= io.of("/tracking")
       const shippmentNamespace= io.of('/shippment')
-      const signupNamespace= io.of("/signUp")
       const ordersNamespace= io.of("/orders")
 
 
@@ -70,15 +69,12 @@ function initializeSocket(server) {
         socketMiddleware(socket,next)
       })
 
-      signupNamespace.use((socket,next)=>{
-        
-        socketMiddleware(socket,next)
-      })
+     
       ordersNamespace.use((socket,next)=>{
          socketMiddleware(socket,next)
       })
 
-      
+
       
       defaultNamespace.on("connection",(socket)=>{
 
@@ -101,10 +97,7 @@ function initializeSocket(server) {
         console.log("connected to the sign up namespace")
       })
 
-      signupNamespace.on("connection",(socket)=>{
-         SignUp(socket)
-        console.log("connected to the sign up namespace")
-      })
+      
 
 
       

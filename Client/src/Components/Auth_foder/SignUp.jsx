@@ -1,5 +1,4 @@
 import React, { useState,useEffect ,useMemo} from 'react';
-import {io} from "socket.io-client"
 
 import './Auth.css'; // Import the CSS file
 
@@ -11,27 +10,12 @@ const SignUp = () => {
     username: '',
     email: '',
     password: '',
+    account_type:"User",
     confirmPassword: ''
   });
 
 
-  const socket= useMemo(() =>io("http://localhost:4040/signUp",{
-    transports: ['websocket'],
-  }),[])
-  
-  useEffect(()=>{
-     socket.on("connection",()=>{
-       console.log("connected to the signup path")
-     })
-     socket.on("disconnect",(reasons)=>{
-         console.log(reasons)
-     })
-  
-     return()=>{
-        socket.off("connection")
-        socket.off("disconnect")
-     }
-  },[socket])
+ 
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
@@ -43,32 +27,50 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+
+  
+  const handleSubmit = async(e) => {
     e.preventDefault();
     
+    try{
+     
+      const response = await fetch("http://localhost:4040/sign_up", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({formData}), // example payload
+      });
+  
+      const data = await response.json();
+
+      
+      const validationErrors = {};
     // Validation (you can expand this further)
-    const validationErrors = {};
+    if(response.status===403) validationErrors.email="Email already exist"
     if (!formData.username) validationErrors.username = "Username is required";
     if (!formData.email) validationErrors.email = "Email is required";
     if (!formData.password) validationErrors.password = "Password is required";
     if (formData.password !== formData.confirmPassword) {
       validationErrors.confirmPassword = "Passwords do not match";
     }
+    
 
     setErrors(validationErrors);
+    
 
     // If there are no validation errors, show success message
     if (Object.keys(validationErrors).length === 0) {
-      socket.emit("signing_up",formData,(response)=>{
-        if (response.success) {
-          console.log(response.message);
-        } else {
-          console.log(response.message);
-        }
-      })
+      if(data.message==="Signed up successful")
       setSuccess(true);
       
+      
     }
+
+  }catch(error){
+     
+    console.log(error)
+  }
     
   };
 

@@ -1,17 +1,17 @@
 const bcrypt = require("bcrypt");
 const users = require("../DatabaseModels/UsersSchema");
 
-const SignUp= (socket)=>{
+const SignUp= async(req,res)=>{
     
-        socket.on("signing_up",async(data,callback)=>{
-            const {username,email,password,account_type}= data;
+        
+            const {username,email,password,account_type}= req.body.formData;
             console.log(username,email,password,account_type)
             try{
                   const encrypted_password= await bcrypt.hash(password,10)
                   const finduser= await users.findOne({email:email})
 
-                  if(!finduser){
-                    return callback({success:false,message:"email does not exit"})
+                  if(finduser){
+                    return res.status(403).json({message:"email already exit"})
                   }
                   
                   const user= new users(
@@ -24,18 +24,20 @@ const SignUp= (socket)=>{
                   )
 
                   await user.save()
-                  callback({success:true,message:"signed up successfull"})
+
+                  return res.json({message:"Signed up successful"})
+                  
                   
 
             }catch(error){
                console.log("sign up failed",error)
-               callback({ success: false, message: 'An error occurred during signup' });
+               res.status(500).json({message:"internal server error",error})
+               
             }
 
             
-        })
-
-        return socket
+        
+ 
     
 }
 
