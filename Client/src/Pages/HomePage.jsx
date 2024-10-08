@@ -166,8 +166,17 @@ useEffect(() => {
   setSee(false)
 }
 
-const [display1,setDisplay1]  = useState(false)
-
+const [displayService,setDisplayService]  = useState(false)
+const[serviceText,setServiceText]= useState("SEE ALL OUR SERVICES")
+function ToggleServices(){
+  if(!displayService){
+    setServiceText("SEE LESS...")
+    setDisplayService(true)
+  return
+}
+setServiceText("SEE ALL OUR SERVICES")
+setDisplayService(false)
+}
 
   return (
     
@@ -285,8 +294,8 @@ const [display1,setDisplay1]  = useState(false)
           </div>
        </setion>
 
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={()=> setDisplay1(prev=> !prev)} style={{marginLeft:"auto", marginRight:"2.5%",borderRadius:"50%",background:"#333",color:"#fff",height:"40px",width:"40px",border:"none"}}><ArrowLeftOutlined /></button></div>
-      {display1 && <section className='services1'  >
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"40px",border:"1px solid #222"}}>{serviceText}</button></div>
+      {displayService && <section className='services1'  >
        <div>
              <img src='./SFG_images/procurement.jpg' alt=''></img>
              <h4 style={{color:"white",marginTop:"5px"}}>Free Procurement & Sourcing Training </h4><br/>
