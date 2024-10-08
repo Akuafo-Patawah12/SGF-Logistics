@@ -134,21 +134,7 @@ useEffect(() => {
   }
 
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    // Function to update the width state when the window resizes
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [windowWidth]);
+  
   
 
   const [isVideo,setIsVideo] = useState(false)
@@ -166,6 +152,26 @@ useEffect(() => {
   setSee(false)
 }
 
+
+const [divWidth, setDivWidth] = useState(0);
+
+useEffect(() => {
+  const handleResize = () => {
+    if (parentRef.current) {
+      setDivWidth(parentRef.current.offsetWidth);
+    }
+  };
+
+  window.addEventListener('resize', handleResize);
+
+  // Initial measurement
+  handleResize();
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, [divWidth]);
+
 const [displayService,setDisplayService]  = useState(false)
 const[serviceText,setServiceText]= useState("SEE ALL OUR SERVICES")
 function ToggleServices(){
@@ -180,16 +186,14 @@ setDisplayService(false)
 
   return (
     
-    <div>
+    <div style={{overflow:"hidden"}}>
         {showAuth&& <Authentication  authShow={[showAuth,setShowAuth]}/>}
       <div
         ref={parentRef}
         className="slide-show"
         style={{
           width: "100%",
-          height: "400px",
-          
-          whiteSpace: "nowrap",
+          height: "400px"
           
         }}
       >
@@ -210,19 +214,19 @@ setDisplayService(false)
           
           
       
-       src='../SFG_images/slider1.jpg' width={windowWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
+       src='../SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
        </div>
 
        <div ref={childRef2} >
-       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={windowWidth} effect='blur' style={{ objectFit: "cover", height: '400px' }}  />
+       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '400px' }}  />
        </div>
          
          <div ref={childRef3} >
-          <LazyLoadImage src='../SFG_images/Slider2.jpg' width={windowWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
+          <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
           </div>
 
           <div ref={childRef4} >
-          <LazyLoadImage src='../SFG_images/Slider3.jpg' width={windowWidth} effect='blur' style={{objectFit: "cover", height: '400px' }} />
+          <LazyLoadImage src='../SFG_images/Slider3.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '400px' }} />
 
           </div>
           
@@ -241,10 +245,12 @@ setDisplayService(false)
       
         
       </div>
-      <h3 className='Description'>We're fast, Efficient, Cost effective and Reliable in all areas of shipping, freight forwarding 
+      <h3 className='Description' >We're fast, Efficient, Cost effective and Reliable in all areas of shipping, freight forwarding 
           ,Free procurement and Sourcing Training, Container Clearance & Groupage Services.
       </h3>
-      <section className='welcome_hero'>
+      
+      <section className='welcome_hero' >
+
             
    
          <div className='welcome_container' >

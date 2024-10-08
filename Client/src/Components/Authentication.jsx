@@ -44,15 +44,15 @@ const Authentication = ({authShow}) => {
                 <button onClick={()=>{setShowAuth(false)}}><CloseOutlined/></button>
         </div>
      <section ref={parentRef} className='auth_slider'>
-        <div  ref={formRef1}>
+        <div  ref={formRef1} className='slide'>
             <SignUp />
         </div >
 
-        <div ref={formRef2}>
+        <div ref={formRef2} className='slide'>
             <Login />
         </div>
 
-        <div ref={formRef3}> 
+        <div ref={formRef3} className='slide'> 
             <input type='email'/>
             <input type='submit'/>
             

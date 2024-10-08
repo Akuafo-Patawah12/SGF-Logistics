@@ -27,9 +27,9 @@ const Header = ({setShowAuth,buttonDisplay}) => {
        </nav> 
      
       <div style={{marginRight:"2.5%",display:"flex",alignItems:"center",gap:"4px"}}>
-      <button style={{border:"none",background:"#fff",height:"40px",borderRadius:"10px",color:"black"}}>Track</button>
+      <button style={{border:"none",background:"#fff",height:"40px",borderRadius:"10px",paddingInline:"10px",color:"black"}}>Track</button>
 
-        {buttonDisplay && <button onClick={()=>{setShowAuth(true)}} style={{border:"none",color:" #000",height:"40px",borderRadius:"10px",background:"white"}}>Get started</button> }
+        {buttonDisplay && <button onClick={()=>{setShowAuth(true)}} style={{border:"none",color:" #000",height:"40px",borderRadius:"10px",paddingInline:"6px",background:"white"}}>Get started</button> }
 
        <button  onClick={pop} className="open">
           <div style={{rotate:`${popUp ? "45deg":""}`,top:`${popUp ? "50%":"4px"}`}}></div>

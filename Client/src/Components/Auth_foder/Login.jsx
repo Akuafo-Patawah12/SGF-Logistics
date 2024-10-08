@@ -8,7 +8,7 @@ const Login = () => {
         email: '',
         account_type:"User",
         password: '',
-        rememberMe:true
+        rememberMe:false
        
       });
     
@@ -64,7 +64,8 @@ const Login = () => {
       };
   return (
     <div className="container">
-    <form className="login-form" onSubmit={handleSubmit}>
+      
+    <form  className="login-form" onSubmit={handleSubmit}>
     <h2>Login</h2>
 
    
@@ -92,6 +93,21 @@ const Login = () => {
       />
       {errors.password && <span className="error">{errors.password}</span>}
     </div>
+
+    <div className="check">
+      
+      <input
+        type="checkbox"
+        name="rememberMe"
+        value={formData.rememberMe}
+        onChange={handleChange}
+        id='check'
+      />
+      <label for="check">Stay Signed in</label>
+     
+    </div>
+
+    
 
     
    <div className=".form-group">

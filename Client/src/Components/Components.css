@@ -3,7 +3,6 @@
     position: fixed;
     width: 100%;
     z-index: 30;
-    height: 100vh;
     inset: 0;
     background: rgb(0, 0,0,0.7);
 }
@@ -25,10 +24,10 @@
 .auth_slider{
     display: flex;
     width: 100%;
-    height: inhert;
+    height: fit-content;
     overflow-x: auto;
     scrollbar-width: none;
-    background-color: #eee;
+    background-color: #fff;
     scroll-snap-type: x mandatory;
 }
 .auth_routes{
@@ -39,6 +38,8 @@
     background: white;
     border-bottom :5px solid #ddd;
     
+
+ 
     
     & button{
         max-width: 80px;
@@ -50,6 +51,9 @@
         border: 2px solid #218838;
         float: right;
     }
+}
+.slide{
+    min-width: 100%;
 }
 
 @media (max-width: 568px) {
