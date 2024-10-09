@@ -1,6 +1,6 @@
 import React,{useState,useRef,useEffect,useMemo} from 'react'
 import "./Home.css"
-import {io} from "socket.io-client"
+import io from "socket.io-client"
 import DeliveryIcon from "../Icons/DeliveryIcon"
 import {Link} from "react-router-dom"
 import MoneyIcon from "../Icons/MoneyIcon"
@@ -14,25 +14,32 @@ import EndUsersIcon from '../Icons/EndUsersIcon'
 import TrackingIcon from '../Icons/TrackingIcon'
 import ServicesIcon from '../Icons/ServicesIcon'
 const HomePage = ({setShowAuth,showAuth}) => {
-  const socket1= useMemo(() => io("http://localhost:4040",{
+  const socket= useMemo(() => io("http://localhost:4040",{
     transports: ['websocket'],
   }),[])
 
   
+useEffect(()=>{
+  socket.emit("greet", "hello world")
+  console.log(socket)
+},[socket])
+
 
   useEffect(()=>{
-    socket1.on("connect",()=>{
-      console.log("connected to the signup path")
+    socket.on("connection",()=>{
+      console.log("connected to the default namespace")
     })
-    socket1.on("disconnect",(reasons)=>{
+
+    socket.on("disconnect",(reasons)=>{
         console.log(reasons)
     })
- 
+    
+   
     return()=>{
-       socket1.off("connection")
-       socket1.off("disconnect")
+       socket.off("connection")
+       socket.off("disconnect")
     }
- },[socket1])
+ },[socket])
   
   
 
@@ -204,7 +211,7 @@ setDisplayService(false)
           </section>
           
           <section style={{display:"flex",gap:"1rem"}}>
-            <button className='btn'>Get A Quote</button>
+            <Link to={"/Orders"}><button className='btn'>Get A Quote</button></Link>
             <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span style={{color:"white",background:"#A7C756",padding:"10px",marginLeft:"20px"}}>How It Works?</span></button>
           </section>
           </div>
@@ -300,7 +307,7 @@ setDisplayService(false)
           </div>
        </setion>
 
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"40px",border:"1px solid #222"}}>{serviceText}</button></div>
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"40px",border:"2px solid #222", padding:"8px",fontWeight:"600"}}>{serviceText}</button></div>
       {displayService && <section className='services1'  >
        <div>
              <img src='./SFG_images/procurement.jpg' alt=''></img>

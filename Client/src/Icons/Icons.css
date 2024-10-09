@@ -29,3 +29,18 @@ svg{
     padding: 0;
     transform: translateX(-10%);
 }
+
+.turn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #eee;
+    border-left: 2px solid #bbb;
+    animation: load 2s linear infinite;
+}
+
+
+@keyframes load{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}

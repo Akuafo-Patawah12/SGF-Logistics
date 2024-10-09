@@ -5,6 +5,8 @@ import Footer from '../Components/Footer'
 import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
+const Tracking= lazy(()=> import('../Pages/Tracking'))
+const Orders = lazy(()=> import( '../Pages/Orders'))
 const HomePage= lazy(()=>import('../Pages/HomePage'))
 
 const Layout = () => {
@@ -35,7 +37,17 @@ const Layout = () => {
                 /> 
                 <Route path='/Terms' element={<TermsAndCondition />} />
                 <Route path='/FAQs' element={<FAQs />}/>
+                <Route path='/Orders' element={
+                    <Suspense fallback={<Loader />}>
+                        <Orders />
+                    </Suspense>} />
+                    <Route path='/Tracking' element={
+                    <Suspense fallback={<Loader />}>
+                        <Tracking />
+                    </Suspense>} /> 
+            
             </Routes>
+            
        <Footer />
     </div>
   )

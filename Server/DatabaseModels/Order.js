@@ -4,30 +4,31 @@ const {Schema} = mongoose
 
 const orderSchema= Schema({
 
-    items:[
-        {
-            name:String,
-            quantity:Number
-        }
-    ],
-    status:String,
-
-    origin:[
-        {
-            city:String,
-            street_name:String
-        }
-    ],
-    destination:[
-        {
-            city:String,
-            street_name:String
-        }
-    ],
-    created_At:{
-        type:Date,
-        default: Date.now()
+    customer_id: {type:Schema.Types.ObjectId,ref:"User"},  
+        items: [
+          {
+            itemName: String,
+            quantity: Number,
+          }
+        ],
+        totalAmount: Number,
+        shipmentId: {type:Schema.Types.ObjectId, ref:"Shipment"},
+        origin: String,
+          
+        destination:String,
+            
+      
+    Status:{
+       type:String,
+        enum: ["Pending...","in-Transit","Delivered"],
+        default:"Pending..."
     }
+    ,
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
+    updateAt:Date
 })
 
 const order= mongoose.model("order", orderSchema)

@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import './Auth.css'; 
 import axios from "axios"
+import {useNavigate} from "react-router-dom"
+import ButtonLoader from '../../Icons/ButtonLoader';
 
 
 const Login = () => {
@@ -21,11 +23,13 @@ const Login = () => {
           [e.target.name]: e.target.value
         });
       };
+    
 
-    axios.defaults.withCredentials= true
+      const [loader,setLoader]= useState(false)
+      const navigate= useNavigate()
       const handleSubmit = async(e) => {
         e.preventDefault();
-
+        setLoader(true)
 
        try{
 
@@ -44,21 +48,41 @@ const Login = () => {
         // Validation (you can expand this further)
         const validationErrors = {};
         
-        if (response.status===401) validationErrors.password = "Invalid password";
-        if (response.status===404) validationErrors.password = "Email doesn't exist";
-        if (!formData.email) validationErrors.email = "Email is required";
-        if (!formData.password) validationErrors.password = "Password is required";
-       
+        if (response.status===401){
+           validationErrors.password = "Invalid password";
+           setLoader(false)
+        }
+        if (response.status===404) {
+          validationErrors.password = "Email doesn't exist";
+          setLoader(false)
+        }
+        if (!formData.email) {
+          validationErrors.email = "Email is required";
+          setLoader(false)
+        }
+        if (response.status===400){
+           validationErrors.password="Invalid accout type"
+           setLoader(false)
+        }
+        if (!formData.password){
+              validationErrors.password = "Password is required";
+              setLoader(false)
+        }
     
         setErrors(validationErrors);
     
         // If there are no validation errors, show success message
         if (Object.keys(validationErrors).length === 0) {
           if(data.message==="Logged in as a client"|| data.message==="Logged in as an admin")
+            setLoader(false)
           setSuccess(true);
+          localStorage.setItem('accesstoken', data.accessToken);
+          navigate("/Orders")
+          
         }
 
       }catch(error){
+        setLoader(false)
         console.error(error)
       }
       };
@@ -111,7 +135,7 @@ const Login = () => {
 
     
    <div className=".form-group">
-    <button type="submit" className="form_button">Login</button>
+    <button type="submit" className="form_button"><span>Login</span> <ButtonLoader /></button>
     </div>
     {success && <p className="success-message">Login successful!</p>}
   </form>

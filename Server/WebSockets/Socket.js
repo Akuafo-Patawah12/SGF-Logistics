@@ -8,77 +8,79 @@ const orderFunc = require("./OrdersNamespace");
 function initializeSocket(server){   
     const io = socketIo(server, {   //Creating connect between server and User Interface  "Realtime WebApp"
         cors: {
-          origin:"http://localhost:3000",
-          methods: ['GET','POST'],
+          origin:["http://localhost:3000"],
+          methods:["POST,GET,PUT,DELETE"],
           allowedHeaders: ['Content-Type'],
           credentials: true
         }
       });
 
-      const defaultNamespace= io.of("/")
-      const trackingNamespace= io.of("/tracking")
-      const shippmentNamespace= io.of('/shippment')
-      const ordersNamespace= io.of("/orders")
+      
+     
 
 
       const user={}
 
-      const socketMiddleware=(socket,next)=>{
-        const cookies= socket.request.headers.cookie
-
-        if(!cookies){
-            return next(new Error("No cookies found"))
+      function middleware(socket,next){
+        const cookieHeader = socket.request.headers.cookie; //getting http only cookies from socket
+        
+        if (!cookieHeader) {  //checking of the cookie exist in the headers
+          
+          return next(new Error('No cookies found'));
         }
-
-     
-        const parsed_cookies= cookie.parse(cookies)
-
-        if(parsed_cookies){
-
-        const token = cookies.refreshToken; // Extract the refresh token
-         if (!token) return next(new Error('Refresh token expired'));
-
-        jwt.verify(parsed_cookies,process.env.REFRESH_TOKEN_SECRET,(err,user)=>{
-            if(err){
-                return next(new Error("Failed to decode token"))
-            }
-            socket.user=user
-            next()
-        })
-      } else {
-        next(new Error('Authentication error'));
-      }
-      }
-
       
+        if (cookieHeader) {
+          const cookies = cookie.parse(cookieHeader); // Parse cookies from the header
+          const token = cookies.refreshToken; // Extract the refresh token
+          if (!token) return next(new Error('Refresh token expired'));
+    
+           //decoding the token to extract user information
+          jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => { 
+            if (err) return next(new Error("Token can't be decoded"));
+            socket.user = user; // Attach user to the socket
+            next(); //proceed if there's no error
+          });
+        } else {
+          next(new Error('Authentication error'));
+        }
+      }
+
+      const trackingNamespace= io.of("/tracking")
+      const shippmentNamespace= io.of('/shippment')
+      const ordersNamespace= io.of("/orders")
       
 
    
-      defaultNamespace.use((socket,next)=>{
-        
-        socketMiddleware(socket,next)
+      io.use((socket,next)=>{
+         middleware(socket,next)
       })
       trackingNamespace.use((socket,next)=>{
-        socketMiddleware(socket,next)
+        middleware(socket,next)
       })
       trackingNamespace.use((socket,next)=>{
-        socketMiddleware(socket,next)
+        middleware(socket,next)
       })
 
       shippmentNamespace.use((socket,next)=>{
-        socketMiddleware(socket,next)
+        middleware(socket,next)
       })
 
      
       ordersNamespace.use((socket,next)=>{
-         socketMiddleware(socket,next)
+         middleware(socket,next)
       })
 
 
       
-      defaultNamespace.on("connection",(socket)=>{
-
+      io.on("connection",(socket)=>{
         console.log("connected to the default namespace")
+        socket.on("greet",(data)=>{
+          console.log(data)
+        })
+
+        socket.on("disconnect",()=>{
+          console.log("disconnected from default namespace")
+        })
       })
 
       trackingNamespace.on("connection",(socket)=>{
@@ -94,7 +96,7 @@ function initializeSocket(server){
 
       ordersNamespace.on("connection",(socket)=>{
           orderFunc(socket)
-        console.log("connected to the sign up namespace")
+        console.log("connected to the order namespace")
       })
 
       
