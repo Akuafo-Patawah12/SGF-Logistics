@@ -166,7 +166,7 @@ const [divWidth, setDivWidth] = useState(0);
 
 useEffect(() => {
   const handleResize = () => {
-    if (parentRef.current) {
+    if (parentRef.current) { 
       setDivWidth(parentRef.current.offsetWidth);
     }
   };

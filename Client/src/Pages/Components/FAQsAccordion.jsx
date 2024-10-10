@@ -10,7 +10,7 @@ const FAQsAccordion = (props) => {
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100%",marginBottom:"5px"}}>
             <p style={{color:"#222",display:"flex",height:"50px",maxWidth:"70%",alignItems:"center ", width:"auto",marginLeft:"8px",fontSize:"16px",fontWeight:"600"}}>{props.Questions}</p>
                 <button style={{display:"flex",alignItems:"center",justifyContent:"center",width:"30px",height:"30px",marginRight:"8px",border:"1px solid #aaa",textAlign:"center",borderRadius:"50%",height:"25px",width:"25px",rotate:`${accordion?"":"180deg"}`, transition:"all 0.3s"}} onClick={()=> setAccordion(prev=> !prev)}>
-                   <UpOutlined />
+                   <UpOutlined /> 
                 </button>
             </div>
 

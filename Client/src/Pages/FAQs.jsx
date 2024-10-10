@@ -1,8 +1,31 @@
-import React from 'react'
+import React,{useState} from 'react'
 import FAQsAccordion from './Components/FAQsAccordion'
 import { EnvironmentFilled, MailFilled, PhoneFilled, SendOutlined } from '@ant-design/icons'
 
+
+
+
 const FAQs = () => {
+   
+  const[formData,setFormData] = useState({
+    email:"",
+    message:""
+  })
+   const askedQuestion=async()=>{
+      try{
+         const response = await fetch("http://localhost:4040/asked_question", {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({formData}), // example payload
+          
+         });
+      }catch(error){
+        console.log(error)
+      }
+  }
+
 
    const InputStyle={padding: "10px"}
   return (
@@ -52,12 +75,11 @@ const FAQs = () => {
         <h4 style={{marginTop:"30px",marginLeft:"2.5%",marginBlock:"20px"}}>Have any Questions? Get in Touch</h4>
         <div className="questions_info" >
            
-           <form className='child1'>
+           <form onSubmit={askedQuestion} className='child1'>
             <section style={{display:"flex",width:"100%",gap:"10px",flexDirection:"column"}}>
-              <input type="email" placeholder='Enter your email' style={InputStyle}/>
+              <input type="email" placeholder='Enter your email' onChange={(e)=>setFormData({...formData,email:e.target.value})} style={InputStyle}/>
               
-              <input type="text" placeholder='Subject'  style={InputStyle}/>
-              <textarea></textarea>
+              <textarea placeholder={"Message"} onChange={(e)=>setFormData({...formData,message:e.target.value})}></textarea>
               <button type='submit' style={InputStyle}>Send <SendOutlined /></button>
             </section>
            </form>

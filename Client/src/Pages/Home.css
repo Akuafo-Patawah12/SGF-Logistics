@@ -186,8 +186,7 @@
     font-size: 40px;
     font-weight: 700;
     transform: translateY(-10px);
-    color: #8B14B1
-    ;
+    color: #8B14B1;
   }
 
   .why_choose_us{
@@ -246,7 +245,7 @@
       
     }
     .welcome_image{
-      background-color: blue;
+      background-color: #eee;
       width: 95%;
       height: 460px;
       border-radius: 40px;

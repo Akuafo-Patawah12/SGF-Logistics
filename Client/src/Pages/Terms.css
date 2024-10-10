@@ -13,7 +13,39 @@
   }
 
   .terms{
-    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 90%;
     height: 450px;
     overflow-y: auto;
+    counter-reset: my-counter;
+    
+    margin-top: 30px;
+    
+    
+   
+  }
+  .head{
+  
+      font-weight: 700;
+    
+  }
+
+  .Terms_of_service{
+      position: relative;
+      border-left: 2px solid #8B14B1 ;
+      counter-increment: my-counter;
+      color: black;
+      padding-left: 30px;
+  }
+
+  .Terms_of_service::before{
+    border: 2px solid #8B14B1;
+    font-weight: 600;
+    padding-inline: 4px;
+    transform: translateX(-35px);
+    z-index: 2;
+    position: absolute;
+    content: counter(my-counter) " ";
   }

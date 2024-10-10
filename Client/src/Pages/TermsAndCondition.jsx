@@ -12,25 +12,11 @@ const TermsAndCondition = () => {
        
       </div>
       <div style={{display:"flex",justifyContent:"space-around"}}>
-      <section className="parent-element" >
-            <h4 className='tabs'> Prohibition of Contraband Goods</h4>
-            <h4 className='tabs'>Departure Timelines</h4>
-            <h4 className='tabs'>Variability of Transit Times</h4>
-            <h4 className='tabs'>Regulatory Inspections</h4>
-            <h4 className='tabs'>Minimum Chargeable Volume </h4>
-            <h4 className='tabs'>Measurement Verification</h4>
-            <h4 className='tabs'>Warehouse Lien</h4>
-            <h4 className='tabs'>Storage Charges </h4>
-            <h4 className='tabs'>Limitation of Liability </h4>
-            <h4 className='tabs'>Forklift Services</h4>
-            <h4 className='tabs'>Weight-to-CBM Conversion</h4>
-            <h4 className='tabs'>Payment for Air Shipments</h4>
-            <h4 className='tabs'>Shipment of Special Items </h4>
-      </section>
+      
 
       <section className="terms">
-        <p>Terms Of Service</p>
-        <div>
+        <p className='head'>Terms Of Service</p>
+        <div className='Terms_of_service'>
           <h4> Prohibition of Contraband Goods</h4>
           
          <p>
@@ -44,7 +30,7 @@ const TermsAndCondition = () => {
          </p>
          </div>
 
-         <div>
+         <div className='Terms_of_service'>
           <h4>Departure Timelines</h4>
          <p>
              
@@ -56,7 +42,7 @@ const TermsAndCondition = () => {
          </div>
 
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Variability of Transit Times</h4>
          <p>
              
@@ -68,7 +54,7 @@ const TermsAndCondition = () => {
          </p>
          </div>
 
-         <div>
+         <div className='Terms_of_service'>
           <h4>Regulatory Inspections</h4>
          <p>
              
@@ -79,7 +65,7 @@ const TermsAndCondition = () => {
          </p>
          </div>
         
-        <div>
+        <div className='Terms_of_service'>
           <h4>Minimum Chargeable Volume </h4>
          <p>
             
@@ -89,7 +75,7 @@ const TermsAndCondition = () => {
          </p>
          </div>
         
-        <div>
+        <div className='Terms_of_service'>
           <h4>Measurement Verification</h4>
          <p>
              
@@ -100,7 +86,7 @@ const TermsAndCondition = () => {
          </p>
          </div>
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Warehouse Lien</h4>
          <p>
              
@@ -111,7 +97,7 @@ const TermsAndCondition = () => {
          </p>
          </div>
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Storage Charges </h4>
          <p>
             
@@ -123,7 +109,7 @@ const TermsAndCondition = () => {
          </div>
         
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Limitation of Liability </h4>
          <p>
             
@@ -135,7 +121,7 @@ const TermsAndCondition = () => {
          </div>
         
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Forklift Services</h4>
          <p>
              
@@ -146,7 +132,7 @@ const TermsAndCondition = () => {
          </div>
 
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Weight-to-CBM Conversion</h4>
          <p>
              
@@ -156,7 +142,7 @@ const TermsAndCondition = () => {
          </div>
         
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Payment for Air Shipments</h4>
          <p>
              
@@ -166,7 +152,7 @@ const TermsAndCondition = () => {
          </div>
         
 
-        <div>
+        <div className='Terms_of_service'>
           <h4>Shipment of Special Items </h4>
          <p>
             

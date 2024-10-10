@@ -30,8 +30,8 @@ const Footer = () => {
           </section>
         <section className="About">
           
-         <Accordion header="Quick Links" span1="Services" span2="About" span3="Contact"/>
-         <Accordion header="Support" span1="Terms & conditions" span2="FAQs" span3="Report a Bug"/>
+         <Accordion header="Quick Links" link="Services" span1="Services" span2="About" span3="Contact"/>
+         <Accordion header="Support" link="TermsAndCondition" span1="Terms & conditions" span2="FAQs" span3="Report a Bug"/>
           
           
         </section>

@@ -35,7 +35,7 @@ const Layout = () => {
                         <HomePage setShowAuth={setShowAuth} showAuth={showAuth}/>
                     </Suspense> }
                 /> 
-                <Route path='/Terms' element={<TermsAndCondition />} />
+                <Route path='/TermsAndCondition' element={<TermsAndCondition />} />
                 <Route path='/FAQs' element={<FAQs />}/>
                 <Route path='/Orders' element={
                     <Suspense fallback={<Loader />}>
