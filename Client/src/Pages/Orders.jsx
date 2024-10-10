@@ -1,5 +1,6 @@
 import React,{useEffect, useState,useMemo} from 'react'
 import io from "socket.io-client"
+import {v4} from "uuid"
 import { useNavigate } from 'react-router-dom'
 import {jwtDecode} from "jwt-decode"
 
@@ -156,7 +157,7 @@ const handleSubmit = (e) => {
   e.preventDefault()
   setCreatingOrder(true)
   setTimeout(()=>{
-    socket.emit("createOrder",{items,Id,...location})
+    socket.emit("createOrder",{items,Id,...location,tracking_id: v4()})
   },1000)
   
   // Reset form
@@ -178,7 +179,8 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
   return (
     <div>
         <div className="background-image">
-
+          <div className="image_cover"></div>
+              <h4 className='quote_header'>REQUEST A QUOTE</h4>
         </div>
         <div className='Orders_count'>
             <button>Active Orders {activeOrders.length}</button>

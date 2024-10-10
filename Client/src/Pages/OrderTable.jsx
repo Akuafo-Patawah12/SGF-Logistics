@@ -5,14 +5,14 @@ import { DeleteOutlined } from '@ant-design/icons'
 const OrderTable = (props) => {
   return (
     <div>
-         <table className="w-[95%] mt-3 ml-auto">
+         <table style={{width:"90%",marginTop:"12px",marginInline:"auto"}}>
         <thead>
             <tr>
               <th><input type='checkbox'></input></th>
-                <th>Order ID</th>
+                <th>Tracking ID</th>
                 <th>Product</th>
                 <th>Quantity</th>
-                <th>Price</th>
+                
                 <th>Status</th>
                 <th>Arrival time</th>
             </tr>
@@ -21,8 +21,7 @@ const OrderTable = (props) => {
           {props.orders.map((order,index)=>(
             <tr key={order._id} id={`row-${order._id}`}>
               <td><input type="checkbox"></input></td>
-              <td style={{cursor:"pointer",scrollbarWidth:"none",overflowX:"auto",maxWidth:"80px",fontSize:"14px",lineHeight:"20px"}}>{order._id}</td>
-              <td></td>
+              <td style={{cursor:"pointer",scrollbarWidth:"none",overflowX:"auto",maxWidth:"80px",fontSize:"14px",whiteSpace:"nowrap",lineHeight:"20px"}}>{order.tracking_id}</td>
               <td></td>
               <td onClick={() => props.deleteOrder(order._id,order.customer_id)}><DeleteOutlined/></td>
               <td >{order.Status}</td>

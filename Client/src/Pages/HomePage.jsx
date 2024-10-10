@@ -30,6 +30,8 @@ useEffect(()=>{
       console.log("connected to the default namespace")
     })
 
+
+    
     socket.on("disconnect",(reasons)=>{
         console.log(reasons)
     })

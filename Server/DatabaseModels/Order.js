@@ -5,6 +5,8 @@ const {Schema} = mongoose
 const orderSchema= Schema({
 
     customer_id: {type:Schema.Types.ObjectId,ref:"User"},  
+
+    tracking_id: String,
         items: [
           {
             itemName: String,

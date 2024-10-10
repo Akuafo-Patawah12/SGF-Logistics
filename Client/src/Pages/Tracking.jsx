@@ -6,7 +6,7 @@ const Tracking = () => {
         <div className="background-image">
             <div className="Track_field">
                 <form>
-                    <input type="text" ></input>
+                    <input type="text" placeholder='Enter tracking ID' ></input>
                     <input type="submit" value="track" ></input>
                 </form>
             </div>
