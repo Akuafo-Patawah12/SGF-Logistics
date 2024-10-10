@@ -6,12 +6,11 @@ const FAQsAccordion = (props) => {
     const[accordion,setAccordion] = useState(false)
   return (
     
-        <div style={{background:"#eee", width:"95%",border:"1px solid #ddd",borderBottom:"5px solid #eee", marginInline:"auto", height:`${accordion?"auto":"40px"}`,overflow:'hidden', animation:`${accordion?"animate 0.3s ease-in":"animateDown 0.3s ease-out"}`}}>
+        <div style={{background:"#eee", width:"95%",border:"1px solid #ddd",borderBottom:"5px solid #eee", marginInline:"auto", height:`${accordion?"auto":"50px"}`,overflow:'hidden', animation:`${accordion?"animate 0.3s ease-in":"animateDown 0.3s ease-out"}`}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100%",marginBottom:"5px"}}>
-            <p style={{display:"flex",height:"40px",maxWidth:"90%",alignItems:"center ", width:"auto",marginLeft:"3px",fontSize:"17px",fontWeight:"600"}}>{props.Questions}</p>
-                <button style={{width:"30px",height:"30px",marginRight:"5px",border:"1px solid #aaa",textAlign:"center",borderRadius:"50%",height:"25px",width:"25px",rotate:`${accordion?"":"180deg"}`, transition:"all 0.3s"}} onClick={()=> setAccordion(prev=> !prev)}>
+            <p style={{color:"#222",display:"flex",height:"50px",maxWidth:"70%",alignItems:"center ", width:"auto",marginLeft:"8px",fontSize:"16px",fontWeight:"600"}}>{props.Questions}</p>
+                <button style={{display:"flex",alignItems:"center",justifyContent:"center",width:"30px",height:"30px",marginRight:"8px",border:"1px solid #aaa",textAlign:"center",borderRadius:"50%",height:"25px",width:"25px",rotate:`${accordion?"":"180deg"}`, transition:"all 0.3s"}} onClick={()=> setAccordion(prev=> !prev)}>
                    <UpOutlined />
-
                 </button>
             </div>
 
