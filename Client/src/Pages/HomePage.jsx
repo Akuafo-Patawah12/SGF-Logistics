@@ -16,6 +16,8 @@ import ServicesIcon from '../Icons/ServicesIcon'
 const HomePage = ({setShowAuth,showAuth}) => {
   const socket= useMemo(() => io("https://sgf-logistics-backend.vercel.app",{
     transports: ['websocket'],
+    withCredentials: true,
+    secure: true
   }),[])
 
   

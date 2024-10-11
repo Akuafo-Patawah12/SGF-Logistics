@@ -13,6 +13,8 @@ const AdminDashboard = () => {
     const decode=jwtDecode(accesstoken)
   const socket = useMemo(() =>io("https://sgf-logistics-backend.vercel.app/admin",{
     transports: ['websocket'],
+    withCredentials: true,
+  secure: true
   }),[])
   
   const navigate= useNavigate()
