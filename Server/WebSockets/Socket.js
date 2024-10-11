@@ -54,7 +54,7 @@ function initializeSocket(server){
       
 
    
-      io.use((socket,next)=>{
+      io.of("/").use((socket,next)=>{
          middleware(socket,next)
       })
       trackingNamespace.use((socket,next)=>{
@@ -82,7 +82,7 @@ function initializeSocket(server){
       users[userId]=socket.id 
     }
       
-      io.on("connection",(socket)=>{
+      io.of("/").on("connection",(socket)=>{
         console.log("connected to the default namespace")
         setUser(socket)
         socket.on("greet",(data)=>{
