@@ -34,7 +34,7 @@ const SignUp = () => {
     
     try{
      
-      const response = await fetch("http://localhost:4040/sign_up", {
+      const response = await fetch("https://sgf-logistics-backend.vercel.app/sign_up", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
