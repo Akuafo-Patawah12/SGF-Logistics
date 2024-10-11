@@ -10,7 +10,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "/index.js",
+      "methods":["POST,GET,PUT,DELETE"],
+      "headers": {
+        "Access-Control-Allow-Orign":"https://sgf-logistics.vercel.app"
+      }
     }
   ]
 }
