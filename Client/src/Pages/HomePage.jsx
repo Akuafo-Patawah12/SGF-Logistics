@@ -256,9 +256,8 @@ setDisplayService(false)
       
         
       </div>
-      <h3 className='Description' >We're fast, Efficient, Cost effective and Reliable in all areas of shipping, freight forwarding 
-          ,Free procurement and Sourcing Training, Container Clearance & Groupage Services.
-      </h3>
+      <p className='Description' >We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.
+      </p>
       
       <section className='welcome_hero' >
 
