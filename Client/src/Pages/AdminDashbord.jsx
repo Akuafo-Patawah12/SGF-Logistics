@@ -60,6 +60,10 @@ const AdminDashboard = () => {
       console.log("order data",data)
     })
 
+    socket.on('connect_error', (err) => {
+      console.error('Connection error:', err);
+    });
+
     
     socket.on("orderDeleted",(data)=>{
       const rowElement = document.getElementById(`row-${data}`);
@@ -120,6 +124,7 @@ const AdminDashboard = () => {
         socket.off("orderDeleted")
         socket.off("SendShippment")
         socket.off('disconnect');
+        socket.off("connect_error")
         socket.off("getAllOrders")    
     }
 },[navigate])
