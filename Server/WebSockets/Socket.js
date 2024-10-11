@@ -10,7 +10,7 @@ function initializeSocket(server){
     const io = socketIo(server, {   //Creating connect between server and User Interface  "Realtime WebApp"
       transports: ['websocket'],
         cors: {
-          origin:["https://sgf-logistics.vercel.app/"],
+          origin:["https://sgf-logistics.vercel.app"],
           methods:["POST,GET,PUT,DELETE"],
           allowedHeaders: ['Content-Type'],
           credentials: true

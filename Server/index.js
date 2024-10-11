@@ -18,7 +18,7 @@ const router = require("./AuthRoutes/Router")
 
 
 app.use(cors({
-    origin:["https://sgf-logistics.vercel.app/"],
+    origin:["https://sgf-logistics.vercel.app"],
     credentials: true,
     methods:["POST,GET,PUT,DELETE"], 
     allowedHeaders: ['Content-Type']
