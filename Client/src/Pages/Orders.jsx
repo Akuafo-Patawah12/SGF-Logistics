@@ -13,7 +13,7 @@ const Orders = () => {
 
 
 const socket=useMemo(()=> io("sgf-logistics-backend.vercel.app/orders",{
-    transports:["websocket"],
+    transports:["websocket","polling"],
     withCredentials: true,
   secure: true
 }),[])

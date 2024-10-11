@@ -12,7 +12,7 @@ const AdminDashboard = () => {
     const accesstoken=localStorage.getItem("accesstoken")
     const decode=jwtDecode(accesstoken)
   const socket = useMemo(() =>io("https://sgf-logistics-backend.vercel.app/admin",{
-    transports: ['websocket'],
+    transports: ["websocket","polling"],
     withCredentials: true,
   secure: true
   }),[])
