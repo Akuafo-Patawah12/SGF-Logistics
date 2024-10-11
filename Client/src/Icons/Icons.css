@@ -34,9 +34,10 @@ svg{
     width: 20px;
     height: 20px;
     border-radius: 50%;
+    background: transparent;
     border: 2px solid #eee;
     border-left: 2px solid #bbb;
-    animation: load 2s linear infinite;
+    animation: load 0.8s linear infinite;
 }
 
 

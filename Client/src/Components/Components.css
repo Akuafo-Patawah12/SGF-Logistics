@@ -45,10 +45,12 @@
         max-width: 80px;
         background: black;
         color: white;
+        padding: 5px;
+        border: none;
     }
 
     & button:last-child{
-        border: 2px solid #218838;
+        
         float: right;
     }
 }

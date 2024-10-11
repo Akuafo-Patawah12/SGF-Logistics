@@ -1,7 +1,7 @@
  const Order= require("../DatabaseModels/Order")
  const User= require("../DatabaseModels/UsersSchema")
 
-const orderFunc=(socket)=>{
+const orderFunc=(socket,adminNamespace)=>{
     socket.on("joinRoom",async()=>{
         socket.join("orderRoom")
         
@@ -28,6 +28,7 @@ const orderFunc=(socket)=>{
             
             
             socket.emit("receive",sendOrder) //send this data the user connected to this namespace
+            adminNamespace.in("adminRoom").emit("receivedOrder", sendOrder); // Emit to all in "/order" room
             
         }catch(err) {
             console.error("Error saving order or emitting event:", err);

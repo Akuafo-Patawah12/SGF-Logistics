@@ -11,6 +11,13 @@
     padding-block:20px;
 
 } 
+.accordion_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    padding: 0;
+}
 
 @keyframes animate{
     from{height: 30px;}

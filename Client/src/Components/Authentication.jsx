@@ -38,7 +38,7 @@ const Authentication = ({authShow}) => {
         <div className="auth">
         <div className='auth_routes'>
             <section>
-                <button onClick={()=> slider(0)}>Sign up</button>
+                <button onClick={()=> slider(0)} >Sign up</button>
                 <button onClick={()=> slider(1)}>Login</button>
             </section>
                 <button onClick={()=>{setShowAuth(false)}}><CloseOutlined/></button>

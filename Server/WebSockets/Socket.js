@@ -2,6 +2,7 @@ const socketIo= require("socket.io")
 const cookie= require("cookie")
 const jwt= require("jsonwebtoken");
 const orderFunc = require("./OrdersNamespace");
+const AdminPath = require("./AdminNamespace");
 
 
 
@@ -19,7 +20,7 @@ function initializeSocket(server){
      
 
 
-      const user={}
+      const users={}
 
       function middleware(socket,next){
         const cookieHeader = socket.request.headers.cookie; //getting http only cookies from socket
@@ -48,6 +49,7 @@ function initializeSocket(server){
       const trackingNamespace= io.of("/tracking")
       const shippmentNamespace= io.of('/shippment')
       const ordersNamespace= io.of("/orders")
+      const adminNamespace= io.of("/admin")
       
 
    
@@ -70,10 +72,18 @@ function initializeSocket(server){
          middleware(socket,next)
       })
 
+      adminNamespace.use((socket,next)=>{
+        middleware(socket,next)
+     })
 
+     function setUser(socket){
+      const userId=socket.user.id  // Extracting users id from socket
+      users[userId]=socket.id 
+    }
       
       io.on("connection",(socket)=>{
         console.log("connected to the default namespace")
+        setUser(socket)
         socket.on("greet",(data)=>{
           console.log(data)
         })
@@ -92,10 +102,14 @@ function initializeSocket(server){
 
         console.log("connected to the shippment namespace")
       })
+
+      adminNamespace.on("connection",(socket)=>{
+          AdminPath(socket,ordersNamespace,users)
+      })
       
 
       ordersNamespace.on("connection",(socket)=>{
-          orderFunc(socket)
+          orderFunc(socket,adminNamespace)
         console.log("connected to the order namespace")
       })
 

@@ -1,0 +1,11 @@
+tr {
+    transition: opacity 0.5s ease-in, height 0.5s ease-in;
+    opacity: 1;
+    height: 40px; /* Adjust based on your row height */
+    overflow: hidden; /* Helps to collapse the height smoothly */
+  }
+  
+  tr.fade-out {
+    opacity: 0;
+    height: 0;
+  }

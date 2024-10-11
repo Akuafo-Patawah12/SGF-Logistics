@@ -3,9 +3,9 @@ import "./Icons.css"
 
 const ButtonLoader = () => {
   return (
-    <div className='turn'>
+    <button className='turn'>
 
-    </div>
+    </button>
   )
 }
 

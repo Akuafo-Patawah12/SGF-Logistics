@@ -5,6 +5,7 @@ import Footer from '../Components/Footer'
 import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
+const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
 const Tracking= lazy(()=> import('../Pages/Tracking'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
 const HomePage= lazy(()=>import('../Pages/HomePage'))
@@ -40,11 +41,19 @@ const Layout = () => {
                 <Route path='/Orders' element={
                     <Suspense fallback={<Loader />}>
                         <Orders />
-                    </Suspense>} />
+                    </Suspense>} 
+                />
                     <Route path='/Tracking' element={
-                    <Suspense fallback={<Loader />}>
-                        <Tracking />
-                    </Suspense>} /> 
+                        <Suspense fallback={<Loader />}>
+                            <Tracking />
+                        </Suspense>} 
+                    /> 
+
+                    <Route path='/AdminDashboard' element={
+                        <Suspense fallback={<Loader />}>
+                          <AdminDashboard />   
+                        </Suspense>} 
+                    />
             
             </Routes>
             

@@ -225,14 +225,18 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   ))}
                   <section style={{display:"flex"}}>
                       <input type="text" 
-                      style={{width:"96px",paddingInline:"12px",paddingBlock:"8px",borderRadius:"10px",marginRight:"8px"}} 
+                       className='input'
+                       
                        name="location" 
                        id="origin" 
                        onChange={(e) => setLocation({ ...location, origin: e.target.value })}
-                       placeholder='Origin'/>
+                       placeholder='Origin'
+                       
+                       />
 
                       <input type="text" 
-                      style={{width:"96px",paddingInline:"12px",paddingBlock:"8px",borderRadius:"10px",marginRight:"8px"}} 
+                      className='input'
+                      
                       name="location" 
                       id="destination"
                       onChange={(e) => setLocation({ ...location, destination: e.target.value })}

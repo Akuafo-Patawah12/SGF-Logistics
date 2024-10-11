@@ -73,13 +73,33 @@ const Login = () => {
     
         // If there are no validation errors, show success message
         if (Object.keys(validationErrors).length === 0) {
-          if(data.message==="Logged in as a client"|| data.message==="Logged in as an admin")
+          if(data.message==="Logged in as a client" ){
             setLoader(false)
           setSuccess(true);
           localStorage.setItem('accesstoken', data.accessToken);
           navigate("/Orders")
-          
+          }
+          if(data.message==="Logged in as an admin")
+            setLoader(false)
+          setSuccess(true);
+          localStorage.setItem('accesstoken', data.accessToken);
+          navigate("/AdminDashboard")
         }
+
+         if (Object.keys(validationErrors).length === 0) {
+          if(data.message==="Logged in as a client" ){
+            setLoader(false)
+          setSuccess(true);
+          localStorage.setItem('accesstoken', data.accessToken);
+          navigate("/Orders")
+          }
+          if(data.message==="Logged in as an admin"){
+            setLoader(false)
+          setSuccess(true);
+          localStorage.setItem('accesstoken', data.accessToken);
+          navigate("/AdminDashboard")
+        }
+      }
 
       }catch(error){
         setLoader(false)
@@ -135,7 +155,7 @@ const Login = () => {
 
     
    <div className=".form-group">
-    <button type="submit" className="form_button"><span>Login</span> <ButtonLoader /></button>
+    <button type="submit" className="form_button"><span>Login</span> {loader && <span><ButtonLoader /></span>}</button>
     </div>
     {success && <p className="success-message">Login successful!</p>}
   </form>

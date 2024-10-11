@@ -38,6 +38,10 @@
       counter-increment: my-counter;
       color: black;
       padding-left: 30px;
+
+      & h4{
+          margin-bottom: 20px;
+      }
   }
 
   .Terms_of_service::before{
