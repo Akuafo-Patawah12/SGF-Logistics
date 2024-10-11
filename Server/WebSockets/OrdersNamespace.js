@@ -2,10 +2,7 @@
  const User= require("../DatabaseModels/UsersSchema")
 
 const orderFunc=(socket,adminNamespace)=>{
-    socket.on("joinRoom",async()=>{
-        socket.join("orderRoom")
-        
-    })
+    
 
     socket.on("createOrder", async(data) => { //receiving createOrders data from clientside
         console.log(data)

@@ -1,13 +1,13 @@
 const Order= require("../DatabaseModels/Order")
 
 
-const  AdminPath=(Socket,orderNamespace,Users)=>{
+const  AdminPath=(Socket,OrdersNamespace,Users)=>{
      
     console.log("connected to orderList")
     Socket.on("joinRoom",async(info)=>{
         
-           Socket.join("Admin'sRoom")  //When client joins orderlist namespace he/she automatically joins the room
-           Socket.to("Admin'sRoom").emit("joined","hello i joind order room")  /*sending message to all users in the room */
+           Socket.join("AdminRoom")  //When client joins orderlist namespace he/she automatically joins the room
+           Socket.to("AdminRoom").emit("joined","hello i joind order room")  /*sending message to all users in the room */
          
     })
     Socket.on("clientOrders",async(id)=>{
@@ -44,13 +44,14 @@ const  AdminPath=(Socket,orderNamespace,Users)=>{
         try{
             console.log(data)
            await Order.findByIdAndDelete(data.order_id)  // find the order by the id and delele it
-           orderNamespace.emit("orderDeleted",data.order_id)
+           Socket.emit("orderDeleted",data.order_id)
            // Check if the users object and the specific customer_id exist
         if (Users ) {
             console.log("Customer's socket ID: ", Users[data.customer_id]);
 
             // Emit the event to the specific user
-            OrderNamespace.to(Users[data.customer_id]).emit("Deleted", data.order_id);
+            OrdersNamespace.to(Users[data.customer_id]).emit("Deleted", data.order_id);
+            
         } else {
             console.log(`No socket found for customer ID: ${data.customer_id} and ${Users}`);
         }

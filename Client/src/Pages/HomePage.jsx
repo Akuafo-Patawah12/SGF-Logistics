@@ -14,7 +14,7 @@ import EndUsersIcon from '../Icons/EndUsersIcon'
 import TrackingIcon from '../Icons/TrackingIcon'
 import ServicesIcon from '../Icons/ServicesIcon'
 const HomePage = ({setShowAuth,showAuth}) => {
-  const socket= useMemo(() => io("https://sgf-logistics-backend.vercel.app",{
+  const socket= useMemo(() => io("http://localhost:4040",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true

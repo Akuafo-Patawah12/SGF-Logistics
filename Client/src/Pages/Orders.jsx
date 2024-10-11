@@ -12,11 +12,11 @@ import OrderTable from './OrderTable'
 const Orders = () => {
 
 
-const socket=useMemo(()=> io("sgf-logistics-backend.vercel.app/orders",{
-    transports:["websocket","polling"],
+  const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    transports: ["websocket","polling"],
     withCredentials: true,
   secure: true
-}),[])
+  }),[])
 
 const[orders,setOrders] =useState([])
 const navigate= useNavigate()   
