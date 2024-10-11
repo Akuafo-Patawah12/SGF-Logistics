@@ -3,7 +3,7 @@
     "name":"Server",
     "builds": [
     {
-      "src": "package.json",
+      "src": "/(.*)",
       "use": "@vercel/node"
     }
   ],
