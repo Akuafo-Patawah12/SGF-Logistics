@@ -7,6 +7,7 @@ import {jwtDecode} from "jwt-decode"
 
 import "./Orders.css"
 import OrderTable from './OrderTable'
+import ButtonLoader from '../Icons/ButtonLoader'
 
 
 const Orders = () => {
@@ -191,6 +192,14 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
         </div>
 
 
+<div>
+  <select>
+      <option value="Air Freight">Air Freight</option>
+      <option value="Ship Freight">Ship Freight</option>
+      <option value="Door to door">Door to door</option>
+  </select>
+</div>
+
         <div>
         <div  style={{padding:"16px"}}>
               <form onSubmit={handleSubmit}>
@@ -273,7 +282,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
               </form>
             </div>
           </div>
-          <OrderTable orders={[...orders]} deleteOrder={deleteOrder} />
+
+          {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
+
+          <OrderTable orders={[...orders]} deleteOrder={deleteOrder}   />
         </div>
     
   )

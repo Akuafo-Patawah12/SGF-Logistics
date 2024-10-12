@@ -19,9 +19,11 @@ const AdminDashboard = () => {
   
   const navigate= useNavigate()
  const[orders,setOrders]=useState([])
+
+
   useEffect(()=>{
     socket.emit("joinRoom",{id:decode.id})
-  },[socket])
+  },[])
 
   useEffect(()=>{
      socket.emit("clientOrders")
@@ -40,22 +42,10 @@ const AdminDashboard = () => {
        console.log(data)
    }) 
    socket.on("getAllOrders",async(data)=>{
-    try{
-    console.log(data)
-    const newData= data.length
-    if(!hasFetched)
-    for(let i = 0;i < newData;i++){
-      setOrders(prevData=>[...prevData,data[i]])
-      await new Promise(resolve=> setTimeout(resolve,200))
-    }
-     setHasFetched(true)  
-
-    }catch(error){
-      console.error(error)
-    }
+        setOrders(data)
    })
     socket.on('receivedOrder',(data)=>{
-      
+      console.log(data)
       setOrders(prev => [data,...prev])
       console.log("order data",data)
     })
@@ -113,6 +103,11 @@ const AdminDashboard = () => {
       return orderReturned;
        })
     })
+
+
+    socket.on("joined",(data)=>{
+       console.log(data)
+    })
     socket.on('disconnect',(reasons)=>{
         console.log(reasons)
       })
@@ -125,7 +120,8 @@ const AdminDashboard = () => {
         socket.off("SendShippment")
         socket.off('disconnect');
         socket.off("connect_error")
-        socket.off("getAllOrders")    
+        socket.off("getAllOrders")  
+        socket.off("joined")  
     }
 },[navigate])
 

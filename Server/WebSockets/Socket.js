@@ -91,26 +91,36 @@ function initializeSocket(server){
 
         socket.on("disconnect",()=>{
           console.log("disconnected from default namespace")
+          const userId = Object.keys(users).find((id) => users[id] === socket.id);
+
+          // Remove the user from the `users` object if found
+          if (userId) {
+            delete users[userId];
+            console.log(`User with ID ${userId} disconnected and was removed`);
+          }
         })
       })
 
       trackingNamespace.on("connection",(socket)=>{
+        setUser(socket)
 
         console.log("connected to the tracking namespace")
       })
 
       shippmentNamespace.on("connection",(socket)=>{
+        setUser(socket)
 
         console.log("connected to the shippment namespace")
       })
 
       adminNamespace.on("connection",(socket)=>{
+        setUser(socket)
           AdminPath(socket,ordersNamespace,users)
       })
       
 
       ordersNamespace.on("connection",(socket)=>{
-          orderFunc(socket,adminNamespace)
+          orderFunc(socket,adminNamespace,users)
         console.log("connected to the order namespace")
       })
 

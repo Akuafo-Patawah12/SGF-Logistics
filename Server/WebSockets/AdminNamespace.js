@@ -1,14 +1,15 @@
 const Order= require("../DatabaseModels/Order")
 
 
-const  AdminPath=(Socket,OrdersNamespace,Users)=>{
+const  AdminPath=(Socket,OrdersNamespace,users)=>{
      
     console.log("connected to orderList")
-    Socket.on("joinRoom",async(info)=>{
-        
+    Socket.on("joinRoom",(info)=>{
+         console.log(info)
+         console.log(Socket.rooms)
            Socket.join("AdminRoom")  //When client joins orderlist namespace he/she automatically joins the room
-           Socket.to("AdminRoom").emit("joined","hello i joind order room")  /*sending message to all users in the room */
-         
+           Socket.emit("joined","hello i joind order room")  /*sending message to all users in the room */
+           
     })
     Socket.on("clientOrders",async(id)=>{
           try{
@@ -46,14 +47,14 @@ const  AdminPath=(Socket,OrdersNamespace,Users)=>{
            await Order.findByIdAndDelete(data.order_id)  // find the order by the id and delele it
            Socket.emit("orderDeleted",data.order_id)
            // Check if the users object and the specific customer_id exist
-        if (Users ) {
-            console.log("Customer's socket ID: ", Users[data.customer_id]);
+        if (users ) {
+            console.log("Customer's socket ID: ", users[data.customer_id]);
 
             // Emit the event to the specific user
-            OrdersNamespace.to(Users[data.customer_id]).emit("Deleted", data.order_id);
+            OrdersNamespace.in(users[data.customer_id]).emit("Deleted", data.order_id);
             
         } else {
-            console.log(`No socket found for customer ID: ${data.customer_id} and ${Users}`);
+            console.log(`No socket found for customer ID: ${data.customer_id} and ${users}`);
         }
         }catch(error){
             console.log(error)
@@ -71,6 +72,13 @@ const  AdminPath=(Socket,OrdersNamespace,Users)=>{
     
     Socket.on('disconnect', () => {  
      console.log('User disconnected from the tracking namespace');
+     const userId = Object.keys(users).find((id) => users[id] === Socket.id);
+
+     // Remove the user from the `users` object if found
+     if (userId) {
+       delete users[userId];
+       console.log(`User with ID ${userId} disconnected and was removed`);
+     }
  });
 
  return Socket;

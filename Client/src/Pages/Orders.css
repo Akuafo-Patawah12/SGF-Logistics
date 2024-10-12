@@ -53,3 +53,14 @@
         border-radius: 4px;
         font-size: 14px;
     }
+
+    .creating_order{
+        background-color: #ccc;
+        opacity: 0.8;
+        font-size: small;
+        font-weight: 500;
+        width: max-content;
+        padding: 10px;
+        border-radius: 5px;
+        margin-inline: auto;
+    }

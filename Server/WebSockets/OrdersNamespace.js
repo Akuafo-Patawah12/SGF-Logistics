@@ -1,7 +1,7 @@
  const Order= require("../DatabaseModels/Order")
  const User= require("../DatabaseModels/UsersSchema")
 
-const orderFunc=(socket,adminNamespace)=>{
+const orderFunc=(socket,adminNamespace,users)=>{
     
 
     socket.on("createOrder", async(data) => { //receiving createOrders data from clientside
@@ -25,7 +25,7 @@ const orderFunc=(socket,adminNamespace)=>{
             
             
             socket.emit("receive",sendOrder) //send this data the user connected to this namespace
-            adminNamespace.in("adminRoom").emit("receivedOrder", sendOrder); // Emit to all in "/order" room
+            adminNamespace.in("AdminRoom").emit("receivedOrder", sendOrder); // Emit to all in "/order" room
             
         }catch(err) {
             console.error("Error saving order or emitting event:", err);
@@ -48,8 +48,10 @@ const orderFunc=(socket,adminNamespace)=>{
         console.log(data)
        await Order.findByIdAndDelete(data.order_id)  // find the order by the id and delele it
        socket.emit("orderDeleted",data.order_id)
+       adminNamespace.in("AdminRoom").emit("orderDeleted", sendOrder); // Emit to all in "/order" room
+
        // Check if the users object and the specific customer_id exist
-    
+        
         // Emit the event to the specific user
         
     
@@ -62,6 +64,13 @@ const orderFunc=(socket,adminNamespace)=>{
     
     socket.on('disconnect', () => {
         console.log('User disconnected from the tracking namespace');
+        const userId = Object.keys(users).find((id) => users[id] === socket.id);
+
+        // Remove the user from the `users` object if found
+        if (userId) {
+          delete users[userId];
+          console.log(`User with ID ${userId} disconnected and was removed`);
+        }
     });
 
     return socket  //return Socket where ever the tracking function is called

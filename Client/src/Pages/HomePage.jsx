@@ -225,19 +225,19 @@ setDisplayService(false)
           
           
       
-       src='../SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
+       src='../SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "contain", height: '400px' }}  />
        </div>
 
        <div ref={childRef2} >
-       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '400px' }}  />
+       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "contain", height: '400px' }}  />
        </div>
          
          <div ref={childRef3} >
-          <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '400px' }}  />
+          <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "contain", height: '400px' }}  />
           </div>
 
           <div ref={childRef4} >
-          <LazyLoadImage src='../SFG_images/Slider3.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '400px' }} />
+          <LazyLoadImage src='../SFG_images/Slider3.jpg' width={divWidth} effect='blur' style={{objectFit: "contain", height: '400px' }} />
 
           </div>
           
