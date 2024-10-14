@@ -14,6 +14,59 @@
   }
   
   
+/* HTML: <div class="loader"></div> */
+.animator {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  display: inline-grid;
+}
+.animator:before,
+.animator:after {
+  content:"Scroll Over Content";
+  grid-area: 1/1;
+  -webkit-mask: linear-gradient(90deg,#000 50%,#0000 0) 0 50%/2ch 100%;
+  animation: l11 2s infinite cubic-bezier(0.5,220,0.5,-220);
+}
+.animator:after {
+  -webkit-mask-position: 1ch 50%;
+  --s:-1;
+}
+@keyframes l11 {100%{transform: translateY(calc(var(--s,1)*0.1%));}}
+
+
+.scattered{
+  
+  position: relative;
+  border: 3px solid #A7C756;
+  width: 50%;
+  margin-block: 100px;
+  border-radius: 10px;
+  height: 600px;
+}
+
+.scattered > section{
+  position: absolute;
+  background-color: #ddd;
+  width: 300px;
+  height: 300px;
+}
+
+.scattered :first-child{
+  top: -10%;
+  right: -5%;
+}
+
+.scattered :nth-child(even){
+  transform: translate(-50%,-50%);
+  top:50%;
+  left: 30%;
+}
+
+.scattered :last-child{
+  bottom: -10%;
+  right: -5%;
+}
 
   
   .slide_btn{
@@ -350,6 +403,8 @@
    border-radius: 5px;
    color: #A7C756;
 }
+
+
 
   @media (max-width: 768px){
     

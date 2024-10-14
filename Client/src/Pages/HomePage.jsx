@@ -196,6 +196,24 @@ setServiceText("SEE ALL OUR SERVICES")
 setDisplayService(false)
 }
 
+
+const image= ["Air.jpg","Sea.jpg","Slider2.jpg","Slider3.jpg"] 
+const[index1,setIndex1]= useState(0)
+useEffect(()=>{
+  
+  const timer= setInterval(()=>{
+     setIndex1(prev => prev + 1)
+  },4000)
+    
+    if(index >= image.length - 2){
+      setIndex1(0)
+    }
+  return()=>{
+    clearInterval(timer)
+  }
+},[index1])
+
+
   return (
     
     <div style={{overflow:"hidden",background:"#fff"}}>
@@ -360,10 +378,12 @@ setDisplayService(false)
        
       <div className="image-container">
         <div className="scrolling-content">
-          <h2>Scroll Over Content</h2>
+        
+          <h2 className="animator"></h2>
           <p>
             This content will scroll over the image as you scroll down the page.
           </p>
+          
 
           <button className="scroll-content-btn">Contact Us</button>
         </div>
@@ -389,7 +409,8 @@ setDisplayService(false)
           </div>
        </section>
        
-       <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"25px" ,fontWeight:"500"}}>WHY CHOOSE US</p>
+       
+       <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US.</p>
        <section ref={sectionRef2} className={`why_choose_us ${isVisible ? 'fade-in' : ''}`} style={{animation:`${isVisible ? "0.3s width" :"0.3s width "}`}}>
            <div>
             <div style={{marginInline:"auto",width:"fit-content"}}><MoneyIcon /></div>
@@ -424,6 +445,14 @@ setDisplayService(false)
               </p>
            </div>
        </section>
+      <div className='scattered'>
+        <section></section>
+        <section></section>
+        <section></section>
+      </div>
+       <div className='fade-image'>
+          <img src={`./SFG_images/${image[index1]}`} alt="image" />
+       </div>
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ ToggleMore} style={{marginInline:"auto",border:"2px solid #222",background:"transparent", padding:"8px",fontWeight:"600"}}>{seeMore}</button></div>
        {see &&<section ref={sectionRef2} className="why_choose_us ">
            <div>
