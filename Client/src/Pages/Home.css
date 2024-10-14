@@ -86,7 +86,7 @@
     bottom: 30px;
   }
   .welcome_image{
-
+    display:grid;
     width: 48%;
     height: 300px;
     opacity: 1;
@@ -96,27 +96,89 @@
     background-size: cover;
   }
   .services, .services1{
-    display: flex;
+    display: grid;
     position: relative;
-    justify-content: center;
-    align-items: center;
-    gap: 2.5%;
-    background: #A7C756;
+    grid-template-columns: repeat(3,1fr);
     
-    & div{
-       width: 30%;
-       padding-block-end: 20px;
-    }
+    grid-gap: 2.5%;
+    background: #A7C756;
+    justify-items: center;
+    
+    
 
     & img{
       width: 100%;
-      height: 270px;
+      height: 100%;
       object-fit: cover;
       border-radius: 10px;
       isolation: isolate;
     }
     
   }
+
+  .services:nth-child(2), .services1:nth-child(2){
+    grid-auto-rows: minmax(230px, auto);
+  }
+
+  .services:nth-child(odd), .services1:nth-child(odd){
+    grid-auto-rows: 200px
+  } 
+
+  .services > div,
+  .services1 > div{
+    width: 95%;
+    border-radius: 10px;
+ }
+
+  .hover_parent:hover  .hover_to_display{
+    height: 100%;
+    visibility: visible;
+  }
+
+  
+
+
+  .cover{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .cover > section{
+     margin-top: 80px;
+     isolation: isolate;
+  }
+ 
+  
+
+  .hover_to_display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    width: 100%;
+    position:absolute;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    border-radius: 10px;
+    visibility: hidden;
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+
+
+    & button{
+        border: 2px solid #fff;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 18px ;
+        font-weight: 600px;
+        color: #fff;
+        background: transparent;
+    }
+  }
+
   .services::before {
     content: "";
     position: absolute;
@@ -139,8 +201,8 @@
 
   .Image_Text{
     position: absolute;
-    z-index: 1;
-    top: 20%;
+    z-index: 50;
+    top: 70%;
     left: 2.5%;
     display: flex;
     flex-direction: column;
@@ -154,10 +216,13 @@
   }
 
   .btn{
-    background: #A7C756;
-    padding: 10px;
+    background: transparent;
+    padding: 15px;
     color: white;
-    border: none;
+    border: 5px;
+    border: 2px solid #A7C756;
+    outline: 2px solid #A7C756;   /* Defines the outline */
+  outline-offset: 3px;
   }
 
 .quote{
@@ -207,7 +272,84 @@
     from{scale: 0;}
     to{scale: 1;}
   }
+
+  .btn1{
+    position: relative;
+    isolation:isolate;
+    overflow: hidden;
+  }
   
+  .btn1::before{
+    content: "";
+    width: 0;
+    height: 0;
+    background-color: rgb(22 163 74);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: -1;
+    transition: 0.8s;
+    color: black;
+    transform: translate(-50%,-50%);
+ }
+ .btn1:hover::before,
+ .btn1:active::before{
+    opacity: 1;
+    width: 150px;
+    height: 150px;
+ }
+ .btn1:hover,
+ .btn1:active{
+   color: white;
+ }
+
+ .image-container {
+   background: url("../../public/SFG_images/Door-to-door.jpg") repeat fixed 100%;
+}
+
+/* The background image */
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: fixed;
+  inset: 0;
+  isolation: isolate;
+  z-index: -1; /* Place the image behind the scrolling content */
+}
+
+/* The scrolling content */
+.scrolling-content {
+          /* Ensure it's above the image */
+  width: 100%;
+  height: 250px;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+}
+
+.Service-title{
+  font-size: 30px;
+  font-family: "Poppings", sans-serif;
+  font-weight: 700;
+  margin-top: 20px;
+  color: #A7C756;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.scroll-content-btn{
+   border: 3px solid #A7C756;
+   padding: 20px;
+   font-size: 20px;
+   font-weight: 600;
+   background: transparent;
+   border-radius: 5px;
+   color: #A7C756;
+}
 
   @media (max-width: 768px){
     
@@ -221,14 +363,7 @@
     }
     .testimonals {gap: 10px;}
 
-    .services, .services1{
-      gap: 15px;
-      flex-direction: column;
-
-      & div{
-         width: 95%;
-      }
-    }
+    
 
     .welcome_hero{
       height: max-content;
@@ -275,4 +410,17 @@
       left: 50%;
       transform: translate(-50%,-50%)
     }
+
+    .services,.services1{
+      grid-template-columns: repeat(2,1fr);
+
+      
+    }
+
+    
+    .parent3{
+       grid-column: 1/3;
+    }
+
+
   }

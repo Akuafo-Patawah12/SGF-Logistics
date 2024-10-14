@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
-import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined } from '@ant-design/icons'
+import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import Logo from '../Icons/Logo'
 
 
-const Header = ({setShowAuth,buttonDisplay}) => {
+const Header = ({setShowAuth,buttonDisplay,popDetails}) => {
+  const [pop1,popUp1,setPopUp1] = popDetails
     const[popUp,setPopUp]= useState(false)
         function pop(){
         
@@ -12,29 +13,71 @@ const Header = ({setShowAuth,buttonDisplay}) => {
         }
 
         const[popNav,setPopNav]= useState(false)
+
+        
+
+        const[popNav1,setPopNav1]= useState(false)
+
+        const[popUp2,setPopUp2]= useState(false)
+        function pop2(){
+        
+        setPopUp(prev => !prev)
+        }
+
+        const[popNav2,setPopNav2]= useState(false)
   return (
     <header className="header">
+      <div className="h_child1">
+          <button style={{border:"none"}}><EnvironmentOutlined /> George Bush Highway, Dzorwulu, Accra-Ghana </button>
+          <button style={{border:"none"}}><PhoneOutlined /> 020 811 6360 / 053 948 0433</button>
+          <button style={{border:"none"}}><MailOutlined /> sfghanalogistics24@gmail.com</button>
+          
+          <section style={{display:"flex" ,gap:"5px"}}>
+          <button style={{height:"50px", border:"2px solid white",width:"50px", borderRadius:"5px"}}><WhatsAppOutlined /> </button>
+          <button style={{height:"50px",border:"2px solid white", width:"50px", borderRadius:"5px"}}><FacebookFilled /></button>
+          </section>
+      </div>
+      <div className="h_child2">
         <Logo />
     
         <nav  className="nav1">
-         <Link to={"/"}><span>Home</span> </Link>
-         <div style={{position:"relative"}} onClick={()=>{setPopNav(prev => !prev)}}><span style={{color:"white"}}>About us</span><DownOutlined /> {popNav &&<div style={{position:"absolute",background:"white",width:"100%",padding:"8px",zIndex:"12"}}><p>Visions</p>
-         <p>Mission</p>
-         </div>}
+         <Link to={"/"}><span className='header_links' style={{fontSize:"20px",fontWeight:"600"}}>Home</span> </Link>
+         <div style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>About  <DownOutlined /></span> 
+              <div className="drop" style={{position:"absolute",background:"white",width:"200%",padding:"8px",zIndex:"12"}}>
+                <p>WHY CHOOSE US</p>
+                <p>ABOUT US</p>
+                <p>MISSION & VISION</p>
          </div>
-         <a ><span style={{color:"white"}}>Services</span> </a>
-         <a><span style={{color:"white"}}>Contact</span> </a>
-       </nav> 
+         </div>
+         <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>Services  <DownOutlined /></span> 
+              <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>
+                <p>AIR FREIGHT</p>
+                <p>SEA FREIGHT</p>
+                <p>PROCUREMENT</p>
+                <p>DOOR TO DOOR DELIVERY</p>
+                <p>WAREHOUSING</p>
+         </div>
+         </div>
+         <a ><span style={{fontSize:"20px",fontWeight:"600"}} className='header_links'>Contact</span> </a>
+ 
+         <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>More  <DownOutlined /></span> 
+              <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>
+                <p>FAQs</p>
+                <p>GET A QUOTE</p>
+                
+         </div> 
+         </div>    
+          </nav> 
      
-      <div style={{marginRight:"2.5%",display:"flex",alignItems:"center",gap:"4px"}}>
-      <Link to={"/Tracking"} ><button style={{border:"none",background:"#fff",height:"40px",borderRadius:"10px",paddingInline:"10px",color:"black"}}>Track</button></Link>
+      <div style={{marginRight:"3px",display:"flex",alignItems:"center",gap:"4px"}}>
+      <Link to={"/Tracking"} ><button style={{border:"none",background:"rgb(213, 35, 35)",height:"60px",borderRadius:"10px",paddingInline:"10px",color:"#fff",fontSize:"18px",fontWeight:"500"}}>Track Shippments</button></Link>
 
-        {buttonDisplay && <button onClick={()=>{setShowAuth(true)}} style={{border:"none",color:" #000",height:"40px",borderRadius:"10px",paddingInline:"6px",background:"white"}}>Get started</button> }
+        {buttonDisplay && <button onClick={()=>{setShowAuth(true)}} style={{border:"2px solid rgb(213, 35, 35)",color:" #000",height:"60px",borderRadius:"10px",paddingInline:"6px",background:"white",fontSize:"18px",fontWeight:"500"}}>Get started</button> }
 
-       <button  onClick={pop} className="open">
-          <div style={{rotate:`${popUp ? "45deg":""}`,top:`${popUp ? "50%":"4px"}`}}></div>
-          <div style={{display:`${popUp ? "none":"block"}`}}></div>
-          <div style={{rotate:`${popUp ? "-45deg":""}`,top:`${popUp ? "50%":"23px"}`}}></div>
+       <button  onClick={pop1} className="open">
+          <div style={{rotate:`${popUp1 ? "45deg":""}`,top:`${popUp1 ? "50%":"4px"}`}}></div>
+          <div style={{display:`${popUp1 ? "none":"block"}`}}></div>
+          <div style={{rotate:`${popUp1 ? "-45deg":""}`,top:`${popUp1 ? "50%":"23px"}`}}></div>
        </button>
        </div>
 
@@ -47,6 +90,7 @@ const Header = ({setShowAuth,buttonDisplay}) => {
           <a><span>About</span><GlobalOutlined/> </a>
           <a><span>Contact</span> <PhoneOutlined /></a>
         </nav>
+        </div>
 
       </header>
   )

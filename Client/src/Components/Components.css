@@ -58,8 +58,40 @@
     min-width: 100%;
 }
 
+
+@keyframes side-appear{
+    from{transform: translateX(-60%);}
+    to{transform: translateX(0);}
+}
+@keyframes side-disappear{
+    from{transform: translateX(0);}
+    to{transform: translateX(-60%);}
+}
+
+
 @media (max-width: 568px) {
     .auth {
       width: 80%;
+    }
+    aside{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 99;
+        background: rgb(0, 0,0,0.5);
+    } 
+    
+    .side_nav{
+        color: white;
+        padding-inline: 20px;
+        width: 60%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        grid-auto-rows: 50px;
+        height: 100%;
+        background: white;
     }
   }

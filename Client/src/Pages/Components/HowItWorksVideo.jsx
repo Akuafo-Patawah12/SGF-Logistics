@@ -9,7 +9,7 @@ const HowItWorksVideo = () => {
         loop
         muted
         controls
-        style={{ width: "100%", height: "auto" }}
+        style={{ width: "95%", height: "auto" }}
       />
     </div>
   )

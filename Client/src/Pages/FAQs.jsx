@@ -30,8 +30,14 @@ const FAQs = () => {
    const InputStyle={padding: "10px"}
   return (
     <div >
-        <h4 style={{marginTop:"30px",marginLeft:"2.5%",marginBlock:"20px"}}>FREQUENTLY ASKED QUESTIONS</h4>
-     <div style={{width:"100%", display:"flex",flexDirection:"column", gap:"10px"}}>
+      <section className='head_image'>
+        <div>
+          <h4>FAQ's</h4>
+        </div>
+
+      </section>
+        <h4 style={{marginTop:"30px",marginLeft:"2.5%",marginBlock:"20px",fontSize:"25px",fontWeight:"700"}}>FREQUENTLY ASKED <span className='faq_title'>QUESTIONS.</span> </h4>
+     <div className="faq" style={{width:"95%",marginInline:"auto"}}>
        <FAQsAccordion 
           Questions="What services does SF Ghana Logistics offer? "
 

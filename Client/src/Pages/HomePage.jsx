@@ -1,4 +1,5 @@
 import React,{useState,useRef,useEffect,useMemo} from 'react'
+import {motion} from "framer-motion"
 import "./Home.css"
 import io from "socket.io-client"
 import DeliveryIcon from "../Icons/DeliveryIcon"
@@ -80,7 +81,7 @@ useEffect(() => {
   return () => {
     if (sectionRef.current) observer.unobserve(sectionRef.current);
   };
-}, []);
+}, [sectionRef,sectionRef1,sectionRef2,sectionRef3]);
 
 
   const parentRef = useRef(null);
@@ -197,47 +198,53 @@ setDisplayService(false)
 
   return (
     
-    <div style={{overflow:"hidden"}}>
+    <div style={{overflow:"hidden",background:"#fff"}}>
         {showAuth&& <Authentication  authShow={[showAuth,setShowAuth]}/>}
       <div
         ref={parentRef}
         className="slide-show"
         style={{
           width: "100%",
-          height: "400px"
+          height: "450px"
           
         }}
       >
         <div className='Image_Text'>
+          
+          
+          <section style={{display:"flex",gap:"1rem"}}>
+            <Link to={"/Orders"}><button className='btn'>Get A Quote</button></Link>
+            <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
+          </section>
+          </div>
+       
+        <div ref={childRef1} style={{position:"relative"}}>
+          <div className="cover">
           <section>
           <p>Logistics & Transportation.</p>
           <h3>World Wide Logistic And <br/>Professional Solutions</h3>
           </section>
-          
-          <section style={{display:"flex",gap:"1rem"}}>
-            <Link to={"/Orders"}><button className='btn'>Get A Quote</button></Link>
-            <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span style={{color:"white",background:"#A7C756",padding:"10px",marginLeft:"20px"}}>How It Works?</span></button>
-          </section>
           </div>
-       
-        <div ref={childRef1} >
           <LazyLoadImage
           
           
       
-       src='../SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "contain", height: '400px' }}  />
+       src='../SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
        </div>
 
-       <div ref={childRef2} >
-       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "contain", height: '400px' }}  />
+       <div ref={childRef2} style={{position:"relative"}}>
+        <div className="cover"></div>
+       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
        </div>
          
-         <div ref={childRef3} >
-          <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "contain", height: '400px' }}  />
+         <div ref={childRef3} style={{position:"relative"}} >
+          <div className="cover"></div>
+          <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
           </div>
 
-          <div ref={childRef4} >
-          <LazyLoadImage src='../SFG_images/Slider3.jpg' width={divWidth} effect='blur' style={{objectFit: "contain", height: '400px' }} />
+          <div ref={childRef4} style={{position:"relative"}} >
+            <div className="cover"></div>
+            <LazyLoadImage src='../SFG_images/Slider3.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} />
 
           </div>
           
@@ -263,86 +270,104 @@ setDisplayService(false)
 
             
    
-         <div className='welcome_container' >
+      <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 100 }} 
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.5 }} // Trigger when 50% in view
+          className='welcome_container' >
            <h3>Welcome to SF Ghana Logistics.</h3>
           <p>
             Your trusted partner in providing seamless and reliable shipping solutions between Ghana and 
-            China. Whether you require air cargo services, groupage shipping, or door-to-door delivery,<span style={{color:"#35DFF7"}}> "SF 
-            Ghana Logistics ensures that your goods are handled with the utmost care and delivered 
-            promptly."</span> Discover our comprehensive range of services designed to meet your logistics needs 
+            China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
             and experience the SFGL difference. 
           </p>
           <Link><button className='welcome_button'>GET IN TOUCH</button></Link>
-         </div>
+         </motion.div>
          <div className='welcome_image'>
          
          </div>
       </section>
 
-      <h3 style={{color:"#1C1818",marginInline:"auto",maxWidth:"210px",textAlign:"center",marginTop:"20px"}}>OUR MAJOR SERVICES.</h3>
+      <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",textAlign:"center",marginTop:"20px",fontSize:"25px"}}>OUR MAJOR SERVICES.</h3>
+      
       <div style={{width:"100px",height:"2px",background:"#1C1818",marginInline:"auto",marginTop:"4px"}}></div>
-       <p style={{marginInline:"auto",width:"90%",marginBlock:"10px",textAlign:"center"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
+
+      <p className="Service-title">Fast and Affordable Services</p>
+       <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
 
 
        <setion className={`services ${isVisible ? 'fade-in' : ''}`} ref={sectionRef}>
-          <div>
+          
+          <motion.div
+              initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
+              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+              exit={{ opacity: 0, x: -100 }} 
+              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+              viewport={{ once: true, amount: 0.5 }}
+           style={{position:"relative"}} className="hover_parent parent1">
              <img src='./SFG_images/Sea.jpg' alt=''></img>
-             <h4 style={{color:"white",marginTop:"5px"}}>Sea Freight</h4><br/>
-             <p style={{color:"white"}}>We have the expertise to manage your large,over-sized 
-                heavy,high-value or mission-critical piecies of cargo.
-                Our reputation speaks for us.
-             </p>
-          </div>
-          <div>
+             <div  className="hover_to_display">
+             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Sea Freight</h4><br/>
+             <button>View More</button>
+             </div>
+          </motion.div>
+
+
+          <div style={{position:"relative"}}  className="hover_parent parent2">
              <img src='./SFG_images/Air.jpg' alt=''></img>
-             <h4 style={{color:"white",marginTop:"5px"}}>Air Freight</h4><br/>
-             <p style={{color:"white"}}>SF Ghana handles Air freight for all clients who need fast
-                reliable, and secure transportation of their goods. Ideal for high-priority
-                or time-sensitive shipments.
-             </p>
+             <div  className="hover_to_display">
+             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Air Freight</h4><br/>
+             <button>View More</button>
+             </div>
           </div>
-          <div>
+          
+          <motion.div
+              initial={{ opacity: 0, x: 100 }} // Start off-screen to the left (-200px)
+              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+              exit={{ opacity: 0, x: 100 }} 
+              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+              viewport={{ once: true, amount: 0.5 }}
+           style={{position:"relative"}} className="hover_parent parent3">
             <img src='./SFG_images/Door-to-door.jpg' alt=''></img>
-            <h4 style={{color:"white",marginTop:"5px"}}>Door-to-Door Delivery.</h4><br/>
-            <p style={{color:"white"}}>Our Door-to-Door Delivery Service offer a hassle-free solution 
-               ,managing the entire logistics process from pickup to final delivery.
-            </p>
-          </div>
+            <div className="hover_to_display">
+            <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Door-to-Door Delivery.</h4><br/>
+            <button>View More</button>
+            </div>
+          </motion.div>
        </setion>
 
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"40px",border:"2px solid #222", padding:"8px",fontWeight:"600"}}>{serviceText}</button></div>
       {displayService && <section className='services1'  >
        <div>
              <img src='./SFG_images/procurement.jpg' alt=''></img>
-             <h4 style={{color:"white",marginTop:"5px"}}>Free Procurement & Sourcing Training </h4><br/>
-             <p style={{color:"white"}}>
-                  Our Free Procurement and Sourcing Training empowers businesses with essential skills for 
-                  managing logistics, procurement, and international sourcing. This service is designed to help 
-                  businesses improve their operations without additional cost.
-             </p>
+             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Free Procurement & Sourcing Training </h4><br/>
+               <button>View More</button>
           </div>
           <div>
              <img src='./SFG_images/Air2.jpg' alt=''></img>
-             <h4 style={{color:"white",marginTop:"5px"}}>Container Clearance </h4><br/>
-             <p style={{color:"white"}}>
-                    SF Ghana Logistics provides seamless Container Clearance Services, managing all customs
-                    related documentation and ensuring regulatory compliance. To support businesses with their 
-                    financial needs, we also offer Container Clearance on Credit, allowing flexibility in payments 
-                    while maintaining efficient logistics operations. 
-             </p>
+             <h4 style={{color:"white",marginTop:"5px",fontSize:"24px"}}>Container Clearance </h4><br/>
+             <button>View More</button>
           </div>
           <div>
             <img src='./SFG_images/Groupage.jpg' alt=''></img>
-            <h4 style={{color:"white",marginTop:"5px"}}>Groupage Services </h4><br/>
-            <p style={{color:"white"}}>
-                    Our Groupage Services allow businesses with small to medium-sized shipments to save on costs 
-                    by sharing container space with others. This service is perfect for clients who do not require an 
-                    entire container but still need reliable and timely delivery. 
-            </p>
+            <h4 style={{color:"white",marginTop:"5px",fontSize:"24px"}}>Groupage Services </h4><br/>
+            <button>View More</button>
           </div>
        </section> }
 
+       
+      <div className="image-container">
+        <div className="scrolling-content">
+          <h2>Scroll Over Content</h2>
+          <p>
+            This content will scroll over the image as you scroll down the page.
+          </p>
 
+          <button className="scroll-content-btn">Contact Us</button>
+        </div>
+        </div>
 
 
          <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}}>Clients Testimonals</h3>
@@ -406,7 +431,7 @@ setDisplayService(false)
               <h4 style={{marginInline:"auto",width:"fit-content"}}>End-to-End Solutions:</h4>
               <p >
                   We offer comprehensive logistics services that cover every step of the supply chain—
-                  from customs clearance and regulatory compliance to warehousing and last-mile delivery. 
+                from customs clearance and regulatory compliance to warehousing and last-mile delivery. 
                   Our goal is to simplify the shipping process for you, allowing you to focus on your 
                   business while we handle the logistics.  
               </p>
@@ -435,7 +460,7 @@ setDisplayService(false)
           
            </section> }
 
-        {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"34",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+        {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"60",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
           <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
            <HowItWorksVideo />
        </div>}

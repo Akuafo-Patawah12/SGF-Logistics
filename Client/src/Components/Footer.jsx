@@ -16,17 +16,28 @@ const Footer = () => {
           </section>
           <section style={{color:"#ddd"}} className='nav_1'>
             <h4>Quick Link</h4>
-             <div>Home</div>
-             <div>Services</div>
-             <div>About</div>
-             <div>Contact</div>
+             <div>- Home</div>
+             <div>- Services</div>
+             <div>- About</div>
+             <div>- Contact</div>
           </section>
+          
+          <section style={{color:"#ddd"}} className='nav_1'>
+            <h4>Services we offer</h4>
+             <div>- Sea Freight</div>
+             <div>- Air Freight</div>
+             <div>- Door to door delivery</div>
+             <div>- Warehousing</div>
+             <div>- Procurement</div>
+          </section>
+
+          
           <section style={{color:"#ddd"}} className='nav_1'>
           <h4>Support</h4>
-             <div>Privacy</div>
-             <div>Terms & Conditions</div>
-             <div>FAQs</div>
-             <div>Report a Bug</div>
+             <div>- Why choose us</div>
+             <div>- Terms & Conditions</div>
+             <div>- FAQs</div>
+             <div>- Report a Bug</div>
           </section>
         <section className="About">
           
@@ -46,6 +57,9 @@ const Footer = () => {
         </div>
         </section>
         </main>
+        <div className="copyright_header">
+          <p>Copyright © 2024 | developed by @Anej High Tech</p>
+        </div>
 
 
       </footer>

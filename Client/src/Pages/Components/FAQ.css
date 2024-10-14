@@ -1,4 +1,37 @@
+.head_image{
+    background: url("../../../public/SFG_images/Get_in_Touch.jpg") no-repeat  fixed 100%;
+    background-size: cover;
+    height: 200px;
+}
 
+.head_image > div{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & h4{
+        color: #fff;
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+}
+
+.faq{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+}
+.faq_title{
+    background: url("../../../public/SFG_images/Sea.jpg") no-repeat fixed 100%;
+    background-size: cover;
+    height: fit-content;
+    background-clip: text;
+    color: transparent;
+}
 .questions_info{
     display: flex;
     width: 95%;
@@ -45,5 +78,9 @@
     }
     .child1,.child2{
         width: 95%;
+    }
+
+    .faq{
+        grid-template-columns: 1fr;
     }
 }
