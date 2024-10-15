@@ -39,10 +39,12 @@
   
   position: relative;
   border: 3px solid #A7C756;
-  width: 50%;
   margin-block: 100px;
+  width: 45%;
   border-radius: 10px;
   height: 600px;
+  background: transparent;
+  isolation: isolate;
 }
 
 .scattered > section{
@@ -50,22 +52,37 @@
   background-color: #ddd;
   width: 300px;
   height: 300px;
+  border-radius: 10px;
+  
 }
 
 .scattered :first-child{
   top: -10%;
   right: -5%;
+  transform: rotate(10deg);
 }
 
+
+.why{
+  display: flex;
+  justify-content: space-between; 
+}
+
+.fade-image{
+   width: 45%;
+}
 .scattered :nth-child(even){
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%) rotate(4deg);
   top:50%;
   left: 30%;
+  
 }
 
 .scattered :last-child{
   bottom: -10%;
   right: -5%;
+  z-index: -2;
+  transform: rotate(-10deg);
 }
 
   

@@ -344,6 +344,7 @@ useEffect(()=>{
           <motion.div
               initial={{ opacity: 0, x: 100 }} // Start off-screen to the left (-200px)
               whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+              offView= {{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 100 }} 
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
@@ -445,6 +446,8 @@ useEffect(()=>{
               </p>
            </div>
        </section>
+
+       <div className='why'>
       <div className='scattered'>
         <section></section>
         <section></section>
@@ -453,6 +456,7 @@ useEffect(()=>{
        <div className='fade-image'>
           <img src={`./SFG_images/${image[index1]}`} alt="image" />
        </div>
+      </div>
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ ToggleMore} style={{marginInline:"auto",border:"2px solid #222",background:"transparent", padding:"8px",fontWeight:"600"}}>{seeMore}</button></div>
        {see &&<section ref={sectionRef2} className="why_choose_us ">
            <div>
