@@ -72,7 +72,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails}) => {
       <div style={{marginRight:"3px",display:"flex",alignItems:"center",gap:"4px"}}>
       <Link to={"/Tracking"} ><button style={{border:"none",background:"rgb(213, 35, 35)",height:"60px",borderRadius:"10px",paddingInline:"10px",color:"#fff",fontSize:"18px",fontWeight:"500"}}>Track Shippments</button></Link>
 
-        {buttonDisplay && <button onClick={()=>{setShowAuth(true)}} style={{border:"2px solid rgb(213, 35, 35)",color:" #000",height:"60px",borderRadius:"10px",paddingInline:"6px",background:"white",fontSize:"18px",fontWeight:"500"}}>Get started</button> }
+
 
        <button  onClick={pop1} className="open">
           <div style={{rotate:`${popUp1 ? "45deg":""}`,top:`${popUp1 ? "50%":"4px"}`}}></div>

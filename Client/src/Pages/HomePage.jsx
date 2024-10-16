@@ -312,7 +312,7 @@ useEffect(()=>{
       
       <div style={{width:"100px",height:"2px",background:"#1C1818",marginInline:"auto",marginTop:"4px"}}></div>
 
-      <p className="Service-title">Fast and Affordable Services</p>
+      <p className="Service-title">Fast and Affordable Services.</p>
        <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
 
 
@@ -344,7 +344,6 @@ useEffect(()=>{
           <motion.div
               initial={{ opacity: 0, x: 100 }} // Start off-screen to the left (-200px)
               whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-              offView= {{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 100 }} 
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
@@ -413,45 +412,46 @@ useEffect(()=>{
        
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US.</p>
        <section ref={sectionRef2} className={`why_choose_us ${isVisible ? 'fade-in' : ''}`} style={{animation:`${isVisible ? "0.3s width" :"0.3s width "}`}}>
-           <div>
-            <div style={{marginInline:"auto",width:"fit-content"}}><MoneyIcon /></div>
+           
+           
+           
+       </section>
+
+       <div className='why'>
+      <div className='scattered'>
+        <section>
+        
+            <p style={{marginInline:"auto",width:"fit-content"}}><MoneyIcon /></p>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
               <p >
                   We pride ourselves on offering some of the most competitive rates in the market. At $250 
                   per CBM, we ensure our pricing structure is designed to provide value without sacrificing 
-                  service quality. Whether you’re shipping bulk goods or smaller consignments, our cost
-                  effective solutions ensure that your logistics needs are met efficiently and affordably. 
+                  service quality.  
               </p>
-           </div>
-           <div>
-            <div style={{marginInline:"auto",width:"fit-content"}}><DeliveryIcon /></div>
-           <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
-              <p >
-                When it comes to logistics, time is of the essence. SFGL has built a reputation for 
-                punctuality and reliability, ensuring that your shipments arrive at their destination on 
-                schedule. We understand that delays can impact your business operations, and that's why 
-                we employ cutting-edge technology and proven logistical strategies to keep your 
-                deliveries on track.
-              </p>
-           </div>
-           <div>
-            <div style={{marginInline:"auto",width:"fit-content"}}><LiftIcon /></div>
+          
+        </section>
+        <section>
+        
+            <div style={{marginInline:"auto",width:"max-content"}}><LiftIcon /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Expert Handling</h4>
               <p>
                 Entrusting your cargo to SFGL means relying on a team of seasoned professionals who 
                 have extensive experience in the logistics industry. Our expert team handles your goods 
                 with precision and care, from packaging and warehousing to transportation and delivery. 
-                With years of expertise behind us, we can ensure that even the most complex shipments 
-                are managed seamlessly. 
+                
               </p>
-           </div>
-       </section>
-
-       <div className='why'>
-      <div className='scattered'>
-        <section></section>
-        <section></section>
-        <section></section>
+           
+        </section>
+        <section>
+        
+            <div style={{marginInline:"auto",width:"fit-content"}}><DeliveryIcon /></div>
+           <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
+              <p >
+                When it comes to logistics, time is of the essence. SFGL has built a reputation for 
+                punctuality and reliability, ensuring that your shipments arrive at their destination on 
+                schedule.
+              </p>
+        </section>
       </div>
        <div className='fade-image'>
           <img src={`./SFG_images/${image[index1]}`} alt="image" />
@@ -470,7 +470,7 @@ useEffect(()=>{
               </p>
            </div>
            <div>
-            <div style={{marginInline:"auto",width:"fit-content"}}><TrackingIcon /></div>
+            <div style={{marginInline:"auto"}}><TrackingIcon /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Cutting-Edge Tracking</h4>
               <p >
                 Transparency and real-time visibility are key to our operations. With our state-of-the-art 
