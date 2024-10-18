@@ -1,5 +1,5 @@
 import React,{useState,useRef,useEffect,useMemo} from 'react'
-import {motion} from "framer-motion"
+import {motion,useAnimation} from "framer-motion"
 import "./Home.css"
 import io from "socket.io-client"
 import DeliveryIcon from "../Icons/DeliveryIcon"
@@ -214,6 +214,48 @@ useEffect(()=>{
 },[index1])
 
 
+const [value, setValue] = useState(0);  // State to hold the value
+  const controls = useAnimation();  // Controls for the animation
+  const divRef = useRef(null);  // Ref for the div
+
+  let timer;
+  function name() {
+    if (timer) return; // Prevent multiple intervals from being set
+    timer = setInterval(() => {
+      setValue((prev) => {
+        if (prev >= 200) {
+          clearInterval(timer);  // Clear interval when value reaches 200
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 100);
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.intersectionRatio >= 0.5) {
+          // Call the function when 50% of the div is in the viewport
+          name();
+          controls.start({ opacity: 1 });
+        }
+      },
+      { threshold: [0.5] } // 50% threshold for intersection
+    );
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+    return () => {
+      if (divRef.current) {
+        observer.unobserve(divRef.current);
+      }
+    };
+  }, [controls,value]);
+
+
   return (
     
     <div style={{overflow:"hidden",background:"#fff"}}>
@@ -356,7 +398,7 @@ useEffect(()=>{
           </motion.div>
        </setion>
 
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"40px",border:"2px solid #222", padding:"8px",fontWeight:"600"}}>{serviceText}</button></div>
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>{serviceText}</button></div>
       {displayService && <section className='services1'  >
        <div>
              <img src='./SFG_images/procurement.jpg' alt=''></img>
@@ -418,12 +460,21 @@ useEffect(()=>{
        </section>
 
        <div className='why'>
-      <div className='scattered'>
+       <motion.div
+        ref={divRef}
+        animate={controls}
+        initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
+              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+              exit={{ opacity: 0, x: -100 }} 
+              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+              viewport={{ once: true, amount: 0.2 }}
+        
+       className='scattered'>
         <section>
         
             <p style={{marginInline:"auto",width:"fit-content"}}><MoneyIcon /></p>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
-              <p >
+              <p>
                   We pride ourselves on offering some of the most competitive rates in the market. At $250 
                   per CBM, we ensure our pricing structure is designed to provide value without sacrificing 
                   service quality.  
@@ -452,13 +503,30 @@ useEffect(()=>{
                 schedule.
               </p>
         </section>
-      </div>
+      </motion.div>
+      <div style={{width:"45%", marginTop:"50px"}}>
        <div className='fade-image'>
           <img src={`./SFG_images/${image[index1]}`} alt="image" />
        </div>
+       
+
+
+       <motion.div
+        ref={divRef}
+        animate={controls}
+        initial={{ opacity: 0, x: 100 }} // Start off-screen to the left (-200px)
+              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+              exit={{ opacity: 0, x: 100 }} 
+              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+              viewport={{ once: true, amount: 0.5 }}
+        style={{ height: '100px', backgroundColor: 'lightblue', fontSize:"22px",fontWeight:"bold"}}
+      >
+       <EndUsersIcon /> We have over {value}+ Satisfied users
+      </motion.div>
+       </div>
       </div>
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ ToggleMore} style={{marginInline:"auto",border:"2px solid #222",background:"transparent", padding:"8px",fontWeight:"600"}}>{seeMore}</button></div>
-       {see &&<section ref={sectionRef2} className="why_choose_us ">
+       {see && <section ref={sectionRef2} className="why_choose_us ">
            <div>
             <div style={{marginInline:"auto",width:"fit-content"}}><EndUsersIcon /></div>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>End-to-End Solutions:</h4>

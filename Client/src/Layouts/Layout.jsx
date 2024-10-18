@@ -6,8 +6,9 @@ import Footer from '../Components/Footer'
 import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
+import Tracking from '../Components/Tracking'
+const Services= lazy(()=> import('../Pages/Services'))
 const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
-const Tracking= lazy(()=> import('../Pages/Tracking'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
 const HomePage= lazy(()=>import('../Pages/HomePage'))
 
@@ -49,15 +50,19 @@ const Layout = () => {
             /**This function is executed when you click outside the sidebar to close it in ToggleSideBar.jsx */
           }
         },[]); 
+
+
+        const [trackPop,setTrackPop] =useState(false)
   return (
     <div>
 
-        <Header buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]}/>
+        <Header buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop}/>
         <Sidebar popUp={popUp1} popRef={popRef}/>
+        <Tracking  track_comp={[trackPop,setTrackPop]}/>
             <Routes>
                 <Route path='/'  element={
                     <Suspense fallback={<Loader />}>
-                        <HomePage setShowAuth={setShowAuth} showAuth={showAuth}/>
+                        <HomePage setShowAuth={setShowAuth} showAuth={showAuth} />
                     </Suspense> }
                 /> 
                 <Route path='/TermsAndCondition' element={<TermsAndCondition />} />
@@ -67,15 +72,17 @@ const Layout = () => {
                         <Orders />
                     </Suspense>} 
                 />
-                    <Route path='/Tracking' element={
-                        <Suspense fallback={<Loader />}>
-                            <Tracking />
-                        </Suspense>} 
-                    /> 
+                    
 
                     <Route path='/AdminDashboard' element={
                         <Suspense fallback={<Loader />}>
                           <AdminDashboard />   
+                        </Suspense>} 
+                    />
+
+                    <Route path='/Services' element={
+                        <Suspense fallback={<Loader />}>
+                          <Services />   
                         </Suspense>} 
                     />
             

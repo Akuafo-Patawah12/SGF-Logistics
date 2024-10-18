@@ -68,6 +68,76 @@
     to{transform: translateX(-60%);}
 }
 
+.Track_pop_container{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    background: rgb(0, 0,0,0.5);
+    z-index: 100;
+}
+.Track_pop{
+    height: auto;
+    padding-block: 30px;
+    width: 500px;
+    background-color: white;
+     
+    & input{
+        height: 40px;
+        width: 80%;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    & button{
+        height: 43px;
+        width: 15%;
+        background-color: rgb(199, 46, 46);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transform: translateX(3px);
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.form{
+    position: relative;
+    margin-block: 10px;
+    border: 1px solid #ddd;
+    width: 90%;
+    padding: 5px 0;
+    border-radius: 5px;
+    margin-inline: auto;
+}
+.paste{
+    position: absolute;
+    left: 75%;
+    top: 12px;
+    font-size: 20px;
+}
+
+.head{
+    font-size: 25px;
+    font-weight: 600;
+}
+.exg{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.note{
+    border: 2px dashed rgb(199, 46, 46);
+    margin-top: 10px;
+    width: 80%;
+    padding: 5%;
+    color: #333;
+    font-weight: 600;
+    margin-inline: auto;
+    border-radius: 5px;
+}
 
 @media (max-width: 568px) {
     .auth {

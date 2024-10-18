@@ -41,7 +41,7 @@
 .scattered{
   
   position: relative;
-  border: 3px solid #A7C756;
+  border: 5px solid #A7C756;
   margin-block: 100px;
   width: 45%;
   border-radius: 10px;
@@ -76,6 +76,10 @@
 
 .fade-image{
    width: 45%;
+  
+   & img{
+     height: 400px;
+   }
 }
 .scattered :nth-child(even){
   
@@ -411,7 +415,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 250px;
+  height: 350px;
   text-align: center;
  
   color: white;

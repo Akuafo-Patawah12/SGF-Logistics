@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Logo from '../Icons/Logo'
 
 
-const Header = ({setShowAuth,buttonDisplay,popDetails}) => {
+const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
   const [pop1,popUp1,setPopUp1] = popDetails
     const[popUp,setPopUp]= useState(false)
         function pop(){
@@ -28,7 +28,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails}) => {
   return (
     <header className="header">
       <div className="h_child1">
-          <button style={{border:"none"}}><EnvironmentOutlined /> George Bush Highway, Dzorwulu, Accra-Ghana </button>
+          <button style={{border:"none",}}><EnvironmentOutlined /> George Bush Highway, Dzorwulu,<br/> Accra-Ghana </button>
           <button style={{border:"none"}}><PhoneOutlined /> 020 811 6360 / 053 948 0433</button>
           <button style={{border:"none"}}><MailOutlined /> sfghanalogistics24@gmail.com</button>
           
@@ -41,7 +41,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails}) => {
         <Logo />
     
         <nav  className="nav1">
-         <Link to={"/"}><span className='header_links' style={{fontSize:"20px",fontWeight:"600"}}>Home</span> </Link>
+         <NavLink to={"/"}><span className='header_links' style={{fontSize:"20px",fontWeight:"600"}}>Home</span> </NavLink>
          <div style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>About  <DownOutlined /></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"200%",padding:"8px",zIndex:"12"}}>
                 <p>WHY CHOOSE US</p>
@@ -70,7 +70,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails}) => {
           </nav> 
      
       <div style={{marginRight:"3px",display:"flex",alignItems:"center",gap:"4px"}}>
-      <Link to={"/Tracking"} ><button style={{border:"none",background:"rgb(213, 35, 35)",height:"60px",borderRadius:"10px",paddingInline:"10px",color:"#fff",fontSize:"18px",fontWeight:"500"}}>Track Shippments</button></Link>
+      <button onClick={()=> setTrack(prev => !prev)} style={{border:"none",background:"rgb(213, 35, 35)",height:"60px",borderRadius:"10px",paddingInline:"10px",color:"#fff",fontSize:"18px",fontWeight:"500"}}>Track Shippments</button>
 
 
 
@@ -86,7 +86,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails}) => {
 
          <nav style={{animation:`${popUp?"navAnimate 0.3s linear":""}`,visibility:`${popUp?"visible":"hidden"}`}} className="nav">
           <p style={{width:"95%",height:"25px",borderBottom: "1px solid #ddd",fontWeight:"700",marginLeft:"auto",marginBottom:"10px"}}>Menu</p>
-          <Link to={"/"}><span>Home</span> <HomeOutlined/></Link>
+          <NavLink to={"/"}><span>Home</span> <HomeOutlined/></NavLink>
           <a><span>About</span><GlobalOutlined/> </a>
           <a><span>Contact</span> <PhoneOutlined /></a>
         </nav>

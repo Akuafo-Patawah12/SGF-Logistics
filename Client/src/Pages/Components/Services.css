@@ -1,0 +1,6 @@
+.service_image_header{
+   position: relative;
+   background: url("../../../public/SFG_images/Slider2.jpg") no-repeat  fixed 100%;
+   background-size: cover;
+   height: 200px;
+}

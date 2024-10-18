@@ -1,5 +1,5 @@
 import React from 'react'
-import {FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
+import {DoubleRightOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
 
 import Accordion from './Accordion'
 
@@ -16,28 +16,28 @@ const Footer = () => {
           </section>
           <section style={{color:"#ddd"}} className='nav_1'>
             <h4>Quick Link</h4>
-             <div>- Home</div>
-             <div>- Services</div>
-             <div>- About</div>
-             <div>- Contact</div>
+             <div><DoubleRightOutlined /> Home</div>
+             <div><DoubleRightOutlined /> Services</div>
+             <div><DoubleRightOutlined /> About</div>
+             <div><DoubleRightOutlined /> Contact</div>
           </section>
           
           <section style={{color:"#ddd"}} className='nav_1'>
             <h4>Services we offer</h4>
-             <div>- Sea Freight</div>
-             <div>- Air Freight</div>
-             <div>- Door to door delivery</div>
-             <div>- Warehousing</div>
-             <div>- Procurement</div>
+             <div><DoubleRightOutlined /> Sea Freight</div>
+             <div><DoubleRightOutlined /> Air Freight</div>
+             <div><DoubleRightOutlined /> Door to door delivery</div>
+             <div><DoubleRightOutlined /> Warehousing</div>
+             <div><DoubleRightOutlined /> Procurement</div>
           </section>
 
           
           <section style={{color:"#ddd"}} className='nav_1'>
           <h4>Support</h4>
-             <div>- Why choose us</div>
-             <div>- Terms & Conditions</div>
-             <div>- FAQs</div>
-             <div>- Report a Bug</div>
+             <div><DoubleRightOutlined /> Why choose us</div>
+             <div><DoubleRightOutlined /> Terms & Conditions</div>
+             <div><DoubleRightOutlined /> FAQs</div>
+             <div><DoubleRightOutlined /> Report a Bug</div>
           </section>
         <section className="About">
           
