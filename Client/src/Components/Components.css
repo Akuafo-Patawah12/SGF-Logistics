@@ -90,7 +90,19 @@
         font-weight: 500;
     }
 
-    & button{
+    
+}
+
+.form{
+    position: relative;
+    margin-block: 10px;
+    border: 1px solid #ddd;
+    width: 90%;
+    padding: 5px 0;
+    border-radius: 5px;
+    margin-inline: auto;
+
+    &  button{
         height: 43px;
         width: 15%;
         background-color: rgb(199, 46, 46);
@@ -102,16 +114,6 @@
         font-weight: 500;
     }
 }
-
-.form{
-    position: relative;
-    margin-block: 10px;
-    border: 1px solid #ddd;
-    width: 90%;
-    padding: 5px 0;
-    border-radius: 5px;
-    margin-inline: auto;
-}
 .paste{
     position: absolute;
     left: 75%;
@@ -121,11 +123,28 @@
 
 .head{
     font-size: 25px;
-    font-weight: 600;
+    font-weight: 200;
+    
 }
 .exg{
-    font-size: 16px;
+    font-size: 18px;
+    background-color: #eee;
     font-weight: 600;
+}
+.head_container{
+    display: flex;
+    background-color: #eee;
+    justify-content: space-between;
+    align-items: center;
+    
+
+    & button{
+        padding: 0 10px;
+        height: inherit;
+        border: none ;
+        background: transparent;
+        font-weight: 600;
+    }
 }
 
 .note{
@@ -163,5 +182,8 @@
         grid-auto-rows: 50px;
         height: 100%;
         background: white;
+    }
+    .Track_pop{
+        width: 90%;
     }
   }

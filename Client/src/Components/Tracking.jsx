@@ -1,16 +1,19 @@
-import { SnippetsOutlined, WarningOutlined } from '@ant-design/icons'
+import { CloseOutlined, SnippetsOutlined, WarningOutlined } from '@ant-design/icons'
 import React from 'react'
 import "./Components.css"
 
 const Tracking = ({track_comp}) => {
     const [trackPop,setTrackPop] = track_comp
 
-    const style={border:"1px solid #ddd",width:"90%",marginInline:"auto",borderRadius:"5px",padding:"10px 0"}
+    const style={border:"1px solid #ddd",width:"90%",marginInline:"auto",borderRadius:"5px",padding:"15px 0"}
   return (
     <>
     {trackPop && <div className='Track_pop_container'>
         <main className='Track_pop'>
-            <p style={style} className="head">Enter the consign number</p>
+            <div style={style} className='head_container'>
+            <p  className="head">Enter the consign number</p>
+            <button><CloseOutlined /> </button>
+            </div>
         <form className='form'>
             <input type="text" placeholder="Enter tracking id" name="track" id="track" />
             <button type='submit'>Track</button>
