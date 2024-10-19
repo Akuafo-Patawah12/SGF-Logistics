@@ -1,9 +1,11 @@
 import React from 'react'
-import {DoubleRightOutlined, EnvironmentOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
+import {DoubleRightOutlined, EnvironmentOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, MailOutlined, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
 
 import Accordion from './Accordion'
 
+
 const Footer = () => {
+  const contact_style={display:"flex",alignItems:"center",justifyContent:"center",border:"2px solid #A7C756",color:"#A7C756",textAlign:"center",borderRadius:"5px",width:"30px",height:"30px",paddingLeft:"3px"}
   return (
     <footer className="footer">
 
@@ -47,18 +49,20 @@ const Footer = () => {
          
         </section>
         <section className="company_info">
-        <div style={{color:"white",marginBlock:"10px",fontSize:"18px"}}>
-          <EnvironmentOutlined />
+        <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}}>
+          <div style={contact_style}><EnvironmentOutlined /></div>
           <h3>Address</h3>
-          <p>sfghanalogistics24@gmail.com</p>
+          <p>George Bush Highway, Dzorwulu,<br/> Accra-Ghana </p>
           </div>
         
-        <div style={{color:"white",marginBlock:"10px",fontSize:"18px"}}>
+        <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}}>
+          <div style={contact_style}><MailOutlined /></div>
           <h3>Email</h3>
           <p>sfghanalogistics24@gmail.com</p>
           </div>
 
           <div style={{color:"white",fontSize:"18px"}}>
+            <div style={contact_style}><PhoneOutlined /></div>
             <h4>Telephone</h4>
             <p>020 811 6360 / 053 948 0433</p>
           </div>

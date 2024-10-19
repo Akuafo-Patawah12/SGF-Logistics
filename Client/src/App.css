@@ -189,7 +189,7 @@ footer a{
 .socials_media_handles{
   padding-block: 5px;
   background: #251D1D;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   
 }
 
@@ -200,7 +200,7 @@ footer a{
    border-top: 1px solid #ccc;
    padding-block: 0.3rem;
 }
-.About > div:nth-child(3){
+.About > div:nth-child(2){
   border-bottom: 1px solid #ccc;
 }
 .accordion{
