@@ -198,11 +198,13 @@ setDisplayService(false)
 
 
 const image= ["Air.jpg","Sea.jpg","Slider2.jpg","Slider3.jpg"] 
+  const [fadeIn, setFadeIn] = useState(false);
 const[index1,setIndex1]= useState(0)
 useEffect(()=>{
   
   const timer= setInterval(()=>{
      setIndex1(prev => prev + 1)
+     setFadeIn(false)
   },4000)
     
     if(index >= image.length - 2){
@@ -258,7 +260,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
   return (
     
-    <div style={{overflow:"hidden",background:"#fff"}}>
+    <div style={{overflow:"hidden",background:"#fff"}} className='Home'>
         {showAuth&& <Authentication  authShow={[showAuth,setShowAuth]}/>}
       <div
         ref={parentRef}
@@ -308,17 +310,9 @@ const [value, setValue] = useState(0);  // State to hold the value
 
           </div>
           
-          <section className="slider">
-             <button disabled={disable} style={{visibility:`${disable ? "hidden":"visible"}`}} onClick={()=> setindex('-')}><LeftCircleFilled/></button>
-             <button onClick={()=> setindex('+')}><RightCircleFilled/> </button>
-          </section>
+          
 
-          <section className="slide_btn">
-            <button onClick={()=> scrollToLeft(0)}>  </button>
-            <button onClick={()=> scrollToLeft(1)}>  </button>
-            <button onClick={()=> scrollToLeft(2)}>  </button>
-            <button onClick={()=> scrollToLeft(3)}>  </button>
-      </section>
+          
 
       
         
@@ -358,7 +352,13 @@ const [value, setValue] = useState(0);  // State to hold the value
        <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
 
 
-       <setion className={`services ${isVisible ? 'fade-in' : ''}`} ref={sectionRef}>
+       <motion.section
+          initial={{ opacity: 0, y: 100 }} // Start off-screen to the left (-200px)
+          whileInView={{ opacity: 1, y: 0 }} // Animate to the original position (x: 0)
+          exit={{ opacity: 0, y: 100 }} 
+          transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+          viewport={{ once: true, amount: 0.3 }}
+       className={`services ${isVisible ? 'fade-in' : ''}`} ref={sectionRef}>
           
           <div
               
@@ -388,7 +388,7 @@ const [value, setValue] = useState(0);  // State to hold the value
             <button>View More</button>
             </div>
           </div>
-       </setion>
+       </motion.section>
 
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>{serviceText}</button></div>
       {displayService && <section className='services1'  >
@@ -496,9 +496,10 @@ const [value, setValue] = useState(0);  // State to hold the value
               </p>
         </section>
       </motion.div>
-      <div style={{ marginTop:"50px",border:"3px solid #A7C756"}} className='Why_choose_slider'>
+      <div className='Why_choose_slider'>
+      <div style={{ marginTop:"50px",border:"3px solid #A7C756",paddingBottom: "5px",width:"100%"}} >
        <div className='fade-image'>
-          <img src={`./SFG_images/${image[index1]}`} alt="image" />
+          <img src={`./SFG_images/${image[index1]}`} alt="image"  className={fadeIn ? "":"fade_in"}/>
        </div>
        
 
@@ -511,11 +512,13 @@ const [value, setValue] = useState(0);  // State to hold the value
               exit={{ opacity: 0, x: 100 }} 
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
-        style={{ height: '100px',width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
+
+        style={{textAlign:"center",paddingBlock:"20px", height: '100px',width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
       >
-       <EndUsersIcon /> We have over {value}+ Satisfied users
+       <EndUsersIcon /><br/> <p>We have over {value}+ Satisfied users</p>
       </motion.div>
        </div>
+      </div>
       </div>
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ ToggleMore} style={{marginInline:"auto",border:"2px solid #222",background:"transparent", padding:"8px",fontWeight:"600"}}>{seeMore}</button></div>
        {see && <section ref={sectionRef2} className="why_choose_us ">

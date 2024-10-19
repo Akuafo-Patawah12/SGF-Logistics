@@ -161,6 +161,9 @@
 }
 
 @media (max-width: 568px) {
+    *{
+        font-size: 17px;
+    }
     .auth {
       width: 80%;
     }

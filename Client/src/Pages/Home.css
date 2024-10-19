@@ -75,13 +75,27 @@
 }
 
 .fade-image{
-   width: 45%;
+   width: 100%;
    margin-bottom: 20px;
-  
-   & img{
-     height: 400px;
-   }
+  background-origin: 3px solid #000;
+   
+     
+   
 }
+
+.fade-image > img {
+  height: 400px;
+  width: 100%;
+
+  object-fit: cover;
+  opacity: 0;
+  transition: 1s ease-in-out;
+}
+
+.fade-image > img.fade_in {
+  opacity: 1;
+}
+
 .scattered :nth-child(even){
   
   top:25%;
@@ -98,40 +112,6 @@
  
 }
 
-  
-  .slide_btn{
-     display: flex;
-     position: absolute;
-     gap: 10px;
-     top: 400px;
-     left: 50%;
-     transform: translate(-50%,-50%);
-  
-        & button{
-            height: 6px;
-            width: 30px;
-            border-radius: 10px;
-            border: none;
-        }
-  }
-  
-  .slider{
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 15rem;
-    width: 96.5%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    height: 30px;
-  
-    & button{
-      font-size: xx-large;
-      border: none;
-      color: #35DFF7;
-      background-color: transparent;
-    }
-  }
  .Description{
     margin-top: 30px;
     width: 70%;
@@ -201,6 +181,10 @@
       border-radius: 10px;
       isolation: isolate;
     }
+
+    h4{
+      text-align: center;
+    }
     
   }
 
@@ -219,7 +203,8 @@
 
   .Why_choose_slider{
      width: 45%;
-     padding-bottom: 5px;
+     margin-inline: auto;
+     
      margin-bottom: 10px;
   }
 
@@ -278,12 +263,16 @@
     background-color: white;
    
   }
+  .testimonals{
+    scrollbar-width: none;
+  }
 
   .testimonals > div{
     padding: 1.5rem 0;
     
-    border: 2px solid #8B14B1
-    ;
+    border: 1.5px solid #ccc;
+    border-radius: 5px;
+    
     width: 30%;
 
   }
@@ -332,7 +321,7 @@
     font-size: 40px;
     font-weight: 700;
     transform: translate(-18px,-12px);
-    color: #8B14B1
+    color: #ccc
     ;
   }
   .quote::after{
@@ -341,7 +330,7 @@
     font-size: 40px;
     font-weight: 700;
     transform: translateY(-10px);
-    color: #8B14B1;
+    color: #ccc;
   }
 
   .why_choose_us{
@@ -447,14 +436,19 @@
 
 
   @media (max-width: 768px){
-    
+    .Home{
+      margin-top: 95px;
+   }
+
     .testimonals{
-      flex-direction: column;
+    
       justify-content: center;
       align-items: center;
+      overflow-x: auto;
+      scrollbar-width: 0;
     }
     .testimonals > div{
-      width: 96.5%;
+      min-width: 96.5%;
     }
     .testimonals {gap: 10px;}
 
@@ -520,11 +514,16 @@
       width: 90%;
       margin-inline: auto;
     }
-
+   .services{
+    grid-gap: 1%;
+   }
 
   }
 
   @media (max-width: 500px){
+   *{
+    font-size: 17px;
+   }
     .scattered{
       width: 100%;
       margin-inline: auto;

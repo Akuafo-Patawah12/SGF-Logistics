@@ -266,6 +266,9 @@ footer a{
 
 
 @media (max-width: 568px){
+  *{
+    font-size: 17px;
+  }
   .nav{
     display: flex;
   }
