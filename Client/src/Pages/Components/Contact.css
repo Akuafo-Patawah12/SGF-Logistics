@@ -1,0 +1,13 @@
+.header_image{
+    height: 200px;
+    background: url("../../../public/SFG_images/Slider4.jpg") no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.contact_header{
+    font-size: 30px;
+    color: white;
+}

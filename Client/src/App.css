@@ -182,6 +182,10 @@ footer a{
   }
 }
 
+.company_info{
+  display: none;
+}
+
 .socials_media_handles{
   padding-block: 5px;
   background: #251D1D;
@@ -296,6 +300,10 @@ footer a{
 
 .h_child1{
    display: none;
+}
+
+.company_info{
+  display: block;
 }
 }
 

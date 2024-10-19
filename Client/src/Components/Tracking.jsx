@@ -12,7 +12,7 @@ const Tracking = ({track_comp}) => {
         <main className='Track_pop'>
             <div style={style} className='head_container'>
             <p  className="head">Enter the consign number</p>
-            <button><CloseOutlined /> </button>
+            <button onClick={()=> setTrackPop(false)}><CloseOutlined /> </button>
             </div>
         <form className='form'>
             <input type="text" placeholder="Enter tracking id" name="track" id="track" />

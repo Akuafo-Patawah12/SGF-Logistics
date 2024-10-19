@@ -1,5 +1,5 @@
 import React from 'react'
-import {DoubleRightOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
+import {DoubleRightOutlined, EnvironmentOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
 
 import Accordion from './Accordion'
 
@@ -44,8 +44,26 @@ const Footer = () => {
          <Accordion header="Quick Links" link="Services" span1="Services" span2="About" span3="Contact"/>
          <Accordion header="Support" link="TermsAndCondition" span1="Terms & conditions" span2="FAQs" span3="Report a Bug"/>
           
-          
+         
         </section>
+        <section className="company_info">
+        <div style={{color:"white",marginBlock:"10px",fontSize:"18px"}}>
+          <EnvironmentOutlined />
+          <h3>Address</h3>
+          <p>sfghanalogistics24@gmail.com</p>
+          </div>
+        
+        <div style={{color:"white",marginBlock:"10px",fontSize:"18px"}}>
+          <h3>Email</h3>
+          <p>sfghanalogistics24@gmail.com</p>
+          </div>
+
+          <div style={{color:"white",fontSize:"18px"}}>
+            <h4>Telephone</h4>
+            <p>020 811 6360 / 053 948 0433</p>
+          </div>
+          </section>
+
         <section className="socials_media_handles">
           <h5 style={{color:"white"}}>Follow Us</h5>
           <div>
