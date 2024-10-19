@@ -7,6 +7,7 @@ import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
+const ContactUs =lazy(()=> import('../Pages/ContactUs'))
 const Services= lazy(()=> import('../Pages/Services'))
 const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
@@ -83,6 +84,12 @@ const Layout = () => {
                     <Route path='/Services' element={
                         <Suspense fallback={<Loader />}>
                           <Services />   
+                        </Suspense>} 
+                    />
+
+                    <Route path='/Contact_Us' element={
+                        <Suspense fallback={<Loader />}>
+                          <ContactUs />   
                         </Suspense>} 
                     />
             

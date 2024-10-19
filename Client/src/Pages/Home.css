@@ -76,6 +76,7 @@
 
 .fade-image{
    width: 45%;
+   margin-bottom: 20px;
   
    & img{
      height: 400px;
@@ -186,7 +187,7 @@
     display: grid;
     position: relative;
     grid-template-columns: repeat(3,1fr);
-    
+    grid-auto-rows: 350px;
     grid-gap: 2.5%;
     background: #A7C756;
     justify-items: center;
@@ -203,13 +204,7 @@
     
   }
 
-  .services:nth-child(2), .services1:nth-child(2){
-    grid-auto-rows: minmax(230px, auto);
-  }
-
-  .services:nth-child(odd), .services1:nth-child(odd){
-    grid-auto-rows: 200px
-  } 
+   
 
   .services > div,
   .services1 > div{
@@ -220,6 +215,12 @@
   .hover_parent:hover  .hover_to_display{
     height: 100%;
     visibility: visible;
+  }
+
+  .Why_choose_slider{
+     width: 45%;
+     padding-bottom: 5px;
+     margin-bottom: 10px;
   }
 
   
@@ -244,6 +245,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    grid-auto-rows: 350px;
     top: 0;
     width: 100%;
     position:absolute;
@@ -456,7 +458,9 @@
     }
     .testimonals {gap: 10px;}
 
-    
+    .Why_choose_slider{
+      width: 95%;
+   }
 
     .welcome_hero{
       height: max-content;
@@ -504,16 +508,10 @@
       transform: translate(-50%,-50%)
     }
 
-    .services,.services1{
-      grid-template-columns: repeat(2,1fr);
-
-      
-    }
+    
 
     
-    .parent3{
-       grid-column: 1/3;
-    }
+    
 
     .why{
       flex-direction: column;

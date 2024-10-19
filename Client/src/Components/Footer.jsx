@@ -11,7 +11,7 @@ const Footer = () => {
 
         <main style={{width:"95%", marginInline:"auto"}} className='footer_nav'>
           <section style={{color:"#ddd"}} className="nav_1">
-            <p>George Bush Highway, Plot No. 67, Dzorwulu, Accra-Ghana</p>
+            <p>George Bush Highway, Plot No. 67,<br/> Dzorwulu, Accra-Ghana</p>
             <p>+(233)20 811 6360 / 053 948 0433</p>
             <p>sfghanalogistics24@gmail.com</p>
 

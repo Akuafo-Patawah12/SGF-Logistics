@@ -58,7 +58,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
                 <p>WAREHOUSING</p>
          </div>
          </div>
-         <a ><span style={{fontSize:"20px",fontWeight:"600"}} className='header_links'>Contact</span> </a>
+         <NavLink to={"/Contact_Us"}><span style={{fontSize:"20px",fontWeight:"600"}} className='header_links'>Contact</span> </NavLink>
  
          <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>More  <DownOutlined /></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>

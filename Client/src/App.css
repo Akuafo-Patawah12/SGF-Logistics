@@ -1,6 +1,7 @@
 *{
   margin: 0;
   padding: 0;
+  font-size: 19px;
 }
 
 .active{
@@ -288,6 +289,7 @@ footer a{
 }
 
 @media (max-width: 768px){
+
   .About{
     display: flex;
   }
@@ -296,6 +298,13 @@ footer a{
 }
 .footer_nav{
   flex-direction: column;
+  
+}
+
+.header{
+  position: fixed;
+  top: 0;
+  z-index: 19;
 }
 
 .h_child1{

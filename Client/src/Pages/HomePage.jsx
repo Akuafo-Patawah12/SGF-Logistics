@@ -360,19 +360,15 @@ const [value, setValue] = useState(0);  // State to hold the value
 
        <setion className={`services ${isVisible ? 'fade-in' : ''}`} ref={sectionRef}>
           
-          <motion.div
-              initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
-              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-              exit={{ opacity: 0, x: -100 }} 
-              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
-              viewport={{ once: true, amount: 0.5 }}
+          <div
+              
            style={{position:"relative"}} className="hover_parent parent1">
              <img src='./SFG_images/Sea.jpg' alt=''></img>
              <div  className="hover_to_display">
              <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Sea Freight</h4><br/>
              <button>View More</button>
              </div>
-          </motion.div>
+          </div>
 
 
           <div style={{position:"relative"}}  className="hover_parent parent2">
@@ -383,19 +379,15 @@ const [value, setValue] = useState(0);  // State to hold the value
              </div>
           </div>
           
-          <motion.div
-              initial={{ opacity: 0, x: 100 }} // Start off-screen to the left (-200px)
-              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-              exit={{ opacity: 0, x: 100 }} 
-              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
-              viewport={{ once: true, amount: 0.5 }}
+          <div
+             
            style={{position:"relative"}} className="hover_parent parent3">
             <img src='./SFG_images/Door-to-door.jpg' alt=''></img>
             <div className="hover_to_display">
             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Door-to-Door Delivery.</h4><br/>
             <button>View More</button>
             </div>
-          </motion.div>
+          </div>
        </setion>
 
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>{serviceText}</button></div>
@@ -427,7 +419,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           </p>
           
 
-          <button className="scroll-content-btn">Contact Us</button>
+          <Link to={"/Contact_us"}><button className="scroll-content-btn">Contact Us</button></Link>
         </div>
         </div>
 
@@ -504,7 +496,7 @@ const [value, setValue] = useState(0);  // State to hold the value
               </p>
         </section>
       </motion.div>
-      <div style={{width:"45%", marginTop:"50px"}}>
+      <div style={{ marginTop:"50px",border:"3px solid #A7C756"}} className='Why_choose_slider'>
        <div className='fade-image'>
           <img src={`./SFG_images/${image[index1]}`} alt="image" />
        </div>
@@ -519,7 +511,7 @@ const [value, setValue] = useState(0);  // State to hold the value
               exit={{ opacity: 0, x: 100 }} 
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
-        style={{ height: '100px', backgroundColor: 'lightblue', fontSize:"22px",fontWeight:"bold"}}
+        style={{ height: '100px',width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
       >
        <EndUsersIcon /> We have over {value}+ Satisfied users
       </motion.div>
