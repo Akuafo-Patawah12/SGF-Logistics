@@ -529,6 +529,9 @@
       margin-inline: auto;
       height: 700px;
     }
+    .services, .services1{
+    grid-template-columns: repeat(2,1fr);
+    }
 
     .scattered :nth-child(odd){
        right: 2px;

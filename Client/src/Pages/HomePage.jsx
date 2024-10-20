@@ -390,7 +390,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           </div>
        </motion.section>
 
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>{serviceText}</button></div>
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBottom:"20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>{serviceText}</button></div>
       {displayService && <section className='services1'  >
        <div>
              <img src='./SFG_images/procurement.jpg' alt=''></img>
@@ -513,14 +513,14 @@ const [value, setValue] = useState(0);  // State to hold the value
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
 
-        style={{textAlign:"center",paddingBlock:"20px", height: '100px',width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
+        style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
       >
-       <EndUsersIcon /><br/> <p>We have over {value}+ Satisfied users</p>
+       <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}+ </span> <br/> Satisfied users</p>
       </motion.div>
        </div>
       </div>
       </div>
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}><button onClick={ ToggleMore} style={{marginInline:"auto",border:"2px solid #222",background:"transparent", padding:"8px",fontWeight:"600"}}>{seeMore}</button></div>
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}></div>
        {see && <section ref={sectionRef2} className="why_choose_us ">
            <div>
             <div style={{marginInline:"auto",width:"fit-content"}}><EndUsersIcon /></div>
