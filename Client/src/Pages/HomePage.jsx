@@ -14,6 +14,7 @@ import HowItWorksVideo from './Components/HowItWorksVideo'
 import EndUsersIcon from '../Icons/EndUsersIcon'
 import TrackingIcon from '../Icons/TrackingIcon'
 import ServicesIcon from '../Icons/ServicesIcon'
+import ServicesComponent from './Components/ServicesComponent'
 const HomePage = ({setShowAuth,showAuth}) => {
   const socket= useMemo(() => io("http://localhost:4040",{
     transports: ["websocket","polling"],
@@ -58,30 +59,7 @@ function changeText(){
 }
 
 const [isVisible, setIsVisible] = useState(false);
-const sectionRef = useRef(null);
-const sectionRef1 = useRef(null);
-const sectionRef2 = useRef(null);
-const sectionRef3 = useRef(null);
 
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      setIsVisible(entry.isIntersecting);
-    },
-    {
-      rootMargin: '0px', // Trigger when the element is in view
-      threshold: 0.1,    // 10% of the element is visible
-    }
-  );
-
-  if (sectionRef.current || sectionRef1.current || sectionRef2.current || sectionRef3.current) {
-    observer.observe(sectionRef.current);
-  }
-
-  return () => {
-    if (sectionRef.current) observer.unobserve(sectionRef.current);
-  };
-}, [sectionRef,sectionRef1,sectionRef2,sectionRef3]);
 
 
   const parentRef = useRef(null);
@@ -216,7 +194,7 @@ useEffect(()=>{
 },[index1])
 
 
-const [value, setValue] = useState(0);  // State to hold the value
+const [value, setValue] = useState(1);  // State to hold the value
   const controls = useAnimation();  // Controls for the animation
   const divRef = useRef(null);  // Ref for the div
 
@@ -225,13 +203,13 @@ const [value, setValue] = useState(0);  // State to hold the value
     if (timer) return; // Prevent multiple intervals from being set
     timer = setInterval(() => {
       setValue((prev) => {
-        if (prev >= 200) {
+        if (prev >= 6) {
           clearInterval(timer);  // Clear interval when value reaches 200
           return prev;
         }
         return prev + 1;
       });
-    }, 100);
+    },500);
   }
 
   useEffect(() => {
@@ -350,55 +328,9 @@ const [value, setValue] = useState(0);  // State to hold the value
 
       <p className="Service-title">Fast and Affordable Services.</p>
        <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
+             <ServicesComponent />
 
-
-       <motion.section
-          initial={{ opacity: 0, y: 100 }} // Start off-screen to the left (-200px)
-          whileInView={{ opacity: 1, y: 0 }} // Animate to the original position (x: 0)
-          exit={{ opacity: 0, y: 100 }} 
-          transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
-          viewport={{ once: true, amount: 0.3 }}
-       className={`services ${isVisible ? 'fade-in' : ''}`} ref={sectionRef}>
-          
-          <div
-              
-           style={{position:"relative"}} className="hover_parent parent1">
-             <img src='./SFG_images/Sea.jpg' alt=''></img>
-             <div  className="hover_to_display0">
-             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Sea Freight</h4><br/>
-             <Link to={"/Services/SeaFreight"}> <button>View More</button></Link>
-             </div>
-          </div>
-
-
-          <div style={{position:"relative"}}  className="hover_parent parent2">
-             <img src='./SFG_images/Air.jpg' alt=''></img>
-             <div  className="hover_to_display">
-             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Air Freight</h4><br/>
-             <Link to={"Services/AirFreight"}><button>View More</button></Link>
-             </div>
-          </div>
-          
-          <div
-             
-           style={{position:"relative"}} className="hover_parent parent3">
-            <img src='./SFG_images/Door-to-door.jpg' alt=''></img>
-            <div className="hover_to_display">
-            <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Door-to-Door Delivery.</h4><br/>
-            <Link to={"/Services/Door2Door"}> <button>View More</button></Link>
-            </div>
-          </div>
-
-          <div
-              
-           style={{position:"relative"}} className="hover_parent parent1">
-             <img src='./SFG_images/Sea.jpg' alt=''></img>
-             <div  className="hover_to_display">
-             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Container Clearance</h4><br/>
-             <Link to={"/Services/Clearance"}><button>View More</button></Link>
-             </div>
-          </div>
-       </motion.section>
+       
 
        <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBottom:"20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>SEE ALL OUR SERVICES</button></Link>
       {displayService && <section className='services1'  >
@@ -435,7 +367,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
 
          <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
-       <section ref={sectionRef1} className={`testimonals ${isVisible ? 'fade-in' : ''}`} style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
+       <section className={`testimonals `} style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
           <div>
             <p className='quote'>The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly 
                where our goods are at all times.</p>
@@ -455,11 +387,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        
        
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US.</p>
-       <section ref={sectionRef2} className={`why_choose_us ${isVisible ? 'fade-in' : ''}`} style={{animation:`${isVisible ? "0.3s width" :"0.3s width "}`}}>
-           
-           
-           
-       </section>
+       
 
        <div className='why'>
        <motion.div
@@ -525,13 +453,13 @@ const [value, setValue] = useState(0);  // State to hold the value
 
         style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
       >
-       <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}+ </span> <br/> Satisfied users</p>
+       <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}K + </span> <br/> Satisfied users</p>
       </motion.div>
        </div>
       </div>
       </div>
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}></div>
-       {see && <section ref={sectionRef2} className="why_choose_us ">
+       {see && <section  className="why_choose_us ">
            <div>
             <div style={{marginInline:"auto",width:"fit-content"}}><EndUsersIcon /></div>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>End-to-End Solutions:</h4>
