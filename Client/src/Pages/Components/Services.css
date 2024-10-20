@@ -27,6 +27,28 @@
    color: red;
 }
 
+.rocket{
+   font-size: 40px;
+}
+
+.ed{
+   font-size: 40px;
+   margin-left: -8px;
+   
+}
+
+.contacts{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background: white;
+   margin: 20px 0;
+   box-shadow: 1px 5px 15px #bbb;
+   border-radius: 5px;
+   padding-block: 20px;
+}
+
 @media (max-width: 768px){
    .service_container{
       margin-top: 90px;
