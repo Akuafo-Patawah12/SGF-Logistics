@@ -364,9 +364,9 @@ const [value, setValue] = useState(0);  // State to hold the value
               
            style={{position:"relative"}} className="hover_parent parent1">
              <img src='./SFG_images/Sea.jpg' alt=''></img>
-             <div  className="hover_to_display">
+             <div  className="hover_to_display0">
              <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Sea Freight</h4><br/>
-             <button>View More</button>
+             <Link to={"/Services/SeaFreight"}> <button>View More</button></Link>
              </div>
           </div>
 
@@ -375,7 +375,7 @@ const [value, setValue] = useState(0);  // State to hold the value
              <img src='./SFG_images/Air.jpg' alt=''></img>
              <div  className="hover_to_display">
              <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Air Freight</h4><br/>
-             <button>View More</button>
+             <Link to={"Services/AirFreight"}><button>View More</button></Link>
              </div>
           </div>
           
@@ -385,12 +385,22 @@ const [value, setValue] = useState(0);  // State to hold the value
             <img src='./SFG_images/Door-to-door.jpg' alt=''></img>
             <div className="hover_to_display">
             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Door-to-Door Delivery.</h4><br/>
-            <button>View More</button>
+            <Link to={"/Services/Door2Door"}> <button>View More</button></Link>
             </div>
+          </div>
+
+          <div
+              
+           style={{position:"relative"}} className="hover_parent parent1">
+             <img src='./SFG_images/Sea.jpg' alt=''></img>
+             <div  className="hover_to_display">
+             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Container Clearance</h4><br/>
+             <Link to={"/Services/Clearance"}><button>View More</button></Link>
+             </div>
           </div>
        </motion.section>
 
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBottom:"20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>{serviceText}</button></div>
+       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBottom:"20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>SEE ALL OUR SERVICES</button></Link>
       {displayService && <section className='services1'  >
        <div>
              <img src='./SFG_images/procurement.jpg' alt=''></img>
@@ -424,7 +434,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
 
-         <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}}>Clients Testimonals</h3>
+         <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
        <section ref={sectionRef1} className={`testimonals ${isVisible ? 'fade-in' : ''}`} style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
           <div>
             <p className='quote'>The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly 

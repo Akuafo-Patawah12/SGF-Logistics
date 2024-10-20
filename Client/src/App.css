@@ -163,7 +163,7 @@ footer a{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 4em;
+  padding-bottom: 2em;
 }
 .About{
   display: none;
@@ -183,6 +183,12 @@ footer a{
   }
 }
 
+.details{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .company_info{
   display: none;
 }
@@ -192,6 +198,10 @@ footer a{
   background: #251D1D;
   margin-top: 1.5rem;
   
+
+  & a{
+    font-size: 30px;
+  }
 }
 
 .About > div{
@@ -205,6 +215,7 @@ footer a{
   border-bottom: 1px solid #ccc;
 }
 .accordion{
+  padding-top: 5px;
   transform: translate(2rem,0);
 }
 

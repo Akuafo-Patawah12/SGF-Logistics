@@ -49,20 +49,20 @@ const Footer = () => {
          
         </section>
         <section className="company_info">
-        <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}}>
+        <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}} className='details'>
           <div style={contact_style}><EnvironmentOutlined /></div>
           <h3>Address</h3>
           <p>George Bush Highway, Dzorwulu,<br/> Accra-Ghana </p>
           </div>
         
-        <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}}>
+        <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}} className='details'>
           <div style={contact_style}><MailOutlined /></div>
           <h3>Email</h3>
           <p>sfghanalogistics24@gmail.com</p>
           </div>
 
-          <div style={{color:"white",fontSize:"18px"}}>
-            <div style={contact_style}><PhoneOutlined /></div>
+          <div style={{color:"white",fontSize:"18px"}} className='details'>
+          <div style={contact_style}><PhoneOutlined /></div>
             <h4>Telephone</h4>
             <p>020 811 6360 / 053 948 0433</p>
           </div>
