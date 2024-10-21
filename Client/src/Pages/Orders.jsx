@@ -2,11 +2,11 @@ import React,{useEffect, useState,useMemo} from 'react'
 import io from "socket.io-client"
 import {v4} from "uuid"
 import { useNavigate } from 'react-router-dom'
-import {jwtDecode} from "jwt-decode"
+
 
 
 import "./Orders.css"
-import OrderTable from './OrderTable'
+
 import ButtonLoader from '../Icons/ButtonLoader'
 
 
@@ -20,24 +20,9 @@ const Orders = () => {
   }),[])
 
 const[orders,setOrders] =useState([])
-const navigate= useNavigate()   
-const[Id,setId]= useState("") //id extracted from access token
 const [creatingOrder,setCreatingOrder]= useState(false);
 
- useEffect(() => {
-   const token =localStorage.getItem("accesstoken")  // extracting token from local storage
-   if (token) {
-     try {
-       const decodedToken = jwtDecode(token); //decoding the content of the token
-       setId(decodedToken.id); 
-
-       socket.emit("allOrders",decodedToken.id)
-      
-     } catch (error) {
-       console.error('Invalid token:', error);
-     }
-   }
- },[]);
+ 
 
 
  useEffect(()=>{
@@ -51,52 +36,10 @@ const [creatingOrder,setCreatingOrder]= useState(false);
       console.log("order data",data)
     })
 
-    socket.on("getOrders",(data)=>{
-      setOrders(data)
-      console.log("order data",data)
-   })
-   socket.on("Deleted",(data)=>{
-        console.log(data)
-        const rowElement = document.getElementById(`row-${data}`);
-      if (rowElement) {
-        rowElement.classList.add("fade-out");
-        
-        // Wait for the transition to complete before updating state
-        setTimeout(() => {
-        setOrders(prevOrders=>{
-
-          // remove the deleted order from the orders array
-          const orderReturned= prevOrders.filter(order=> order._id !==data )
-
-          return orderReturned
-         })
-        },500)
-      }
-   })
-   socket.on("orderDeleted",(data)=>{
-    console.log(data)
-    setOrders(prevOrders=>{
-
-      // remove the deleted order from the orders array
-      const orderReturned= prevOrders.filter(order=> order._id !==data )
-
-      return orderReturned
-     })
-})
-   
-  socket.on("StatusUpdate",(data)=>{
-    console.log(data)
-    setOrders(prevOrders=>{
-
-      const orderReturned = prevOrders.map(order => 
-        order._id === data.order_id 
-            ? { ...order, Status: data.status }  // Update the matching object
-            : order                          // Keep other objects unchanged
-    );
     
-    return orderReturned;
-     })
-  })
+   
+   
+  
 
     socket.on('disconnect',(reasons)=>{
         console.log(reasons)
@@ -105,11 +48,7 @@ const [creatingOrder,setCreatingOrder]= useState(false);
     
     return()=>{
         socket.off('connect');
-        socket.off("Deleted")
-        socket.off("orderDeleted")
-        socket.off("StatusUpdate")
         socket.off("receive")
-        socket.off("getOrders")
         socket.off('disconnect');
               
     }
@@ -117,18 +56,8 @@ const [creatingOrder,setCreatingOrder]= useState(false);
 
 
 
-const [activeOrders, setActiveOrders]= useState([])
-const [pendingOrders, setPendingOrders]= useState([])
-useEffect(()=>{
-   
-     
-        const activeOrder=orders.filter(order => order.Status==="in-transit")
-        setActiveOrders(activeOrder)
 
-        const pendingOrder=orders.filter(order => order.Status==="Pending...")
-        setPendingOrders(pendingOrder)
-   
-},[activeOrders,pendingOrders])
+
 
 
     const [isOpen, setIsOpen] = useState(false);
@@ -160,7 +89,7 @@ const handleSubmit = (e) => {
   e.preventDefault()
   setCreatingOrder(true)
   setTimeout(()=>{
-    socket.emit("createOrder",{items,Id,...location,tracking_id: v4()})
+    socket.emit("createOrder",{items,...location,tracking_id: v4()})
   },1000)
   
   // Reset form
@@ -185,11 +114,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
           <div className="image_cover"></div>
               <h4 className='quote_header'>REQUEST A QUOTE</h4>
         </div>
-        <div className='Orders_count'>
-            <button>Active Orders {activeOrders.length}</button>
-            <button>Pending Orders {pendingOrders.length}</button>
-            <button>Total Orders {orders.length}</button>
-        </div>
+        
 
 
 <div>
@@ -205,6 +130,17 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
               <form onSubmit={handleSubmit}>
 
                 <div  style={{marginBlock:"16px"}}>
+                  <div>
+                  <input
+                        className="input"
+
+                        
+                        type="text"
+                        placeholder="Email"
+                        
+                        
+                      />
+                  </div>
                   <label  style={{display:"block", color:"#bbb",fontWeight:"600",marginBlock:"8px"}}>Items</label>
                   {items.map((item, index) => (
                     <div key={index}  style={{marginBlock:"8px",display:"flex",alignItems:"center"}}>
@@ -262,6 +198,29 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                     Add Item
                   </button>
                 </div>
+                <div>
+                  <label>
+                  <input type="checkbox" ></input>
+                  Hazardious
+                  </label>
+
+                  
+                  
+
+                  <label>
+                  <input type="checkbox" ></input>
+                  Temperature Sensity
+                  </label>
+
+                  <label>
+                  <input type="checkbox" ></input>
+                  Fragile
+                  </label>
+
+                </div>
+                <div>
+                  <textarea></textarea>
+                </div>
 
                 <div style={{display:"flex",justifyContent:"flex-end"}} >
                   <button
@@ -285,7 +244,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
           {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
 
-          <OrderTable orders={[...orders]} deleteOrder={deleteOrder}   />
+          
         </div>
     
   )

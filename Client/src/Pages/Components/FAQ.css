@@ -31,6 +31,7 @@
     height: fit-content;
     background-clip: text;
     color: transparent;
+    font-size: 25px;
 }
 .questions_info{
     display: flex;

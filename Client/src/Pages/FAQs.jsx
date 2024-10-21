@@ -29,7 +29,7 @@ const FAQs = () => {
 
    const InputStyle={padding: "10px"}
   return (
-    <div >
+    <div  style={{marginTop:"90px"}}>
       <section className='head_image'>
         <div>
           <h4>FAQ's</h4>
