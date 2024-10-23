@@ -115,7 +115,6 @@
   overflow: hidden;
   padding-left: 10px;
   visibility: hidden;
-  transition: all 0.5s;
   height: 0;
   animation: hover 0.3s linear;
 
@@ -128,13 +127,14 @@
   background-color: #A7C756;
 }
 .click:hover .drop{
+  height: auto;
   visibility: visible;
-  height: max-content;
+  animation: hover 1s linear;
 }
 
 @keyframes hover{
   from{ height:0;}
-  to{height: 200px}
+  to{height: auto}
 }
 
 @keyframes navAnimate{

@@ -260,10 +260,18 @@ const [value, setValue] = useState(1);  // State to hold the value
        
         <div ref={childRef1} style={{position:"relative"}}>
           <div className="cover">
-          <section>
-          <p>Logistics & Transportation.</p>
-          <h3>World Wide Logistic And <br/>Professional Solutions</h3>
-          </section>
+            
+          <motion.div
+       
+        initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
+              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+              exit={{ opacity: 0, x: -100 }} 
+              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+              viewport={{ once: true, amount: 0.2 }}
+            >
+            <p style={{color:"white",fontSize:"25px"}}>Logistics & Transportation.</p>
+            <h3 style={{color:"white",fontSize:"35px"}}>World Wide Logistic And <br/>Professional <span style={{color:"red",fontSize:"inherit"}}>Solutions</span></h3>
+            </motion.div>
           </div>
           <LazyLoadImage
           
@@ -273,12 +281,36 @@ const [value, setValue] = useState(1);  // State to hold the value
        </div>
 
        <div ref={childRef2} style={{position:"relative"}}>
-        <div className="cover"></div>
+        <div className="cover">
+        <motion.div
+       
+       initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
+             whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+             exit={{ opacity: 0, x: -100 }} 
+             transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+             viewport={{ once: true, amount: 0.2 }}
+           >
+            <h3 style={{color:"white"}}>Air Freight Services</h3>
+          <p style={{color:"white",fontSize:"25px"}}>Our air freight services provide fast, reliable, and secure global shipping for your logistics needs.</p>
+       </motion.div>
+        </div>
        <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
        </div>
          
          <div ref={childRef3} style={{position:"relative"}} >
-          <div className="cover"></div>
+          <div className="cover">
+          <motion.div
+       
+       initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
+             whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+             exit={{ opacity: 0, x: -100 }} 
+             transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+             viewport={{ once: true, amount: 0.2 }}
+           >
+           <p style={{color:"white",fontSize:"25px"}}>Logistics & Transportation.</p>
+           <h3 style={{color:"white",fontSize:"35px"}}>World Wide Logistic And <br/>Professional Solutions</h3>
+           </motion.div>
+          </div>
           <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
           </div>
 
@@ -387,7 +419,7 @@ const [value, setValue] = useState(1);  // State to hold the value
        
        
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US.</p>
-       
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}></div>
 
        <div className='why'>
        <motion.div

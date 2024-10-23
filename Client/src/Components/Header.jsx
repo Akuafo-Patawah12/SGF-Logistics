@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Logo from '../Icons/Logo'
 
 
@@ -25,6 +25,8 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
         }
 
         const[popNav2,setPopNav2]= useState(false)
+
+        const Link_text={textDecoration:"none"}
   return (
     <header className="header">
       <div className="h_child1">
@@ -49,21 +51,21 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
                 <p>MISSION & VISION</p>
          </div>
          </div>
-         <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>Services  <DownOutlined /></span> 
+         <div style={{position:"relative",background:"yellow"}} className="click"><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>Services  <DownOutlined /></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>
-                <p>AIR FREIGHT</p>
-                <p>SEA FREIGHT</p>
-                <p>PROCUREMENT</p>
-                <p>DOOR TO DOOR DELIVERY</p>
-                <p>WAREHOUSING</p>
+                <p><Link to={"/Services/AirFreight"} style={Link_text}>AIR FREIGHT</Link></p>
+                <p><Link to={"/Services/SeaFreight"} style={Link_text}>SEA FREIGHT</Link></p>
+                <p><Link to={"/Services/Procurement"} style={Link_text}>PROCUREMENT</Link></p>
+                <p><Link to={"/Services/Door2door"} style={Link_text}>DOOR TO DOOR DELIVERY</Link></p>
+                <p><Link to={"/Services/Groupage"} style={Link_text}>GROUPAGE</Link></p>
          </div>
          </div>
-         <NavLink to={"/Contact_Us"}><span style={{fontSize:"20px",fontWeight:"600"}} className='header_links'>Contact</span> </NavLink>
+         <NavLink to={"/Contact_Us"} style={Link_text}><span style={{fontSize:"20px",fontWeight:"600"}} className='header_links'>Contact</span> </NavLink>
  
          <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>More  <DownOutlined /></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>
-                <p>FAQs</p>
-                <p>GET A QUOTE</p>
+                <p><Link to={"/FAQs"} style={Link_text}>FAQs</Link></p>
+                <p><Link to={"/Orders"} style={Link_text}>GET A QUOTE</Link></p>
                 
          </div> 
          </div>    
