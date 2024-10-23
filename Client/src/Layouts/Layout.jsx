@@ -7,7 +7,13 @@ import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
+const SeaFreight = lazy(()=> import('../Pages/Sub_Pages/SeaFreight'))
+const Groupage = lazy(()=> import('../Pages/Sub_Pages/Groupage'))
+const Procurement = lazy(()=> import('../Pages/Sub_Pages/Procurement'))
+const Door2door = lazy(()=> import('../Pages/Sub_Pages/Door2door'))
+const ContainerClearance = lazy(()=> import('../Pages/Sub_Pages/ContainerClearance'))
 const ContactUs =lazy(()=> import('../Pages/ContactUs'))
+const AirFreight = lazy(()=> import('../Pages/Sub_Pages/AirFreight'))
 const Services= lazy(()=> import('../Pages/Services'))
 const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
@@ -92,6 +98,42 @@ const Layout = () => {
                           <ContactUs />   
                         </Suspense>} 
                     />
+
+                   <Route path='/Services/Groupage' element={
+                        <Suspense fallback={<Loader />}>
+                          <Groupage />   
+                        </Suspense>} 
+                    />
+
+                    <Route path='/Services/SeaFreight' element={
+                        <Suspense fallback={<Loader />}>
+                          <SeaFreight />   
+                        </Suspense>} 
+                    />
+
+                    <Route path='/Services/AirFreight' element={
+                        <Suspense fallback={<Loader />}>
+                          <AirFreight />   
+                        </Suspense>} 
+                    /> 
+
+                    <Route path='/Services/Procurement' element={
+                        <Suspense fallback={<Loader />}>
+                          <Procurement />   
+                        </Suspense>} 
+                    /> 
+
+                    <Route path='/Services/Door2door' element={
+                        <Suspense fallback={<Loader />}>
+                          <Door2door />   
+                        </Suspense>} 
+                    />   
+
+                    <Route path='/Services/Clearance' element={
+                    <Suspense fallback={<Loader />}>
+                        <ContainerClearance />
+                    </Suspense>} 
+                />          
             
             </Routes>
             

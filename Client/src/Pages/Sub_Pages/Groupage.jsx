@@ -1,24 +1,24 @@
 import React from 'react'
-import "./SubPages.css"
-const AirFreight = () => {
+
+const Groupage = () => {
   return (
     <div className="cont">
       <div className='Freight_image_header'>
            <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.6)",fontSize:"40px",fontWeight:"700",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
-                Air Freight Services
+                Door To Door Delivery
            </section>
 
            
         </div>
         <section>
           <p>
-            Our Air Freight Services are tailored for clients who need fast, reliable, and secure transportation 
-            of their goods. Ideal for high-priority or time-sensitive shipments, we ensure your cargo reaches 
-            its destination quickly and safely. 
+            Our Groupage Services allow businesses with small to medium-sized shipments to save on costs 
+            by sharing container space with others. This service is perfect for clients who do not require an 
+            entire container but still need reliable and timely delivery.
           </p>
         </section>
     </div>
   )
 }
 
-export default AirFreight
+export default Groupage

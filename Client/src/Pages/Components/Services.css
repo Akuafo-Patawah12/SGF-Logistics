@@ -49,6 +49,23 @@
    padding-block: 20px;
 }
 
+.service_icon{
+   width: 3em;
+   padding-left: 6px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 3em;
+   border: 3px solid #A7C756;
+   border-radius: 5px;
+   margin-bottom: 10px;
+   
+}
+
+.i{
+   margin-left: 5px;
+}
+
 @media (max-width: 768px){
    .service_container{
       margin-top: 90px;

@@ -5,6 +5,7 @@ import { RocketOutlined } from '@ant-design/icons'
 import Rocket from '../Icons/Rocket'
 import Callicon from '../Icons/Callicon'
 import MailIcon from '../Icons/MailIcon'
+import { transform } from 'framer-motion'
 
 const Services = () => {
   return (
@@ -26,11 +27,11 @@ const Services = () => {
             Looking to optimize your logistics and shipping operations? At SFG logistics, we're excited to collaborate with you to ensure your goods are transported smoothly and efficiently worldwide.
             </p>
             <div className='contacts'>
-               <Callicon /> 
+            <div className="service_icon"><Callicon className="i"/></div>
                <p>020 811 6360 / 053 948 0433</p>
             </div>
             <div className="contacts">
-               <MailIcon />
+            <div className="service_icon"><MailIcon className="i"/></div>
                 <p>sfghanalogistics24@gmail.com</p>
             </div>
 

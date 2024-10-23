@@ -1,0 +1,13 @@
+.Freight_image_header{
+    position: relative;
+    background: url("../../../public/SFG_images/Slider2.jpg") no-repeat  fixed 100%;
+    background-size: cover;
+    height: 200px;
+    margin-bottom: 50px;
+ }
+
+ @media (max-width: 768px) {
+    .cont{
+        margin-top: 90px;
+    }
+ }

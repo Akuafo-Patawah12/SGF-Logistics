@@ -28,7 +28,7 @@ const ServicesComponent = () => {
              <img src='./SFG_images/Air.jpg' alt=''></img>
              <div  className="hover_to_display">
              <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Air Freight</h4><br/>
-             <Link to={"Services/AirFreight"}><button>View More</button></Link>
+             <Link to={"/Services/AirFreight"}><button>View More</button></Link>
              </div>
           </div>
           

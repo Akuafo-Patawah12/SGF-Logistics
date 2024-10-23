@@ -160,6 +160,11 @@
     border-radius: 5px;
 }
 
+@keyframes showTrackPop {
+    from {bottom: -500px;}
+    to{ bottom: 0;}
+}
+
 @media (max-width: 568px) {
     *{
         font-size: 17px;
@@ -219,4 +224,6 @@
         width: 100%;
         border-radius: 10px 10px 0 0;
     }
+
+    
   }

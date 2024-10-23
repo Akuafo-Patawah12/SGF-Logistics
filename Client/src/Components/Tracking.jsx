@@ -8,7 +8,7 @@ const Tracking = ({track_comp}) => {
     const style={border:"1px solid #ddd",width:"90%",marginInline:"auto",borderRadius:"5px",padding:"15px 0"}
   return (
     <>
-    {trackPop && <div className='Track_pop_container'>
+    {trackPop && <div className='Track_pop_container' style={{animation:`${trackPop ? "0.5s showTrackPop linear":""}`}}>
         <main className='Track_pop'>
             <div style={style} className='head_container'>
             <p  className="head">Enter the consign number</p>
