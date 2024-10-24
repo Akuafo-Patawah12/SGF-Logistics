@@ -6,6 +6,7 @@
 
 .active{
   border-top: 3px solid #A7C756;
+  color: #A7C756;
 }
 
 .Popup{
@@ -299,6 +300,29 @@ footer a{
 
 .copyright_header > p{
    font-size: 14px;
+}
+
+
+.side_link{
+  color: #444;
+}
+
+.active{
+  
+  border-top: none;
+  position: relative;
+  color: #A7C756;
+}
+.active::before{
+  content: "";
+  position: absolute;
+  background-color: #A7C756;
+  height: 50%;
+  width: 5px;
+  left: -8px;
+  border-radius: 5px;
+  
+
 }
 }
 

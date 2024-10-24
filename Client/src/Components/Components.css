@@ -161,6 +161,10 @@
     border-radius: 5px;
 }
 
+aside{
+    display: none;
+}
+
 @keyframes showTrackPop {
     from {bottom: -500px;}
     to{ bottom: 0;}
@@ -173,7 +177,9 @@
     .auth {
       width: 80%;
     }
+    
     aside{
+        display: block;
         position: fixed;
         top: 0;
         left: 0;
