@@ -80,7 +80,7 @@ const Footer = () => {
         </section>
         </main>
         <div className="copyright_header">
-          <p>Copyright © 2024 | developed by @Anej High Tech</p>
+          <p>© 2024 SFGL | developed by @Anej High Tech</p>
         </div>
 
 

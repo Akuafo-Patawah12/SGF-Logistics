@@ -61,3 +61,16 @@
         border-radius: 5px;
         margin-inline: auto;
     }
+
+    .contact_details{
+        display: flex;
+        gap: 20px;
+    }
+
+    .shipment_note{
+        margin-top: 20px;
+        border: 2px red dashed;
+        padding: 30px 20px;
+        border-radius: 5px;
+
+    }

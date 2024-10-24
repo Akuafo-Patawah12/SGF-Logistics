@@ -8,7 +8,7 @@ import MoneyIcon from "../Icons/MoneyIcon"
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css'; 
 import Authentication from "../Components/Authentication"
-import { ArrowLeftOutlined, CloseOutlined, LeftCircleFilled,PlayCircleFilled,RightCircleFilled } from '@ant-design/icons'
+import { ArrowLeftOutlined, CloseOutlined, LeftCircleFilled,PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
 import LiftIcon from '../Icons/LiftIcon'
 import HowItWorksVideo from './Components/HowItWorksVideo'
 import EndUsersIcon from '../Icons/EndUsersIcon'
@@ -341,6 +341,10 @@ const [value, setValue] = useState(1);  // State to hold the value
       transition={{ duration: 0.5 }}
       viewport={{ once: true, amount: 0.5 }} // Trigger when 50% in view
           className='welcome_container' >
+            <section style={{display:"flex",flexDirection:"column",gap:"10px",marginBottom:"10px"}}>
+                <div style={{height:"80px",width:"90%",background:"#bbb",borderRadius:"5px"}}></div>
+                <div style={{height:"80px",width:"90%",background:"#bbb",borderRadius:"5px"}}> </div>
+            </section>
            <h3>Welcome to SF Ghana Logistics.</h3>
           <p>
             Your trusted partner in providing seamless and reliable shipping solutions between Ghana and 
@@ -401,16 +405,19 @@ const [value, setValue] = useState(1);  // State to hold the value
          <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
        <section className={`testimonals `} style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
           <div>
+          <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /></span>
             <p className='quote'>The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly 
                where our goods are at all times.</p>
                <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Linda Asare, Operations Manager at DEF Enterprises </h4>
           </div>
           <div>
+            <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /></span>
             <p className='quote'>SF Ghana Logistics has become an indispensable part of our supply chain. Their dedication to 
             efficiency and reliability is unparalleled.</p>
             <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Kwame Mensah, CEO of ABC Trading </h4>
           </div>
           <div>
+             <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /></span>
              <p className='quote'> Exceptional service and timely deliveries! SFGL truly lives up to its motto, 'Whatever the load, 
              we carry it.</p>
              <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Michael Osei, Owner of GHI Retailers </h4>

@@ -156,7 +156,7 @@
   .welcome_image{
     display:grid;
     width: 48%;
-    height: 300px;
+    height: 450px;
     opacity: 1;
     background-image: url("../../public/SFG_images/Get_in_Touch.jpg");
     background-position: center;
@@ -304,6 +304,9 @@
   }
 
   .testimonals > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 1.5rem 0;
     
     border: 1.5px solid #ccc;
@@ -311,6 +314,13 @@
     
     width: 30%;
 
+  }
+  .stars{
+    width: auto;
+    margin-inline: auto;
+    
+    color: #555;
+    
   }
 
   .Image_Text{

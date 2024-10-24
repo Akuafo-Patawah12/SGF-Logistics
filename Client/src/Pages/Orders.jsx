@@ -78,7 +78,7 @@ const handleItemChange = (index, field, value) => {
 };
 
 const addItem = () => {
-  setItems([...items, { itemName: '', quantity: 1 }]);
+  setItems([...items, { itemName: '', quantity: 1 ,weight:"",dimension:""}]);
 };
 
 const removeItem = (index) => {
@@ -94,7 +94,7 @@ const handleSubmit = (e) => {
   
   // Reset form
   
-  setItems([{itemName: '', quantity: 1 }]);
+  setItems([{itemName: '', quantity: 1 ,weight:"",dimension:""}]);
   togglePopup();
 };
 
@@ -130,17 +130,36 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
               <form onSubmit={handleSubmit}>
 
                 <div  style={{marginBlock:"16px"}}>
-                  <div>
+                  <p>Contact Information</p>
+                  <div className='contact_details'>
+                  <input
+                        className="input"
+                        type="text"
+                        placeholder="Fullname"
+                        
+                        
+                      />
+
+                      <input
+                        className="input"
+                        type="number"
+                        max="10"
+                        placeholder="Phone"
+                        
+                        
+                      />
+
                   <input
                         className="input"
 
                         
-                        type="text"
+                        type="email"
                         placeholder="Email"
                         
                         
                       />
                   </div>
+                  <p>Shipments Details</p>
                   <label  style={{display:"block", color:"#bbb",fontWeight:"600",marginBlock:"8px"}}>Items</label>
                   {items.map((item, index) => (
                     <div key={index}  style={{marginBlock:"8px",display:"flex",alignItems:"center"}}>
@@ -160,6 +179,26 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         placeholder="Qty"
                         value={item.quantity}
                         onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
+                      />
+
+<input
+                        className="input"
+
+                        
+                        type="text"
+                        placeholder="Weight"
+                        value={item.itemName}
+                        onChange={(e) => handleItemChange(index, 'weight', e.target.value)}
+                      />
+
+<input
+                        className="input"
+
+                        
+                        type="text"
+                        placeholder="Dimension"
+                        value={item.itemName}
+                        onChange={(e) => handleItemChange(index, 'dimension', e.target.value)}
                       />
                       <button
                         type="button"
@@ -189,6 +228,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       onChange={(e) => setLocation({ ...location, destination: e.target.value })}
                        placeholder='Destination'/>
                   </section>
+                  <section className='shipment_note'>
+                    <p>Please provide the weight in pounds</p>
+                    <p>Please provide the dimensions of the shipment in inches (Length x Width x Height).</p>
+                  </section>
                   <button
                     type="button"
                     
@@ -198,6 +241,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                     Add Item
                   </button>
                 </div>
+                
                 <div>
                   <label>
                   <input type="checkbox" ></input>
@@ -220,6 +264,13 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                 </div>
                 <div>
                   <textarea></textarea>
+                  <label>Please provide any additional information that may be helpful in providing an accurate quote.</label>
+                </div>
+
+                <div>
+                   <input type='date' />
+                   <label>Please provide pick up date if applicable</label>
+                   <input type='date' placeholder='Pick up date'/>
                 </div>
 
                 <div style={{display:"flex",justifyContent:"flex-end"}} >
