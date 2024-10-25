@@ -304,7 +304,17 @@ footer a{
 
 
 .side_link{
+  position: relative;
   color: #444;
+}
+.side_link::before{
+  content: "";
+  position: absolute;
+  background-color: #ccc ;
+  height: 110%;
+  width: 1px;
+  left: -6px;
+  border-radius: 5px;
 }
 
 .active{
