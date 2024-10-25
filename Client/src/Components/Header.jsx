@@ -60,7 +60,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
                 <p><Link to={"/Services/Groupage"} style={Link_text}>GROUPAGE</Link></p>
          </div>
          </div>
-         <NavLink to={"/Contact_Us"} style={Link_text}><span style={{fontSize:"20px",fontWeight:"600"}} className='header_links'>Contact</span> </NavLink>
+         <NavLink to={"/Contacts"} style={Link_text}><span style={{fontSize:"20px",fontWeight:"600"}} className='header_links'>Contact</span> </NavLink>
  
          <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"20px",fontWeight:"500"}}>More  <DownOutlined /></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>

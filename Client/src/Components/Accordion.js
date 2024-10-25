@@ -13,8 +13,8 @@ const showAccordion=()=>{
     <button onClick={showAccordion} style={{height:"40px",lineHeight:"2rem"}}><span style={{fontSize:"18px"}}>{props.header}</span><span style={{color:"white", rotate:`${Accordion ? "90deg":"0deg"}`}}><RightOutlined/></span></button>
     <div  className="accordion">
      <span style={style}><DoubleRightOutlined /> <Link to={props.link}>{props.span1}</Link></span>  <br/>
-     <span style={style}><DoubleRightOutlined />  <Link to={props.span2}>{props.span2}</Link></span>  <br/>
-     <span style={style}><DoubleRightOutlined />  <Link to={props.span3}>{props.span3}</Link></span>
+     <span style={style}><DoubleRightOutlined />  <Link to={`/${props.span2}`}>{props.span2}</Link></span>  <br/>
+     <span style={style}><DoubleRightOutlined />  <Link to={`/${props.span3}`}>{props.span3}</Link></span>
     </div> 
   </div>
   )

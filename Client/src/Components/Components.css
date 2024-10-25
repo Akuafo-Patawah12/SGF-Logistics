@@ -190,15 +190,15 @@ aside{
     } 
     
     .side_nav{
+        position: fixed;
         color: white;
         padding-inline: 20px;
         width: 70%;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 5px;
-        grid-auto-rows: 50px;
-        height: 100%;
+        
+        top: 0;
+        bottom: 0;
         background: #eee;
+        
 
         & button{
             border: none;
@@ -206,6 +206,7 @@ aside{
             
         }
     }
+    
     .form{
         flex-direction: column;
         gap: 10px;
@@ -232,5 +233,28 @@ aside{
         border-radius: 10px 10px 0 0;
     }
 
+    
+  }
+
+  @media (max-width: 768px){
+    a{
+        text-decoration: none;
+        color: #444;
+    }
+    .side_drop{
+        display: flex;
+        position: relative;
+        gap: 10px;
+        background-color: #ddd;
+        height: auto;
+        padding-block: 20px;
+        border: 1px solid #A7C756;
+        border-radius: 1rem;
+        width: 80%;
+        
+        flex-direction: column;
+        padding-inline-start: 30px;
+    
+    }
     
   }
