@@ -444,9 +444,7 @@ const [value, setValue] = useState(0);  // State to hold the value
             <p style={{marginInline:"auto",width:"fit-content"}}><MoneyIcon /></p>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
               <p>
-                  We pride ourselves on offering some of the most competitive rates in the market. At $250 
-                  per CBM, we ensure our pricing structure is designed to provide value without sacrificing 
-                  service quality.  
+                  
               </p>
           
         </section>
@@ -455,9 +453,7 @@ const [value, setValue] = useState(0);  // State to hold the value
             <div style={{marginInline:"auto",width:"max-content"}}><LiftIcon /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Expert Handling</h4>
               <p>
-                Entrusting your cargo to SFGL means relying on a team of seasoned professionals who 
-                have extensive experience in the logistics industry. Our expert team handles your goods 
-                with precision and care, from packaging and warehousing to transportation and delivery. 
+               
                 
               </p>
            
@@ -467,9 +463,7 @@ const [value, setValue] = useState(0);  // State to hold the value
             <div style={{marginInline:"auto",width:"fit-content"}}><DeliveryIcon /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
               <p >
-                When it comes to logistics, time is of the essence. SFGL has built a reputation for 
-                punctuality and reliability, ensuring that your shipments arrive at their destination on 
-                schedule.
+                
               </p>
         </section>
       </motion.div>
