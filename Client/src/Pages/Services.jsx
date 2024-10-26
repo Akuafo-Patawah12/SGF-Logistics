@@ -29,10 +29,12 @@ const Services = () => {
             <div className='contacts'>
             <div className="service_icon"><Callicon className="i"/></div>
                <p>020 811 6360 / 053 948 0433</p>
+               <p>Feel free to call us.</p>
             </div>
             <div className="contacts">
             <div className="service_icon"><MailIcon className="i"/></div>
                 <p>sfghanalogistics24@gmail.com</p>
+                <p>Feel free to mail us.</p>
             </div>
 
             

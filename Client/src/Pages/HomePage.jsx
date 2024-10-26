@@ -342,10 +342,10 @@ const [value, setValue] = useState(0);  // State to hold the value
       viewport={{ once: true, amount: 0.5 }} // Trigger when 50% in view
           className='welcome_container' >
             <section style={{display:"flex",flexDirection:"column",gap:"10px",marginBottom:"10px"}}>
-                <div style={{height:"80px",width:"95%",background:"#bbb",borderRadius:"5px"}}></div>
-                <div style={{height:"80px",width:"95%",background:"#bbb",borderRadius:"5px"}}> </div>
+                <div style={{height:"80px",width:"95%",marginInline:"auto",background:"#bbb",borderRadius:"5px"}}></div>
+                <div style={{height:"80px",width:"95%",marginInline:"auto",background:"#bbb",borderRadius:"5px"}}> </div>
             </section>
-           <h3>Welcome to SF Ghana Logistics.</h3>
+           <h3 style={{marginLeft:"2.5%"}}>Welcome to SF Ghana Logistics.</h3>
           <p style={{textAlign:"justify",marginInline:"auto",width:"95%"}}>
             Your trusted partner in providing seamless and reliable shipping solutions between Ghana and 
             China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
