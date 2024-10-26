@@ -6,6 +6,56 @@
     margin-bottom: 50px;
  }
 
+ .freight {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .freight div{
+    background: white;
+    padding-inline: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+  }
+  .freight h2 {
+    color: #004d80;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-block: 5px;
+  }
+  
+  .freight p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .freight ul {
+    list-style-type: none;
+    padding-left: 20px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .freight ul li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+  
+  .freight h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    padding-block: 5px;
+  }
+  
+
  @media (max-width: 768px) {
     .cont{
         margin-top: 90px;
