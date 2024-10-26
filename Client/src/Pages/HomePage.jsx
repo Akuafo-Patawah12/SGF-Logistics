@@ -346,7 +346,7 @@ const [value, setValue] = useState(0);  // State to hold the value
                 <div style={{height:"80px",width:"90%",background:"#bbb",borderRadius:"5px"}}> </div>
             </section>
            <h3>Welcome to SF Ghana Logistics.</h3>
-          <p style={{textAlign:"justify",width:"100%"}}>
+          <p style={{textAlign:"justify",padding:"0 5px",width:"100%"}}>
             Your trusted partner in providing seamless and reliable shipping solutions between Ghana and 
             China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
             and experience the SFGL difference. 
