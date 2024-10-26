@@ -21,7 +21,7 @@ const Tracking = ({track_comp}) => {
     {trackPop && <div className='Track_pop_container' style={{animation:`${trackPop ? "0.5s showTrackPop linear":""}`}}>
         <main className='Track_pop'>
             <div style={style} className='head_container'>
-            <p  className="head">Enter the consign number</p>
+            <p  className="head">Enter the tracking number</p>
             <button onClick={()=> setTrackPop(false)}><CloseOutlined /> </button>
             </div>
         <form onSubmit={Track} className='form'>

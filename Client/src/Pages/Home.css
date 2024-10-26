@@ -45,7 +45,7 @@
   margin-block: 100px;
   width: 45%;
   border-radius: 10px;
-  height: 600px;
+  height: 400px;
   background: transparent;
   isolation: isolate;
 }
@@ -574,7 +574,7 @@
     .scattered{
       width: 100%;
       margin-inline: auto;
-      height: 700px;
+      height: 450px;
     }
     .services, .services1{
     grid-template-columns: repeat(2,1fr);

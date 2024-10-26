@@ -346,7 +346,7 @@ const [value, setValue] = useState(0);  // State to hold the value
                 <div style={{height:"80px",width:"90%",background:"#bbb",borderRadius:"5px"}}> </div>
             </section>
            <h3>Welcome to SF Ghana Logistics.</h3>
-          <p>
+          <p style={{textAlign:"justify",width:"100%"}}>
             Your trusted partner in providing seamless and reliable shipping solutions between Ghana and 
             China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
             and experience the SFGL difference. 
@@ -426,7 +426,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        
        
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
-       <p style={{width:"90%",background:"#eee",padding:"20px 10px",textAlign:"justify",marginInline:"auto"}}>
+       <p style={{width:"90%",background:"#eee",padding:"20px 10px", textAlign:"justify",marginInline:"auto"}}>
           At SF Ghana Logistics (SFGL), we are committed to delivering exceptional logistics 
           solutions tailored to your specific needs. Here's why we stand out in the industry:
        </p>
@@ -445,7 +445,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        className='scattered'>
         <section>
         
-            <p style={{marginInline:"auto",width:"fit-content"}}><MoneyIcon /></p>
+            <p style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/money-bag.gif" style={{width:"100px",height:"100px"}} /></p>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
               <p>
                   
@@ -454,7 +454,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         </section>
         <section>
         
-            <div style={{marginInline:"auto",width:"max-content"}}><LiftIcon /></div>
+            <div style={{marginInline:"auto",width:"max-content"}}><img src="../SFG_images/container.gif" style={{width:"100px",height:"100px"}} /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Expert Handling</h4>
               <p>
                
@@ -464,11 +464,9 @@ const [value, setValue] = useState(0);  // State to hold the value
         </section>
         <section>
         
-            <div style={{marginInline:"auto",width:"fit-content"}}><DeliveryIcon /></div>
+            <div style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/route.gif" style={{width:"100px",height:"100px"}} /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
-              <p >
-                
-              </p>
+              
         </section>
       </motion.div>
       <div className='Why_choose_slider'>
