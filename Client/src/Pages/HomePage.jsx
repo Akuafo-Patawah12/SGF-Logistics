@@ -426,7 +426,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        
        
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
-       <p>
+       <p style={{width:"90%",textAlign:"justify",marginInline:"auto"}}>
           At SF Ghana Logistics (SFGL), we are committed to delivering exceptional logistics 
           solutions tailored to your specific needs. Here's why we stand out in the industry:
        </p>
