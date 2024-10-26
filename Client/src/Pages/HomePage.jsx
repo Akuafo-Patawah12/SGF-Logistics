@@ -492,7 +492,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
         style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
       >
-       <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}K + </span> <br/> Satisfied users</p>
+       <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}K + </span> <br/> Satisfied customers</p>
       </motion.div>
        </div>
       </div>
