@@ -159,10 +159,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         
                       />
                   </div>
-                  <p>Shipments Details</p>
+                  <p style={{marginTop:"30px"}}>Shipments Details</p>
                   <label  style={{display:"block", color:"#bbb",fontWeight:"600",marginBlock:"8px"}}>Items</label>
                   {items.map((item, index) => (
-                    <div key={index}  style={{marginBlock:"8px",display:"flex",alignItems:"center"}}>
+                    <div key={index}  style={{marginBlock:"8px",padding:"5px 0",display:"flex",alignItems:"center",border:"1px solid #555"}}>
                       <input
                         className="input"
 
@@ -190,16 +190,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         value={item.itemName}
                         onChange={(e) => handleItemChange(index, 'weight', e.target.value)}
                       />
-
-<input
-                        className="input"
-
-                        
-                        type="text"
-                        placeholder="Dimension"
-                        value={item.itemName}
-                        onChange={(e) => handleItemChange(index, 'dimension', e.target.value)}
-                      />
+                      
                       <button
                         type="button"
                         style={{color:"red"}}
@@ -234,15 +225,15 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </section>
                   <button
                     type="button"
-                    
-                    className=".btn"
+                    className="submit_btn"
                     onClick={addItem}
                   >
                     Add Item
                   </button>
                 </div>
                 
-                <div>
+                <fieldset style={{border:"1px solid #555",padding:"10px 0",borderRadius:"5px",marginBottom:"20px"}}>
+                  <legend>Special handling</legend>
                   <label>
                   <input type="checkbox" ></input>
                   Hazardious
@@ -261,17 +252,12 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   Fragile
                   </label>
 
-                </div>
-                <div>
-                  <textarea></textarea>
+                </fieldset>
+                <div style={{display:"flex",flexDirection:"column"}}>
+                  <textarea cols="30" rows="5" style={{maxWidth:"100%"}} placeholder="Add description about items here"></textarea>
                   <label>Please provide any additional information that may be helpful in providing an accurate quote.</label>
                 </div>
 
-                <div>
-                   <input type='date' />
-                   <label>Please provide pick up date if applicable</label>
-                   <input type='date' placeholder='Pick up date'/>
-                </div>
 
                 <div style={{display:"flex",justifyContent:"flex-end"}} >
                   <button

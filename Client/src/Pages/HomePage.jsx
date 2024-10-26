@@ -194,7 +194,7 @@ useEffect(()=>{
 },[index1])
 
 
-const [value, setValue] = useState(1);  // State to hold the value
+const [value, setValue] = useState(0);  // State to hold the value
   const controls = useAnimation();  // Controls for the animation
   const divRef = useRef(null);  // Ref for the div
 
@@ -203,11 +203,11 @@ const [value, setValue] = useState(1);  // State to hold the value
     if (timer) return; // Prevent multiple intervals from being set
     timer = setInterval(() => {
       setValue((prev) => {
-        if (prev >= 6) {
+        if (prev >= 6000) {
           clearInterval(timer);  // Clear interval when value reaches 200
           return prev;
         }
-        return prev + 1;
+        return prev + 5;
       });
     },500);
   }

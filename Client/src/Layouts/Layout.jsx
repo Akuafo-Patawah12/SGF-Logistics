@@ -7,6 +7,8 @@ import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
+const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
+const About= lazy(()=> import ('../Pages/About'))
 const SeaFreight = lazy(()=> import('../Pages/Sub_Pages/SeaFreight'))
 const Groupage = lazy(()=> import('../Pages/Sub_Pages/Groupage'))
 const Procurement = lazy(()=> import('../Pages/Sub_Pages/Procurement'))
@@ -90,6 +92,18 @@ const Layout = () => {
                     <Route path='/Services' element={
                         <Suspense fallback={<Loader />}>
                           <Services />   
+                        </Suspense>} 
+                    />
+
+                    <Route path='/About' element={
+                        <Suspense fallback={<Loader />}>
+                          <About />   
+                        </Suspense>} 
+                    />
+
+                    <Route path='/Track_order/:id' element={
+                        <Suspense fallback={<Loader />}>
+                          <TrackOrder />   
                         </Suspense>} 
                     />
 
