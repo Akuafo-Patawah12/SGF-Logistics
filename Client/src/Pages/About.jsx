@@ -1,7 +1,25 @@
-import React from 'react'
+import React,{useEffect, useRef, useState} from 'react'
 import "./Components/Services.css"
+import "./About.css"
 
 const About = () => {
+    const parentRef= useRef(null)
+    const childRef1= useRef(null)
+    const childRef2= useRef(null)
+    
+
+    const [index,setIndex] = useState(0)
+    useEffect(()=>{
+        const child= [childRef1.current,childRef2.current]
+        const childLeft = child[index].offsetLeft;
+        parentRef.current.scrollTo({
+          left: childLeft,
+          behavior: "smooth" // Add smooth scrolling
+        });
+    },[index])
+    
+        
+    
   return (
     <div style={{marginTop:"90px"}}>
         <div className='service_image_header'>
@@ -10,8 +28,59 @@ const About = () => {
            </section>
             
         </div>
-        <section style={{background:"#A7C756", height:"80px"}}>
-             
+
+
+        <div className="abt-flex">
+        <div  className='about_flex'>
+        <section>
+            <p>
+                Established in February 2019, Shun Feng Ghana Logistics (SFGL) has rapidly grown into one of 
+                West Africa's most trusted logistics providers, specializing in the efficient and seamless shipping 
+                of goods between Ghana and China. With our core values rooted in reliability, transparency, and 
+                customer satisfaction, we are committed to upholding our motto: "Whatever the load, we carry 
+                it." 
+            </p>
+        </section>
+
+        <section style={{display:"flex",gap:"5px",marginBlock:"30px 5px"}}>
+            <button onClick={()=> setIndex(0)} className='about_btn'>Mission</button>
+            <button onClick={()=> setIndex(1)} className='about_btn'>Vission</button>
+        </section>
+        
+        <section ref={parentRef} style={{ border:"1px solid #bbb",borderRadius:"5px" }} className="parent">
+             <div ref={childRef1} className="child">
+                <p style={{width:"95%",marginInline:"auto"}}>
+                 Our mission is to provide innovative and efficient logistics solutions that bridge the gap between 
+                Ghana and China, delivering superior customer satisfaction through reliability, timely delivery, 
+                and professional handling of all shipments.
+                </p> 
+             </div>
+             <div ref={childRef2} className="child">
+              <p style={{width:"95%",marginInline:"auto"}}>
+                To be the leading logistics provider between Ghana and China, recognized for our commitment 
+                to excellence, innovation, and customer-focused solutions. 
+              </p>
+             </div>
+        </section>
+        </div>
+        
+        <div className='about_flex'>
+            <img src="../SFG_images/Ship2.jpg" alt="image" style={{height:"400px"}}/>
+        </div>
+        </div>
+
+
+        <section style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gridGap:"10px",width:"95%",marginInline:"auto"}}>
+            <div className="about_info">
+              <span style={{fontSize:"30px",color:"red",fontWeight:"700"}}>5+</span> <br/>Years Experience
+            </div>
+            <div className="about_info">
+              <span style={{fontSize:"30px",color:"red",fontWeight:"700"}}>99%</span> <br/>Accuraccy Rate
+            </div>
+
+            <div className="about_info">
+              <span style={{fontSize:"30px",color:"red",fontWeight:"700"}}>100+</span> <br/>Trusted Partners
+            </div>
         </section>
     </div>
   )
