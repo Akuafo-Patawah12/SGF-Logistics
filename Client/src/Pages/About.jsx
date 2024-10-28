@@ -70,7 +70,7 @@ const About = () => {
         </div>
 
 
-        <section style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gridGap:"10px",width:"95%",marginInline:"auto"}}>
+        <section style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gridGap:"10px",width:"95%",margin:"20px auto"}}>
             <div className="about_info">
               <span style={{fontSize:"30px",color:"red",fontWeight:"700"}}>5+</span> <br/>Years Experience
             </div>

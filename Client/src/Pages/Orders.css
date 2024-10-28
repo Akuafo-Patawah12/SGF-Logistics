@@ -19,6 +19,15 @@
      font-size: 30px;
     }
 
+    .contact_input{
+        width:100%;
+        padding-inline: 12px;
+        padding-block: 12px;
+         border-radius: 5px;
+         font-size: 15px;
+         border: 1px solid #bbb;
+        }
+
     .btn{
         background:#ccc;
         
@@ -30,11 +39,12 @@
         position: absolute;
         inset: 0;
         background: rgb(0, 0, 0,0.6);
-        z-index: 2;
+        z-index: 1;
     }
 
-    .submit_btn{
+    .add_btn{
         margin-top: 20px;
+        padding: 5px 10px;
     }
 
     
@@ -74,9 +84,52 @@
     .shipment_note{
         margin-top: 20px;
         border: 2px red dashed;
-        padding: 30px 20px;
+        padding: 10px 20px;
         border-radius: 5px;
 
+    }
+    .field{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+        
+        & div{
+            padding-inline: 5px;
+        }
+    }
+    legend{
+      margin-left: 5px ;
+    }
+    .label{
+        white-space: nowrap;
+        color: #555;
+    }
+   
+    
+
+    @media (max-width: 500px){
+        .contact_details{
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            padding-block: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+
+            & input{
+                max-width: 85%;
+                background-color: #eee;
+                outline: none;
+                border: 1px solid #ddd;
+            }
+
+            
+        }
+        .field{
+            grid-template-columns: repeat(2,1fr);
+        }
     }
 
     

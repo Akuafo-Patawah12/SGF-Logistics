@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import "./Orders.css"
 
 import ButtonLoader from '../Icons/ButtonLoader'
+import { SendOutlined } from '@ant-design/icons'
 
 
 const Orders = () => {
@@ -118,11 +119,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
 
 <div>
-  <select>
-      <option value="Air Freight">Air Freight</option>
-      <option value="Ship Freight">Ship Freight</option>
-      <option value="Door to door">Door to door</option>
-  </select>
+  
 </div>
 
         <div>
@@ -133,7 +130,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   <p>Contact Information</p>
                   <div className='contact_details'>
                   <input
-                        className="input"
+                        className="contact_input"
                         type="text"
                         placeholder="Fullname"
                         
@@ -141,7 +138,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       />
 
                       <input
-                        className="input"
+                        className="contact_input"
                         type="number"
                         max="10"
                         placeholder="Phone"
@@ -150,7 +147,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       />
 
                   <input
-                        className="input"
+                        className="contact_input"
 
                         
                         type="email"
@@ -159,10 +156,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         
                       />
                   </div>
-                  <p style={{marginTop:"30px"}}>Shipments Details</p>
+                  <p style={{marginTop:"30px",borderBottom:"4px solid #eee",paddingBottom:"10px"}}>Shipments Details</p>
                   <label  style={{display:"block", color:"#bbb",fontWeight:"600",marginBlock:"8px"}}>Items</label>
                   {items.map((item, index) => (
-                    <div key={index}  style={{marginBlock:"8px",padding:"5px 0",display:"flex",alignItems:"center",border:"1px solid #555"}}>
+                    <div key={index}  style={{marginBlock:"8px",padding:"5px 0",display:"flex",alignItems:"center",border:"1px solid #ddd",borderInline:"none"}}>
                       <input
                         className="input"
 
@@ -200,7 +197,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       </button>
                     </div>
                   ))}
-                  <section style={{display:"flex"}}>
+                  <section style={{display:"flex" ,justifyContent:"space-between"}}>
                       <input type="text" 
                        className='input'
                        
@@ -221,45 +218,51 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </section>
                   <section className='shipment_note'>
                     <p>Please provide the weight in pounds</p>
-                    <p>Please provide the dimensions of the shipment in inches (Length x Width x Height).</p>
+                    
                   </section>
                   <button
                     type="button"
-                    className="submit_btn"
+                    className="add_btn"
                     onClick={addItem}
                   >
                     Add Item
                   </button>
                 </div>
                 
-                <fieldset style={{border:"1px solid #555",padding:"10px 0",borderRadius:"5px",marginBottom:"20px"}}>
+                <fieldset className='field' style={{border:"1px solid #ddd",padding:"10px 0",borderRadius:"5px",marginBottom:"20px"}}>
                   <legend>Special handling</legend>
-                  <label>
+
+                  <div>
+                  <label className="label">
                   <input type="checkbox" ></input>
                   Hazardious
                   </label>
+                  </div>
 
                   
                   
-
-                  <label>
+                  <div>
+                  <label className="label">
                   <input type="checkbox" ></input>
                   Temperature Sensity
                   </label>
-
-                  <label>
+                  </div>
+                  
+                  <div>
+                  <label className="label">
                   <input type="checkbox" ></input>
                   Fragile
                   </label>
+                  </div>
 
                 </fieldset>
                 <div style={{display:"flex",flexDirection:"column"}}>
-                  <textarea cols="30" rows="5" style={{maxWidth:"100%"}} placeholder="Add description about items here"></textarea>
-                  <label>Please provide any additional information that may be helpful in providing an accurate quote.</label>
+                  <textarea cols="30" rows="5" style={{maxWidth:"100%",background:"#eee",border:"1px solid #ddd",borderRadius:"5px"}} placeholder="Add description about items here"></textarea>
+                  <label className='shipment_note'>Please provide any additional information that may be helpful in providing an accurate quote.</label>
                 </div>
 
 
-                <div style={{display:"flex",justifyContent:"flex-end"}} >
+                <div style={{display:"flex",gap:"10px",justifyContent:"flex-end",marginTop:"20px"}} >
                   <button
                     type="button"
                     className="btn"
@@ -269,10 +272,12 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </button>
                   <button
                     type="submit"
-                    style={{background:"blue",color:"white",paddingBlock:"8px",paddingInline:"16px",borderRadius:"10px"}}
+                    className="animated-button"
+                    style={{display:"flex",gap:"5px",background:"#A7C756",border:"1px solid #555",color:"white",paddingBlock:"8px",paddingInline:"16px",borderRadius:"10px"}}
             
                   >
                     Submit
+                     <SendOutlined />
                   </button>
                 </div>
               </form>
