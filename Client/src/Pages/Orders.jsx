@@ -110,7 +110,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
 
   return (
-    <div>
+    <div style={{marginTop:"90px"}}>
         <div className="background-image">
           <div className="image_cover"></div>
               <h4 className='quote_header'>REQUEST A QUOTE</h4>
