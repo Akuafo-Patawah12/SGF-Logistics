@@ -240,15 +240,11 @@ const [value, setValue] = useState(0);  // State to hold the value
     
     <div style={{overflow:"hidden",background:"#fff"}} className='Home'>
         {showAuth&& <Authentication  authShow={[showAuth,setShowAuth]}/>}
-      <div
-        ref={parentRef}
-        className="slide-show"
+        <div
         style={{
           width: "100%",
-          height: "450px"
-          
-        }}
-      >
+          position:"relative"
+        }}>
         <div className='Image_Text'>
           
           
@@ -257,6 +253,16 @@ const [value, setValue] = useState(0);  // State to hold the value
             <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
           </section>
           </div>
+      <div
+        ref={parentRef}
+        className="slide-show"
+        style={{
+          width: "100%",
+          height: "450px",
+          
+        }}
+      >
+        
        
         <div ref={childRef1} style={{position:"relative"}}>
           <div className="cover">
@@ -326,6 +332,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
       
         
+      </div>
       </div>
       <p className='Description' >We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.
       </p>

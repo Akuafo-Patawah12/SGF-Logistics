@@ -63,10 +63,19 @@ const [creatingOrder,setCreatingOrder]= useState(false);
 
     const [isOpen, setIsOpen] = useState(false);
 const [items, setItems] = useState([{ itemName: '', quantity: 1 }]);
-const [location,setLocation]= useState({
+const [orderInfo,setOrderInfo] = useState(
+  {
+    fullname:"",
+    phone:"",
+    email:"",
+    additional_info:"",
+    special_handling:"",
+    shipnment_type:"",
     origin:"",
     destination:""
-})
+  }
+)
+
 
 const togglePopup = () => {
   setIsOpen(!isOpen);
@@ -90,12 +99,12 @@ const handleSubmit = (e) => {
   e.preventDefault()
   setCreatingOrder(true)
   setTimeout(()=>{
-    socket.emit("createOrder",{items,...location,tracking_id: v4()})
+    socket.emit("createOrder",{items,...orderInfo,tracking_id: v4()})
   },1000)
   
   // Reset form
   
-  setItems([{itemName: '', quantity: 1 ,weight:"",dimension:""}]);
+  setItems([{itemName: '', quantity: 1 ,weight:""}]);
   togglePopup();
 };
 
@@ -133,6 +142,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         className="contact_input"
                         type="text"
                         placeholder="Fullname"
+                        onChange={(e)=>{setOrderInfo({...orderInfo,fullname:e.target.value})}}
                         
                         
                       />
@@ -140,7 +150,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       <input
                         className="contact_input"
                         type="number"
-                        max="10"
+                        onChange={(e)=>{setOrderInfo({...orderInfo,phone:e.target.value})}}
                         placeholder="Phone"
                         
                         
@@ -151,6 +161,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
                         
                         type="email"
+                        onChange={(e)=>{setOrderInfo({...orderInfo,email:e.target.value})}}
                         placeholder="Email"
                         
                         
@@ -184,7 +195,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         
                         type="text"
                         placeholder="Weight"
-                        value={item.itemName}
+                        value={item.weight}
                         onChange={(e) => handleItemChange(index, 'weight', e.target.value)}
                       />
                       
@@ -203,7 +214,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                        
                        name="location" 
                        id="origin" 
-                       onChange={(e) => setLocation({ ...location, origin: e.target.value })}
+                       onChange={(e)=>{setOrderInfo({...orderInfo,origin:e.target.value})}}
                        placeholder='Origin'
                        
                        />
@@ -213,7 +224,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       
                       name="location" 
                       id="destination"
-                      onChange={(e) => setLocation({ ...location, destination: e.target.value })}
+                      onChange={(e)=>{setOrderInfo({...orderInfo,destination:e.target.value})}}
                        placeholder='Destination'/>
                   </section>
                   <section className='shipment_note'>
@@ -257,7 +268,9 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
                 </fieldset>
                 <div style={{display:"flex",flexDirection:"column"}}>
-                  <textarea cols="30" rows="5" style={{maxWidth:"100%",background:"#eee",border:"1px solid #ddd",borderRadius:"5px"}} placeholder="Add description about items here"></textarea>
+                  <textarea cols="30" rows="5"
+                  onChange={(e)=>{setOrderInfo({...orderInfo,additional_info:e.target.value})}}
+                  style={{maxWidth:"100%",background:"#eee",border:"1px solid #ddd",borderRadius:"5px"}} placeholder="Add description about items here"></textarea>
                   <label className='shipment_note'>Please provide any additional information that may be helpful in providing an accurate quote.</label>
                 </div>
 

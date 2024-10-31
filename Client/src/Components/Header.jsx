@@ -40,7 +40,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
           </section>
       </div>
       <div className="h_child2">
-        <Logo />
+        <Link to={"/"}><Logo /></Link>
     
         <nav  className="nav1">
          <NavLink to={"/"}><span className='header_links' style={{fontSize:"20px",fontWeight:"600"}}>Home</span> </NavLink>

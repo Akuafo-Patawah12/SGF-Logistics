@@ -4,13 +4,19 @@ const {Schema} = mongoose
 
 const orderSchema= Schema({
 
-    customer_id: {type:Schema.Types.ObjectId,ref:"User"},  
+    fullname:String,
+    email:String,
+    phone: Number,
+    shipment_type:String,
+    special_handling:String,
+
 
     tracking_id: String,
         items: [
           {
             itemName: String,
             quantity: Number,
+            weight:String
           }
         ],
         totalAmount: Number,
@@ -18,6 +24,7 @@ const orderSchema= Schema({
         origin: String,
           
         destination:String,
+        additional_info:String,
             
       
     Status:{
