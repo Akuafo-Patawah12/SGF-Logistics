@@ -1,4 +1,5 @@
 import React,{useEffect, useRef, useState} from 'react'
+import { AimOutlined,BulbOutlined } from '@ant-design/icons'
 import "./Components/Services.css"
 import "./About.css"
 
@@ -32,7 +33,7 @@ const About = () => {
 
         <div className="abt-flex">
         <div  className='about_flex'>
-        <section>
+        <section style={{borderBottom:"5px solid #eee",paddingBottom:"40px"}}>
             <p>
                 Established in February 2019, Shun Feng Ghana Logistics (SFGL) has rapidly grown into one of 
                 West Africa's most trusted logistics providers, specializing in the efficient and seamless shipping 
@@ -43,11 +44,11 @@ const About = () => {
         </section>
 
         <section style={{display:"flex",gap:"5px",marginBlock:"30px 5px"}}>
-            <button onClick={()=> setIndex(0)} className='about_btn'>Mission</button>
-            <button onClick={()=> setIndex(1)} className='about_btn'>Vission</button>
+            <button onClick={()=> setIndex(0)} className='about_btn'><AimOutlined style={{color:"#A7C756"}}/> Mission</button>
+            <button onClick={()=> setIndex(1)} className='about_btn'><BulbOutlined style={{color:"#A7C756"}}/>Vission</button>
         </section>
         
-        <section ref={parentRef} style={{ border:"1px solid #bbb",borderRadius:"5px" }} className="parent">
+        <section ref={parentRef} style={{ border:"1px solid #ddd",borderRadius:"5px" }} className="parent">
              <div ref={childRef1} className="child">
                 <p style={{width:"95%",marginInline:"auto"}}>
                  Our mission is to provide innovative and efficient logistics solutions that bridge the gap between 

@@ -15,11 +15,12 @@
 }
 
 .about_btn{
-    background: #444;
+    background: #eee;
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
-    color: #fff; 
+    
+    color: #444; 
 }
 
 .about_info{
