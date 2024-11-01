@@ -19,7 +19,7 @@ const Procurement = () => {
         </div>
         <section className="freight">
     <div>
-      <h2>Free Procurement</h2>
+      <h3>Free Procurement</h3>
         <p>
             Our Free Procurement and Sourcing Training empowers businesses with essential skills for 
             managing logistics, procurement, and international sourcing. This service is designed to help 

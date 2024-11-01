@@ -20,7 +20,7 @@ const Door2door = () => {
         </div>
         <section className="freight">
     <div>
-      <h2>Door to door delivery</h2>
+      <h3>Door to door delivery</h3>
         <p>
             Our Door-to-Door Delivery Service offers a hassle-free solution, managing the entire logistics 
             process from pickup to final delivery. 

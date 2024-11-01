@@ -10,7 +10,8 @@
  .parallelogram{
    padding-inline: 5px;
    display: flex;
-   width:250px;
+   max-width:260px;
+   
    margin-left: 2.5%;
    
    height: 30px;
@@ -23,6 +24,11 @@
 
  .parallelogram > section{
   line-height: 30px;
+  font-size: 15px;
+
+  & a{
+    font-size: 15px;
+  }
  }
  .parallelogram > section:not(:first-child){
   border-left: 2px solid  #ddd;
