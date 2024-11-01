@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import { DollarCircleOutlined, ContainerOutlined, ShopOutlined, SmileOutlined } from '@ant-design/icons';
 const Procurement = () => {
   return (
@@ -11,7 +12,11 @@ const Procurement = () => {
            
         </div>
         
-
+        <div className="parallelogram">
+          <section ><Link to={"/"}>Home</Link></section>
+          <section ><Link to={"/Services"}>Services</Link></section>
+          <section style={{color:"#A7C756"}}>Procurement</section>
+        </div>
         <section className="freight">
     <div>
       <h2>Free Procurement</h2>

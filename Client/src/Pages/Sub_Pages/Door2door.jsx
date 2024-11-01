@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import { DollarCircleOutlined, ContainerOutlined, ShopOutlined, SmileOutlined } from '@ant-design/icons';
 import "./SubPages.css"
 
@@ -12,7 +13,11 @@ const Door2door = () => {
 
            
         </div>
-        
+        <div className="parallelogram">
+          <section ><Link to={"/"}>Home</Link></section>
+          <section ><Link to={"/Services"}>Services</Link></section>
+          <section style={{color:"#A7C756"}}>Door to door</section>
+        </div>
         <section className="freight">
     <div>
       <h2>Door to door delivery</h2>

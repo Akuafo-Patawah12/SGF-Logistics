@@ -6,26 +6,57 @@
     margin-bottom: 50px;
  }
 
+
+ .parallelogram{
+   padding-inline: 5px;
+   display: flex;
+   width:250px;
+   margin-left: 2.5%;
+   
+   height: 30px;
+   background-color: #eee;
+   gap:10px;
+   padding: 10px;
+  clip-path: polygon(0% 0%, 75% 0%, 100% 100%,75% 100%,0% 100%);
+ }
+
+
+ .parallelogram > section{
+  line-height: 30px;
+ }
+ .parallelogram > section:not(:first-child){
+  border-left: 2px solid  #ddd;
+  padding-left: 4px;
+  
+ }
+
+ 
+ 
  .freight {
     background-color: white;
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+
+    & p,h3{
+      width: 90%;
+      margin-left: auto;
+    }
   }
   
   .freight div{
     background: white;
-    
+    margin-inline: auto;
     border-radius: 5px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  .freight h2 {
-    color: #004d80;
+  .freight h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
-    padding-block: 5px;
+    padding-block: 10px;
+    position: relative;
   }
   
   .freight p {
@@ -37,8 +68,8 @@
   
   .freight ul {
     list-style-type: none;
-    padding-left: 20px;
-    width: 100%;
+    margin-left: auto;
+    width: 90%;
     margin-bottom: 15px;
   }
   
@@ -59,5 +90,8 @@
  @media (max-width: 768px) {
     .cont{
         margin-top: 90px;
+    }
+    .freight div{
+      width: 95%;
     }
  }

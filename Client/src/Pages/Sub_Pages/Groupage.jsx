@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import { DollarCircleOutlined, ContainerOutlined, ShopOutlined, SmileOutlined } from '@ant-design/icons';
 const Groupage = () => {
   return (
@@ -10,7 +11,11 @@ const Groupage = () => {
 
            
         </div>
-        
+        <div className="parallelogram">
+          <section ><Link to={"/"}>Home</Link></section>
+          <section ><Link to={"/Services"}>Services</Link></section>
+          <section style={{color:"#A7C756"}}>Groupage</section>
+        </div>
         <section className="freight">
     <div>
       <h2>Groupage</h2>

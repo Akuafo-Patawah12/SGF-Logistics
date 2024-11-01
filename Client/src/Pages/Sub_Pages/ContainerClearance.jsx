@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import { DollarCircleOutlined, ContainerOutlined, ShopOutlined, SmileOutlined } from '@ant-design/icons';
 import "./SubPages.css"
 
@@ -12,9 +13,15 @@ const ContainerClearance = () => {
 
            
         </div>
+
+        <div className="parallelogram">
+          <section ><Link to={"/"}>Home</Link></section>
+          <section ><Link to={"/Services"}>Services</Link></section>
+          <section style={{color:"#A7C756"}}>Clearance</section>
+        </div>
         <section className="freight">
           <div>
-      <h2>Container Clearance</h2>
+      <h3>Container Clearance</h3>
          <p>
             SF Ghana Logistics provides seamless Container Clearance Services, managing all customs
             related documentation and ensuring regulatory compliance. To support businesses with their 
