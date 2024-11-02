@@ -2,6 +2,7 @@ import React,{useEffect, useRef, useState} from 'react'
 import { AimOutlined,BulbOutlined } from '@ant-design/icons'
 import "./Components/Services.css"
 import "./About.css"
+import AboutIcon from '../Icons/AboutIcon'
 
 const About = () => {
     const parentRef= useRef(null)
@@ -30,11 +31,13 @@ const About = () => {
             
         </div>
 
+        <div style={{marginInline:"auto",width:"fit-content",padding:"5px 0 0 5px",border:"2px solid  #A7C756",borderRadius:"5px",marginBottom:"10px"}}><AboutIcon /> </div>
+
 
         <div className="abt-flex">
         <div  className='about_flex'>
         <section style={{borderBottom:"5px solid #eee",paddingBottom:"40px"}}>
-            <p>
+            <p style={{textAlign:"justify"}} className="about_p">
                 Established in February 2019, Shun Feng Ghana Logistics (SFGL) has rapidly grown into one of 
                 West Africa's most trusted logistics providers, specializing in the efficient and seamless shipping 
                 of goods between Ghana and China. With our core values rooted in reliability, transparency, and 

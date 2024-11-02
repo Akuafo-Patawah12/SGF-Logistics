@@ -9,6 +9,7 @@ import "./Orders.css"
 
 import ButtonLoader from '../Icons/ButtonLoader'
 import { SendOutlined } from '@ant-design/icons'
+import PaymentPopUp from './Components/PaymentPopUp'
 
 
 const Orders = () => {
@@ -117,7 +118,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
       
   }
 
-
+  const [showPopup, setShowPopup] = useState(false);
   return (
     <div style={{marginTop:"90px"}}>
         <div className="background-image">
@@ -298,8 +299,11 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
           </div>
 
           {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
-
-          
+          <div>
+      <button onClick={() => setShowPopup(true)}>Make a Payment</button>
+      {showPopup && <PaymentPopUp onClose={() => setShowPopup(false)}  showPopup={showPopup}/>}
+    </div>
+         
         </div>
     
   )

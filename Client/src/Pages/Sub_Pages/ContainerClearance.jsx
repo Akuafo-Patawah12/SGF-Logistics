@@ -21,7 +21,7 @@ const ContainerClearance = () => {
         </div>
         <section className="freight">
           <div>
-      <h3>Container Clearance</h3>
+      <h3 className="fright_head">Container Clearance</h3>
          <p>
             SF Ghana Logistics provides seamless Container Clearance Services, managing all customs
             related documentation and ensuring regulatory compliance. To support businesses with their 

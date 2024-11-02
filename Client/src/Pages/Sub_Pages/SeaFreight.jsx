@@ -21,7 +21,7 @@ const SeaFreight = () => {
         </div>
         <section className="freight">
         <div>
-      <h3>Sea Freight</h3>
+      <h3 className="fright_head">Sea Freight</h3>
       <p>
         Ghana Logistics provides reliable and cost-effective Sea Freight Services for clients with large shipments. Whether you’re shipping goods from Ghana to China or vice versa, our sea freight solutions are ideal for transporting bulk goods over long distances.
       </p>

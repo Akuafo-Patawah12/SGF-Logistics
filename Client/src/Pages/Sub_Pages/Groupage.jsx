@@ -18,7 +18,7 @@ const Groupage = () => {
         </div>
         <section className="freight">
     <div>
-      <h3>Groupage</h3>
+      <h3 className="fright_head">Groupage</h3>
         <p>
             Our Groupage Services allow businesses with small to medium-sized shipments to save on costs 
             by sharing container space with others. This service is perfect for clients who do not require an 

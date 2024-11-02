@@ -1,0 +1,106 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background: #fff;
+    padding: 30px 20px;
+    width: 400px;
+    border-radius: 8px;
+    position: relative;
+    text-align: center;
+    transition: padding 0.3s linear;
+  }
+
+  @keyframes showPop {
+    from {bottom: -500px;}
+    to{ bottom: 0;}
+}
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .tabs button {
+    width: 50%;
+    padding: 10px;
+    cursor: pointer;
+    background: #f0f0f0;
+    border: none;
+    outline: none;
+  }
+  
+  .tabs button.Active {
+    background: #007bff;
+    color: #fff;
+  }
+  
+  .form-section {
+    margin: 20px 0;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .payment_input,
+  select {
+    
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  select{
+    width: 100%;
+  }
+  .payment_input{
+    width: 94%;
+  }
+
+  
+  .pay-btn {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  @media (max-width: 500px){
+    .popup-overlay{
+        align-items: flex-end;
+    }
+    .popup-content {
+        width: 100%;
+    }
+  }
+  

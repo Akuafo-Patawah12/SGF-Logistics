@@ -22,7 +22,7 @@ const AirFreight = () => {
         
         <section className="freight">
       <div>
-      <h3>Air Freight</h3>
+      <h3 className="fright_head">Air Freight</h3>
       <p>
             Our Air Freight Services are tailored for clients who need fast, reliable, and secure transportation 
             of their goods. Ideal for high-priority or time-sensitive shipments, we ensure your cargo reaches 
