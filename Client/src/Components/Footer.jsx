@@ -1,6 +1,6 @@
 import React from 'react'
-import {DoubleRightOutlined, EnvironmentOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, MailOutlined, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
-
+import {DoubleRightOutlined, VideoCameraOutlined,EnvironmentOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, MailOutlined, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
+import { ReactComponent as Tiktok} from "../Icons/Tiktok.svg"
 import Accordion from './Accordion'
 
 
@@ -62,7 +62,7 @@ const Footer = () => {
           </div>
 
           <div style={{color:"white",fontSize:"18px"}} className='details'>
-          <div style={contact_style}><PhoneOutlined /></div>
+          <div style={contact_style}><PhoneOutlined style={{transform:"rotate(90deg)"}}/></div>
             <h4>Telephone</h4>
             <p>020 811 6360 / 053 948 0433</p>
           </div>
@@ -76,6 +76,9 @@ const Footer = () => {
           <a href="https://www.facebook.com/profile.php?id=61560412809015&mibextid=ZbWKwL" target="_blank"><FacebookOutlined /> </a>
           <a href="https://t.me/sfghanalogistics" target="_blank"> </a>
           <a href="https://whatsapp.com/channel/0029VahZ9ep9hXFEXBAVWL3G" target="_blank"><WhatsAppOutlined/> </a>
+          <a href="https://www.tiktok.com/@sfghanalogistics" target="_blank" rel="noopener noreferrer">
+             <Tiktok style={{transform:"translateY(4px)"}}/>
+          </a>
         </div>
         </section>
         </main>

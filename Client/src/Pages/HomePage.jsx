@@ -2,14 +2,13 @@ import React,{useState,useRef,useEffect,useMemo} from 'react'
 import {motion,useAnimation} from "framer-motion"
 import "./Home.css"
 import io from "socket.io-client"
-import DeliveryIcon from "../Icons/DeliveryIcon"
+
 import {Link} from "react-router-dom"
-import MoneyIcon from "../Icons/MoneyIcon"
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css'; 
 import Authentication from "../Components/Authentication"
-import { ArrowLeftOutlined, CloseOutlined, LeftCircleFilled,PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
-import LiftIcon from '../Icons/LiftIcon'
+import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
+
 import HowItWorksVideo from './Components/HowItWorksVideo'
 import EndUsersIcon from '../Icons/EndUsersIcon'
 import TrackingIcon from '../Icons/TrackingIcon'
@@ -415,7 +414,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
 
          <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
-       <section className={`testimonals `} style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
+       <section className="testimonals" style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
           <div>
           <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
             <p className='quote'>The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly 
