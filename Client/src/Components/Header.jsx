@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
 import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
-import Logo from '../Icons/Logo'
+import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
+
 
 
 const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
@@ -40,7 +41,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
           </section>
       </div>
       <div className="h_child2">
-        <Link to={"/"}><Logo /></Link>
+        <Link to={"/"} style={{transform:"translateY(10px)"}}><SvgIcon /></Link>
     
         <nav  className="nav1">
          <NavLink to={"/"}><span className='header_links' style={{fontSize:"20px",fontWeight:"600"}}>Home</span> </NavLink>
