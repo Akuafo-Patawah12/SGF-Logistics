@@ -15,7 +15,7 @@
   
   
 /* HTML: <div class="loader"></div> */
-.animator {
+.animator, .assist {
   position: relative;
   font-weight: bold;
   font-family: monospace;
@@ -23,15 +23,19 @@
   margin-inline: auto;
   display: inline-grid;
 }
+
+
+
+
 .animator:before,
-.animator:after {
-  
-  content:"Scroll Over Content";
+.animator:after
+{
+  content:"Do you need";
   grid-area: 1/1;
   -webkit-mask: linear-gradient(90deg,#000 50%,#0000 0) 0 50%/2ch 100%;
   animation: l11 2s infinite cubic-bezier(0.5,220,0.5,-220);
 }
-.animator:after {
+.animator:after{
   -webkit-mask-position: 1ch 50%;
   --s:-1;
 }

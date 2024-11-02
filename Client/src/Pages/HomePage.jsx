@@ -392,6 +392,8 @@ const [value, setValue] = useState(0);  // State to hold the value
             <h4 style={{color:"white",marginTop:"5px",fontSize:"24px"}}>Groupage Services </h4><br/>
             <button>View More</button>
           </div>
+
+          
        </section> }
 
        
@@ -399,8 +401,11 @@ const [value, setValue] = useState(0);  // State to hold the value
         <div className="scrolling-content">
         
           <h2 className="animator"></h2>
+          <h2 className="assist">assistance?</h2>
           <p>
-            This content will scroll over the image as you scroll down the page.
+            We’re here to provide you with the support and information you 
+            need to make your logistics experience seamless and efficient.
+
           </p>
           
 
