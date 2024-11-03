@@ -313,14 +313,16 @@
     flex-direction: column;
     align-items: center;
     padding: 1.5rem 0;
-    box-shadow: 2px 2px 8px rgb(167, 199, 87,0.5);
-
-    
+    animation: animate 3s ease-in-out infinite;
     border: 1px solid #ddd;
     border-radius: 5px;
-    
     width: 30%;
 
+  }
+
+  @keyframes animate{
+    0%{box-shadow: 2px 2px 8px rgb(167, 199, 87,0.5);}
+    100%{box-shadow: 2px 2px 8px rgba(197, 91, 91, 0.5);}
   }
   .stars{
     width: auto;
