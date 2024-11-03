@@ -46,10 +46,16 @@ const Layout = () => {
         }
 
         const popRef= useRef(null)
+        const trackRef= useRef(null)
+        const[trackPop,setTrackPop]= useState(false)
         useEffect(()=>{   //this function allows u to close the popup menu by clicking outside of it.
           let closePop =(event)=>{
             if(popRef.current && !popRef.current.contains(event.target)){
               setPopUp1(false);
+            }
+
+            if(trackRef.current && !trackRef.current.contains(event.target)){
+              setTrackPop(false);
             }
                /**This function is executed when you click outside the pop up menu in event.js to close it */
           }
@@ -61,13 +67,13 @@ const Layout = () => {
         },[]); 
 
 
-        const [trackPop,setTrackPop] =useState(false)
+        
   return (
     <div>
 
         <Header buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop}/>
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
-        <Tracking  track_comp={[trackPop,setTrackPop]}/>
+        <Tracking  track_comp={[trackPop,setTrackPop]} trackRef={trackRef}/>
             <Routes>
                 <Route path='/'  element={
                     <Suspense fallback={<Loader />}>

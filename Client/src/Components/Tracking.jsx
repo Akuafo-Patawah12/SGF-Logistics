@@ -1,10 +1,12 @@
 import { CloseOutlined, SnippetsOutlined, WarningOutlined } from '@ant-design/icons'
-import React from 'react'
+import React,{useRef} from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Components.css"
 
-const Tracking = ({track_comp}) => {
+const Tracking = ({track_comp,trackRef}) => {
     const [trackPop,setTrackPop] = track_comp
+
+    
 
     const [tracking_id,setTracking_id] =React.useState("")
     const navigate= useNavigate()
@@ -19,7 +21,7 @@ const Tracking = ({track_comp}) => {
   return (
     <>
     {trackPop && <div className='Track_pop_container' style={{animation:`${trackPop ? "0.5s showTrackPop linear":""}`}}>
-        <main className='Track_pop'>
+        <main ref={trackRef} className='Track_pop'>
             <div style={style} className='head_container'>
             <p  className="head">Enter the tracking number</p>
             <button onClick={()=> setTrackPop(false)}><CloseOutlined /> </button>

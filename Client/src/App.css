@@ -275,6 +275,10 @@ footer a{
   }
 }
 
+.shipment_btn{
+  height: 60px;
+}
+
 
 
 @media (max-width: 568px){
@@ -333,6 +337,9 @@ footer a{
   border-radius: 5px;
   
 
+}
+.shipment_btn{
+  height: 50px;
 }
 }
 
