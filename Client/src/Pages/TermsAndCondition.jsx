@@ -3,11 +3,11 @@ import "./Terms.css"
 
 const TermsAndCondition = () => {
   return (
-    <div>
+    <div style={{marginTop:"90px"}}>
       <div>
         <div style={{height:"400px",position:"relative"}}>
            <img src='./SFG_images/Air.jpg' alt='terms' style={{width:"100%",height:"inherit",objectFit:"cover"}}></img>
-           <div style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.7)",color:"white",display:"flex",justifyContent:"center",alignItems:"center"}}> <h3 style={{margin:"auto"}}>TERMS & CONDITIONS</h3></div>
+           <div style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.2)",color:"white",display:"flex",justifyContent:"center",alignItems:"center"}}> <h3 style={{margin:"auto",fontSize:"30px"}}>TERMS & CONDITIONS</h3></div>
         </div>
        
       </div>
