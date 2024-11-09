@@ -30,8 +30,8 @@
 
     .btn{
         background:#ccc;
-        
          color:#fff;
+         border: none;
          padding-inline:16px;
         border-radius:10px;
     }
@@ -45,6 +45,10 @@
     .add_btn{
         margin-top: 20px;
         padding: 5px 10px;
+        color: #A7C756;
+        background: #eee;
+        border-radius: 20px;
+        border: none;
     }
 
     
@@ -85,8 +89,10 @@
 
     .shipment_note{
         margin-top: 20px;
-        border: 2px red dashed;
+        border: 1px rgb(248, 23, 23) dashed;
         padding: 10px 20px;
+        font-size: 15px;
+        font-weight: 400;
         border-radius: 5px;
 
     }
@@ -106,6 +112,8 @@
         white-space: nowrap;
         color: #555;
     }
+
+    
    
     
 

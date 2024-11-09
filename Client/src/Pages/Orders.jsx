@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import "./Orders.css"
 
 import ButtonLoader from '../Icons/ButtonLoader'
-import { SendOutlined } from '@ant-design/icons'
+import { PlusOutlined, SendOutlined } from '@ant-design/icons'
 import PaymentPopUp from './Components/PaymentPopUp'
 
 
@@ -137,7 +137,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
               <form onSubmit={handleSubmit}>
 
                 <div  style={{marginBlock:"16px"}}>
-                  <p>Contact Information</p>
+                  <p style={{marginBottom:"10px"}}>Contact Information</p>
                   <div className='contact_details'>
                   <input
                         className="contact_input"
@@ -237,6 +237,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                     className="add_btn"
                     onClick={addItem}
                   >
+                    <PlusOutlined />
                     Add Item
                   </button>
                 </div>
@@ -276,7 +277,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                 </div>
 
 
-                <div style={{display:"flex",gap:"10px",justifyContent:"flex-end",marginTop:"20px"}} >
+                <div style={{display:"flex",border:"none",gap:"10px",justifyContent:"flex-end",marginTop:"20px"}} >
                   <button
                     type="button"
                     className="btn"
@@ -286,11 +287,13 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </button>
                   <button
                     type="submit"
+                    onClick={() => setShowPopup(true)}
                     className="animated-button"
-                    style={{display:"flex",gap:"5px",background:"#A7C756",border:"1px solid #555",color:"white",paddingBlock:"8px",paddingInline:"16px",borderRadius:"10px"}}
+                    
+                    style={{display:"flex",gap:"5px",background:"#A7C756",border:"none",color:"white",paddingBlock:"8px",paddingInline:"16px",borderRadius:"10px"}}
             
                   >
-                    Submit
+                    Continue
                      <SendOutlined />
                   </button>
                 </div>
@@ -300,7 +303,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
           {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
           <div>
-      <button onClick={() => setShowPopup(true)}>Make a Payment</button>
+      
       {showPopup && <PaymentPopUp onClose={() => setShowPopup(false)}  showPopup={showPopup}/>}
     </div>
          

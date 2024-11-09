@@ -1,4 +1,7 @@
 import React,{useState} from 'react'
+import {ReactComponent as MasterIcon} from "../../Icons/mastercard.svg"
+import {ReactComponent as DebitIcon} from "../../Icons/DebitCard.svg"
+import {ReactComponent as Momo} from "../../Icons/momo.svg"
 import "./Payment.css"
 
 const PaymentPopUp = ({ onClose,showPopup }) => {
@@ -19,25 +22,29 @@ const PaymentPopUp = ({ onClose,showPopup }) => {
     <div className="popup-overlay">
     <div className="popup-content"  style={{animation:`${showPopup ? "0.5s showPop linear":""}`}}>
       <button className="close-btn" onClick={onClose}>X</button>
-      <h2>Make a Payment</h2>
+      <h2>Select Payment Method</h2>
       <div className="tabs">
         <button
           className={activeTab === 'card' ? 'Active' : ''}
           onClick={() => handleTabChange('card')}
         >
+          
           Debit Card
+          <DebitIcon />
         </button>
         <button
           className={activeTab === 'momo' ? 'Active' : ''}
           onClick={() => handleTabChange('momo')}
         >
+        
           Mobile Money
+          <Momo/>
         </button>
       </div>
       <form onSubmit={handleSubmit}>
         {activeTab === 'card' && (
           <div className="form-section">
-            <label>Card Number</label>
+            <label style={{position:"relative"}}>Card Number  <span style={{position:"absolute",bottom:"-45px",right:"0"}}><MasterIcon /></span></label>
             <input type="text" className="payment_input" placeholder="1234 5678 9101 1121" required />
 
             <label>Expiry Date</label>
