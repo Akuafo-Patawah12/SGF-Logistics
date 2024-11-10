@@ -242,9 +242,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </button>
                 </div>
                 
-                <fieldset className='field' style={{border:"1px solid #ddd",padding:"10px 0",borderRadius:"5px",marginBottom:"20px"}}>
-                  <legend>Special handling</legend>
-
+                <section style={{border:"1px solid #ddd",padding:"10px 0",borderRadius:"5px",marginBottom:"20px"}}>
+                  <div style={{borderBottom:"1px solid #ddd",marginBottom:"10px",paddingBottom:"5px",paddingLeft:"5px"}}>Special handling</div>
+                  
+                  <div  className='field'>
                   <div>
                   <label className="label">
                   <input type="checkbox" ></input>
@@ -267,12 +268,12 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   Fragile
                   </label>
                   </div>
-
-                </fieldset>
+                  </div>
+                </section>
                 <div style={{display:"flex",flexDirection:"column"}}>
                   <textarea cols="30" rows="5"
                   onChange={(e)=>{setOrderInfo({...orderInfo,additional_info:e.target.value})}}
-                  style={{maxWidth:"100%",background:"#eee",border:"1px solid #ddd",borderRadius:"5px"}} placeholder="Add description about items here"></textarea>
+                  style={{maxWidth:"100%",background:"#eee",border:"1px solid #ddd",borderRadius:"5px",fontSize:"15px"}} placeholder="Add description about items here"></textarea>
                   <label className='shipment_note'>Please provide any additional information that may be helpful in providing an accurate quote.</label>
                 </div>
 
