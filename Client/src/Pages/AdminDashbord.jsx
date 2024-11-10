@@ -1,9 +1,11 @@
 import React,{useState,useMemo,useEffect} from 'react'
-import {Link} from "react-router-dom"
+import {Link, NavLink} from "react-router-dom"
 import "./AdminDashboard.css"
 import {DeleteOutlined, MessageOutlined,CopyOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'  
 import {jwtDecode} from "jwt-decode"
+
+import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 
 import io from "socket.io-client"
 
@@ -143,12 +145,26 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
 const style={color:" #57534e", fontSize: "0.875rem", lineHeight: "1.25rem",border:"2px solid  #e7e5e4",paddingBock:"10px"}
   return (
-    <div
-    
-    className='w-full bg-stone-100 pt-24 lg:w-[80%] ml-auto'
+    <div style={{background:"#eee"}}
     >
+
+      <header className='admin_header'>
+        <SvgIcon/>
+          <nav>
+              <NavLink to={"/Dashboard"}>Dashboard</NavLink>
+              <NavLink to={"/Dashboard"}>Shipments</NavLink>  
+          </nav>
+
+          <nav>
+              <div style={{height:"30px",background:"white"}}>Andrew</div>
+          </nav>
+      </header>
       
-      <button className="ml-[5%] font-medium">#Orders</button>
+     <section className='items'>
+        <div>Total Shipment</div>
+        <div>Total Orders</div>
+        <div>Pending Orders</div>
+     </section>
      
      <div className='rounded-xl border-[1px] border-stone-300 py-5 w-[95%] ml-auto mt-3'>
      <table className="w-[95%] bg-white mt-3  overflow-hidden rounded-2xl">

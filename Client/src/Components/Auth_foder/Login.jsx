@@ -97,7 +97,7 @@ const Login = () => {
             setLoader(false)
           setSuccess(true);
           localStorage.setItem('accesstoken', data.accessToken);
-          navigate("/AdminDashboard")
+          navigate("/Dashboard")
         }
       }
 
