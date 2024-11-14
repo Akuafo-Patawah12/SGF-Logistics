@@ -131,7 +131,8 @@
             justify-content: center;
             padding-block: 20px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
 
             & input{
                 max-width: 85%;
@@ -153,7 +154,9 @@
            
             padding-block: 20px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-top: none;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
     }
 }
 

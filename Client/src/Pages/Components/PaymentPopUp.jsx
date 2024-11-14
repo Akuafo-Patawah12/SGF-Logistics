@@ -18,6 +18,19 @@ const PaymentPopUp = ({ onClose,showPopup }) => {
     alert(`Payment made using ${activeTab}`);
   };
 
+  const [serviceProvider, setServiceProvider] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+
+  const detectProvider = (number) => {
+    const prefix = number.slice(0, 3);
+    const providers = {
+      "024": "MTN", "054": "MTN", "053": "MTN", "059": "MTN", "025": "MTN", "055": "MTN",
+      "026": "Airtel/Tigo", "027": "Airtel/Tigo", "057": "Airtel/Tigo", "056": "Airtel/Tigo",
+      "020": "Telecel", "050": "Telecel"
+    };
+    setServiceProvider(providers[prefix] || "");
+  };
+
   return (
     <div className="popup-overlay">
     <div className="popup-content"  style={{animation:`${showPopup ? "0.5s showPop linear":""}`}}>
@@ -57,14 +70,20 @@ const PaymentPopUp = ({ onClose,showPopup }) => {
         {activeTab === 'momo' && (
           <div className="form-section">
             <label>Mobile Money Number</label>
-            <input type="text" className="payment_input" placeholder="Enter MoMo Number" required />
+            <input type="text" 
+            className="payment_input" 
+            value={mobileNumber}
+              onChange={(e) => {
+                setMobileNumber(e.target.value);
+                detectProvider(e.target.value);
+              }}
+            placeholder="Enter MoMo Number" required />
 
-            <label>Network</label>
-            <select required>
-              <option value="mtn">MTN</option>
-              <option value="vodafone">Vodafone</option>
-              <option value="airtel">AirtelTigo</option>
-            </select>
+            <label>Service Provider</label>
+            <div>
+            
+            <div style={{width:"95%",border:"1px solid #ddd",padding:"8px 1.8%"}}>{ mobileNumber===""? "Choose network": serviceProvider}</div>
+          </div>
           </div>
         )}
         <button type="submit" className="pay-btn">Pay Now</button>
