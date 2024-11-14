@@ -39,8 +39,12 @@
  
  
  .freight {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
     background-color: white;
     border-radius: 8px;
+    padding-inline: 2.5%;
+    grid-gap: 10px;
     
 
     & p,h3{
@@ -98,7 +102,15 @@
     .cont{
         margin-top: 90px;
     }
-    .freight div{
-      width: 95%;
+
+    .freight{
+      grid-template-columns: repeat(2,1fr);
     }
+    
  }
+
+ @media (max-width: 500px) {
+  .freight{
+    grid-template-columns: repeat(1,1fr);
+  }
+  }

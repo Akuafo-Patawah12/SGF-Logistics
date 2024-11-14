@@ -12,13 +12,19 @@
     }
     
   }
+
+  .slideheader{
+      max-width: 80%;
+      margin-left: 2%;
+  }
+
   
   
 /* HTML: <div class="loader"></div> */
 .animator, .assist {
   position: relative;
   font-weight: bold;
-  font-family: monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 30px;
   margin-inline: auto;
   display: inline-grid;

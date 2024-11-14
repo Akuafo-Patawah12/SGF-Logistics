@@ -47,9 +47,6 @@ async function login(req,res){
         });   
         }
        
-
-     
-
         if (!password_Is_Correct) {
             return res.status(401).json({ message: 'invalid password' }); // Incorrect password
         }

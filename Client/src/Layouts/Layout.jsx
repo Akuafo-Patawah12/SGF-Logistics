@@ -113,7 +113,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-                    <Route path='/Contacts' element={
+                    <Route path='/Contact_us' element={
                         <Suspense fallback={<Loader />}>
                           <ContactUs />   
                         </Suspense>} 

@@ -23,7 +23,7 @@ const Services = () => {
         <section style={{width:"95%",marginInline:"auto"}}>
             <p className="get_start">Get Star<Rocket /><span className="ed">ed</span></p>
 
-            <p style={{fontSize:"18px",color:"#333",marginTop:"20px",whiteSpace: "no-wrap"}}>
+            <p style={{fontSize:"18px",color:"#333",marginTop:"20px",textAlign:"justify"}}>
             Looking to optimize your logistics and shipping operations? At SFG logistics, we're excited to collaborate with you to ensure your goods are transported smoothly and efficiently worldwide.
             </p>
             <div className='contacts'>

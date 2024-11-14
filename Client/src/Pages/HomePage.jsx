@@ -206,7 +206,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           clearInterval(timer);  // Clear interval when value reaches 200
           return prev;
         }
-        return prev + 5;
+        return prev + 20;
       });
     },500);
   }
@@ -274,7 +274,7 @@ const [value, setValue] = useState(0);  // State to hold the value
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.2 }}
             >
-            <p style={{color:"white",fontSize:"25px"}}>Logistics & Transportation.</p>
+            <p style={{color:"white",fontSize:"25px", marginLeft: "2%"}}>Logistics & Transportation.</p>
             <h3 style={{color:"white",fontSize:"35px"}}>World Wide Logistic And <br/>Professional <span style={{color:"red",fontSize:"inherit"}}>Solutions</span></h3>
             </motion.div>
           </div>
@@ -295,8 +295,8 @@ const [value, setValue] = useState(0);  // State to hold the value
              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
              viewport={{ once: true, amount: 0.2 }}
            >
-            <h3 style={{color:"white"}}>Air Freight Services</h3>
-          <p style={{color:"white",fontSize:"25px"}}>Our air freight services provide fast, reliable, and secure global shipping for your logistics needs.</p>
+            <h3 style={{color:"white",marginLeft: "2%"}}>Air Freight Services</h3>
+          <p style={{color:"white",fontSize:"25px"}} className='slideheader'>Our air freight services provide fast, reliable, and secure global shipping for your logistics needs.</p>
        </motion.div>
         </div>
        <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
@@ -313,7 +313,7 @@ const [value, setValue] = useState(0);  // State to hold the value
              viewport={{ once: true, amount: 0.2 }}
            >
            <p style={{color:"white",fontSize:"25px"}}>Logistics & Transportation.</p>
-           <h3 style={{color:"white",fontSize:"35px"}}>World Wide Logistic And <br/>Professional Solutions</h3>
+           <h3 style={{color:"white",fontSize:"35px"}} className='slideheader'>World Wide Logistic And <br/>Professional Solutions</h3>
            </motion.div>
           </div>
           <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
