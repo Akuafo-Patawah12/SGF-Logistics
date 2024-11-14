@@ -89,7 +89,7 @@ const handleItemChange = (index, field, value) => {
 };
 
 const addItem = () => {
-  setItems([...items, { itemName: '', quantity: 1 ,weight:"",dimension:""}]);
+  setItems([...items, { itemName: '', quantity: 1 ,CBM:"",dimension:""}]);
 };
 
 const removeItem = (index) => {
@@ -105,7 +105,7 @@ const handleSubmit = (e) => {
   
   // Reset form
   
-  setItems([{itemName: '', quantity: 1 ,weight:""}]);
+  setItems([{itemName: '', quantity: 1 ,CBM:""}]);
   togglePopup();
 };
 
@@ -209,9 +209,9 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
                         
                         type="text"
-                        placeholder="Weight"
-                        value={item.weight}
-                        onChange={(e) => handleItemChange(index, 'weight', e.target.value)}
+                        placeholder="CBM"
+                        value={item.CBM}
+                        onChange={(e) => handleItemChange(index, 'CBM', e.target.value)}
                       />
                       
                       <button
