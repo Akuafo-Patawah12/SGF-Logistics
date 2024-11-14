@@ -118,6 +118,15 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
       
   }
 
+  const [invoiceNumber, setInvoiceNumber] = useState('');
+
+  useEffect(() => {
+    // Generate a UUID as the invoice number when the component mounts
+    const generatedInvoiceNumber = crypto.randomUUID().replace(/-/g, '').slice(0, 8);
+    setInvoiceNumber(generatedInvoiceNumber);
+  }, []);
+
+
   const [showPopup, setShowPopup] = useState(false);
   return (
     <div style={{marginTop:"90px"}}>
@@ -167,6 +176,11 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         
                         
                       />
+                  </div>
+
+                  <div className='invoice_details' style={{marginTop:"20px"}}>
+                  <div style={{marginLeft:"5%"}}>Invoice number</div>
+                  <button style={{marginTop:"5px",width:"90%",paddingBlock:"5px",marginLeft:"5%"}}>#{invoiceNumber}</button>
                   </div>
                   <p style={{marginTop:"30px",borderBottom:"4px solid #eee",paddingBottom:"10px"}}>Shipments Details</p>
                   <label  style={{display:"block", color:"#bbb",fontWeight:"600",marginBlock:"8px"}}>Items</label>

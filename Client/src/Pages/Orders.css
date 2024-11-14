@@ -90,6 +90,8 @@
         gap: 20px;
     }
 
+
+
     .shipment_note{
         margin-top: 20px;
         border: 1px rgb(248, 23, 23) dashed;
@@ -143,6 +145,16 @@
         .field{
             grid-template-columns: repeat(2,1fr);
         }
+
+        .invoice_details{
+           
+            width: 100%;
+           
+           
+            padding-block: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
     }
+}
 
     

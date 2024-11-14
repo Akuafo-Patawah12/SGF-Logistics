@@ -165,6 +165,13 @@ const style={color:" #57534e", fontSize: "0.875rem", lineHeight: "1.25rem",borde
         <div>Total Orders</div>
         <div>Pending Orders</div>
      </section>
+
+     <section>
+      <button>View shipment</button>
+      <button>Start shipment</button>
+         <button>View users</button>
+         <button>Add users</button>
+     </section>
      
      <div className='rounded-xl border-[1px] border-stone-300 py-5 w-[95%] ml-auto mt-3'>
      <table className="w-[95%] bg-white mt-3  overflow-hidden rounded-2xl">

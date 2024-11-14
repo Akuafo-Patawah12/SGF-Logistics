@@ -7,6 +7,7 @@ import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
+const Invoice = lazy(()=> import( '../Pages/Invoice'))
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
 const SeaFreight = lazy(()=> import('../Pages/Sub_Pages/SeaFreight'))
@@ -89,15 +90,17 @@ const Layout = () => {
                 />
                     
 
-                    <Route path='/AdminDashboard' element={
-                        <Suspense fallback={<Loader />}>
-                          <AdminDashboard />   
-                        </Suspense>} 
-                    />
+                    
 
                     <Route path='/Services' element={
                         <Suspense fallback={<Loader />}>
                           <Services />   
+                        </Suspense>} 
+                    />
+
+<Route path='/Invoice' element={
+                        <Suspense fallback={<Loader />}>
+                          <Invoice />   
                         </Suspense>} 
                     />
 

@@ -11,13 +11,17 @@ tr {
   }
 
   .admin_header{
-    height: 70px;
+    top: 0;
+    position: fixed;
+    height: 90px;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
   }
 
   .items{
+    margin-top: 90px;
     display: flex;
     gap: 10px;
   }
