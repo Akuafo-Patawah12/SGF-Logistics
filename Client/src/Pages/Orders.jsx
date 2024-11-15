@@ -183,9 +183,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   <button style={{marginTop:"5px",width:"90%",paddingBlock:"5px",marginLeft:"5%"}}>#{invoiceNumber}</button>
                   </div>
                   <p style={{marginTop:"30px",borderBottom:"4px solid #eee",paddingBottom:"10px"}}>Shipments Details</p>
+                  <section style={{border:"1px solid #ddd"}}>
                   <label  style={{display:"block", color:"#bbb",fontWeight:"600",marginBlock:"8px"}}>Items</label>
                   {items.map((item, index) => (
-                    <div key={index}  style={{marginBlock:"8px",padding:"5px 0",display:"flex",alignItems:"center",border:"1px solid #ddd",borderInline:"none"}}>
+                    <div key={index}  style={{marginBlock:"8px",padding:"5px 10px",display:"flex",alignItems:"center",border:"1px solid #ddd",borderInline:"none"}}>
                       <input
                         className="input"
 
@@ -204,7 +205,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                         onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
                       />
 
-<input
+                      <input
                         className="input"
 
                         
@@ -223,9 +224,9 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       </button>
                     </div>
                   ))}
-                  <section style={{display:"flex" ,justifyContent:"space-between"}}>
+                  <section style={{display:"flex",padding:"0 2%",justifyContent:"space-between" ,width:"96%",}}>
                       <input type="text" 
-                       className='input'
+                       className='input_location'
                        
                        name="location" 
                        id="origin" 
@@ -235,17 +236,14 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                        />
 
                       <input type="text" 
-                      className='input'
+                      className='input_location'
                       
                       name="location" 
                       id="destination"
                       onChange={(e)=>{setOrderInfo({...orderInfo,destination:e.target.value})}}
                        placeholder='Destination'/>
                   </section>
-                  <section className='shipment_note'>
-                    <p>Please provide the weight in pounds</p>
-                    
-                  </section>
+                  
                   <button
                     type="button"
                     className="add_btn"
@@ -254,6 +252,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                     <PlusOutlined />
                     Add Item
                   </button>
+                  </section>
                 </div>
                 
                 <section style={{border:"1px solid #ddd",padding:"10px 0",borderRadius:"5px",marginBottom:"20px"}}>
@@ -290,6 +289,22 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   style={{maxWidth:"100%",background:"#eee",border:"1px solid #ddd",borderRadius:"5px",fontSize:"15px"}} placeholder="Add description about items here"></textarea>
                   <label className='shipment_note'>Please provide any additional information that may be helpful in providing an accurate quote.</label>
                 </div>
+
+                <div class="order_note">
+            <h3>Note:</h3>
+            <ol>
+                <li>SFGL does NOT ship contraband goods. Your goods will be security checked...</li>
+                <li>Our departure timelines are subject to cargo availability.</li>
+                <li>Ship transit times may change without recourse to us.</li>
+                <li>Cargo may require inspection by customs and other regulatory bodies at their instance and time.</li>
+                <li>Our minimum CBM is 0.02. All items below 0.02CBM will be charged per our minimum CBM.</li>
+                <li>Measurements will be re-taken at the warehouse in Ghana to confirm CBM before payments are made.</li>
+                <li>Goods stored in our warehouse are subject to warehouse lien...</li>
+                <li>After goods have arrived, leaving items at the warehouse for more than 4 days will incur a warehouse charge...</li>
+                <li>Goods more than 300kg will be charged per ton and goods...</li>
+                <li>Goods weighing more than 700kg is equivalent to 1 CBM.</li>
+            </ol>
+        </div>
 
 
                 <div style={{display:"flex",border:"none",gap:"10px",justifyContent:"flex-end",marginTop:"20px"}} >
