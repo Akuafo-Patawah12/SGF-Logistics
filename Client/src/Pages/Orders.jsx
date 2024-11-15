@@ -224,7 +224,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                       </button>
                     </div>
                   ))}
-                  <section style={{display:"flex",padding:"0 2%",justifyContent:"space-between" ,width:"96%",}}>
+                  <section style={{display:"flex",padding:"0 2%",gap:"5%",justifyContent:"space-between" ,width:"96%",}}>
                       <input type="text" 
                        className='input_location'
                        
