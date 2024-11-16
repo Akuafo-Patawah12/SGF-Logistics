@@ -67,7 +67,7 @@ const ServicesComponent = () => {
              {location.pathname === "/Services" && (<div
               
               style={{position:"relative"}} className="hover_parent parent1">
-                <img src='./SFG_images/groupage.jpg' alt=''></img>
+                <img src='./SFG_images/Groupage.jpg' alt=''></img>
                 <div  className="hover_to_display">
                 <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Groupage Services</h4><br/>
                 <Link to={"/Services/Groupage"}> <button>View More</button></Link>
