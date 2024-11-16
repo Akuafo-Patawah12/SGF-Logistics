@@ -31,15 +31,20 @@ const Groupage = () => {
         <div>
       <h3>Key Benefits:</h3>
       <ul>
-        <li><strong>Cost-Effective:</strong> Sea freight is the most economical option for large and heavy shipments.</li>
-        <li><strong>Large Capacity:</strong> Ideal for businesses with bulk shipments, ensuring that even the largest orders are handled efficiently.</li>
+        <li><strong>Cost-Effective:</strong> Reduce costs by sharing container space, making shipping more 
+        affordable for smaller businesses.</li>
+        <li><strong>Flexible Scheduling:</strong> We offer regular shipments between Ghana and China to ensure 
+        convenience for all clients.</li>
+        <li><strong>Professional Handling:</strong> Despite shared container space, your goods receive the same 
+        level of care and attention as larger shipments.</li>
       </ul>
       </div>
 
       <div>
       <h3>How it Works:</h3>
       <p>
-        Our sea freight service covers the entire shipping process from port to port, depending on your needs. We handle all logistics, including container booking, loading, and customs clearance, ensuring that your goods are shipped efficiently and arrive on time.
+      Groupage allows multiple clients to consolidate their goods into one container. SFGL takes care 
+      of the logistics, ensuring that each client’s cargo is delivered safely and promptly.
       </p>
       </div>
        
@@ -47,10 +52,10 @@ const Groupage = () => {
       <h3>Ideal For:</h3>
       <ul>
         <li><ShopOutlined style={{ color: '#004d80', marginRight: '8px' }} />
-          <strong>Businesses needing full logistics support</strong>
+          <strong>Small and medium businesses</strong>
         </li>
         <li><SmileOutlined style={{ color: '#004d80', marginRight: '8px' }} />
-          <strong>Clients looking for a stress-free shipping experience</strong>
+          <strong>Importers and exporters looking to minimize shipping costs.</strong>
         </li>
       </ul>
       </div>

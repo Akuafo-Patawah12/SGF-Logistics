@@ -32,8 +32,11 @@ const Procurement = () => {
         <div>
       <h3>Key Benefits:</h3>
       <ul>
-        <li><strong>Cost-Effective:</strong> Sea freight is the most economical option for large and heavy shipments.</li>
-        <li><strong>Large Capacity:</strong> Ideal for businesses with bulk shipments, ensuring that even the largest orders are handled efficiently.</li>
+        <li><strong>Free of Charge:</strong> No cost to participate in our valuable training programs.</li>
+        <li><strong>Led by Experts:</strong> Our training sessions are led by professionals with years of experience 
+        in procurement and international trade.</li>
+        <li><strong>Practical Knowledge:</strong> Learn actionable strategies to optimize your procurement 
+        processes and sourcing decisions.</li>
       </ul>
       </div>
 
