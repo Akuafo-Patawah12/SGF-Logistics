@@ -1,9 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { useLocation,Link } from 'react-router-dom'
 import "../Home.css"
 
 const ServicesComponent = () => {
+   const location = useLocation();
   return (
     <motion.section
           initial={{ opacity: 0, y: 100 }} // Start off-screen to the left (-200px)
@@ -15,13 +16,14 @@ const ServicesComponent = () => {
           
           <div
               
-           style={{position:"relative"}} className="hover_parent parent1">
-             <img src='./SFG_images/Sea.jpg' alt=''></img>
-             <div  className="hover_to_display0">
-             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Sea Freight</h4><br/>
-             <Link to={"/Services/SeaFreight"}> <button>View More</button></Link>
+              style={{position:"relative"}} className="hover_parent parent1">
+                <img src='./SFG_images/Sea.jpg' alt=''></img>
+                <div  className="hover_to_display0">
+                <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Sea Freight</h4><br/>
+                <Link to={"/Services/SeaFreight"}> <button>View More</button></Link>
+                </div>
              </div>
-          </div>
+   
 
 
           <div style={{position:"relative"}}  className="hover_parent parent2">
@@ -51,6 +53,28 @@ const ServicesComponent = () => {
              <Link to={"/Services/Clearance"}><button>View More</button></Link>
              </div>
           </div>
+
+          {location.pathname === "/Services" && (<div
+              
+              style={{position:"relative"}} className="hover_parent parent1">
+                <img src='./SFG_images/procurement.jpg' alt=''></img>
+                <div  className="hover_to_display">
+                <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Free Procurement & Sourcing Training</h4><br/>
+                <Link to={"/Services/Procurement"}> <button>View More</button></Link>
+                </div>
+             </div>)}
+
+             {location.pathname === "/Services" && (<div
+              
+              style={{position:"relative"}} className="hover_parent parent1">
+                <img src='./SFG_images/groupage.jpg' alt=''></img>
+                <div  className="hover_to_display">
+                <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Groupage Services</h4><br/>
+                <Link to={"/Services/Groupage"}> <button>View More</button></Link>
+                </div>
+             </div>)}
+   
+   
        </motion.section>
   )
 }

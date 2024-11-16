@@ -7,8 +7,8 @@ const Door2door = () => {
   return (
     <div className="cont" >
       <div className='Freight_image_header'>
-           <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",fontSize:"40px",fontWeight:"700",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
-                Door To Door Delivery
+           <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
+           <p style={{fontSize:"40px",fontWeight:"700",textAlign:"center",width:"",marginInline:"auto"}}>Door To Door Delivery.</p>
            </section>
 
            

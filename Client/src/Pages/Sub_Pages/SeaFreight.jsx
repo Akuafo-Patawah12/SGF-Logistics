@@ -8,8 +8,8 @@ const SeaFreight = () => {
   return (
     <div className="cont">
       <div className='Freight_image_header'>
-           <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",fontSize:"40px",fontWeight:"700",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
-                Sea Freight Services
+           <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
+           <p style={{fontSize:"40px",fontWeight:"700",textAlign:"center",width:"",marginInline:"auto"}}>Sea Freight Services</p>
            </section>
 
            
