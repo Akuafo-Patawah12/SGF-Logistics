@@ -43,7 +43,8 @@ const Procurement = () => {
       <div>
       <h3>How it Works:</h3>
       <p>
-        Our sea freight service covers the entire shipping process from port to port, depending on your needs. We handle all logistics, including container booking, loading, and customs clearance, ensuring that your goods are shipped efficiently and arrive on time.
+      Learn actionable strategies to optimize your procurement 
+      processes and sourcing decisions.
       </p>
       </div>
       
