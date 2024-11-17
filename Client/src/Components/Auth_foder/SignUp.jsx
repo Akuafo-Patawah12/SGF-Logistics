@@ -75,7 +75,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container">
+    
       <form className="signup-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
 
@@ -130,7 +130,7 @@ const SignUp = () => {
         <button type="submit" className="form_button">Sign Up</button>
         {success && <p className="success-message">Sign-up successful!</p>}
       </form>
-      </div>
+     
     
   );
 };

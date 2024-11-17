@@ -107,7 +107,7 @@ const Login = () => {
       }
       };
   return (
-    <div className="container">
+    
       
     <form  className="login-form" onSubmit={handleSubmit}>
     <h2>Login</h2>
@@ -156,10 +156,11 @@ const Login = () => {
     
    <div className=".form-group">
     <button type="submit" className="form_button"><span>Login</span> {loader && <span><ButtonLoader /></span>}</button>
+    <p>Don't have an account?</p>
     </div>
     {success && <p className="success-message">Login successful!</p>}
   </form>
-  </div>
+ 
   )
 }
 

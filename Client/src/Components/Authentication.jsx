@@ -1,10 +1,11 @@
-import React,{useRef,useState} from 'react'
+import React,{useRef,useState,useEffect} from 'react'
 import "./Components.css"
-import { CloseOutlined } from '@ant-design/icons'
+
 import SignUp from './Auth_foder/SignUp'
 import Login from './Auth_foder/Login'
-const Authentication = ({authShow}) => {
-    const [showAuth,setShowAuth] =authShow
+import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
+const Authentication = () => {
+    
     
     const parentRef= useRef()
     const formRef1= useRef()
@@ -33,17 +34,29 @@ const Authentication = ({authShow}) => {
      
 
     }
+
+
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowHeight(window.innerHeight);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
   return (
     <div className='auth_container'>
         <div className="auth">
         <div className='auth_routes'>
+        <SvgIcon />
             <section>
-                <button onClick={()=> slider(0)} >Sign up</button>
-                <button onClick={()=> slider(1)}>Login</button>
+                <button onClick={()=> slider(0)} className="auth_link" >Sign up</button>
+                <button onClick={()=> slider(1)} className="auth_link">Login</button>
             </section>
-                <button onClick={()=>{setShowAuth(false)}}><CloseOutlined/></button>
+
         </div>
-     <section ref={parentRef} className='auth_slider'>
+     <section ref={parentRef} className='auth_slider' style={{ height: `${windowHeight}px` }}>
         <div  ref={formRef1} className='slide'>
             <SignUp />
         </div >

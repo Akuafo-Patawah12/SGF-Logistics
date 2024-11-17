@@ -3,7 +3,8 @@ import { Routes,Route } from "react-router-dom";
 import './App.css';
 import Layout from "./Layouts/Layout";
 import AdminDashboard from "./Pages/AdminDashbord";
-import Login from "./Components/Auth_foder/Login";
+
+import Authentication from "./Components/Authentication";
 
 
 
@@ -22,7 +23,7 @@ function App() {
                           <AdminDashboard />   
                         } 
                     />
-        <Route path="/Login"  element={<Login/>} />
+        <Route path="/Auth"  element={<Authentication/>} />
          <Route path="/*" element={<Layout />} />
       </Routes>
 
