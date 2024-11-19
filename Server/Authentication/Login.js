@@ -7,13 +7,13 @@ async function login(req,res){
    
     
     const {email,password,rememberMe }= req.body.formData   //grabing user credentials from the client side.
-    console.log(email,password)
+     
     try{
         const email_Exist=  await data.findOne({email:email}); /* check whether the email exist in the database 
        and store it in email exist variable */
        const password_Is_Correct = await  bcrypt.compare(password, email_Exist.password);
         
-      console.log(email_Exist)
+      
        if (email_Exist=== null || "") {
           res.status(404).json({ message: "invalid email" }); // Email not found
           return

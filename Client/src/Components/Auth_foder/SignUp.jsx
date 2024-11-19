@@ -124,7 +124,7 @@ const SignUp = () => {
             onChange={handleChange}
             placeholder="Confirm password"
           />
-          {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
+          {errors.confirmPassword && <span className="error">{errors?.confirmPassword}</span>}
         </div>
 
         <button type="submit" className="form_button">Sign Up</button>

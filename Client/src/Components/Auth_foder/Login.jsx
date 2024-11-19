@@ -79,27 +79,15 @@ const Login = () => {
           localStorage.setItem('accesstoken', data.accessToken);
           navigate("/Orders")
           }
-          if(data.message==="Logged in as an admin")
+          if(data.message==="Logged in as an admin"){
             setLoader(false)
           setSuccess(true);
           localStorage.setItem('accesstoken', data.accessToken);
           navigate("/AdminDashboard")
         }
-
-         if (Object.keys(validationErrors).length === 0) {
-          if(data.message==="Logged in as a client" ){
-            setLoader(false)
-          setSuccess(true);
-          localStorage.setItem('accesstoken', data.accessToken);
-          navigate("/Orders")
-          }
-          if(data.message==="Logged in as an admin"){
-            setLoader(false)
-          setSuccess(true);
-          localStorage.setItem('accesstoken', data.accessToken);
-          navigate("/Dashboard")
-        }
       }
+
+        
 
       }catch(error){
         setLoader(false)
@@ -155,7 +143,7 @@ const Login = () => {
 
     
    <div className=".form-group">
-    <button type="submit" className="form_button"><span>Login</span> {loader && <span><ButtonLoader /></span>}</button>
+    <button type="submit" className="form_button" style={{cursor:`${loader? "not-allowed":"pointer"}`}} disabled={loader?true:false}><span>Login</span> {loader && <span><ButtonLoader /></span>}</button>
     <p>Don't have an account?</p>
     </div>
     {success && <p className="success-message">Login successful!</p>}

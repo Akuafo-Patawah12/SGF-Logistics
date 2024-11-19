@@ -63,7 +63,7 @@ const [creatingOrder,setCreatingOrder]= useState(false);
 
 
     const [isOpen, setIsOpen] = useState(false);
-const [items, setItems] = useState([{ itemName: '', quantity: 1 }]);
+
 const [orderInfo,setOrderInfo] = useState(
   {
     fullname:"",
@@ -82,14 +82,10 @@ const togglePopup = () => {
   setIsOpen(!isOpen);
 };
 
-const handleItemChange = (index, field, value) => {
-  const newItems = [...items];
-  newItems[index][field] = value;
-  setItems(newItems);
-};
+
 
 const addItem = () => {
-  setItems([...items, { itemName: '', quantity: 1 ,CBM:"",dimension:""}]);
+  setItems([...items, {  description: "", trackingNo: "", ctnNo: "", cbm: "", amount: "" }]);
 };
 
 const removeItem = (index) => {
@@ -105,7 +101,7 @@ const handleSubmit = (e) => {
   
   // Reset form
   
-  setItems([{itemName: '', quantity: 1 ,CBM:""}]);
+  setItems([{ description: "", trackingNo: "", ctnNo: "", cbm: "", amount: "" }]);
   togglePopup();
 };
 
@@ -118,16 +114,110 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
       
   }
 
-  const [invoiceNumber, setInvoiceNumber] = useState('');
+
+
+  
+
+  const [invoiceNumber, setInvoiceNumber] = useState("");
+  const [invoiceDate, setInvoiceDate] = useState("");
+  const [invoiceDueDate, setInvoiceDueDate] = useState("");
+  
+
+  const[total,setTotal] =useState(0)
+  
+  const [items, setItems] = useState([
+      { description: "", trackingNo: "", ctnNo: "", cbm: "", Amount: "",length:"",width:"",height:"" }
+  ]);
+
+  // Generate a random invoice number
+  const generateInvoiceNumber = () => {
+      const invNumber = 'INV-' + Math.floor(100000 + Math.random() * 900000);
+      setInvoiceNumber(invNumber);
+  };
+
+  // Format the date to dd/mm/yyyy
+  const formatDateToDDMMYYYY = (date) => {
+      let dd = date.getDate();
+      let mm = date.getMonth() + 1; // Months are zero-based
+      const yyyy = date.getFullYear();
+
+      // Ensure two digits for day and month
+      if (dd < 10) dd = '0' + dd;
+      if (mm < 10) mm = '0' + mm;
+
+      return `${dd}/${mm}/${yyyy}`;
+  };
 
   useEffect(() => {
-    // Generate a UUID as the invoice number when the component mounts
-    const generatedInvoiceNumber = crypto.randomUUID().replace(/-/g, '').slice(0, 8);
-    setInvoiceNumber(generatedInvoiceNumber);
+    const newTotal = items.reduce((sum, row) => {
+      const amount = parseFloat(row.Amount) || 0;
+      return sum + amount;
+    }, 0);
+    setTotal(newTotal.toFixed(2));
+  }, [items]); // Only rerun when items change
+
+  function calculateCBM(index) {
+    // Create a new array to avoid mutating the state directly
+    const newItems = [...items];
+    
+    // Calculate CBM based on dimensions
+    const cbm = items[index].length * items[index].width * items[index].height;
+    newItems[index]["cbm"] = cbm.toFixed(3);
+
+    // Calculate the amount based on CBM
+    const amount = cbm * 230;
+    newItems[index]["Amount"] = amount.toFixed(2);
+
+    // Update the items state, which will trigger the effect to recalculate the total
+    setItems(newItems);
+  }
+
+  
+
+  // Set the current date as Invoice Date and format it
+  const setInvoice_date = () => {
+      const today = new Date();
+      setInvoiceDate(formatDateToDDMMYYYY(today));
+      setInvoiceDueDate(formatDateToDDMMYYYY(new Date(today.setDate(today.getDate() + 3))));
+  };
+
+
+ 
+
+  // Handle input changes for item rows
+  const handleInputChange = (index, event) => {
+      const { name, value } = event.target;
+      const newItems = [...items];
+      newItems[index][name] = value;
+
+      if (name === "length" || name === "width" || name === "height") {
+          const length = parseFloat(newItems[index].length || 0);
+          const width = parseFloat(newItems[index].width || 0);
+          const height = parseFloat(newItems[index].height || 0);
+          const cbm = (length * width * height).toFixed(3);
+          newItems[index].cbm = cbm;
+
+          // Calculate amount (example rate: $230 per CBM)
+          newItems[index].Amount = (cbm * 230).toFixed(2);
+      }
+
+      setItems(newItems);
+  };
+
+  // Initialize on component mount
+  useEffect(() => {
+      generateInvoiceNumber();
+      setInvoice_date();
   }, []);
 
 
   const [showPopup, setShowPopup] = useState(false);
+
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleDimensions = (index) => {
+    setActiveIndex(activeIndex === index ? null : index); // Toggle visibility
+  };
   return (
     <div style={{marginTop:"90px"}}>
         <div className="background-image">
@@ -183,66 +273,163 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   <button style={{marginTop:"5px",width:"90%",paddingBlock:"5px",marginLeft:"5%"}}>#{invoiceNumber}</button>
                   </div>
                   <p style={{marginTop:"30px",borderBottom:"4px solid #eee",paddingBottom:"10px"}}>Shipments Details</p>
-                  <section style={{border:"1px solid #ddd"}}>
-                  <label  style={{display:"block", color:"#bbb",fontWeight:"600",marginBlock:"8px"}}>Items</label>
-                  {items.map((item, index) => (
-                    <div key={index}  style={{marginBlock:"8px",padding:"5px 10px",display:"flex",alignItems:"center",border:"1px solid #ddd",borderInline:"none"}}>
-                      <input
-                        className="input"
+                  <section style={{border:"1px solid #ddd"}} className='hero'>
+    <table className="details-table">
+  <thead>
+    <tr>
+      <th>DESCRIPTION</th>
+      <th>TRACKING NO.</th>
+      <th>CTN NO.</th>
+      <th>CBM</th>
+      <th>Amount $</th>
+    </tr>
+  </thead>
+  <tbody>
+    {items.map((item, index) => (
+      <tr key={index} className="table-row">
+        <td>
+          <input
+            type="text"
+            name="description"
+            value={item.description}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="trackingNo"
+            value={item.trackingNo}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="ctnNo"
+            value={item.ctnNo}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="cbm"
+            placeholder="Dimension"
+            value={item.cbm}
+            onChange={(e) => handleInputChange(index, e)}
+            disabled
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            name="amount"
+            value={item.Amount}
+            onChange={(e) => handleInputChange(index, e)}
+            disabled
+          />
+        </td>
+        <td>
+          <button
+            type="button"
+            className="remove-item-button"
+            onClick={() => removeItem(index)}
+          >
+            &times;
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
-                        
-                        type="text"
-                        placeholder="Item name"
-                        value={item.itemName}
-                        onChange={(e) => handleItemChange(index, 'itemName', e.target.value)}
-                      />
-                      <input
-                        className="input"
-                        type="number"
-                        min="1"
-                        placeholder="Qty"
-                        value={item.quantity}
-                        onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
-                      />
 
-                      <input
-                        className="input"
+{items.map((item, index) => (
+  <div key={index} className="table">
+  <section>
+          <input
+            type="text"
+            name="description"
+            placeholder="Description"
+            value={item.description}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </section>
+        <section>
+          <input
+            type="text"
+            name="trackingNo"
+            placeholder='Tracking No.'
+            value={item.trackingNo}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </section>
+        <section>
+          <input
+            type="text"
+            name="ctnNo"
+            placeholder="Ctn No."
+            value={item.ctnNo}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </section>
+        <section>
+          <input
+            type="text"
+            name="cbm"
+            placeholder="CBM"
+            value={item.cbm}
 
-                        
-                        type="text"
-                        placeholder="CBM"
-                        value={item.CBM}
-                        onChange={(e) => handleItemChange(index, 'CBM', e.target.value)}
-                      />
-                      
-                      <button
-                        type="button"
-                        style={{color:"red"}}
-                        onClick={() => removeItem(index)}
-                      >
-                        &times;
-                      </button>
-                    </div>
-                  ))}
-                  <section style={{display:"flex",padding:"0 2%",gap:"5%",justifyContent:"space-between" ,width:"96%",}}>
-                      <input type="text" 
-                       className='input_location'
-                       
-                       name="location" 
-                       id="origin" 
-                       onChange={(e)=>{setOrderInfo({...orderInfo,origin:e.target.value})}}
-                       placeholder='Origin'
-                       
-                       />
+            onChange={(e) => handleInputChange(index, e)}
+          />
+          <button className="dimensions" type="button" onClick={() => toggleDimensions(index)} >Add dimensions</button>
+        </section>
+        <section>
+          <input
+            type="text"
+            name="amount"
+            placeholder="Amount $"
+            value={item.Amount}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+        </section>
+        {activeIndex === index && (<div className='dimen-container'>
+        
+        <div className="dimen">
+          <input type='number' placeholder='Width'
+            name="width"
+            value={item.width}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+          <input type='number' placeholder='Height'
+            name="height"
+            value={item.height}
+            onChange={(e) => handleInputChange(index, e)}
+          />
+          <input type='number' placeholder='Length'
+            name="length"
+            value={item.length}
+            onChange={(e) => handleInputChange(index, e)}
+          />
 
-                      <input type="text" 
-                      className='input_location'
-                      
-                      name="location" 
-                      id="destination"
-                      onChange={(e)=>{setOrderInfo({...orderInfo,destination:e.target.value})}}
-                       placeholder='Destination'/>
-                  </section>
+          <button type="button" onClick={()=> calculateCBM(index)}>Add</button>
+        </div>
+        </div>)}
+
+
+        <section>
+          <button
+            type="button"
+            className="remove-item-button"
+            onClick={() => removeItem(index)}
+          >
+            &times;
+          </button>
+        </section>
+  </div>
+))}
+                 
                   
                   <button
                     type="button"
@@ -252,6 +439,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                     <PlusOutlined />
                     Add Item
                   </button>
+                  <div>{total}</div>
                   </section>
                 </div>
                 
@@ -283,12 +471,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </div>
                   </div>
                 </section>
-                <div style={{display:"flex",flexDirection:"column"}}>
-                  <textarea cols="30" rows="5"
-                  onChange={(e)=>{setOrderInfo({...orderInfo,additional_info:e.target.value})}}
-                  style={{maxWidth:"100%",background:"#eee",border:"1px solid #ddd",borderRadius:"5px",fontSize:"15px"}} placeholder="Add description about items here"></textarea>
-                  <label className='shipment_note'>Please provide any additional information that may be helpful in providing an accurate quote.</label>
-                </div>
+            
 
                 <div class="order_note">
             <h3>Note:</h3>
