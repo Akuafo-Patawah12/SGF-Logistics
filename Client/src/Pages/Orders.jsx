@@ -349,6 +349,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
 {items.map((item, index) => (
   <div key={index} className="table">
+  
   <section>
           <input
             type="text"
@@ -399,6 +400,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
         {activeIndex === index && (<div className='dimen-container'>
         
         <div className="dimen">
+        <div className="dimen-index">{index+1}</div>
         <button type="button" onClick={()=> toggleDimensions(index)} className='close-dimen'>X</button>
           <input type='number' placeholder='Width'
             name="width"
@@ -430,6 +432,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             &times;
           </button>
         </section>
+        <div className='table-index'>{index + 1}</div>
   </div>
 ))}
                  

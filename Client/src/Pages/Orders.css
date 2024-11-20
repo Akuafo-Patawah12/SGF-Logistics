@@ -188,6 +188,14 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         }
 
     }
+    .dimen-index{
+        background: #A7C756;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        line-height: 1.5rem;
+        border-radius: 50%;
+    }
 
     .details-table thead {
         display: none; /* Hide table headers on small screens */
@@ -202,6 +210,19 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         background: #fff;
         margin-inline: auto;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .table-index{
+        position: absolute;
+        top: 5px;
+        left: 5%;
+        background: #c8e286;
+        color: #fff;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 1.2rem;
       }
       .table section{
         display: flex;
@@ -241,10 +262,12 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         top: 5px;
         right: 5%;
       }
-      .table section:nth-child(4){
-      position: relative;
-    }
       
+    .table  section:nth-child(4){
+      position: relative;
+
+    }
+
     .dimensions{
         position: absolute;
         right: 6%;
@@ -255,6 +278,8 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         background: #ddd;
         border: none;
     }
+      
+    
 
     .dimen-container{
         position: fixed;
