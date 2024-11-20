@@ -125,6 +125,12 @@
 
     
    .table{display: none;}
+
+   input:focus{
+    outline: none;
+border-color:  #A7C756; /* Border color on focus */
+box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
+}
     
 
     @media (max-width: 500px){
@@ -166,13 +172,20 @@
     }
 
     .order_note{
-        width: 92%;
+        width: 84%;
         border: 2px dashed red;
-        padding: 10px 4%;
+        padding-inline: 10% 5%;
+        padding-block: 10px;
+
         border-radius: 10px;
         margin-top: 20px;
-        font-size: 15px;
+        
+
+        & li{
+            margin-bottom: 10px;
+            font-size: 16px;
         font-weight: 400;
+        }
 
     }
 
@@ -211,15 +224,13 @@
             border-radius: 5px;
             border:1px solid #ddd;
         }
-        & input:focus{
-            outline: none;
-    border-color:  #A7C756; /* Border color on focus */
-    box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
-        }
+       
       }
 
       .hero{
         background: #eee;
+        border-radius: 10px;
+        padding-top: 20px;
       }
   
       table{
@@ -258,17 +269,56 @@
     .dimen{
         display: flex;
         gap: 10px;
+        position: relative;
         flex-direction: column;
         background: white;
         padding: 20px;
         width: 200px;
         border-radius: 5px;
-        box-shadow: 0 0 5px rgba(145, 205, 132, 0.3);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
         & input{
-            padding-block: 5px;
+            padding-block: 7px;
+            padding-inline: 10px;
+            border: 1px solid #ddd;
             border-radius: inherit;
         }
+
+        
+    }
+    .close-dimen{
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        color: red;
+        border: 1px solid #ccc;
+    }
+
+    .total{
+        width: 90%;
+        margin-inline: auto;
+        background-color: #fff;
+        border-radius: 10px;
+        display: flex;
+        height: 40px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .total section:first-child{
+        height: 100%;
+        width: 30%;
+        border-right: 1px solid #ddd;
+        line-height: 2.5rem;
+        text-align: center;
+    }
+    .total section:last-child{
+        height: 100%;
+        width: 70%;
+        
+        line-height: 2.5rem;
+        text-align: center;
     }
       
   

@@ -218,6 +218,8 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
   const toggleDimensions = (index) => {
     setActiveIndex(activeIndex === index ? null : index); // Toggle visibility
   };
+  
+
   return (
     <div style={{marginTop:"90px"}}>
         <div className="background-image">
@@ -272,7 +274,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   <div style={{marginLeft:"5%"}}>Invoice number</div>
                   <button style={{marginTop:"5px",width:"90%",paddingBlock:"5px",marginLeft:"5%"}}>#{invoiceNumber}</button>
                   </div>
-                  <p style={{marginTop:"30px",borderBottom:"4px solid #eee",paddingBottom:"10px"}}>Shipments Details</p>
+                  <p style={{marginTop:"30px",paddingBottom:"10px"}}>Shipments Details</p>
                   <section style={{border:"1px solid #ddd"}} className='hero'>
     <table className="details-table">
   <thead>
@@ -397,6 +399,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
         {activeIndex === index && (<div className='dimen-container'>
         
         <div className="dimen">
+        <button type="button" onClick={()=> toggleDimensions(index)} className='close-dimen'>X</button>
           <input type='number' placeholder='Width'
             name="width"
             value={item.width}
@@ -430,7 +433,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
   </div>
 ))}
                  
-                  
+<div className="total">
+  <section>Total</section>
+  <section>${total}</section>
+</div>   
                   <button
                     type="button"
                     className="add_btn"
@@ -439,7 +445,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                     <PlusOutlined />
                     Add Item
                   </button>
-                  <div>{total}</div>
+                 
                   </section>
                 </div>
                 
@@ -473,10 +479,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                 </section>
             
 
-                <div class="order_note">
+            <div class="order_note">
             <h3>Note:</h3>
             <ol>
-                <li>SFGL does NOT ship contraband goods. Your goods will be security checked...</li>
+                <li>SFGL does not ship contraband goods. Your goods will be security checked.</li>
                 <li>Our departure timelines are subject to cargo availability.</li>
                 <li>Ship transit times may change without recourse to us.</li>
                 <li>Cargo may require inspection by customs and other regulatory bodies at their instance and time.</li>
@@ -506,8 +512,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                     style={{display:"flex",gap:"5px",background:"#A7C756",border:"none",color:"white",paddingBlock:"8px",paddingInline:"16px",borderRadius:"10px"}}
             
                   >
-                    Continue
-                     <SendOutlined />
+                    Make Payment
                   </button>
                 </div>
               </form>
