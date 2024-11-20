@@ -324,7 +324,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             placeholder="Dimension"
             value={item.cbm}
             onChange={(e) => handleInputChange(index, e)}
-            disabled
+            disabled={true}
           />
         </td>
         <td>
@@ -333,7 +333,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             name="amount"
             value={item.Amount}
             onChange={(e) => handleInputChange(index, e)}
-            disabled
+            disabled={true}
           />
         </td>
         <td>
@@ -387,7 +387,8 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             name="cbm"
             placeholder="CBM"
             value={item.cbm}
-
+            disabled={true}
+            style={{cursor:"not-allowed"}}
             onChange={(e) => handleInputChange(index, e)}
           />
           <button className="dimensions" type="button" onClick={() => toggleDimensions(index)} >Add dimensions</button>
@@ -398,7 +399,9 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             name="amount"
             placeholder="Amount $"
             value={item.Amount}
+            style={{cursor:"not-allowed"}}
             onChange={(e) => handleInputChange(index, e)}
+            disabled={true}
           />
         </section>
         {activeIndex === index && (<div className='dimen-container'>
