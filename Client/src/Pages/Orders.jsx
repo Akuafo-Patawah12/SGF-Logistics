@@ -170,6 +170,8 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
     // Update the items state, which will trigger the effect to recalculate the total
     setItems(newItems);
+    setActiveIndex(activeIndex === index ? null : index);
+
   }
 
   
@@ -271,8 +273,10 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </div>
 
                   <div className='invoice_details' >
-                  <div style={{marginLeft:"5%"}}>Invoice number</div>
-                  <button style={{marginTop:"5px",width:"90%",paddingBlock:"5px",marginLeft:"5%"}}>#{invoiceNumber}</button>
+                  
+                  <button>Invoice<br/> number <br/>{invoiceNumber} <div className="wear-off wear_1"></div></button>
+                  <button>Invoice Date: {invoiceDate}</button>
+                  <button>Invoice Due Date: {invoiceDueDate} <div className="wear-off wear_2"></div></button>
                   </div>
                   <p style={{marginTop:"30px",paddingBottom:"10px"}}>Shipments Details</p>
                   <section style={{border:"1px solid #ddd"}} className='hero'>
@@ -452,34 +456,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </section>
                 </div>
                 
-                <section style={{border:"1px solid #ddd",padding:"10px 0",borderRadius:"5px",marginBottom:"20px"}}>
-                  <div style={{borderBottom:"1px solid #ddd",marginBottom:"10px",paddingBottom:"5px",paddingLeft:"5px"}}>Special handling</div>
-                  
-                  <div  className='field'>
-                  <div>
-                  <label className="label">
-                  <input type="checkbox" ></input>
-                  Hazardious
-                  </label>
-                  </div>
-
-                  
-                  
-                  <div>
-                  <label className="label">
-                  <input type="checkbox" ></input>
-                  Temperature Sensity
-                  </label>
-                  </div>
-                  
-                  <div>
-                  <label className="label">
-                  <input type="checkbox" ></input>
-                  Fragile
-                  </label>
-                  </div>
-                  </div>
-                </section>
+                
             
 
             <div class="order_note">

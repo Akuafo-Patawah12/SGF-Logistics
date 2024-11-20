@@ -160,15 +160,52 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         }
 
         .invoice_details{
-           
-            width: 100%;
-           
-           
-            padding-block: 20px;
+           display: grid;
+           grid-template-columns: repeat(3,1fr);
+           grid-gap: 2%;
+            width: 93%;
+            padding: 20px 3.5%;
+            background: #f8faf2;
             border: 1px solid #ddd;
             border-top: none;
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
+
+            & button{
+                height: 120px;
+                background-color: white;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border: 1px solid #ddd;
+                margin-top: 5px;
+                border-radius: 10px;
+                font-size: 14px;
+                position: relative;
+                color: #665;
+                
+            }
+    }
+    .wear-off{
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        
+        z-index: 1;
+        
+    }
+    .wear_1{
+        top: 0;
+        left: 0;
+        border-radius: 10px 0 10px 0;
+        background: linear-gradient(to left,#ddd,#fff);
+
+        
+    }
+    .wear_2{
+        top: 0;
+        right: 0;
+        border-radius: 0 10px 0 10px ;
+        background: linear-gradient(to right,#ddd,#fff);
+        
     }
 
     .order_note{
@@ -197,9 +234,7 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         border-radius: 50%;
     }
 
-    .details-table thead {
-        display: none; /* Hide table headers on small screens */
-      }
+    
       .table{
         display: block;
         position: relative;
