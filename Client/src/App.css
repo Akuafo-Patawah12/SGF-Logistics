@@ -167,7 +167,7 @@ footer a{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 2em;
+  padding-bottom: 0.5em;
 }
 .About{
   display: none;
@@ -187,20 +187,17 @@ footer a{
   }
 }
 
-.details{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
 
 .company_info{
   display: none;
 }
 
 .socials_media_handles{
+  border-radius: 20px;
   padding-block: 5px;
   background: #251D1D;
-  margin-top: 1.5rem;
+  margin-top: .5rem;
+  text-align: center;
   
 
   & a{
@@ -286,7 +283,7 @@ footer a{
 
 @media (max-width: 568px){
   *{
-    font-size: 17px;
+    font-size: 15px;
   }
   .nav{
     display: flex;

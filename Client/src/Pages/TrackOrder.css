@@ -1,9 +1,11 @@
 .line_map{
     width: 81%;
-    background: #eee;
+    border-radius: 5px;
+
+    background: linear-gradient(to left,#eee,#ddd,#eee);
     overflow-x: auto;
     margin-inline: auto;
-    padding: 50px 7%;
+    padding: 50px 7%; 
 }
 
 .line{
@@ -77,6 +79,7 @@
     margin-inline: auto;
     width: fit-content;
     padding: 5px;
+    border-radius: 5px;
 
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./TrackOrder.css"
 import  { useState } from "react";
-import Map, { Marker, Popup } from "react-map-gl";
+import Map, { Marker,  NavigationControl } from "react-map-gl";
 import { useParams } from 'react-router-dom'
 import { CheckCircleOutlined ,EnvironmentOutlined } from '@ant-design/icons'
 
@@ -52,7 +52,7 @@ const TrackOrder = () => {
 
         </section>
         </div>
-          <a href='#Map' style={{marginInline:"auto",marginTop:"30px"}}><button className='route_button'>ROUTE MAP <EnvironmentOutlined /> </button></a>
+          <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'>ROUTE MAP <EnvironmentOutlined /> </button></a></div>
         
         <Map
       initialViewState={viewport}
@@ -64,6 +64,10 @@ const TrackOrder = () => {
       <Marker latitude={37.7749} longitude={-122.4194}>
         <div>📍</div>
       </Marker>
+
+     
+
+<NavigationControl position="top-right" />
       {/* Add Popup or other components here */}
     </Map>  
     </div>
