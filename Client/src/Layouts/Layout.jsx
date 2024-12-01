@@ -98,7 +98,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-<Route path='/Invoice' element={
+                 <Route path='/Invoice' element={
                         <Suspense fallback={<Loader />}>
                           <Invoice />   
                         </Suspense>} 

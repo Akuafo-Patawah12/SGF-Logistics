@@ -357,7 +357,7 @@ const [value, setValue] = useState(0);  // State to hold the value
             China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
             and experience the SFGL difference. 
           </p>
-          <Link><button className='welcome_button'>GET IN TOUCH</button></Link>
+          <Link to={"/Auth"}><button className='welcome_button'>GET STARTED</button></Link>
          </motion.div>
          <div className='welcome_image'>
          

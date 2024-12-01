@@ -73,7 +73,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
           </nav> 
      
       <div style={{marginRight:"3px",display:"flex",alignItems:"center",gap:"4px"}}>
-      <Link to={"/Auth"}><button  className="shipment_btn" style={{border:"none",background:"rgb(213, 35, 35)",borderRadius:"10px",paddingInline:"10px",color:"#fff",fontWeight:"500"}}>Get Started</button></Link>
+     <button  className="shipment_btn" style={{border:"none",background:"rgb(213, 35, 35)",borderRadius:"10px",paddingInline:"10px",color:"#fff",fontWeight:"500"}} onClick={()=> setTrack(true)}>Track shipment</button>
 
 
 

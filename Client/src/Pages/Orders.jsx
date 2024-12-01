@@ -2,6 +2,9 @@ import React,{useEffect, useState,useMemo} from 'react'
 import io from "socket.io-client"
 import {v4} from "uuid"
 import { useNavigate } from 'react-router-dom'
+// Add this to your entry point, e.g., index.js or App.js
+
+
 
 
 
@@ -10,6 +13,9 @@ import "./Orders.css"
 import ButtonLoader from '../Icons/ButtonLoader'
 import { PlusOutlined, SendOutlined } from '@ant-design/icons'
 import PaymentPopUp from './Components/PaymentPopUp'
+
+
+
 
 
 const Orders = () => {
@@ -237,6 +243,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
 
         <div>
         <div  style={{padding:"16px"}}>
+        {process.env.REACT_APP_MAPBOX_TOKEN}
               <form onSubmit={handleSubmit}>
 
                 <div  style={{marginBlock:"16px"}}>
