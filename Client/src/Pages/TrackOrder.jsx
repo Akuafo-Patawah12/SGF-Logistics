@@ -15,18 +15,7 @@ const TrackOrder = () => {
   return (
     <div style={{marginTop:"90px"}}>
 
-<Map
-      initialViewState={viewport}
-      style={{ width: "100%", height: "300px" }}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken="pk.eyJ1IjoiYWt1YWZvLTEiLCJhIjoiY200MXhxNnJrMDQzNjJrcjAzbXg4cTliMCJ9.6cwG6dff4E2UjnQz7q963A"
 
-    >
-      <Marker latitude={37.7749} longitude={-122.4194}>
-        <div>📍</div>
-      </Marker>
-      {/* Add Popup or other components here */}
-    </Map>
         <p>{id}</p>
         <div className="line_map">
         <section className="line">
@@ -63,8 +52,20 @@ const TrackOrder = () => {
 
         </section>
         </div>
-          <a href='#Map'><button className='route_button'>ROUTE MAP <EnvironmentOutlined /> </button></a>
-        <section className="Map" id="Map"></section>
+          <a href='#Map' style={{marginInline:"auto",marginTop:"30px"}}><button className='route_button'>ROUTE MAP <EnvironmentOutlined /> </button></a>
+        
+        <Map
+      initialViewState={viewport}
+      style={{ width: "100%", height:"400px",marginTop:"30px" }}
+      mapStyle="mapbox://styles/mapbox/streets-v11"
+      mapboxAccessToken="pk.eyJ1IjoiYWt1YWZvLTEiLCJhIjoiY200MXhxNnJrMDQzNjJrcjAzbXg4cTliMCJ9.6cwG6dff4E2UjnQz7q963A"
+      id="Map"
+    >
+      <Marker latitude={37.7749} longitude={-122.4194}>
+        <div>📍</div>
+      </Marker>
+      {/* Add Popup or other components here */}
+    </Map>  
     </div>
   )
 }
