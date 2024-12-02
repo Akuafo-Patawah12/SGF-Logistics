@@ -3,7 +3,9 @@ import "./TrackOrder.css"
 import  { useState } from "react";
 import Map, { Marker,  NavigationControl } from "react-map-gl";
 import { useParams } from 'react-router-dom'
+import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
 import { CheckCircleOutlined ,EnvironmentOutlined } from '@ant-design/icons'
+import { transform } from 'framer-motion';
 
 const TrackOrder = () => {
     const {id}= useParams()
@@ -18,6 +20,8 @@ const TrackOrder = () => {
 
         <p>{id}</p>
         <div className="line_map">
+        <div className="line_inner">
+        <div  className="ship"><ShipIcon style={{transform:"translateX(-25px)"}}/></div>
         <section className="line">
           <div className='current_city China'>
           <div><CheckCircleOutlined/> </div>
@@ -52,6 +56,7 @@ const TrackOrder = () => {
 
         </section>
         </div>
+        </div>
           <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'>ROUTE MAP <EnvironmentOutlined /> </button></a></div>
         
         <Map
@@ -62,7 +67,7 @@ const TrackOrder = () => {
       id="Map"
     >
       <Marker latitude={37.7749} longitude={-122.4194}>
-        <div>📍</div>
+        <div><ShipIcon/></div>
       </Marker>
 
      

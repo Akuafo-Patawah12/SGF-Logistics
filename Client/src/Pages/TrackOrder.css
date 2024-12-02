@@ -1,35 +1,58 @@
 .line_map{
-    width: 81%;
+    width: 95%;
     border-radius: 5px;
-
-    background: linear-gradient(to left,#eee,#ddd,#eee);
+    background: url("./../../public/SFG_images/map.jpg") no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    position: relative;
     overflow-x: auto;
     margin-inline: auto;
-    padding: 50px 7%; 
+    height: 400px;
+}
+
+.line_inner{
+    position: absolute;
+    display: flex;
+    padding-inline: 20px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    inset: 0;
+    min-width: 160%;
+    z-index: -1;
+    background: rgba(225,225, 225, 0.5);
 }
 
 .line{
     display: flex;
-    width: 160%;
+    min-width: 160%;
     margin-inline: auto;
-
+    
     
 }
 
 .line2{
     position: relative;
-    width: 160%;
+    min-width: 160%;
     padding:0 5px ;
     margin-inline: auto;
     margin-bottom: 40px;
+    isolation: isolate;
 
     & p{
         position: absolute;
         font-size: 14px;
+        z-index: 3;
         
     }
 
     
+}
+.ship{
+    padding:0 5px ;
+    min-width: 164%;
+    
+    margin-inline: auto;
 }
 
 .China div:first-child{
