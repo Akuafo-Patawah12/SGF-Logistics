@@ -68,12 +68,18 @@ const Layout = () => {
         },[]); 
 
 
+     
+
         
   return (
     <div>
 
         <Header buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop}/>
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
+
+        
+
+      
         <Tracking  track_comp={[trackPop,setTrackPop]} trackRef={trackRef}/>
             <Routes>
                 <Route path='/'  element={

@@ -1,5 +1,5 @@
 @import "mapbox-gl/dist/mapbox-gl.css";
-y
+
 
 *{
   margin: 0;
@@ -167,7 +167,7 @@ footer a{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 0.5em;
+  padding-bottom: 2em;
 }
 .About{
   display: none;
@@ -187,16 +187,25 @@ footer a{
   }
 }
 
+.details{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  & p{
+    font-size: 15px;
+  }
+}
 
 .company_info{
   display: none;
 }
 
 .socials_media_handles{
-  border-radius: 20px;
-  padding-block: 5px;
+  padding-block: 20px;
   background: #251D1D;
-  margin-top: .5rem;
+  margin-top: 1.5rem;
+  border-radius: 5px;
   text-align: center;
   
 
@@ -279,11 +288,38 @@ footer a{
   height: 60px;
 }
 
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: white;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  border-radius: 50%;
+  padding-left: 3px;
+  color: #444;
+  background-color: #fff;
+ border: 3px solid #A7C756;
+  cursor: pointer;
+  transition: border-width 0.3s ease-in-out; /* Smooth transition for border growth */
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 3;
+  text-align: center;
+}
+
+/* Hover effect for the back-to-top button */
+.back-to-top:hover {
+  background-color: #0056b3;
+}
+
 
 
 @media (max-width: 568px){
   *{
-    font-size: 15px;
+    font-size: 17px;
   }
   .nav{
     display: flex;
