@@ -33,7 +33,7 @@ const Login = () => {
 
        try{
 
-        const response = await fetch("http://localhost:4040", {
+        const response = await fetch("https://sgf-logistics-4.onrender.com", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -77,7 +77,11 @@ const Login = () => {
             setLoader(false)
           setSuccess(true);
           localStorage.setItem('accesstoken', data.accessToken);
-          navigate("/Orders")
+          
+          
+         const auto_url= localStorage.getItem('auto_url');
+          navigate(`${auto_url===null ? "/Orders": auto_url}`)
+          localStorage.setItem('auto_url', null);
           }
           if(data.message==="Logged in as an admin"){
             setLoader(false)

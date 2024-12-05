@@ -19,9 +19,10 @@ import PaymentPopUp from './Components/PaymentPopUp'
 
 
 const Orders = () => {
+  const navigate= useNavigate()
 
 
-  const socket = useMemo(() =>io("http://localhost:4040/orders",{
+  const socket = useMemo(() =>io("https://sgf-logistics-4.onrender.com/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
   secure: true
@@ -44,12 +45,12 @@ const [creatingOrder,setCreatingOrder]= useState(false);
       console.log("order data",data)
     })
 
-    
-   
-   
-  
-
     socket.on('disconnect',(reasons)=>{
+        console.log(reasons)
+      })
+
+      socket.on('connect_error',(reasons)=>{
+        navigate("/Auth")
         console.log(reasons)
       })
       

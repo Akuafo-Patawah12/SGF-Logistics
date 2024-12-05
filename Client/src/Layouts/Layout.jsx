@@ -7,6 +7,7 @@ import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
+import LoginPrompt from '../Components/LoginPrompt'
 const Invoice = lazy(()=> import( '../Pages/Invoice'))
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
@@ -27,7 +28,7 @@ const Layout = () => {
     const location= useLocation()
     const [path,setPath] = useState("/")
     const [buttonDisplay,setButtonDisplay] = useState(true)
-
+    
     useEffect(()=>{
           if(location.pathname===path){
               setButtonDisplay(true)
@@ -69,7 +70,7 @@ const Layout = () => {
 
 
      
-
+ const [isPrompt,setPrompt] = useState(false)
         
   return (
     <div>
@@ -78,7 +79,7 @@ const Layout = () => {
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
 
         
-
+        <LoginPrompt  prompt={[isPrompt,setPrompt]}/>
       
         <Tracking  track_comp={[trackPop,setTrackPop]} trackRef={trackRef}/>
             <Routes>
@@ -118,7 +119,7 @@ const Layout = () => {
 
                     <Route path='/Track_order/:id' element={
                         <Suspense fallback={<Loader />}>
-                          <TrackOrder />   
+                          <TrackOrder setPrompt={setPrompt}/>   
                         </Suspense>} 
                     />
 

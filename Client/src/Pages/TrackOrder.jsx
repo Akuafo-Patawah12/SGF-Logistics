@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useMemo} from 'react'
 import "./TrackOrder.css"
 import { UpOutlined } from '@ant-design/icons';
 import  { useState } from "react";
@@ -9,9 +9,48 @@ import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
 import { CheckCircleOutlined ,EnvironmentOutlined } from '@ant-design/icons'
 import {route1,route2,route3,route4,route5} from "./Components/Routes"
 import { transform } from 'framer-motion';
+import { useNavigate} from "react-router-dom"
+import io from "socket.io-client"
 
-const TrackOrder = () => {
+const TrackOrder = ({setPrompt}) => {
+
+
     const {id}= useParams()
+    const navigate= useNavigate()
+
+    const socket = useMemo(() =>io("https://sgf-logistics-4.onrender.com/orders",{
+      transports: ["websocket","polling"],
+      withCredentials: true,
+    secure: true
+    }),[])
+    
+ useEffect(()=>{
+  socket.on('connect',()=>{
+      console.log("Connected to server")
+      
+  });
+ 
+
+  socket.on('disconnect',(reasons)=>{
+      console.log(reasons)
+    })
+
+    socket.on('connect_error',(reasons)=>{
+      localStorage.setItem("auto_url", `/Track_order/${id}`)
+      setPrompt(true)
+      navigate("/Auth")
+      
+      console.log(reasons)
+    })
+    
+  
+  return()=>{
+      socket.off('connect');
+      socket.off('disconnect');
+            
+  }
+},[socket])
+
     const [viewport,setViewport] = useState({
       latitude: 23.0848,
       longitude: 113.4348,

@@ -34,29 +34,35 @@ const SignUp = () => {
     
     try{
      
-      const response = await fetch("http://localhost:4040/sign_up", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({formData}), // example payload
-      });
-  
-      const data = await response.json();
+     
 
       
       const validationErrors = {};
     // Validation (you can expand this further)
-    if(response.status===403) validationErrors.email="Email already exist"
+    
     if (!formData.username) validationErrors.username = "Username is required";
     if (!formData.email) validationErrors.email = "Email is required";
     if (!formData.password) validationErrors.password = "Password is required";
     if (formData.password !== formData.confirmPassword) {
       validationErrors.confirmPassword = "Passwords do not match";
     }
-    
 
-    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      return setErrors(validationErrors); // Return all validation errors
+    }
+
+
+    const response = await fetch("https://sgf-logistics-4.onrender.com/sign_up", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({formData}), // example payload
+    });
+
+    const data = await response.json();
+
+    if(response.status===403) validationErrors.email="Email already exist"
     
 
     // If there are no validation errors, show success message

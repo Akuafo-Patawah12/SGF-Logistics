@@ -13,7 +13,7 @@ const AdminDashboard = () => {
 
     const accesstoken=localStorage.getItem("accesstoken")
     const decode=jwtDecode(accesstoken)
-  const socket = useMemo(() =>io("http://localhost:4040/admin",{
+  const socket = useMemo(() =>io("https://sgf-logistics-4.onrender.com/admin",{
     transports: ["websocket","polling"],
     withCredentials: true,
   secure: true
