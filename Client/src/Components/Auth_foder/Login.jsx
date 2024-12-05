@@ -33,7 +33,7 @@ const Login = () => {
 
        try{
 
-        const response = await fetch("https://sgf-logistics-4.onrender.com", {
+        const response = await fetch("https://sgf-logistics.onrender.com", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

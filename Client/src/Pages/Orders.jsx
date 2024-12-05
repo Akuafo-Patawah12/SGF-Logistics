@@ -22,7 +22,7 @@ const Orders = () => {
   const navigate= useNavigate()
 
 
-  const socket = useMemo(() =>io("https://sgf-logistics-4.onrender.com/orders",{
+  const socket = useMemo(() =>io("https://sgf-logistics.onrender.com/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
   secure: true
