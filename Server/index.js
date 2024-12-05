@@ -21,8 +21,11 @@ app.use(cors({
     origin:["https://sgf-logistics.vercel.app"],
     credentials: true,
     methods:["POST,GET,PUT,DELETE"], 
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ["Content-Type", "Authorization"] // Common headers
 }))
+
+
+  
 
 
 app.use("/",router)  // auth router
