@@ -42,7 +42,7 @@ async function login(req,res){
                 httpOnly: true,   // Ensures that the cookie is only accessible via HTTP(S) requests
                 path: '/',        // Specifies the path for which the cookie is valid
                 secure: true,          // Indicates that the cookie should only be sent over HTTPS
-                sameSite: 'Strict',      // Specifies same-site cookie attribute to prevent cross-site request forgery
+                sameSite: 'None',      // Specifies same-site cookie attribute to prevent cross-site request forgery
                 maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
         });   
         }

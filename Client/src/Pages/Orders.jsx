@@ -25,7 +25,7 @@ const Orders = () => {
   const socket = useMemo(() =>io("https://sgf-logistics.onrender.com/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
-  secure: true
+    secure: true
   }),[])
 
 const[orders,setOrders] =useState([])
