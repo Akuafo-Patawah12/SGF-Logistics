@@ -53,6 +53,7 @@ const SignUp = () => {
 
 
     const response = await fetch("https://sgf-logistics.onrender.com/sign_up", {
+      
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
