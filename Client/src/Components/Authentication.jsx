@@ -1,6 +1,6 @@
 import React,{useRef,useState,useEffect} from 'react'
 import "./Components.css"
-
+import {useNavigate} from "react-router-dom"
 import SignUp from './Auth_foder/SignUp'
 import Login from './Auth_foder/Login'
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
@@ -35,6 +35,14 @@ const Authentication = () => {
 
     }
 
+    
+
+    const navigate = useNavigate();
+
+    const goBack = () => {
+      navigate(-1); // Moves back to the previous page
+    };
+
 
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     useEffect(() => {
@@ -49,7 +57,7 @@ const Authentication = () => {
     <div className='auth_container'>
         <div className="auth">
         <div className='auth_routes'>
-        <SvgIcon />
+        <span onClick={goBack} style={{cursor:"pointer"}}><SvgIcon /></span>
             <section>
                 <button onClick={()=> slider(0)} className="auth_link" >Sign up</button>
                 <button onClick={()=> slider(1)} className="auth_link">Login</button>

@@ -1,0 +1,20 @@
+.order_container{
+    margin-top:90px;
+    background-color: #eee;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.order_box{
+    background-color: #fff;
+    padding: 5%;
+    width:80%;
+    border-radius: 10px;
+    font-family: "poppings", sans-serif;
+    font-size: 15px;
+    color: #333;
+}

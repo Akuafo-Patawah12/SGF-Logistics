@@ -18,7 +18,7 @@ const TrackOrder = ({setPrompt}) => {
     const {id}= useParams()
     const navigate= useNavigate()
 
-    const socket = useMemo(() =>io("https://sgf-logistics-4.onrender.com/orders",{
+    const socket = useMemo(() =>io("http://localhost:4040/orders",{
       transports: ["websocket","polling"],
       withCredentials: true,
     secure: true

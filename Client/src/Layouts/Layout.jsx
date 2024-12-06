@@ -21,6 +21,7 @@ const AirFreight = lazy(()=> import('../Pages/Sub_Pages/AirFreight'))
 const Services= lazy(()=> import('../Pages/Services'))
 const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
+const AllOrders = lazy(()=> import( '../Pages/AllOrders'))
 const HomePage= lazy(()=>import('../Pages/HomePage'))
 
 const Layout = () => {
@@ -95,6 +96,14 @@ const Layout = () => {
                         <Orders />
                     </Suspense>} 
                 />
+
+                <Route path='/AllOrders' element={
+                    <Suspense fallback={<Loader />}>
+                        <AllOrders />
+                    </Suspense>} 
+                />
+
+
                     
 
                     

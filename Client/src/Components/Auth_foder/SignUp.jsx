@@ -52,7 +52,7 @@ const SignUp = () => {
     }
 
 
-    const response = await fetch("https://sgf-logistics-4.onrender.com/sign_up", {
+    const response = await fetch("http://localhost:4040/sign_up", {
       
       method: 'POST',
       headers: {

@@ -17,6 +17,15 @@ const Tracking = ({track_comp,trackRef}) => {
 
     }
 
+    async function paste(){
+      try{
+        let text= await navigator.clipboard.readText()
+      setTracking_id(prev=> prev + text)
+      }catch(err){
+        console.log("failed to paste text")
+      }
+    }
+
     const style={border:"1px solid #ddd",width:"88%",marginInline:"auto",borderRadius:"5px",padding:"15px 0 15px 2%"}
   return (
     <>
@@ -27,9 +36,9 @@ const Tracking = ({track_comp,trackRef}) => {
             <button onClick={()=> setTrackPop(false)}><CloseOutlined /> </button>
             </div>
         <form onSubmit={Track} className='form'>
-            <input type="text" placeholder="Enter tracking id" onChange={(e)=>setTracking_id(e.target.value)} name="track" id="track" />
+            <input type="text" value={tracking_id} placeholder="Enter tracking id" onChange={(e)=>setTracking_id(e.target.value)} name="track" id="track" />
             <button type='submit'>Track</button>
-            <span className='paste'><SnippetsOutlined/> </span>
+            <span className='paste' onClick={()=>paste()}><SnippetsOutlined/> </span>
         </form>
         <p style={style} className="exg"><span style={{fontWeight:"600",fontSize:"15px"}}>Exg:</span>  3764hdv8828828</p>
 

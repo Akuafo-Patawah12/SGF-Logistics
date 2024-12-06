@@ -243,11 +243,19 @@ aside{
 
         & input{
             width: 95%;
+            border-radius: 6px;
+            border: 1px solid #bbb;
         }
         & button{
             width: 96%;
             margin-left: -1.5%;
         }
+    }
+
+    .form > input:focus{
+        outline: none;
+        border-color:  #A7C756; /* Border color on focus */
+        box-shadow: 0 0 5px rgba(145, 205, 132, 0.3);
     }
 
     .Track_pop_container{

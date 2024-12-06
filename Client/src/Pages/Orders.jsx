@@ -1,7 +1,7 @@
 import React,{useEffect, useState,useMemo} from 'react'
 import io from "socket.io-client"
 import {v4} from "uuid"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 // Add this to your entry point, e.g., index.js or App.js
 
 
@@ -22,7 +22,7 @@ const Orders = () => {
   const navigate= useNavigate()
 
 
-  const socket = useMemo(() =>io("https://sgf-logistics-4.onrender.com/orders",{
+  const socket = useMemo(() =>io("http://localhost:4040/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -505,6 +505,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   >
                     Make Payment
                   </button>
+                  <Link to={"/AllOrders"}><button className="view">View Orders</button></Link>
                 </div>
               </form>
             </div>
