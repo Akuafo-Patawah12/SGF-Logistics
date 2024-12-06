@@ -49,10 +49,7 @@ const [creatingOrder,setCreatingOrder]= useState(false);
         console.log(reasons)
       })
 
-      socket.on('connect_error',(reasons)=>{
-        navigate("/Auth")
-        console.log(reasons)
-      })
+      
       
     
     return()=>{

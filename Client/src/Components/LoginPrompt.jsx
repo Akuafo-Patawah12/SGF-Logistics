@@ -6,10 +6,10 @@ const LoginPrompt =({prompt})=>{
     const[isPrompt,setPrompt] = prompt;
     return(
      <>
-      <div className="Login_prompt">
+      {isPrompt &&<div className="Login_prompt">
           <p>Please login to preceed</p>
           <button><CloseCircleOutlined /></button>
-      </div>
+      </div>}
       </>
     )
 }

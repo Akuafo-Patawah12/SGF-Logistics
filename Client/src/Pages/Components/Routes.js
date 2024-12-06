@@ -10,45 +10,47 @@ const route1 = [
       country: "Sri Lanka",
       countryPort: "Colombo Port",
       days: 10,
-      Latitude: 6.9271,
-      Longitude: 79.8612,
+      Latitude: 7.8731,
+      Longitude: 80.2901,
     },
     {
       country: "Yemen",
       countryPort: "Port of Aden",
       days: 7,
-      Latitude: 12.7794,
-      Longitude: 45.0367,
+      Latitude: 13.0888,
+      Longitude: 46.3428,
     },
     {
       country: "Egypt",
       countryPort: "Port of Alexandria",
       days: 7,
-      Latitude: 31.2156,
-      Longitude: 29.9553,
+      Latitude: 30.7882,
+      Longitude: 31.5001,
     },
     {
       country: "Algeria",
       countryPort: "Port of Algiers",
       days: 7,
-      Latitude: 36.7666,
+      Latitude: 36.7666,   
       Longitude: 3.0586,
     },
     {
       country: "Sierra Leone",
       countryPort: "Port of Freetown",
       days: 7,
-      Latitude: 8.4910,
-      Longitude: -13.2331,
+      Latitude: 8.5000,
+      Longitude: -14.5005,
     },
     {
       country: "Ghana",
       countryPort: "Tema Port",
       days: 7,
-      Latitude: 5.6431,
-      Longitude: 0.0100,
+      Latitude:5.7000,
+      Longitude: 0.1000,
     },
   ];
+ 
+  
  
   
   const route2 = [

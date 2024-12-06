@@ -2,7 +2,7 @@ import React,{useEffect,useMemo} from 'react'
 import "./TrackOrder.css"
 import { UpOutlined } from '@ant-design/icons';
 import  { useState } from "react";
-import Map, { Marker,  NavigationControl } from "react-map-gl";
+import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 import { useParams } from 'react-router-dom'
 import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
 import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
@@ -35,13 +35,7 @@ const TrackOrder = ({setPrompt}) => {
       console.log(reasons)
     })
 
-    socket.on('connect_error',(reasons)=>{
-      localStorage.setItem("auto_url", `/Track_order/${id}`)
-      setPrompt(true)
-      navigate("/Auth")
-      
-      console.log(reasons)
-    })
+    
     
   
   return()=>{
@@ -54,8 +48,26 @@ const TrackOrder = ({setPrompt}) => {
     const [viewport,setViewport] = useState({
       latitude: 23.0848,
       longitude: 113.4348,
-      zoom: 10,
+      zoom: 2,
     });
+
+    const lineGeoJSON = {
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: [
+          [route1[0].Longitude,route1[0].Latitude],
+          [route1[1].Longitude,route1[1].Latitude],
+          [route1[2].Longitude,route1[2].Latitude],
+          [route1[3].Longitude,route1[3].Latitude],
+          [route1[4].Longitude,route1[4].Latitude],
+          [route1[5].Longitude,route1[5].Latitude],
+          [route1[6].Longitude,route1[6].Latitude],
+          ],
+      },
+      properties: {},
+    };
+
 
     
     const [scrollPosition, setScrollPosition] = useState(0); // Track scroll position
@@ -142,6 +154,58 @@ const TrackOrder = ({setPrompt}) => {
       <Marker latitude={23.0848} longitude={113.4348}>
         <div><ShipIcon/></div>
       </Marker>
+
+      <Marker longitude={route1[0].Longitude} latitude={route1[0].Latitude} color="blue">
+        <div>
+          <p style={{ fontSize: "12px", color: "blue" }}>{route1[0].countryPort}</p>
+        </div>
+      </Marker>
+      <Marker longitude={route1[1].Longitude} latitude={route1[1].Latitude} color="green">
+        <div>
+          <p style={{ fontSize: "12px", color: "green" }}>{route1[1].countryPort}</p>
+        </div>
+      </Marker>
+      <Marker longitude={route1[2].Longitude} latitude={route1[2].Latitude} color="red">
+        <div>
+          <p style={{ fontSize: "12px", color: "red" }}>{route1[2].countryPort}</p>
+        </div>
+      </Marker>
+
+      <Marker longitude={route1[3].Longitude} latitude={route1[3].Latitude} color="red">
+        <div>
+          <p style={{ fontSize: "12px", color: "red" }}>{route1[3].countryPort}</p>
+        </div>
+      </Marker>
+
+       <Marker longitude={route1[4].Longitude} latitude={route1[4].Latitude} color="red">
+        <div>
+          <p style={{ fontSize: "12px", color: "red" }}>{route1[4].countryPort}</p>
+        </div>
+      </Marker>
+
+       <Marker longitude={route1[5].Longitude} latitude={route1[5].Latitude} color="red">
+        <div>
+          <p style={{ fontSize: "12px", color: "red" }}>{route1[5].countryPort}</p>
+        </div>
+      </Marker>
+
+      <Marker longitude={route1[6].Longitude} latitude={route1[6].Latitude} color="red">
+        <div>
+          <p style={{ fontSize: "12px", color: "red" }}>{route1[6].countryPort}</p>
+        </div>
+      </Marker>
+
+      {/* Add Line */}
+      <Source id="line-source" type="geojson" data={lineGeoJSON}>
+        <Layer
+          id="line-layer"
+          type="line"
+          paint={{
+            "line-color": "#FF5733", // Line color (orange-red)
+            "line-width": 3, // Line thickness
+          }}
+        />
+      </Source>
 
      
 
