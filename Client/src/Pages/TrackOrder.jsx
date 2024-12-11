@@ -101,11 +101,31 @@ const TrackOrder = ({setPrompt}) => {
   
   return (
     <div style={{marginTop:"90px"}}>
+      <div className='Track_cont'>
+      <div className="track_1">
+          <p>TRACK YOUR SHIPMENTS</p>
+          <section>
+              <button>Goods</button>
+              <button>Container</button>
+          </section>
+          <button className="next">Next</button>
+      </div>
+      </div>
 
-
+      <div className='Track_cont'>
+      <div className="track_2">
+          <p>TRACK YOUR SHIPMENTS</p>
+          <p>Enter upto 10 digits of your tracking number</p>
+          <section>
+              <button>Tracking Number</button>
+              <button>Shipping Number</button>
+          </section>
+          <button className="track_btn">TRACK</button>
+      </div>
+      </div>
         
         <div className="line_map">
-        <div className="line_inner">
+        <div className="line_inner"></div>
         <div  className="ship"><ShipIcon style={{transform:"translateX(-25px)"}}/></div>
         <section className="line">
           <div className='current_city China'>
@@ -140,7 +160,7 @@ const TrackOrder = ({setPrompt}) => {
           <p>{route1[6].country}</p>
 
         </section>
-        </div>
+        
         </div>
           <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'><Ship2Icon /> ROUTE MAP <EnvironmentOutlined /> </button></a></div>
         

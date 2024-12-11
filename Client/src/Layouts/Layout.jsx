@@ -126,7 +126,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-                    <Route path='/Track_order/:id' element={
+                    <Route path='/Track_order' element={
                         <Suspense fallback={<Loader />}>
                           <TrackOrder setPrompt={setPrompt}/>   
                         </Suspense>} 
