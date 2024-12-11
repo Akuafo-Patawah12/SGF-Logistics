@@ -1,6 +1,6 @@
 import React,{useEffect,useMemo} from 'react'
 import "./TrackOrder.css"
-import { UpOutlined } from '@ant-design/icons';
+import { RightCircleFilled, UpOutlined } from '@ant-design/icons';
 import  { useState } from "react";
 import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 import { useParams } from 'react-router-dom'
@@ -108,7 +108,7 @@ const TrackOrder = ({setPrompt}) => {
               <button>Goods</button>
               <button>Container</button>
           </section>
-          <button className="next">Next</button>
+          <button className="next">Next <RightCircleFilled style={{color:"#A7C756",position:"absolute",right:"5px"}}/></button>
       </div>
       </div>
 
@@ -120,7 +120,7 @@ const TrackOrder = ({setPrompt}) => {
               <button>Tracking Number</button>
               <button>Shipping Number</button>
           </section>
-          <button className="track_btn">TRACK</button>
+          <button className="track_btn">TRACK <RightCircleFilled style={{color:"#A7C756",position:"absolute",right:"5px"}}/> </button>
       </div>
       </div>
         
@@ -151,18 +151,18 @@ const TrackOrder = ({setPrompt}) => {
 
         </section>
         <section className="line2">
-          <p>{route1[0].country}</p>
-          <p>{route1[1].country}</p>
-          <p>{route1[2].country}</p>
-          <p>{route1[3].country}</p>
-          <p>{route1[4].country}</p>
-          <p>{route1[5].country}</p> 
-          <p>{route1[6].country}</p>
+          <p>{route1[0].countryPort}</p>
+          <p>{route1[1].countryPort}</p>
+          <p>{route1[2].countryPort}</p>
+          <p>{route1[3].countryPort}</p>
+          <p>{route1[4].countryPort}</p>
+          <p>{route1[5].countryPort}</p> 
+          <p>{route1[6].countryPort}</p>
 
         </section>
         
         </div>
-          <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'><Ship2Icon /> ROUTE MAP <EnvironmentOutlined /> </button></a></div>
+          <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'><Ship2Icon /> ROUTE MAP <RightCircleFilled style={{color:"#A7C756",marginLeft:"10px"}}/> </button></a></div>
         
         <Map
       initialViewState={viewport}

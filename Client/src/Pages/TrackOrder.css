@@ -43,9 +43,16 @@
 }
 
 .track_btn, .next{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
    border: 2px solid #A7C756;
-   padding: 7px 10px;
-   border-radius: 10px;
+   height: 35px;
+   width: 130px;
+   border-radius: 15px;
+   font-weight: 550;
+   color: #444;
 }
 
 
@@ -63,7 +70,7 @@
     justify-content: center;
     flex-direction: column;
     height: 400px;
-    padding-inline: 20px;
+    padding-inline: 2.5%;
 }
 
 .line_inner{
@@ -95,6 +102,8 @@
         position: absolute;
         font-size: 14px;
         z-index: 3;
+        max-width: 80px;
+        text-align: center;
         
     }
 
