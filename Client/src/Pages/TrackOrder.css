@@ -86,9 +86,7 @@
 }
 
 .ship{
-    transform: translateX(8.5%);
     min-width: 100%;
-    
     margin-inline: auto;
 }
 
@@ -146,7 +144,7 @@
 
 .line{
     display: flex;
-    min-width: 120%;
+    min-width: 100%;
     
     justify-content: space-between;
     align-items: center;
@@ -193,8 +191,6 @@
 
 @media (max-width: 400px){
     .line_inner{
-        
-        
-        width: 200%;
+        width: 210%;
     }
 }

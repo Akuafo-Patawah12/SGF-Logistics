@@ -132,7 +132,7 @@ const TrackOrder = ({setPrompt}) => {
         <div className="line_map">
         <div className="line_inner">
          
-        <div  className="ship"><ShipIcon style={{transform:"translateX(-25px)"}}/></div>
+        <div  className="ship"><ShipIcon style={{transform:"translateX(30%)"}}/></div>
         <section className="line" style={{position:"relative"}}>
           
           <div className='current_city '>
