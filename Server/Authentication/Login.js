@@ -7,7 +7,7 @@ async function login(req,res){
    
     
     const {email,password,rememberMe }= req.body.formData   //grabing user credentials from the client side.
-     
+     console.log(email,password)
     try{
         const email_Exist=  await data.findOne({email:email}); /* check whether the email exist in the database 
        and store it in email exist variable */
@@ -41,8 +41,8 @@ async function login(req,res){
             res.cookie('refreshToken', refresh_token, {
                 httpOnly: true,   // Ensures that the cookie is only accessible via HTTP(S) requests
                 path: '/',        // Specifies the path for which the cookie is valid
-                secure: false,          // Indicates that the cookie should only be sent over HTTPS
-                sameSite: 'None',      // Specifies same-site cookie attribute to prevent cross-site request forgery
+                secure: true,          // Indicates that the cookie should only be sent over HTTPS
+                sameSite: 'Strict',      // Specifies same-site cookie attribute to prevent cross-site request forgery
                 maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
         });   
         }
