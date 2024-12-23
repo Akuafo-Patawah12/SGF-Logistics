@@ -80,7 +80,7 @@ const Login = () => {
           
           
          const auto_url= localStorage.getItem('auto_url');
-          navigate(`${auto_url===null || "" ? "/Orders": auto_url}`)
+          navigate(`${auto_url=== "" ? "/Orders": auto_url}`)
           
           }
           if(data.message==="Logged in as an admin"){
