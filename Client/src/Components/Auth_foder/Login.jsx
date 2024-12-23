@@ -81,7 +81,7 @@ const Login = () => {
           
          const auto_url= localStorage.getItem('auto_url');
           navigate(`${auto_url===null || "" ? "/Orders": auto_url}`)
-          localStorage.setItem('auto_url', null);
+          
           }
           if(data.message==="Logged in as an admin"){
             setLoader(false)
