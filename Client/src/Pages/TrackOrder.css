@@ -61,101 +61,104 @@
     border-radius: 5px;
     background: url("./../../public/SFG_images/map.jpg") no-repeat;
     background-size: cover;
-    opacity: 0.5;
-    position: relative;
     overflow-x: auto;
     margin-inline: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 400px;
-    padding-inline: 2.5%;
+    display: block;
+    height: 500px;
+    
+    
 }
 
-.line_inner{
+
+.line_header{
     position: absolute;
-    inset: 0;
-    min-width: 160%;
-    z-index: -1;
-    background: rgba(225,225, 225, 0.5);
+    bottom: -100px;
+    font-weight: 600;
+    text-align: center;
+    left:50%;
+    width: 80%;
+    transform: translate(-50%,-50%);
 }
-
-.line{
-    display: flex;
-    min-width: 160%;
-    margin-inline: auto;
-    
-    
-    
-}
-
-.line2{
+.headline{
     position: relative;
-    min-width: 160%;
-    padding:0 5px ;
-    margin-inline: auto;
-    margin-bottom: 40px;
-    isolation: isolate;
-
-    & p{
-        position: absolute;
-        font-size: 14px;
-        z-index: 3;
-        max-width: 80px;
-        text-align: center;
-        
-    }
-
+    width: 100%;
     
 }
+
 .ship{
-    padding:0 5px ;
-    min-width: 164%;
+    transform: translateX(8.5%);
+    min-width: 100%;
     
     margin-inline: auto;
 }
 
-.China div:first-child{
-    left: 5%;
-}
-
-.line2 > p:first-child{
-    left: 0;
-}
-.line2 > p:nth-child(2){
-    left: 15%;
-}
-.line2 > p:nth-child(3){
-    left: 30%;
-}
-.line2 > p:nth-child(4){
-    left: 47%;
-}
-.line2 > p:nth-child(5){
-    left: 64%;
-}
-.line2 > p:nth-child(6){
-    left: 80%;
-}
-.line2 > p:nth-child(7){
-    left: 97%;
-}
 .current_city{
     position: relative;
     width: 25%;
     height: 4px;
-    background: #444;
+    background: #222;
     margin-block: 20px;
     
 
+    & span{
+        position: relative;
+        background: #A7C756;
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 14px;
+        
+
+
+    }
+
     & div{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         position: absolute;
         right: 0;
-        top: -250%;
-        background: white;
+        top: -270%;
         width: fit-content;
     }
+}
+
+
+.line_inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    justify-content: center;
+    height: 100%;
+    width: 160%;
+    padding: 0 13.5%;
+    
+    background: rgba(225,225, 225, 0.7);
+}
+
+.line{
+    display: flex;
+    min-width: 100%;
+    justify-content: space-between;
+    margin-inline: auto;
+
+    
+    
+    & p{
+        
+        font-size: 14px;
+        font-weight: 500;
+        max-width: 80px;
+        text-align: center;
+        color: #444;
+        
+    }   
+    
 }
 
 .route_button{
@@ -174,3 +177,9 @@
     background-color: #ddd;
     margin-top: 200px;
 }
+
+.arrow{
+    border-top: 4px solid #333;
+    transform: translateY(20px);  
+}
+

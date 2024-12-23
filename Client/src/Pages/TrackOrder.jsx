@@ -1,12 +1,12 @@
 import React,{useEffect,useMemo} from 'react'
 import "./TrackOrder.css"
-import { RightCircleFilled, UpOutlined } from '@ant-design/icons';
+import { ArrowRightOutlined, RightCircleFilled, UpOutlined } from '@ant-design/icons';
 import  { useState } from "react";
 import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 import { useParams } from 'react-router-dom'
 import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
 import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
-import { CheckCircleOutlined ,EnvironmentOutlined } from '@ant-design/icons'
+import { CheckCircleOutlined,CheckOutlined ,EnvironmentOutlined } from '@ant-design/icons'
 import {route1,route2,route3,route4,route5} from "./Components/Routes"
 import { transform } from 'framer-motion';
 import { useNavigate} from "react-router-dom"
@@ -101,6 +101,8 @@ const TrackOrder = ({setPrompt}) => {
   
   return (
     <div style={{marginTop:"90px"}}>
+
+
       <div className='Track_cont'>
       <div className="track_1">
           <p>TRACK YOUR SHIPMENTS</p>
@@ -123,45 +125,69 @@ const TrackOrder = ({setPrompt}) => {
           <button className="track_btn">TRACK <RightCircleFilled style={{color:"#A7C756",position:"absolute",right:"5px"}}/> </button>
       </div>
       </div>
+        <div className="headline">
+        <div className="line_header">SHIPPING ROUTE FROM CHINA TO GHANA.</div>
+        </div>
         
         <div className="line_map">
-        <div className="line_inner"></div>
+        <div className="line_inner">
+         
         <div  className="ship"><ShipIcon style={{transform:"translateX(-25px)"}}/></div>
-        <section className="line">
-          <div className='current_city China'>
-          <div><CheckCircleOutlined/> </div>
-          <div><CheckCircleOutlined/> </div>
-          </div>
-          <div className='current_city'>
-          <div><CheckCircleOutlined/> </div>
-          </div>
-          <div className='current_city'>
-          <div><CheckCircleOutlined/> </div>
-          </div>
+        <section className="line" style={{position:"relative"}}>
+          
+          <div className='current_city '>
+          <div>
 
-          <div className='current_city'>
-             <div> <CheckCircleOutlined/> </div>
-          </div>
-          <div className='current_city'>
-          <div><CheckCircleOutlined/>  </div>
-          </div>
-          <div className='current_city'>
-          <div><CheckCircleOutlined/>  </div>
-          </div>
-
-        </section>
-        <section className="line2">
+          <span><CheckOutlined style={{position:"absolute"}} /> </span>
           <p>{route1[0].countryPort}</p>
+
+          </div>
+          </div>
+          <ArrowRightOutlined className="arrow arrow_1" />
+          <div className='current_city'>
+          <div>
+          <span> </span>
           <p>{route1[1].countryPort}</p>
+          </div>
+          </div>
+          <ArrowRightOutlined className="arrow arrow_2" />
+          <div className='current_city'>
+          <div><span> </span>
           <p>{route1[2].countryPort}</p>
+          </div>
+          </div>
+          <ArrowRightOutlined className="arrow arrow_3" />
+          <div className='current_city'>
+          <div><span> </span>
           <p>{route1[3].countryPort}</p>
-          <p>{route1[4].countryPort}</p>
-          <p>{route1[5].countryPort}</p> 
+          </div>
+          </div>
+          <ArrowRightOutlined className="arrow arrow_4" />
+          <div className='current_city'>
+             <div><span> </span>
+             <p>{route1[4].countryPort}</p>
+              </div>
+          </div>
+          <ArrowRightOutlined className="arrow arrow_5" />
+          <div className='current_city'>
+          <div><span> </span> 
+          <p>{route1[5].countryPort}</p>
+           </div>
+          </div>
+          <ArrowRightOutlined className="arrow arrow_6" />
+          <div className='current_city'>
+          <div><span> </span>
           <p>{route1[6].countryPort}</p>
+           </div>
+          </div>
 
         </section>
         
+        
         </div>
+
+        </div>
+       
           <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'><Ship2Icon /> ROUTE MAP <RightCircleFilled style={{color:"#A7C756",marginLeft:"10px"}}/> </button></a></div>
         
         <Map
@@ -177,7 +203,7 @@ const TrackOrder = ({setPrompt}) => {
 
       <Marker longitude={route1[0].Longitude} latitude={route1[0].Latitude} color="blue">
         <div>
-          <p style={{ fontSize: "12px", color: "blue" }}>{route1[0].countryPort}</p>
+          <p style={{ fontSize:"12px", color: "blue" }}>{route1[0].countryPort}</p>
         </div>
       </Marker>
       <Marker longitude={route1[1].Longitude} latitude={route1[1].Latitude} color="green">
