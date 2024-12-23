@@ -95,9 +95,11 @@
 .current_city{
     position: relative;
     width: 25%;
-    height: 4px;
     background: #222;
+    width: 25%;
+    height: 4px;
     margin-block: 20px;
+    
     
 
     & span{
@@ -121,8 +123,9 @@
         flex-direction: column;
         align-items: center;
         position: absolute;
-        right: 0;
-        top: -270%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        top: 500%;
         width: fit-content;
     }
 }
@@ -143,8 +146,10 @@
 
 .line{
     display: flex;
-    min-width: 100%;
+    min-width: 120%;
+    
     justify-content: space-between;
+    align-items: center;
     margin-inline: auto;
 
     
@@ -179,7 +184,17 @@
 }
 
 .arrow{
-    border-top: 4px solid #333;
-    transform: translateY(20px);  
+    
+    border-top: 4px solid #222;
+    height: 50px;
+    transform: translateY(46.19%);  
 }
 
+
+@media (max-width: 400px){
+    .line_inner{
+        
+        
+        width: 200%;
+    }
+}
