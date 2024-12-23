@@ -22,7 +22,7 @@ const Orders = () => {
   const navigate= useNavigate()
 
 
-  const socket = useMemo(() =>io("http://localhost:4040/orders",{
+  const socket = useMemo(() =>io("https://sgf-logistics-1.onrender.com/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -49,7 +49,11 @@ const [creatingOrder,setCreatingOrder]= useState(false);
         console.log(reasons)
       })
 
-      
+      socket.on('connect_error',(reasons)=>{
+        navigate("/Auth")
+        localStorage.setItem("auto_url","/Orders")
+        console.log(reasons)
+      })
       
     
     return()=>{
