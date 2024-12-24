@@ -348,8 +348,8 @@ const [value, setValue] = useState(0);  // State to hold the value
       viewport={{ once: true, amount: 0.5 }} // Trigger when 50% in view
           className='welcome_container' >
             <section style={{display:"flex",flexDirection:"column",gap:"10px",marginBottom:"10px"}}>
-                <div style={{height:"80px",width:"95%",marginInline:"auto",background:"#bbb",borderRadius:"5px"}}></div>
-                <div style={{height:"80px",width:"95%",marginInline:"auto",background:"#bbb",borderRadius:"5px"}}> </div>
+                <div className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div><button>Sign up</button></div> </div>
+                <div style={{height:"80px",width:"95%",marginInline:"auto",background:"#bbb",borderRadius:"5px"}}> <button>Track</button> </div>
             </section>
            <h3 style={{marginLeft:"2.5%"}}>Welcome to SF Ghana Logistics.</h3>
           <p style={{textAlign:"justify",marginInline:"auto",width:"95%"}}>
