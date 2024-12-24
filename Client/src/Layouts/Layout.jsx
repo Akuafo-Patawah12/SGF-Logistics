@@ -39,6 +39,16 @@ const Layout = () => {
     },[location.pathname,path])
 
 
+    const [isFooter,setIsFooter]= useState(true)
+    useEffect(()=>{
+      if(location.pathname==="/Orders" || location.pathname==="/Track_order"){
+        setIsFooter(false)
+          return 
+      }
+      setIsFooter(true)
+},[location.pathname])
+
+
     const[showAuth,setShowAuth] = useState(false)
 
 
@@ -176,7 +186,7 @@ const Layout = () => {
             
             </Routes>
             
-       <Footer />
+       {isFooter &&<Footer />} 
     </div>
   )
 }

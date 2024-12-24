@@ -1,4 +1,5 @@
 import React,{useEffect, useState,useMemo} from 'react'
+import LogisticFooter from "../Components/LogisticFooter"
 import io from "socket.io-client"
 import {v4} from "uuid"
 import { useNavigate,Link } from 'react-router-dom'
@@ -49,11 +50,7 @@ const [creatingOrder,setCreatingOrder]= useState(false);
         console.log(reasons)
       })
 
-      socket.on('connect_error',(reasons)=>{
-        navigate("/Auth")
-        localStorage.setItem("auto_url","/Orders")
-        console.log(reasons)
-      })
+      
       
     
     return()=>{
@@ -518,6 +515,9 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
       {showPopup && <PaymentPopUp onClose={() => setShowPopup(false)}  showPopup={showPopup}/>}
     </div>
          
+
+
+           <LogisticFooter />
         </div>
     
   )

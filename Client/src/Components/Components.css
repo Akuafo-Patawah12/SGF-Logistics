@@ -294,3 +294,15 @@ aside{
     }
     
   }
+
+  .link 
+
+  {
+     font-size: 15px;
+     border-right: 1px solid #222;
+     padding-inline: 7px;
+  }
+
+  .link_3,.link_5{
+    border-right: 0;
+  } 

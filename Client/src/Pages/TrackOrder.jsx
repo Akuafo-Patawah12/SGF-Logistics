@@ -4,6 +4,7 @@ import { ArrowRightOutlined, RightCircleFilled, UpOutlined } from '@ant-design/i
 import  { useState } from "react";
 import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 import { useParams } from 'react-router-dom'
+import LogisticFooter from '../Components/LogisticFooter';
 import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
 import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
 import { CheckCircleOutlined,CheckOutlined ,EnvironmentOutlined } from '@ant-design/icons'
@@ -271,6 +272,8 @@ const TrackOrder = ({setPrompt}) => {
           <UpOutlined />
         </button>
       )}
+
+      <LogisticFooter />
     </div>
   )
 }
