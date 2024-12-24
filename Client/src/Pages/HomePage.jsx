@@ -299,7 +299,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           <p style={{color:"white",fontSize:"25px"}} className='slideheader'>Our air freight services provide fast, reliable, and secure global shipping for your logistics needs.</p>
        </motion.div>
         </div>
-       <LazyLoadImage src='../SFG_images/Slider4.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
+       <LazyLoadImage src='../SFG_images/Air.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
        </div>
          
          <div ref={childRef3} style={{position:"relative"}} >
