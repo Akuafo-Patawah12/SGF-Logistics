@@ -415,7 +415,9 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
     cursor: pointer;
   }
 
-  
+  .payment_btn{
+    font-size: 12px;
+  }
 
   @media (max-width: 480px) {
     .details-table td {

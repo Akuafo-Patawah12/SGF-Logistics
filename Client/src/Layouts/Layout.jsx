@@ -21,6 +21,7 @@ const AirFreight = lazy(()=> import('../Pages/Sub_Pages/AirFreight'))
 const Services= lazy(()=> import('../Pages/Services'))
 const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
+const Mapbox = lazy(()=> import('../Pages/Mapbox'))
 const AllOrders = lazy(()=> import( '../Pages/AllOrders'))
 const HomePage= lazy(()=>import('../Pages/HomePage'))
 
@@ -41,7 +42,7 @@ const Layout = () => {
 
     const [isFooter,setIsFooter]= useState(true)
     useEffect(()=>{
-      if(location.pathname==="/Orders" || location.pathname==="/Track_order"){
+      if(location.pathname==="/Orders" || location.pathname==="/Track_order" ||  location.pathname==="/AllOrders"){
         setIsFooter(false)
           return 
       }
@@ -90,11 +91,11 @@ const Layout = () => {
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
 
         
-        <LoginPrompt  prompt={[isPrompt,setPrompt]}/>
+        <LoginPrompt prompt={[isPrompt,setPrompt]}/>
       
-        <Tracking  track_comp={[trackPop,setTrackPop]} trackRef={trackRef}/>
+        <Tracking track_comp={[trackPop,setTrackPop]} trackRef={trackRef}/>
             <Routes>
-                <Route path='/'  element={
+                <Route path='/' element={
                     <Suspense fallback={<Loader />}>
                         <HomePage setShowAuth={setShowAuth} showAuth={showAuth} />
                     </Suspense> }
@@ -138,7 +139,13 @@ const Layout = () => {
 
                     <Route path='/Track_order' element={
                         <Suspense fallback={<Loader />}>
-                          <TrackOrder setPrompt={setPrompt}/>   
+                          <TrackOrder setPrompt={setPrompt} setTrackPop={setTrackPop}/>   
+                        </Suspense>} 
+                    />
+
+                    <Route path='/Map/:id' element={
+                        <Suspense fallback={<Loader />}>
+                          <Mapbox />   
                         </Suspense>} 
                     />
 

@@ -485,7 +485,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
         </div>
 
 
-                <div style={{display:"flex",border:"none",gap:"10px",justifyContent:"flex-end",marginTop:"20px"}} >
+                <div className="payment_btn" style={{display:"flex",border:"none",gap:"10px",justifyContent:"flex-end",marginTop:"20px"}} >
                   <button
                     type="button"
                     className="btn"

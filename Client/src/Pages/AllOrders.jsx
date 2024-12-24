@@ -1,5 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
+
+import LogisticFooter from "../Components/LogisticFooter"
 import { DownloadOutlined,EllipsisOutlined, EyeOutlined } from "@ant-design/icons"
 import "./AllOrders.css"
 const AllOrders=()=>{
@@ -29,7 +31,7 @@ const AllOrders=()=>{
 
         </div>
 
-
+           <LogisticFooter />
         </main>
 
     )

@@ -12,7 +12,7 @@ const Tracking = ({track_comp,trackRef}) => {
     const navigate= useNavigate()
     function Track(e){
        e.preventDefault()
-       navigate(`/Track_order/${tracking_id}`)
+       navigate(`/Map/${tracking_id}`)
        setTrackPop(false)
 
     }
