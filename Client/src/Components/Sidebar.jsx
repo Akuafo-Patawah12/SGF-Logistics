@@ -45,11 +45,11 @@ const Sidebar = ({popUp,setPopUp1,popRef}) => {
                <Link to={"/Services/Procurement"}>Procurement</Link>
                <Link to={"/Services/Door2door"}>Door to door delivery</Link>
             </div>}
-            <NavLink onClick={closeSidebar} to={"/Contact_us"} style={style} className="side_link"><PhoneOutlined />Contact</NavLink>
+            <NavLink onClick={closeSidebar} to={"/Contact_us"} style={style} className="side_link"><PhoneOutlined style={{transform:"rotate(90deg)"}}/>Contact</NavLink>
             <NavLink to={"/More"} style={style} className="side_link"><MoreOutlined />More<button onClick={()=> setShow3(!show3)} style={style1}><DownOutlined/> </button></NavLink>
             {show3 && <div className='side_drop'>
-               <Link to={"/FAQs"}>FAQs</Link>
-               <Link to={"/Terms"}>Terms & Agreement</Link>
+               <Link to={"/FAQs"} onClick={closeSidebar}>FAQs</Link>
+               <Link to={"/TermsAndCondition"} onClick={closeSidebar}>Terms & Agreement</Link>
                
             </div>}
             </div>
