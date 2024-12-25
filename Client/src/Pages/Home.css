@@ -18,8 +18,16 @@
       margin-left: 2%;
   }
 
-  .flexbox_1{
+  .flexbox_1:first-child{
     background-image: url("../../public/SFG_images/Air.jpg");
+  }
+
+  .flexbox_1:last-child{
+    background-image: url("../../public/SFG_images/Slider4.jpg");
+  }
+
+  .flexbox_1{
+    
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
