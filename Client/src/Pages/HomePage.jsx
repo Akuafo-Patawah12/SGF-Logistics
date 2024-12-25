@@ -348,8 +348,8 @@ const [value, setValue] = useState(0);  // State to hold the value
       viewport={{ once: true, amount: 0.5 }} // Trigger when 50% in view
           className='welcome_container' >
             <section style={{display:"flex",flexDirection:"column",gap:"10px",marginBottom:"10px"}}>
-                <div className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div><button>Sign up</button></div> </div>
-                <div style={{height:"80px",width:"95%",marginInline:"auto",background:"#bbb",borderRadius:"5px"}}> <button>Track</button> </div>
+                <div className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p style={{color:"white"}}>Hello</p><button>Sign up</button></div> </div>
+                <div  className="flexbox_1"style={{height:"80px",width:"95%",marginInline:"auto",background:"#bbb",borderRadius:"5px"}}><div> <p className="p-info" style={{color:"white"}}>Track your shipment <br/> in realtime </p><button>Track</button></div> </div>
             </section>
            <h3 style={{marginLeft:"2.5%"}}>Welcome to SF Ghana Logistics.</h3>
           <p style={{textAlign:"justify",marginInline:"auto",width:"95%"}}>
@@ -437,7 +437,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        
        
        <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
-       <p style={{width:"90%",background:"#eee",padding:"20px 10px", textAlign:"justify",marginInline:"auto"}}>
+       <p style={{width:"90%",background:"#eee",fontSize:"15px",padding:"20px 10px", textAlign:"justify",marginInline:"auto"}}>
           At SF Ghana Logistics (SFGL), we are committed to delivering exceptional logistics 
           solutions tailored to your specific needs. Here's why we stand out in the industry:
        </p>

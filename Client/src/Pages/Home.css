@@ -26,19 +26,34 @@
     position: relative;
     overflow: hidden;
 
+
     & div{
       position: absolute;
-      background: rgba(255, 0, 0, 0.6);
+      background: rgba(200, 0, 0, 0.6);
       z-index: 1;
-      width: 100%;
+      width: 90%;
       height: 100%;
+      padding-inline: 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
     }
+
+     
 
     & button{
        height: 40px;
        width: 100px;
+       border: 3px solid #fff;
+       border-radius: 10px;
+       background-color: #A7C756;
     }
+  }
+
+  .p_info{
+    font-weight: 500;
+    color:white;
   }
   
 /* HTML: <div class="loader"></div> */
@@ -356,7 +371,7 @@
   .stars{
     width: auto;
     margin-inline: auto;
-    
+    margin-bottom: 10px;
     color: #555;
     
   }
@@ -392,6 +407,7 @@
    text-align: center;
    max-width: 280px;
    margin-inline: auto;
+   font-size: 15px;
 }
  .quote_name  {
   max-width: 280px;
