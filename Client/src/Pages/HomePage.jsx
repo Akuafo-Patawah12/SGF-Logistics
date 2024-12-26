@@ -349,7 +349,7 @@ const [value, setValue] = useState(0);  // State to hold the value
       
         
       </div>
-      </div>;''
+      </div>;
       <p className='Description' style={{position:"relative",isolation:"isolate"}}>We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
          <Truck style={{position:"absolute",zIndex:"-1",bottom:"0",left:"-20px"}}/> <Anchor style={{position:"absolute",top:"-35px",left:"48%",zIndex:"-1",rotate:"45deg"}}/> <Container style={{zIndex:"-1",position:"absolute",right:"10px",rotate:"45deg"}}/>
       </p>

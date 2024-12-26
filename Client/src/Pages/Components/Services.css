@@ -8,7 +8,7 @@
    position: relative;
    background: url("../../../public/SFG_images/Slider2.jpg") no-repeat  fixed 100%;
    background-size: cover;
-   height: 200px;
+   height: 350px;
    margin-bottom: 50px;
 }
 
@@ -25,6 +25,7 @@
    font-weight: 500;
    margin-top: 2rem;
    color: red;
+   margin-left: 2.5% ;
 }
 
 .rocket{
@@ -47,6 +48,27 @@
    box-shadow: 1px 5px 15px #bbb;
    border-radius: 5px;
    padding-block: 20px;
+
+   & p{
+      font-size: 15px;
+      font-weight: 500;
+      color: #555;
+   }
+}
+
+.Contact_info{
+   display: flex;
+   gap: 10px;
+   width: 95%;
+  
+   
+}
+.Infor{
+   width: 48%;
+}
+.map{
+   width: 48%;
+   transform: translateY(30px);
 }
 
 .service_icon{
@@ -69,6 +91,22 @@
 @media (max-width: 768px){
    .service_container{
       margin-top: 90px;
-   
+      
    }
+  }
+
+  @media (max-width: 500px){
+  .Contact_info{
+      flex-direction: column;
+      width: 100%;
+}
+  }
+  .Infor{
+   width: 95%;
+   margin-inline: auto;
+}
+
+  .map{
+     width: 100%;
+     transform: translateY(0);
   }
