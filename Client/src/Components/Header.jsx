@@ -80,7 +80,7 @@ const Header = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
        <button  onClick={pop1} className="open">
           <div style={{rotate:`${popUp1 ? "45deg":""}`,top:`${popUp1 ? "50%":"4px"}`}}></div>
           <div style={{display:`${popUp1 ? "none":"block"}`}}></div>
-          <div style={{rotate:`${popUp1 ? "-45deg":""}`,top:`${popUp1 ? "50%":"23px"}`}}></div>
+          <div style={{rotate:`${popUp1 ? "-45deg":""}`,top:`${popUp1 ? "50%":"23px"}`,marginBottom:"10px"}}></div>
        </button>
        </div>
 

@@ -262,7 +262,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           
           <section style={{display:"flex",gap:"1rem"}}>
             <Link to={"/Orders"}><button className='btn'>Get A Quote</button></Link>
-            <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
+            <button onClick={()=> setIsVideo(true)} style={{border: "#5cbbf1",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
           </section>
           </div>
       <div
@@ -412,19 +412,30 @@ const [value, setValue] = useState(0);  // State to hold the value
        <section className="testimonals" style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
           <div className='child'>
           <div className="absolute1"></div>
-          <div className="absolute1"></div>
+          <div className="absolute1"><CloseQuote/></div>
+          <div className="absolute1"><OpenQuote/></div>
           <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
             <p className='quote'>The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly 
                where our goods are at all times.</p>
                <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Linda Asare, Operations Manager at DEF Enterprises </h4>
           </div>
-          <div>
+
+
+          <div className='child'>
+           <div className="absolute1"></div>
+           <div className="absolute1"><CloseQuote/></div>
+           <div className="absolute1"><OpenQuote/></div>
             <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
             <p className='quote'>SF Ghana Logistics has become an indispensable part of our supply chain. Their dedication to 
             efficiency and reliability is unparalleled.</p>
             <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Kwame Mensah, CEO of ABC Trading </h4>
           </div>
-          <div>
+
+
+          <div className='child'>
+          <div className="absolute1"></div>
+          <div className="absolute1"><CloseQuote/></div>
+          <div className="absolute1"><OpenQuote/></div>
              <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
              <p className='quote'> Exceptional service and timely deliveries! SFGL truly lives up to its motto, 'Whatever the load, 
              we carry it.</p>

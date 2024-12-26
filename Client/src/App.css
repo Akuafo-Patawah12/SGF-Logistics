@@ -247,18 +247,26 @@ footer a{
 }
 
 .open{
-  height: 30px;
-  width: 30px;
+  height: 33px;
+  width: 35px;
   position: relative;
   display: none;
+  border-radius: 5px;
+  background-color: transparent;
+  
+  
 
   & div{
-      background-color: #1C1818;
-      width: 100%;
+      background-color: #444;
+      width: 90%;
+      margin-inline: auto;
       height: 3px;
+      border-radius: 5px;
       position: absolute;
       transition: all .3s;
-      left:0;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      
   }
 }
 .nav_1,

@@ -384,6 +384,18 @@
       background: #e4f7b6;
   }
 
+  .absolute1 :nth-child(2){
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .absolute1 :last-child{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
   @keyframes animate{
     0%{box-shadow: 2px 2px 8px rgb(167, 199, 87,0.5);}
     100%{box-shadow: 2px 2px 8px rgba(197, 91, 91, 0.5);}
@@ -417,6 +429,7 @@
     padding: 15px;
     color: white;
     border: 5px;
+    border-radius: 5px;
     border: 2px solid #A7C756;
     outline: 2px solid #A7C756;   /* Defines the outline */
   outline-offset: 3px;
@@ -569,7 +582,7 @@
       gap: 10px;
     }
     .testimonals > div{
-      min-width: 96.5%;
+      min-width: 50%;
     }
     
 
@@ -668,6 +681,10 @@
      left: 0;
      width: 100px;
      background-color: #A7C756;
+   }
+
+   .testimonals > div{
+      min-width: 96.5%;
    }
 
   }
