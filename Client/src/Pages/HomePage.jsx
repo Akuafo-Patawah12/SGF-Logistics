@@ -2,6 +2,10 @@ import React,{useState,useRef,useEffect,useMemo} from 'react'
 import {motion,useAnimation} from "framer-motion"
 import{ ReactComponent as OpenQuote } from "../Icons/OpenQuote.svg"
 import{ ReactComponent as CloseQuote } from "../Icons/CloseQuote.svg"
+import{ ReactComponent as Truck } from "../Icons/Truck.svg"
+import{ ReactComponent as Anchor } from "../Icons/Anchor.svg"
+import{ ReactComponent as Container } from "../Icons/Container.svg"
+
 import "./Home.css"
 import io from "socket.io-client"
 
@@ -345,8 +349,9 @@ const [value, setValue] = useState(0);  // State to hold the value
       
         
       </div>
-      </div>
-      <p className='Description' >We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.
+      </div>;''
+      <p className='Description' style={{position:"relative",isolation:"isolate"}}>We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
+         <Truck style={{position:"absolute",zIndex:"-1",bottom:"0",left:"-20px"}}/> <Anchor style={{position:"absolute",top:"-35px",left:"48%",zIndex:"-1",rotate:"45deg"}}/> <Container style={{zIndex:"-1",position:"absolute",right:"10px",rotate:"45deg"}}/>
       </p>
       
       <section className='welcome_hero' >
