@@ -8,8 +8,21 @@
 }
 
 .active{
-  border-top: 3px solid #A7C756;
+ position: relative;
+  
   color: #A7C756;
+}
+
+.active ::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #A7C756;
+  z-index: 2;
+  left: 0;
+  bottom: -17px;
+  background-origin: -10px;
 }
 
 .Popup{
@@ -393,6 +406,7 @@ footer a{
 }
 
 .header{
+  border-top: 8px solid #A7C756;
   position: fixed;
   top: 0;
   z-index: 30;

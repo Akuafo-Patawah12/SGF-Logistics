@@ -222,7 +222,7 @@
   .services, .services1{
     display: grid;
     position: relative;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(4,1fr);
     grid-auto-rows: 350px;
     grid-gap: 2.5%;
     background: #A7C756;
@@ -369,7 +369,19 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 30%;
+    position: relative;
+    overflow: hidden;
 
+  }
+
+  .absolute1:first-child{
+      position: absolute;
+      top: -50px;
+      right: -50px; 
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #e4f7b6;
   }
 
   @keyframes animate{

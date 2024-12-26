@@ -1,5 +1,7 @@
 import React,{useState,useRef,useEffect,useMemo} from 'react'
 import {motion,useAnimation} from "framer-motion"
+import{ ReactComponent as OpenQuote } from "../Icons/OpenQuote.svg"
+import{ ReactComponent as CloseQuote } from "../Icons/CloseQuote.svg"
 import "./Home.css"
 import io from "socket.io-client"
 
@@ -234,10 +236,21 @@ const [value, setValue] = useState(0);  // State to hold the value
     };
   }, [controls,value]);
 
+  const pageVariants = {
+    initial: { opacity: 0, x: "-100vw" },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, x: "100vw", transition: { duration: 0.5 } },
+  };
+
 
   return (
     
-    <div style={{overflow:"hidden",background:"#fff"}} className='Home'>
+    <motion.div
+    variants={pageVariants}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+     style={{overflow:"hidden",background:"#fff"}} className='Home'>
         {showAuth&& <Authentication  authShow={[showAuth,setShowAuth]}/>}
         <div
         style={{
@@ -374,26 +387,8 @@ const [value, setValue] = useState(0);  // State to hold the value
 
        
 
-       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBottom:"20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",height:"60px",border:"2px solid #222",borderRadius:"5px", padding:"10px",fontWeight:"700"}}>SEE ALL OUR SERVICES</button></Link>
-      {displayService && <section className='services1'  >
-       <div>
-             <img src='./SFG_images/procurement.jpg' alt=''></img>
-             <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Free Procurement & Sourcing Training </h4><br/>
-               <button>View More</button>
-          </div>
-          <div>
-             <img src='./SFG_images/Air2.jpg' alt=''></img>
-             <h4 style={{color:"white",marginTop:"5px",fontSize:"24px"}}>Container Clearance </h4><br/>
-             <button>View More</button>
-          </div>
-          <div>
-            <img src='./SFG_images/Groupage.jpg' alt=''></img>
-            <h4 style={{color:"white",marginTop:"5px",fontSize:"24px"}}>Groupage Services </h4><br/>
-            <button>View More</button>
-          </div>
-
-          
-       </section> }
+       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBottom:"20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",border:"2px solid #222",borderRadius:"5px",fontSize:"16px" ,padding:"10px",fontWeight:"500"}}>SEE ALL OUR SERVICES</button></Link>
+      
 
        
       <div className="image-container">
@@ -415,7 +410,9 @@ const [value, setValue] = useState(0);  // State to hold the value
 
          <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
        <section className="testimonals" style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
-          <div>
+          <div className='child'>
+          <div className="absolute1"></div>
+          <div className="absolute1"></div>
           <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
             <p className='quote'>The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly 
                where our goods are at all times.</p>
@@ -436,7 +433,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        </section>
        
        
-       <p style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
+       <p id="why_choose_us" style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
        <p style={{width:"90%",background:"#eee",fontSize:"15px",padding:"20px 10px", textAlign:"justify",marginInline:"auto"}}>
           At SF Ghana Logistics (SFGL), we are committed to delivering exceptional logistics 
           solutions tailored to your specific needs. Here's why we stand out in the industry:
@@ -540,7 +537,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
            <HowItWorksVideo />
        </div>}
-    </div>
+    </motion.div>
   )
 }
 
