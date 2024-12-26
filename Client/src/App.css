@@ -257,9 +257,8 @@ footer a{
   
 
   & div{
-      background-color: #444;
+      background-color: #555;
       width: 90%;
-      margin-inline: auto;
       height: 3px;
       border-radius: 5px;
       position: absolute;
@@ -268,6 +267,10 @@ footer a{
       transform: translate(-50%,-50%);
       
   }
+}
+
+.open:hover{
+  background: transparent;
 }
 .nav_1,
 .nav_2{
