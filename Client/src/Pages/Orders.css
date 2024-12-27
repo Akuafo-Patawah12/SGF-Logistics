@@ -134,7 +134,7 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 
 
 .order_note{
-    width: 84%;
+    width: 100%;
     border: 2px dashed red;
     padding-inline: 10% 5%;
     padding-block: 10px;
@@ -265,6 +265,7 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 
         .invoice_details{
             border-top: none;
+            width: 100%;
         }
    
 
