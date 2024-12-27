@@ -244,9 +244,11 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
         <div  style={{padding:"16px"}}>
         {process.env.REACT_APP_MAPBOX_TOKEN}
               <form onSubmit={handleSubmit}>
+              
 
                 <div  style={{marginBlock:"16px"}}>
                   <p style={{marginBottom:"10px"}}>Contact Information</p>
+                  <div className="one">
                   <div className='contact_details'>
                   <input
                         className="contact_input"
@@ -284,6 +286,9 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   <button>Invoice Date: {invoiceDate}</button>
                   <button>Invoice Due Date: {invoiceDueDate} <div className="wear-off wear_2"></div></button>
                   </div>
+                  </div>
+
+                  
                   <p style={{marginTop:"30px",paddingBottom:"10px"}}>Shipments Details</p>
                   <section style={{border:"1px solid #ddd"}} className='hero'>
     <table className="details-table">
@@ -323,7 +328,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             onChange={(e) => handleInputChange(index, e)}
           />
         </td>
-        <td>
+        <td style={{display:"flex",minWidth:"100px"}}>
           <input
             type="text"
             name="cbm"
@@ -332,6 +337,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             onChange={(e) => handleInputChange(index, e)}
             disabled={true}
           />
+          <button>Add</button>
         </td>
         <td>
           <input

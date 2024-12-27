@@ -131,100 +131,144 @@
 border-color:  #A7C756; /* Border color on focus */
 box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 }
+
+
+.order_note{
+    width: 84%;
+    border: 2px dashed red;
+    padding-inline: 10% 5%;
+    padding-block: 10px;
+
+    border-radius: 10px;
+    margin-top: 20px;
     
 
+    & li{
+        margin-bottom: 10px;
+        font-size: 16px;
+    font-weight: 400;
+    }
+
+}
+
+.one{
+    display: flex;
+    flex-direction: row-reverse;
+    gap:5px;
+    
+}
+.contact_details{
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding-block: 20px;
+    border: 1px solid #ddd;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    & input{
+        max-width: 85%;
+        
+        background-color: #eee;
+        outline: none;
+        border: 1px solid #ddd;
+    }
+
+    
+}
+.field{
+    grid-template-columns: repeat(2,1fr);
+}
+
+.invoice_details{
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   grid-gap: 2%;
+    width: 93%;
+    padding: 20px 3.5%;
+    background: #f8faf2;
+    border: 1px solid #ddd;
+    border-top: 2px solid #ddd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    & button{
+        height: 120px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        margin-top: 5px;
+        border-radius: 10px;
+        font-size: 14px;
+        position: relative;
+        color: #665;
+        
+    }
+} 
+
+.wear-off{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    
+    z-index: 1;
+    
+}
+.wear_1{
+    top: 0;
+    left: 0;
+    border-radius: 10px 0 10px 0;
+    background: linear-gradient(to left,#ddd,#fff);
+
+    
+}
+.wear_2{
+    top: 0;
+    right: 0;
+    border-radius: 0 10px 0 10px ;
+    background: linear-gradient(to right,#ddd,#fff);
+    
+}
+
+.total{
+    width: 200px;
+    margin-left: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    display: flex;
+    height: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.total section:first-child{
+    height: 100%;
+    width: 30%;
+    border-right: 1px solid #ddd;
+    line-height: 2.5rem;
+    text-align: center;
+}
+.total section:last-child{
+    height: 100%;
+    width: 70%;
+    
+    line-height: 2.5rem;
+    text-align: center;
+}
+
     @media (max-width: 500px){
-        .contact_details{
+        .one{
             flex-direction: column;
-            width: 100%;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-            padding-block: 20px;
-            border: 1px solid #ddd;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-
-            & input{
-                max-width: 85%;
-                
-                background-color: #eee;
-                outline: none;
-                border: 1px solid #ddd;
-            }
-
-            
-        }
-        .field{
-            grid-template-columns: repeat(2,1fr);
+            gap:0;
         }
 
         .invoice_details{
-           display: grid;
-           grid-template-columns: repeat(3,1fr);
-           grid-gap: 2%;
-            width: 93%;
-            padding: 20px 3.5%;
-            background: #f8faf2;
-            border: 1px solid #ddd;
             border-top: none;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-
-            & button{
-                height: 120px;
-                background-color: white;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                border: 1px solid #ddd;
-                margin-top: 5px;
-                border-radius: 10px;
-                font-size: 14px;
-                position: relative;
-                color: #665;
-                
-            }
-    }
-    .wear-off{
-        position: absolute;
-        height: 20px;
-        width: 20px;
-        
-        z-index: 1;
-        
-    }
-    .wear_1{
-        top: 0;
-        left: 0;
-        border-radius: 10px 0 10px 0;
-        background: linear-gradient(to left,#ddd,#fff);
-
-        
-    }
-    .wear_2{
-        top: 0;
-        right: 0;
-        border-radius: 0 10px 0 10px ;
-        background: linear-gradient(to right,#ddd,#fff);
-        
-    }
-
-    .order_note{
-        width: 84%;
-        border: 2px dashed red;
-        padding-inline: 10% 5%;
-        padding-block: 10px;
-
-        border-radius: 10px;
-        margin-top: 20px;
-        
-
-        & li{
-            margin-bottom: 10px;
-            font-size: 16px;
-        font-weight: 400;
         }
+   
 
-    }
+    
     .dimen-index{
         background: #A7C756;
         width: 25px;
@@ -360,28 +404,9 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 
     .total{
         width: 90%;
+        border:none;
         margin-inline: auto;
-        background-color: #fff;
-        border-radius: 10px;
-        display: flex;
-        height: 40px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .total section:first-child{
-        height: 100%;
-        width: 30%;
-        border-right: 1px solid #ddd;
-        line-height: 2.5rem;
-        text-align: center;
-    }
-    .total section:last-child{
-        height: 100%;
-        width: 70%;
-        
-        line-height: 2.5rem;
-        text-align: center;
-    }
-      
+    } 
   
      
   
@@ -390,17 +415,34 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 .details-table {
     width: 100%;
     border-collapse: collapse;
+    
     margin-bottom: 16px;
+  }
+
+  tr:nth-child(even){
+    background-color: #fefefe;
   }
 
   .details-table th, .details-table td {
     padding: 12px;
     text-align: left;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    
+  }
+  tr{
+    border-left:"1px solid #ddd";
+    min-width: min(22%,100px);
+  }
+
+  td{
+    font-size: 16px;
+    font-weight: 600;
   }
 
   .details-table input {
-    width: 100%;
-    padding: 8px;
+    width: 95%;
+    padding: 8px 2.5%;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 4px;
