@@ -14,7 +14,7 @@ const ContactUs = () => {
         zoom: 13,
       });
   return (
-    <main style={{marginTop:"90px"}}>
+    <main style={{marginTop:"80px"}}>
         <section className='header_image'>
            <div className='contact_header'>Contact Us</div>
         </section>
@@ -22,7 +22,7 @@ const ContactUs = () => {
         <section>
             <div>
                 <h3 style={{marginInline:"auto",width:"fit-content",marginbottom:"15px"}}>Send us a message</h3>
-                <p style={{marginInline:"auto",fontSize:"17px",width:"90%",color:"#444",textAlign:"justify",fontWeight:"400"}}>
+                <p style={{marginInline:"auto",fontSize:"15px",width:"90%",color:"#444",textAlign:"justify",fontWeight:"400"}}>
                    Have questions or need assistance? Send us a message, and our dedicated team at 
                    SFG Logistics will get back to you promptly. We’re here to provide you with the support 
                    and information you need to make your logistics experience seamless and efficient.
@@ -33,7 +33,7 @@ const ContactUs = () => {
         
         <Map
       initialViewState={viewport}
-      style={{ width: "100%", height:"400px",marginTop:"30px" }}
+      style={{ width: "100%", height:"400px",marginTop:"40px" }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
       mapboxAccessToken="pk.eyJ1IjoiYWt1YWZvLTEiLCJhIjoiY200MXhxNnJrMDQzNjJrcjAzbXg4cTliMCJ9.6cwG6dff4E2UjnQz7q963A"
       id="Map"

@@ -292,7 +292,7 @@ const [value, setValue] = useState(0);  // State to hold the value
               viewport={{ once: true, amount: 0.2 }}
             >
             
-            <p style={{color:"white",fontSize:"25px",fontWeight:"500"}}>Reliable Shipping Services Between China and Ghana </p>
+            <p style={{color:"white",fontSize:"30px",fontWeight:"500"}}>Reliable Shipping Services Between China and Ghana. </p>
    
             </motion.div>
           </div>
@@ -314,7 +314,7 @@ const [value, setValue] = useState(0);  // State to hold the value
              viewport={{ once: true, amount: 0.2 }}
            >
             
-          <p style={{color:"white",fontSize:"25px",fontWeight:"500"}} className='slideheader'>Track your shipment in real-time! With SF Ghana Logistics, know exactly where your cargo is at every moment</p>
+          <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Track your shipment in real-time! With SF Ghana Logistics, know exactly where your cargo is at every moment.</p>
        </motion.div>
         </div>
        <LazyLoadImage src='../SFG_images/Air.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
@@ -331,7 +331,7 @@ const [value, setValue] = useState(0);  // State to hold the value
              viewport={{ once: true, amount: 0.2 }}
            >
            
-           <p style={{color:"white",fontSize:"25px",fontWeight:"500"}} className='slideheader'>Reliable logistics, no matter the load</p>
+           <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Reliable logistics, no matter the load.</p>
            </motion.div>
           </div>
           <LazyLoadImage src='../SFG_images/Plane.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
@@ -348,7 +348,7 @@ const [value, setValue] = useState(0);  // State to hold the value
              viewport={{ once: true, amount: 0.2 }}
             >
 
-             <p style={{color:"white",fontSize:"25px",fontWeight:"500"}} className='slideheader'>Experience top-notch logistics with SF Ghana Logistics</p>
+             <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Experience top-notch logistics with SF Ghana Logistics.</p>
              
           </motion.div>
         </div>

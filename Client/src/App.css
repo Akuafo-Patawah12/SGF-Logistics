@@ -71,7 +71,7 @@
 }
 
 .h_child2{
-  border-top: 8px solid rgb(213, 35, 35);
+  border-top: 8px solid #a422d0;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -427,7 +427,6 @@ footer a{
 
 
 .h_child2{
-  border-top: 8px solid #A7C756;
   position: fixed;
   width: 100%;
   top: 0;

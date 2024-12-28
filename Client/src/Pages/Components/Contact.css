@@ -62,7 +62,7 @@
 .contact_form input,
 .contact_form textarea {
     width: 90%;
-    padding: 8px 12px;
+    padding: 2px 12px;
     margin: 8px 0;
     border: 1px solid #ddd; /* Light border */
     border-radius: 4px;
