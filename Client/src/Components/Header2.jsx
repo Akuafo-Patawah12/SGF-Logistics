@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
-import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
+import { HomeOutlined,TriangleFilled,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
-
+import { ReactComponent as Triangle } from "../Icons/Triangle.svg"
 const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
 
     const [pop1,popUp1,setPopUp1] = popDetails
@@ -33,14 +33,14 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
     
     <nav  className="nav1" style={{transform:"translateY(10px)"}}>
          <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"600"}}>Home</span> </NavLink>
-         <div style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>About  <DownOutlined /></span> 
+         <div style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>About  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"200%",padding:"8px",zIndex:"40"}}>
                 <a href='#why_choose_us'><p ><Link to={"/"} style={{fontSize:"16px"}}>Why choose us</Link></p></a>
                 <p><Link to={"/About"} style={{fontSize:"16px"}}>About us</Link></p>
                 
          </div>
          </div>
-         <NavLink to={"/Services"} style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  <DownOutlined /></span> 
+         <NavLink to={"/Services"} style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",isolation:"isolate",zIndex:"99"}}>
                 <p><Link to={"/Services/AirFreight"} style={Link_text}>Air freight</Link></p>
                 <p><Link to={"/Services/SeaFreight"} style={Link_text}>Sea freight</Link></p>
@@ -52,7 +52,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
          
          <NavLink to={"/Contacts"} style={Link_text}><span style={{fontSize:"16px",fontWeight:"600"}} className='header_links'>Contact</span> </NavLink>
  
-         <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  <DownOutlined /></span> 
+         <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>
                 <p><Link to={"/FAQs"} style={Link_text}>FAQs</Link></p>
                 <p><Link to={"/Orders"} style={Link_text}>Get a quote</Link></p>
