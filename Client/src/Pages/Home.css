@@ -487,6 +487,8 @@
   max-width: 280px;
    margin-inline: auto;
    margin-top: 10px;
+   font-weight: 500;
+   font-size: 15px
 }
 
   .quote::before{

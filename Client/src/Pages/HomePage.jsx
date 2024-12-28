@@ -399,7 +399,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
        
 
-       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBottom:"20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",border:"2px solid #222",borderRadius:"5px",fontSize:"16px" ,padding:"10px",fontWeight:"500"}}>SEE ALL OUR SERVICES</button></Link>
+       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756",paddingBlock:"2px 20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",border:"2px solid #222",borderRadius:"5px",fontSize:"16px" ,padding:"10px",fontWeight:"500"}}>SEE ALL OUR SERVICES</button></Link>
       
 
        

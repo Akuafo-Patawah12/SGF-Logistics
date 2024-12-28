@@ -146,7 +146,7 @@
 }
 
 .drop > p:hover{
-  background-color: #A7C756;
+  background-color: rgba(0,0,0,0.1);
 }
 .click:hover .drop{
   z-index: 99;
