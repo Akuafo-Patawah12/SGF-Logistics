@@ -291,8 +291,9 @@ const [value, setValue] = useState(0);  // State to hold the value
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.2 }}
             >
-            <p style={{color:"white",fontSize:"25px", marginLeft: "2%"}}>Logistics & Transportation.</p>
-            <h3 style={{color:"white",fontSize:"35px"}}>World Wide Logistic And <br/>Professional <span style={{color:"red",fontSize:"inherit"}}>Solutions</span></h3>
+            
+            <p style={{color:"white",fontSize:"25px"}}>Reliable Shipping Services Between China and Ghana </p>
+   
             </motion.div>
           </div>
           <LazyLoadImage
@@ -306,14 +307,14 @@ const [value, setValue] = useState(0);  // State to hold the value
         <div className="cover">
         <motion.div
        
-       initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
+       initial={{ opacity: 0, x:-100 }} // Start off-screen to the left (-200px)
              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
              exit={{ opacity: 0, x: -100 }} 
              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
              viewport={{ once: true, amount: 0.2 }}
            >
-            <h3 style={{color:"white",marginLeft: "2%"}}>Air Freight Services</h3>
-          <p style={{color:"white",fontSize:"25px"}} className='slideheader'>Our air freight services provide fast, reliable, and secure global shipping for your logistics needs.</p>
+            
+          <p style={{color:"white",fontSize:"25px"}} className='slideheader'>Track your shipment in real-time! With SF Ghana Logistics, know exactly where your cargo is at every moment</p>
        </motion.div>
         </div>
        <LazyLoadImage src='../SFG_images/Air.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
@@ -329,27 +330,35 @@ const [value, setValue] = useState(0);  // State to hold the value
              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
              viewport={{ once: true, amount: 0.2 }}
            >
-           <p style={{color:"white",fontSize:"25px"}}>Logistics & Transportation.</p>
-           <h3 style={{color:"white",fontSize:"35px"}} className='slideheader'>World Wide Logistic And <br/>Professional Solutions</h3>
+           
+           <p style={{color:"white",fontSize:"25px"}} className='slideheader'>Reliable logistics, no matter the load</p>
            </motion.div>
           </div>
           <LazyLoadImage src='../SFG_images/Slider2.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
           </div>
 
           <div ref={childRef4} style={{position:"relative"}} >
-            <div className="cover"></div>
-            <LazyLoadImage src='../SFG_images/Slider3.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} />
+          <div className="cover">
+          <motion.div
+       
+       initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
+             whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
+             exit={{ opacity: 0, x: -100 }} 
+             transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+             viewport={{ once: true, amount: 0.2 }}
+            >
 
+             <p style={{color:"white",fontSize:"25px"}} className='slideheader'>Experience top-notch logistics with SF Ghana Logistics</p>
+             
+          </motion.div>
+        </div>
+            <LazyLoadImage src='../SFG_images/Slider3.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} /> 
           </div>
           
-          
-
-          
-
-      
         
       </div>
-      </div>;
+      </div>
+
       <p className='Description' style={{position:"relative",isolation:"isolate"}}>We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
          <Truck style={{position:"absolute",zIndex:"-1",bottom:"0",left:"-20px"}}/> <Anchor style={{position:"absolute",top:"-35px",left:"48%",zIndex:"-1",rotate:"45deg"}}/> <Container style={{zIndex:"-1",position:"absolute",right:"10px",rotate:"45deg"}}/>
       </p>
