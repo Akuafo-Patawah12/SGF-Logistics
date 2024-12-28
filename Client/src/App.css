@@ -60,7 +60,7 @@
   height:80px;
   gap: 10px;
   background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(24,121,9,0.7841545553768382) 35%, rgba(0,212,255,1) 100%);
+  background: #A7C756;
 
   & button{
   font-size: 16px;
