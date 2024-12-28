@@ -382,8 +382,14 @@ const [value, setValue] = useState(0);  // State to hold the value
          
          </div>
       </section>
-
-      <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",textAlign:"center",marginTop:"20px",fontSize:"25px"}}>OUR MAJOR SERVICES.</h3>
+      <div style={{marginInline:"auto",width:"290px",}}>
+      <h3 style={{color:"#1C1818",marginLeft:"0",display:"flex",gap:"10px",width:"fit-content",textAlign:"center",marginTop:"20px",fontSize:"25px"}}>OUR MAJOR
+          <div className="content">
+              <h3>SERVICES.</h3>
+              <h3>SERVICES.</h3>
+          </div>
+      </h3>
+      </div>
       
       <div style={{width:"100px",height:"2px",background:"#1C1818",marginInline:"auto",marginTop:"4px"}}></div>
 

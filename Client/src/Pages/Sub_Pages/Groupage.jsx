@@ -31,12 +31,12 @@ const Groupage = () => {
         <div>
       <h3>Key Benefits:</h3>
       <ul>
-        <li><strong>Cost-Effective:</strong> Reduce costs by sharing container space, making shipping more 
-        affordable for smaller businesses.</li>
-        <li><strong>Flexible Scheduling:</strong> We offer regular shipments between Ghana and China to ensure 
-        convenience for all clients.</li>
-        <li><strong>Professional Handling:</strong> Despite shared container space, your goods receive the same 
-        level of care and attention as larger shipments.</li>
+        <li><strong>Cost-Effective:</strong><p> Reduce costs by sharing container space, making shipping more 
+        affordable for smaller businesses.</p></li>
+        <li><strong>Flexible Scheduling:</strong><p> We offer regular shipments between Ghana and China to ensure 
+        convenience for all clients.</p></li>
+        <li><strong>Professional Handling:</strong><p> Despite shared container space, your goods receive the same 
+        level of care and attention as larger shipments.</p></li>
       </ul>
       </div>
 

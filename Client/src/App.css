@@ -55,14 +55,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 5px solid rgb(213, 35, 35);
+
   width: inherit;
   height:80px;
+  gap: 10px;
   background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(24,121,9,0.7841545553768382) 35%, rgba(0,212,255,1) 100%);
 
   & button{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   background-color: transparent;
   color:white;
@@ -70,9 +71,11 @@
 }
 
 .h_child2{
-
-  
- background: #fff;
+  border-top: 8px solid rgb(213, 35, 35);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
   border-bottom: 2px solid #ddd;
   display: flex;
   justify-content: space-between;
@@ -88,6 +91,7 @@
   gap: 15px;
   font-size: large;
   font-weight: 600;
+  position: sticky;
 }
 
 .nav{
@@ -134,6 +138,7 @@
   visibility: hidden;
   height: 0;
   animation: hover 0.3s linear;
+  z-index: 40;
 
   & p{
     padding-block: 4px;
@@ -144,6 +149,7 @@
   background-color: #A7C756;
 }
 .click:hover .drop{
+  z-index: 99;
   height: auto;
   visibility: visible;
   animation: hover 1s linear;
@@ -416,9 +422,12 @@ footer a{
   
 }
 
-.header{
+
+
+.h_child2{
   border-top: 8px solid #A7C756;
   position: fixed;
+  width: 100%;
   top: 0;
   z-index: 30;
 }

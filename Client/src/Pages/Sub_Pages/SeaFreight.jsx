@@ -32,10 +32,10 @@ const SeaFreight = () => {
       <h3><span style={style}><CheckCircleOutlined /></span>Key Benefits:</h3>
       <ul>
         <li><DollarCircleOutlined style={{ color: '#004d80', marginRight: '8px' }} />
-          <strong>Cost-Effective:</strong> Sea freight is the most economical option for large and heavy shipments.
+          <strong>Cost-Effective:</strong> <p>Sea freight is the most economical option for large and heavy shipments.</p>
         </li>
         <li><ContainerOutlined style={{ color: '#004d80', marginRight: '8px' }} />
-          <strong>Large Capacity:</strong> Ideal for businesses with bulk shipments, ensuring that even the largest orders are handled efficiently.
+          <strong>Large Capacity:</strong> <p>Ideal for businesses with bulk shipments, ensuring that even the largest orders are handled efficiently.</p>
         </li>
       </ul>
       </div>

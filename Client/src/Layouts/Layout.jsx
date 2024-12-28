@@ -8,6 +8,7 @@ import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
 import LoginPrompt from '../Components/LoginPrompt'
+import Header2 from '../Components/Header2'
 const Invoice = lazy(()=> import( '../Pages/Invoice'))
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
@@ -87,7 +88,8 @@ const Layout = () => {
   return (
     <div>
 
-        <Header buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop}/>
+        <Header />
+        <Header2 buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop} />
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
 
         

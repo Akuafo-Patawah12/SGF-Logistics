@@ -32,11 +32,11 @@ const Procurement = () => {
         <div>
       <h3>Key Benefits:</h3>
       <ul>
-        <li><strong>Free of Charge:</strong> No cost to participate in our valuable training programs.</li>
-        <li><strong>Led by Experts:</strong> Our training sessions are led by professionals with years of experience 
-        in procurement and international trade.</li>
-        <li><strong>Practical Knowledge:</strong> Learn actionable strategies to optimize your procurement 
-        processes and sourcing decisions.</li>
+        <li><strong>Free of Charge:</strong><p> No cost to participate in our valuable training programs.</p></li>
+        <li><strong>Led by Experts:</strong><p> Our training sessions are led by professionals with years of experience 
+        in procurement and international trade.</p></li>
+        <li><strong>Practical Knowledge:</strong> <p>Learn actionable strategies to optimize your procurement 
+        processes and sourcing decisions.</p></li>
       </ul>
       </div>
 

@@ -11,7 +11,7 @@
    padding-inline: 5px;
    display: flex;
    max-width:260px;
-   
+   transform: translateY(0);
    margin-left: 2.5%;
    
    height: 30px;
@@ -52,6 +52,8 @@
       margin-left: auto;
     }
   }
+
+ 
   
   
   .freight div{
@@ -71,10 +73,12 @@
   }
   
   .freight p {
-    font-size: 1rem;
+    font-size: 15px;
     line-height: 1.5;
     margin-bottom: 15px;
     color: #333;
+    width: 83%;
+    padding-right: 3%;
   }
   
   .freight ul {
@@ -95,6 +99,10 @@
     color: #555;
     border-bottom: 1px solid #ddd;
     padding-block: 5px;
+  }
+
+ .key_benefit li{
+    font-size: 15px;
   }
   
 

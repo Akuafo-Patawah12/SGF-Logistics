@@ -30,10 +30,10 @@ const Door2door = () => {
         <div>
       <h3>Key Benefits:</h3>
       <ul>
-        <li><strong>Hassle-Free: </strong> We handle every aspect of the delivery, from our warehouse to your 
-        doorstep. </li>
-        <li><strong>Secure Handling:</strong> Your goods are managed with the utmost care at every stage of the 
-        journey.</li>
+        <li><strong>Hassle-Free: </strong><p> We handle every aspect of the delivery, from our warehouse to your 
+        doorstep.</p> </li>
+        <li><strong>Secure Handling:</strong> <p>Your goods are managed with the utmost care at every stage of the 
+        journey.</p></li>
       </ul>
       </div>
 

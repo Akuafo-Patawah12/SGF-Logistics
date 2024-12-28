@@ -30,11 +30,11 @@ const AirFreight = () => {
       </p>
       </div>
 
-      <div>
+      <div className="key_benefit">
       <h3><span style={style}><CheckCircleOutlined /></span>Key Benefits:</h3>
       <ul>
-        <li><strong>Cost-Effective:</strong> Sea freight is the most economical option for large and heavy shipments.</li>
-        <li><strong>Large Capacity:</strong> Ideal for businesses with bulk shipments, ensuring that even the largest orders are handled efficiently.</li>
+        <li style={{fontSize: "15px"}}><strong>Cost-Effective:</strong><p> Sea freight is the most economical option for large and heavy shipments.</p></li>
+        <li style={{fontSize: "15px"}}><strong>Large Capacity:</strong> <p>Ideal for businesses with bulk shipments, ensuring that even the largest orders are handled efficiently.</p></li>
       </ul>
       </div>
 
