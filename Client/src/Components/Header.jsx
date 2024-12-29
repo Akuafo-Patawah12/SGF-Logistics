@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
-import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
+import { PhoneOutlined,  WhatsAppOutlined,  EnvironmentOutlined, MailOutlined,FacebookOutlined,  InstagramOutlined,  YoutubeOutlined}  from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
-import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
+
+import { ReactComponent as Tiktok} from "../Icons/Tiktok.svg"
 
 
 
@@ -14,9 +15,17 @@ const Header = () => {
           <button style={{border:"none"}}><PhoneOutlined style={{rotate:"90deg"}}/> 020 811 6360 / 053 948 0433</button>
           <button style={{border:"none"}}><MailOutlined /> sfghanalogistics24@gmail.com</button>
           
-          <section style={{display:"flex" ,gap:"5px"}}>
-          <button style={{height:"50px", border:"2px solid white",width:"50px", borderRadius:"5px"}}><WhatsAppOutlined /> </button>
-          <button style={{height:"50px",border:"2px solid white", width:"50px", borderRadius:"5px"}}><FacebookFilled /></button>
+          <section style={{display:"flex" ,gap:"5px",color:"white"}} className="icon_link">
+         
+          <a href="https://www.instagram.com/sfghanalogistic?igsh=bnlyd3R2d3FyN2du" target="_blank"><InstagramOutlined /> </a>
+          <a href="https://www.youtube.com/@SFGhanaLogistics" target="_blank"><YoutubeOutlined/> </a>
+          <a href="https://www.facebook.com/profile.php?id=61560412809015&mibextid=ZbWKwL" target="_blank"><FacebookOutlined /> </a>
+          <a href="https://t.me/sfghanalogistics" target="_blank"> </a>
+          <a href="https://whatsapp.com/channel/0029VahZ9ep9hXFEXBAVWL3G" target="_blank"><WhatsAppOutlined/> </a>
+          <a href="https://www.tiktok.com/@sfghanalogistics" target="_blank" rel="noopener noreferrer">
+             <Tiktok style={{transform:"translateY(4px)"}}/>
+          </a>
+        
           </section>
       </div>
       

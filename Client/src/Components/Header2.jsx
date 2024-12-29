@@ -32,7 +32,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
         <Link to={"/"} style={{transform:"translateY(10px)"}}><SvgIcon /></Link>
     
     <nav  className="nav1" style={{transform:"translateY(10px)"}}>
-         <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"600"}}>Home</span> </NavLink>
+         <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"600",}}>Home</span> </NavLink>
          <div style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>About  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"200%",padding:"8px",zIndex:"40"}}>
                 <a href='#why_choose_us'><p ><Link to={"/"} style={{fontSize:"16px"}}>Why choose us</Link></p></a>
@@ -40,7 +40,9 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
                 
          </div>
          </div>
-         <NavLink to={"/Services"} style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
+
+         
+         <NavLink to={"/Services"} style={{position:"relative",}} className="click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",isolation:"isolate",zIndex:"99"}}>
                 <p><Link to={"/Services/AirFreight"} style={Link_text}>Air freight</Link></p>
                 <p><Link to={"/Services/SeaFreight"} style={Link_text}>Sea freight</Link></p>
@@ -50,15 +52,17 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
               </div>
          </NavLink>
          
-         <NavLink to={"/Contact_us"} style={Link_text}><span style={{fontSize:"16px",fontWeight:"600"}} className='header_links'>Contact</span> </NavLink>
+         <NavLink to={"/Contact_us"} style={Link_text} className="header_links"><span style={{fontSize:"16px",fontWeight:"600"}} >Contact</span> </NavLink>
  
-         <div style={{position:"relative"}} className="click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
-              <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",zIndex:"12"}}>
-                <p><Link to={"/FAQs"} style={Link_text}>FAQs</Link></p>
+         <NavLink to={"/More"} style={Link_text} className=" click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
+              <div className="drop" style={{position:"absolute",background:"white",padding:"8px" ,width:"100px",isolation:"isolate",zIndex:"99"}}>
+                <p><Link to={"/More/FAQs"} style={Link_text}>FAQs</Link></p>
                 <p><Link to={"/Orders"} style={Link_text}>Get a quote</Link></p>
+                <p><Link to={"/Orders"} style={Link_text}>Gallery</Link></p>
                 
-         </div> 
-         </div>    
+         
+         </div>
+         </NavLink>     
           </nav> 
      
       <div style={{marginRight:"3px",display:"flex",alignItems:"center",gap:"4px"}}>

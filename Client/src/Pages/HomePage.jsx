@@ -387,10 +387,15 @@ const [value, setValue] = useState(0);  // State to hold the value
           <Link to={"/Auth"} className='welcome_button'><button className='welcome_butt'><span>GET STARTED</span>
           <div className='liquid'></div></button></Link>
          </motion.div>
+
+
          <div className='welcome_image'>
-         
+             <div></div>
          </div>
+
       </section>
+
+
       <div style={{marginInline:"auto",width:"290px",}}>
       <h3 style={{color:"#1C1818",marginLeft:"0",display:"flex",gap:"10px",width:"fit-content",textAlign:"center",marginTop:"20px",fontSize:"25px"}}>OUR MAJOR
           <div className="content">

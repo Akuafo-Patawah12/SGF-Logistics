@@ -7,10 +7,15 @@
   font-size: 19px;
 }
 
+:root{
+   --purple: #a422d0;
+   --green: #A7C756;
+}
+
 .active{
  position: relative;
+  color: var(--purple);
   
-  color: #A7C756;
 }
 
 .active ::before{
@@ -18,9 +23,10 @@
   position: absolute;
   width: 100%;
   height: 4px;
-  background: #A7C756;
+  background: var(--purple);
   z-index: 2;
   left: 0;
+  
   bottom: -13px;
   
 }
@@ -60,7 +66,7 @@
   height:80px;
   gap: 10px;
   background: rgb(2,0,36);
-  background: #A7C756;
+  background: var(--green);
 
   & button{
   font-size: 16px;
@@ -71,10 +77,10 @@
 }
 
 .h_child2{
-  border-top: 8px solid #a422d0;
+  border-top: 8px solid var(--purple);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 99;
   background: #fff;
   border-bottom: 2px solid #ddd;
   display: flex;
@@ -117,17 +123,20 @@
 
 .header_links{
   width: 80%;
-  margin-inline: auto;
   height: 30px;
-  padding-inline: 4px;
+  padding-inline: 5px;
   border-radius: 5px;
   display: flex;
   text-decoration: none ;
-  color: #A7C756;
-  justify-content: space-between;
-  text-decoration: none;
+  color: #111;
+  
+  
 }
 
+
+.icon_link a{
+  color: white;
+}
 .drop{
   display: flex;
   justify-content: center;
@@ -136,17 +145,25 @@
   overflow: hidden;
   padding-left: 10px;
   visibility: hidden;
+  transform: translateY(5px);
   height: 0;
+
   animation: hover 0.3s linear;
   z-index: 40;
 
   & p{
-    padding-block: 4px;
+    padding-block: 5px;
   }
 }
 
 .drop > p:hover{
   background-color: rgba(0,0,0,0.1);
+}
+
+.click{
+  height: 30px;
+  padding-inline: 4px 0;
+  color: #111;
 }
 .click:hover .drop{
   z-index: 99;
@@ -157,7 +174,7 @@
 
 @keyframes hover{
   from{ height:0;}
-  to{height: auto}
+  to{height: 100%}
 }
 
 @keyframes navAnimate{
@@ -179,7 +196,7 @@
 footer a{
   text-decoration: none;
   color: white;
-  font-size: x-large;
+  font-size: 16px;
 }
   a{
     text-decoration: none;
@@ -231,7 +248,7 @@ footer a{
   
 
   & a{
-    font-size: 30px;
+    font-size: 16px;
   }
 }
 
@@ -293,7 +310,7 @@ footer a{
   }
 
   & div:hover{
-     color: #A7C756;
+     color: var(--green);
   }
 }
 
@@ -333,7 +350,7 @@ footer a{
   padding-left: 3px;
   color: #444;
   background-color: #fff;
- border: 3px solid #A7C756;
+ border: 3px solid var(--green);
   cursor: pointer;
   transition: border-width 0.3s ease-in-out; /* Smooth transition for border growth */
   font-size: 16px;
@@ -367,7 +384,7 @@ footer a{
 }
 
 .header{
-  border-top: 8px solid #A7C756;
+  border-top: 8px solid var(--green);
 }
 
 .copyright_header > p{
@@ -391,14 +408,14 @@ footer a{
 
 .active{
   
-  border-top: none;
+  
   position: relative;
-  color: #A7C756;
+  color: var(--green);
 }
 .active::before{
   content: "";
   position: absolute;
-  background-color: #A7C756;
+  background-color: var(--green);
   height: 50%;
   width: 5px;
   left: -8px;

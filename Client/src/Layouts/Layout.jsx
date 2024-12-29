@@ -103,7 +103,7 @@ const Layout = () => {
                     </Suspense> }
                 /> 
                 <Route path='/TermsAndCondition' element={<TermsAndCondition />} />
-                <Route path='/FAQs' element={<FAQs />}/>
+                <Route path='/More/FAQs' element={<FAQs />}/>
                 <Route path='/Orders' element={
                     <Suspense fallback={<Loader />}>
                         <Orders />
