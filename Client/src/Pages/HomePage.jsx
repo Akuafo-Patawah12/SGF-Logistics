@@ -317,7 +317,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Track your shipment in real-time! With SF Ghana Logistics, know exactly where your cargo is at every moment.</p>
        </motion.div>
         </div>
-       <LazyLoadImage src='../SFG_images/Air.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
+       <LazyLoadImage src='../SFG_images/Slide_Plane.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
        </div>
          
          <div ref={childRef3} style={{position:"relative"}} >
@@ -334,7 +334,7 @@ const [value, setValue] = useState(0);  // State to hold the value
            <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Reliable logistics, no matter the load.</p>
            </motion.div>
           </div>
-          <LazyLoadImage src='../SFG_images/Plane.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
+          <LazyLoadImage src='../SFG_images/Seaport.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
           </div>
 
           <div ref={childRef4} style={{position:"relative"}} >
