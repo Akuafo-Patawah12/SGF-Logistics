@@ -22,7 +22,7 @@
   color: var(--purple);
 }
 
-.active ::before{
+.active::before{
   content: "";
   position: absolute;
   width: 100%;
@@ -426,17 +426,24 @@ footer a{
   position: relative;
   color: var(--green);
 }
+
+.active > span{
+  color: var(--green);
+}
+
 .active::before{
-  content: "";
-  position: absolute;
+  
   background-color: var(--green);
   height: 50%;
   width: 5px;
   left: -8px;
   border-radius: 5px;
+  top: 25%;
   
 
 }
+
+
 .shipment_btn{
   height: 50px;
 }
