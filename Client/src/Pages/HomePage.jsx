@@ -511,7 +511,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         <div className="bar"></div>
       </motion.div>
       <div className='Why_choose_slider'>
-      <div style={{ marginTop:"50px",border:"3px solid #A7C756",paddingBottom: "5px",width:"100%"}} >
+      <div style={{ marginTop:"50px",border:"3px solid #a0c444",paddingBottom: "5px",width:"100%"}} >
        <div className='fade-image'>
           <img src={`./SFG_images/${image[index1]}`} alt="image"  className={fadeIn ? "":"fade_in"}/>
        </div>
@@ -527,48 +527,15 @@ const [value, setValue] = useState(0);  // State to hold the value
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
 
-        style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto", backgroundColor: '#A7C756', fontSize:"22px",fontWeight:"bold"}}
+        style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto", backgroundColor: '#a0c444', fontSize:"22px",fontWeight:"bold"}}
       >
        <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}+ </span> <br/> Satisfied customers</p>
       </motion.div>
        </div>
       </div>
       </div>
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}></div>
-       {see && <section  className="why_choose_us ">
-           <div>
-            <div style={{marginInline:"auto",width:"fit-content"}}><EndUsersIcon /></div>
-              <h4 style={{marginInline:"auto",width:"fit-content"}}>End-to-End Solutions:</h4>
-              <p >
-                  We offer comprehensive logistics services that cover every step of the supply chain—
-                from customs clearance and regulatory compliance to warehousing and last-mile delivery. 
-                  Our goal is to simplify the shipping process for you, allowing you to focus on your 
-                  business while we handle the logistics.  
-              </p>
-           </div>
-           <div>
-            <div style={{marginInline:"auto"}}><TrackingIcon /></div>
-           <h4 style={{marginInline:"auto",width:"fit-content"}}>Cutting-Edge Tracking</h4>
-              <p >
-                Transparency and real-time visibility are key to our operations. With our state-of-the-art 
-                tracking system, you can monitor the progress of your shipment at every stage. This gives 
-                you peace of mind knowing that your cargo is on the right path, with updates available 
-                24/7 through our platform. 
-              </p>
-           </div>
-            <div>
-           <div style={{marginInline:"auto",width:"fit-content"}}><ServicesIcon /> </div>
-           <h4 style={{marginInline:"auto",width:"fit-content"}}> Customer-Centric Approach</h4>
-              <p >
-                  At SFGL, our customers are at the heart of everything we do. We tailor our services to 
-                  meet your unique requirements, providing personalized support and maintaining open 
-                  communication throughout the shipping process. Our dedicated customer service team is 
-                  always available to assist with inquiries, offering prompt responses and solutions to 
-                  ensure your satisfaction.  
-              </p>
-           </div>
-          
-           </section> }
+       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444"}}></div>
+      
 
         {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"60",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
           <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
