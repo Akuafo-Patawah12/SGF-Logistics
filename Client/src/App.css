@@ -18,6 +18,10 @@
   
 }
 
+.active > span{
+  color: var(--purple);
+}
+
 .active ::before{
   content: "";
   position: absolute;
