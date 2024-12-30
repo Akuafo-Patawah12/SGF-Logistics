@@ -292,7 +292,7 @@ const [value, setValue] = useState(0);  // State to hold the value
               viewport={{ once: true, amount: 0.2 }}
             >
             
-            <p style={{color:"white",fontSize:"30px",fontWeight:"500"}}>Reliable Shipping Services Between China and Ghana. </p>
+            <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Reliable Shipping Services Between China and Ghana. </p>
    
             </motion.div>
           </div>

@@ -203,8 +203,10 @@ footer a{
   }
 .footer_nav{
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  width:96%;
   padding-bottom: 2em;
 }
 .About{
@@ -300,7 +302,8 @@ footer a{
 .nav_1,
 .nav_2{
   display: flex;
-  flex-wrap: wrap;
+  flex: 1 1 auto;
+  padding-inline: 6px;
   flex-direction: column;
   gap: 7px;
 
@@ -335,8 +338,8 @@ footer a{
     width: max-content;
     height: fit-content;
     color:white;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
   }
 }
 
@@ -435,6 +438,12 @@ footer a{
 }
 }
 
+@media (max-width: 950px){
+  .footer_nav{
+    flex-wrap: wrap;
+  }
+}
+
 @media (max-width: 768px){
 
   .About{
@@ -445,7 +454,7 @@ footer a{
 }
 .footer_nav{
   flex-direction: column;
-  
+  width: 95%;
 }
 
 

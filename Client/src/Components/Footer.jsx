@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="footer">
 
-        <main style={{width:"95%", marginInline:"auto"}} className='footer_nav'>
+        <main style={{marginInline:"auto"}} className='footer_nav'>
           <section style={{color:"#ddd"}} className="nav_1">
             <p>George Bush Highway, Plot No. 67,<br/> Dzorwulu, Accra-Ghana</p>
             <p>+(233)20 811 6360 / 053 948 0433</p>
