@@ -2,7 +2,7 @@ import React,{useEffect,useMemo} from 'react'
 import "./TrackOrder&Map.css"
 import {  RightCircleFilled } from '@ant-design/icons';
 import  { useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams,Link } from 'react-router-dom'
 import LogisticFooter from '../Components/LogisticFooter';
 
 
@@ -10,7 +10,7 @@ import { transform } from 'framer-motion';
 import { useNavigate} from "react-router-dom"
 import io from "socket.io-client"
 
-const TrackOrder = ({setPrompt,setTrackPop}) => {
+const TrackOrder = () => {
 
 
     const {id}= useParams()
@@ -49,31 +49,21 @@ const TrackOrder = ({setPrompt,setTrackPop}) => {
  
   
   return (
-    <div style={{marginTop:"90px"}}>
+    
 
 
       <div className='Track_cont'>
       <div className="track_1">
           <p>TRACK YOUR SHIPMENTS</p>
           <section>
-              <button onClick={()=> setTrackPop(true)}>Goods</button>
-              <button>Container</button>
+              <Link to={"/More/Track_order/Goods"}><button >Goods</button></Link>
+              <Link to={"/More/Track_order/Container"}><button>Container</button></Link>
           </section>
-          <button className="next">Next <RightCircleFilled style={{color:"#A7C756",position:"absolute",right:"5px"}}/></button>
+         
       </div>
-      </div>
+      
 
-      <div className='Track_cont'>
-      <div className="track_2">
-          <p>TRACK YOUR SHIPMENTS</p>
-          <p>Enter upto 10 digits of your tracking number</p>
-          <section>
-              <button>Tracking Number</button>
-              <button>Shipping Number</button>
-          </section>
-          <button className="track_btn">TRACK <RightCircleFilled style={{color:"#A7C756",position:"absolute",right:"5px"}}/> </button>
-      </div>
-      </div>
+      
         
       <LogisticFooter />
     </div>

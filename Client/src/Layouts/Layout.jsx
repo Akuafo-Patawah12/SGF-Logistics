@@ -9,6 +9,8 @@ import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
 import LoginPrompt from '../Components/LoginPrompt'
 import Header2 from '../Components/Header2'
+const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
+const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
 const Invoice = lazy(()=> import( '../Pages/Invoice'))
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
@@ -116,6 +118,18 @@ const Layout = () => {
                     </Suspense>} 
                 />
 
+            <Route path='/More/Track_order/Container' element={
+                    <Suspense fallback={<Loader />}>
+                        <TrackContainer />
+                    </Suspense>} 
+                />
+
+               <Route path='/More/Track_order/Goods' element={
+                    <Suspense fallback={<Loader />}>
+                        <TrackGoods />
+                    </Suspense>} 
+                />
+
 
                     
 
@@ -139,7 +153,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-                    <Route path='/Track_order' element={
+                    <Route path='/More/Track_order' element={
                         <Suspense fallback={<Loader />}>
                           <TrackOrder setPrompt={setPrompt} setTrackPop={setTrackPop}/>   
                         </Suspense>} 
