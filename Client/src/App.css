@@ -300,17 +300,24 @@ footer a{
 .nav_1,
 .nav_2{
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 7px;
 
   & div{
      transform: translateX(6px);
      font-weight: 500;
-     font-size: 17px;
+     font-size: 15px;
+     color: #fff;
   }
 
   & div:hover{
      color: var(--green);
+  }
+
+  & p{
+      font-size: 16px;
+      font-weight: 500;
   }
 }
 
