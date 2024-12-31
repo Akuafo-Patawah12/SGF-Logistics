@@ -23,7 +23,7 @@ const About = () => {
         
     
   return (
-    <div style={{marginTop:"90px"}}>
+    <div>
         <div className='service_image_header'>
            <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",fontSize:"40px",fontWeight:"700",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
                 About Us
@@ -36,8 +36,8 @@ const About = () => {
 
         <div className="abt-flex">
         <div  className='about_flex'>
-        <section style={{borderBottom:"5px solid #eee",paddingBottom:"40px"}}>
-            <p style={{textAlign:"justify"}} className="about_p">
+        <section style={{borderBottom:"5px solid #eee",paddingBottom:"40px"}} className="about_org">
+            <p style={{textAlign:"justify",fontSize:"15px"}} className="about_p">
                 Established in February 2019, Shun Feng Ghana Logistics (SFGL) has rapidly grown into one of 
                 West Africa's most trusted logistics providers, specializing in the efficient and seamless shipping 
                 of goods between Ghana and China. With our core values rooted in reliability, transparency, and 
@@ -53,14 +53,14 @@ const About = () => {
         
         <section ref={parentRef} style={{ border:"1px solid #ddd",borderRadius:"5px" }} className="parent">
              <div ref={childRef1} className="child">
-                <p style={{width:"95%",marginInline:"auto"}}>
+                <p style={{width:"95%",marginInline:"auto",fontSize:"15px"}}>
                  Our mission is to provide innovative and efficient logistics solutions that bridge the gap between 
                 Ghana and China, delivering superior customer satisfaction through reliability, timely delivery, 
                 and professional handling of all shipments.
                 </p> 
              </div>
              <div ref={childRef2} className="child">
-              <p style={{width:"95%",marginInline:"auto"}}>
+              <p style={{width:"95%",marginInline:"auto",fontSize:"15px"}}>
                 To be the leading logistics provider between Ghana and China, recognized for our commitment 
                 to excellence, innovation, and customer-focused solutions. 
               </p>
@@ -76,14 +76,14 @@ const About = () => {
 
         <section style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gridGap:"10px",width:"95%",margin:"20px auto"}}>
             <div className="about_info">
-              <span style={{fontSize:"30px",color:"red",fontWeight:"700"}}>5+</span> <br/>Years Experience
+              <span style={{fontSize:"30px",color:"var(--purple)",fontWeight:"700"}}>5+</span> <br/>Years Experience
             </div>
             <div className="about_info">
-              <span style={{fontSize:"30px",color:"red",fontWeight:"700"}}>99%</span> <br/>Accuraccy Rate
+              <span style={{fontSize:"30px",color:"var(--purple)",fontWeight:"700"}}>99%</span> <br/>Accuraccy Rate
             </div>
 
             <div className="about_info">
-              <span style={{fontSize:"30px",color:"red",fontWeight:"700"}}>100+</span> <br/>Trusted Partners
+              <span style={{fontSize:"30px",color:"var(--purple)",fontWeight:"700"}}>100+</span> <br/>Trusted Partners
             </div>
         </section>
     </div>
