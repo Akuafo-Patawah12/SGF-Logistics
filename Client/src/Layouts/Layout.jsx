@@ -9,6 +9,7 @@ import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
 import LoginPrompt from '../Components/LoginPrompt'
 import Header2 from '../Components/Header2'
+const Gallery = lazy(()=> import('../Pages/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
 const Invoice = lazy(()=> import( '../Pages/Invoice'))
@@ -150,6 +151,12 @@ const Layout = () => {
                     <Route path='/About' element={
                         <Suspense fallback={<Loader />}>
                           <About />   
+                        </Suspense>} 
+                    />
+
+<Route path='/More/Gallery' element={
+                        <Suspense fallback={<Loader />}>
+                          <Gallery />   
                         </Suspense>} 
                     />
 
