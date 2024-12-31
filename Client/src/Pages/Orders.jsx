@@ -228,7 +228,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
   
 
   return (
-  <form className="order">
+  <div className="order">
 
     <h3 style={{marginBlock:"20px 10px"}}>Requst a free quote</h3>
    <div className='free_quote_input'>
@@ -264,7 +264,7 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             
           </div>
               <textarea className="textArea" placeholder='Additional details: Any special requests or instructions'></textarea>
-          </form>
+          </div>
     
   )
 }

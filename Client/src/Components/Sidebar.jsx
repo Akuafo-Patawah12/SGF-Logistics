@@ -49,7 +49,7 @@ const Sidebar = ({popUp,setPopUp1,popRef}) => {
             <NavLink to={"/More"} style={style} className="side_link"><MoreOutlined />More<button onClick={()=> setShow3(!show3)} style={style1}><DownOutlined/> </button></NavLink>
             {show3 && <div className='side_drop'>
                <Link to={"/FAQs"} onClick={closeSidebar}>FAQs</Link>
-               <Link to={"/TermsAndCondition"} onClick={closeSidebar}>Terms & Agreement</Link>
+               <Link to={"/More/Gallery"} onClick={closeSidebar}>Galery</Link>
                
             </div>}
             </div>

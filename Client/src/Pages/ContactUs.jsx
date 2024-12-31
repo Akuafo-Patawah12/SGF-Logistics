@@ -34,9 +34,9 @@ const ContactUs = () => {
               <label> <div className="input_container"><input type='radio' name="shippemt_type"/> </div>Sea Freight</label>
                <label> <div className="input_container"><input type='radio' name="shippemt_type"/> </div>Air Freight </label>
                 <label><div className="input_container"><input type='radio' name="shippemt_type"/> </div>Door-to-door delivery</label>
-                <label><div className="input_container"><input type='radio' name="shippemt_type"/></div>Container Clearence or Booking </label>
+
                 <label><div className="input_container"><input type='radio' name="shippemt_type"/></div>RMB Exchange </label>
-               
+                <label><div className="input_container"><input type='radio' name="shippemt_type"/></div>Container Clearence or Booking </label>
               </section>
             </div>
 
