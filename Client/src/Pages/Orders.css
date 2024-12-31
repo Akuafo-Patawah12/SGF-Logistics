@@ -132,7 +132,13 @@ border-color:  #A7C756; /* Border color on focus */
 box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 }
 
+.shipment_radio_checks{
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    margin-inline: auto;
 
+}
 .order_note{
     width: 85%;
     border: 2px dashed red;
@@ -269,7 +275,10 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         }
    
 
-    
+        .shipment_radio_checks{
+            flex-wrap: wrap;
+        }
+        
     .dimen-index{
         background: #A7C756;
         width: 25px;

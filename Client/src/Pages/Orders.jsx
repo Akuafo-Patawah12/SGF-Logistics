@@ -471,8 +471,40 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
                   </section>
                 </div>
                 
-                
+                <div className="shipment_radio_checks">    
+            <div>
+              <div>Types of Goods</div>
+              <section>
+               <label> <input type='checkbox' /> Fragile</label>
+               <label> <input type='checkbox' /> Normal goods </label>
+                <label><input type='checkbox' /> Harzardous</label>
+              </section>
+            </div>
+
+            <div>
+              <div>Shipping Origin</div>
+              <section>
+               <label> <input type='radio' name="Origin"/>Guangzhou</label>
+               <label> <input type='radio' name="Origin"/> Yiwu </label>
+                </section>
+            </div>
+
+
+            <div>
+              <div>Shippment Type</div>
+              <section>
+               <label> <input type='radio' name="shippemt_type"/> Sea Freight</label>
+               <label> <input type='radio' name="shippemt_type"/> Air Freight </label>
+                <label><input type='radio' name="shippemt_type"/> Door-to-door delivery</label>
+                <label> <input type='radio' name="shippemt_type"/>Container Clearence or Booking </label>
+                <label> <input type='radio' name="shippemt_type"/>RMB Exchange </label>
+                <label> <input type='radio' name="shippemt_type"/> Air Freight </label>
+              </section>
+            </div>
+
             
+          </div>
+
 
             <div class="order_note">
             <h3>Note:</h3>
