@@ -228,335 +228,43 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
   
 
   return (
-    <div >
-        <div className="background-image">
-          <div className="image_cover"></div>
-              <h4 className='quote_header'>REQUEST A QUOTE</h4>
-        </div>
-        
+  <form className="order">
 
+    <h3 style={{marginBlock:"20px 10px"}}>Requst a free quote</h3>
+   <div className='free_quote_input'>
+      <input type="text"  placeholder='Shipping Mark' />
+      <input type="text"  placeholder='Tracking Number'/>
+      <input type='text'  placeholder='Email' />
+      <input type="text"  placeholder='Date'/>
+      <input type="text" placeholder='Telephone Number' />
+      <input type="text" placeholder='Quantity' />
+   </div>
 
-<div>
-  
-</div>
-
-        <div>
-        <div  style={{padding:"16px"}}>
-        {process.env.REACT_APP_MAPBOX_TOKEN}
-              <form onSubmit={handleSubmit}>
-              
-
-                <div  style={{marginBlock:"16px"}}>
-                  <p style={{marginBottom:"10px"}}>Contact Information</p>
-                  <div className="one">
-                  <div className='contact_details'>
-                  <input
-                        className="contact_input"
-                        type="text"
-                        placeholder="Fullname"
-                        onChange={(e)=>{setOrderInfo({...orderInfo,fullname:e.target.value})}}
-                        
-                        
-                      />
-
-                      <input
-                        className="contact_input"
-                        type="number"
-                        onChange={(e)=>{setOrderInfo({...orderInfo,phone:e.target.value})}}
-                        placeholder="Phone"
-                        
-                        
-                      />
-
-                  <input
-                        className="contact_input"
-
-                        
-                        type="email"
-                        onChange={(e)=>{setOrderInfo({...orderInfo,email:e.target.value})}}
-                        placeholder="Email"
-                        
-                        
-                      />
-                  </div>
-
-                  <div className='invoice_details' >
-                  
-                  <button>Invoice<br/> number <br/>{invoiceNumber} <div className="wear-off wear_1"></div></button>
-                  <button>Invoice Date: {invoiceDate}</button>
-                  <button>Invoice Due Date: {invoiceDueDate} <div className="wear-off wear_2"></div></button>
-                  </div>
-                  </div>
-
-                  
-                  <p style={{marginTop:"30px",paddingBottom:"10px"}}>Shipments Details</p>
-                  <section style={{border:"1px solid #ddd"}} className='hero'>
-    <table className="details-table">
-  <thead>
-    <tr>
-      <th>DESCRIPTION</th>
-      <th>TRACKING NO.</th>
-      <th>CTN NO.</th>
-      <th>CBM</th>
-      <th>Amount $</th>
-    </tr>
-  </thead>
-  <tbody>
-    {items.map((item, index) => (
-      <tr key={index} className="table-row">
-        <td>
-          <input
-            type="text"
-            name="description"
-            value={item.description}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            name="trackingNo"
-            value={item.trackingNo}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </td>
-        <td>
-          <input
-            type="text"
-            name="ctnNo"
-            value={item.ctnNo}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </td>
-        <td style={{display:"flex",minWidth:"100px"}}>
-          <input
-            type="text"
-            name="cbm"
-            placeholder="Dimension"
-            value={item.cbm}
-            onChange={(e) => handleInputChange(index, e)}
-            disabled={true}
-          />
-          <button>Add</button>
-        </td>
-        <td>
-          <input
-            type="text"
-            name="amount"
-            value={item.Amount}
-            onChange={(e) => handleInputChange(index, e)}
-            disabled={true}
-          />
-        </td>
-        <td>
-          <button
-            type="button"
-            className="remove-item-button"
-            onClick={() => removeItem(index)}
-          >
-            &times;
-          </button>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
-
-{items.map((item, index) => (
-  <div key={index} className="table">
-  
-  <section>
-          <input
-            type="text"
-            name="description"
-            placeholder="Description"
-            value={item.description}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </section>
-        <section>
-          <input
-            type="text"
-            name="trackingNo"
-            placeholder='Tracking No.'
-            value={item.trackingNo}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </section>
-        <section>
-          <input
-            type="text"
-            name="ctnNo"
-            placeholder="Ctn No."
-            value={item.ctnNo}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </section>
-        <section>
-          <input
-            type="text"
-            name="cbm"
-            placeholder="CBM"
-            value={item.cbm}
-            disabled={true}
-            style={{cursor:"not-allowed"}}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-          <button className="dimensions" type="button" onClick={() => toggleDimensions(index)} >Add dimensions</button>
-        </section>
-        <section>
-          <input
-            type="text"
-            name="amount"
-            placeholder="Amount $"
-            value={item.Amount}
-            style={{cursor:"not-allowed"}}
-            onChange={(e) => handleInputChange(index, e)}
-            disabled={true}
-          />
-        </section>
-        {activeIndex === index && (<div className='dimen-container'>
-        
-        <div className="dimen">
-        <div className="dimen-index">{index+1}</div>
-        <button type="button" onClick={()=> toggleDimensions(index)} className='close-dimen'>X</button>
-          <input type='number' placeholder='Width'
-            name="width"
-            value={item.width}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-          <input type='number' placeholder='Height'
-            name="height"
-            value={item.height}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-          <input type='number' placeholder='Length'
-            name="length"
-            value={item.length}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-
-          <button type="button" onClick={()=> calculateCBM(index)}>Add</button>
-        </div>
-        </div>)}
-
-
-        <section>
-          <button
-            type="button"
-            className="remove-item-button"
-            onClick={() => removeItem(index)}
-          >
-            &times;
-          </button>
-        </section>
-        <div className='table-index'>{index + 1}</div>
-  </div>
-))}
-                 
-<div className="total">
-  <section>Total</section>
-  <section>${total}</section>
-</div>   
-                  <button
-                    type="button"
-                    className="add_btn"
-                    onClick={addItem}
-                  >
-                    <PlusOutlined />
-                    Add Item
-                  </button>
-                 
-                  </section>
-                </div>
-                
-                <div className="shipment_radio_checks">    
+      <div className="shipment_radio_checks">    
             <div>
-              <div>Types of Goods</div>
-              <section>
-               <label> <input type='checkbox' /> Fragile</label>
-               <label> <input type='checkbox' /> Normal goods </label>
-                <label><input type='checkbox' /> Harzardous</label>
+              <div style={{fontWeight:"500",fontSize:"16px"}}>Types of Goods</div>
+              <section   className="checks">
+               <label><div className="input_container"> <input type='checkbox' /></div> Fragile</label>
+               <label><div className="input_container"> <input type='checkbox' /></div> Normal goods </label>
+                <label><div className="input_container"><input type='checkbox' /></div> Harzardous</label>
               </section>
             </div>
 
             <div>
-              <div>Shipping Origin</div>
-              <section>
-               <label> <input type='radio' name="Origin"/>Guangzhou</label>
-               <label> <input type='radio' name="Origin"/> Yiwu </label>
-                </section>
-            </div>
-
-
-            <div>
-              <div>Shippment Type</div>
-              <section>
-               <label> <input type='radio' name="shippemt_type"/> Sea Freight</label>
-               <label> <input type='radio' name="shippemt_type"/> Air Freight </label>
-                <label><input type='radio' name="shippemt_type"/> Door-to-door delivery</label>
-                <label> <input type='radio' name="shippemt_type"/>Container Clearence or Booking </label>
-                <label> <input type='radio' name="shippemt_type"/>RMB Exchange </label>
-                <label> <input type='radio' name="shippemt_type"/> Air Freight </label>
+              <div style={{fontWeight:"500",fontSize:"16px"}}>Shipping Origin</div>
+              <section className="radios">
+               <label> <div className="input_container"><input type='radio' name="Origin"/> </div> Guangzhou</label>
+               <label> <div className="input_container"><input type='radio' name="Origin"/> </div>  Yiwu </label>
               </section>
             </div>
 
+
+            
+
             
           </div>
-
-
-            <div class="order_note">
-            <h3>Note:</h3>
-            <ol>
-                <li>SFGL does not ship contraband goods. Your goods will be security checked.</li>
-                <li>Our departure timelines are subject to cargo availability.</li>
-                <li>Ship transit times may change without recourse to us.</li>
-                <li>Cargo may require inspection by customs and other regulatory bodies at their instance and time.</li>
-                <li>Our minimum CBM is 0.02. All items below 0.02CBM will be charged per our minimum CBM.</li>
-                <li>Measurements will be re-taken at the warehouse in Ghana to confirm CBM before payments are made.</li>
-                <li>Goods stored in our warehouse are subject to warehouse lien...</li>
-                <li>After goods have arrived, leaving items at the warehouse for more than 4 days will incur a warehouse charge...</li>
-                <li>Goods more than 300kg will be charged per ton and goods...</li>
-                <li>Goods weighing more than 700kg is equivalent to 1 CBM.</li>
-            </ol>
-        </div>
-
-
-                <div className="payment_btn" style={{display:"flex",border:"none",gap:"10px",justifyContent:"flex-end",marginTop:"20px"}} >
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={togglePopup}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    onClick={() => setShowPopup(true)}
-                    className="animated-button"
-                    
-                    style={{display:"flex",gap:"5px",background:"#A7C756",border:"none",color:"white",paddingBlock:"8px",paddingInline:"16px",borderRadius:"10px"}}
-            
-                  >
-                    Make Payment
-                  </button>
-                  <Link to={"/AllOrders"}><button className="view">View Orders</button></Link>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
-          <div>
-      
-      {showPopup && <PaymentPopUp onClose={() => setShowPopup(false)}  showPopup={showPopup}/>}
-    </div>
-         
-
-
-           <LogisticFooter />
-        </div>
+              <textarea className="textArea" placeholder='Additional details: Any special requests or instructions'></textarea>
+          </form>
     
   )
 }

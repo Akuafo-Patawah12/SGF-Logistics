@@ -1,100 +1,20 @@
-.header_image{
-    position: relative;
-    height: 200px;
-    background: url("../../../public/SFG_images/Slider4.jpg") no-repeat;
-    background-size: cover;
+.check,.radio{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    flex-direction: row;
+    padding-block:5px 15px ;
+}
+
+.check > label , .radio > label{
     display: flex;
-    align-items: center;
-    justify-content: center
+    gap: 3px;
+    white-space: nowrap;
 }
 
-.contact_header{
-    position: absolute;
-    inset: 0;
-    display: flex;
-    font-weight: 600;
-    align-items: center;
-    justify-content: center;
-    background: rgb(0, 0, 0,0.3);
-    font-size: 40px;
-    color: white;
-}
-
-.contact{
-    margin-top: 50px;
-}
-.contact_form{
-    width: 90%;
-    
-
-    & input{
-        height: 40px;
-        width: 100%;
-        font-size: 19px;
-
-    }
-    & button{
-        height: 40px;
-        width: 100%;
-        border-radius: 5px;
-        border: none;
-        font-size: 19px;
+@media (max-width: 768px){
+    .check,.radio{
+        grid-template-columns: repeat(2,1fr);
     }
 }
-
-.contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #f4f4f4; /* Light background color */
-}
-
-.contact_form {
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #fff; /* White background for the form */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.contact_form input,
-.contact_form textarea {
-    width: 90%;
-    padding: 2px 5% ;
-    margin: 8px 0;
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.contact_form input:focus,
-.contact_form textarea:focus {
-    outline: none;
-    border-color:  #A7C756; /* Border color on focus */
-    box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
-}
-
-.contact_form textarea {
-    resize: vertical; /* Allow vertical resizing only */
-}
-
-.contact_form button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    background-color:  #A7C756; /* Primary button color */
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contact_form button:hover {
-    background-color:  #97bd35; /* Darker shade on hover */
-}
-
 
