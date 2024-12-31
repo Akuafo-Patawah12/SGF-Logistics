@@ -18,6 +18,11 @@
     text-align: center;
   }
 
+  .grid-item > img{
+     width: 100%;
+     height: 100%;
+  }
+
   /* Specific item sizes */
   .item-1 {
     grid-column: span 2; /* Takes 2 columns */
