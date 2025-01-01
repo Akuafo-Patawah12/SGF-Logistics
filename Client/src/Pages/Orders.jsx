@@ -65,164 +65,38 @@ const [creatingOrder,setCreatingOrder]= useState(false);
 
 
 
-    const [isOpen, setIsOpen] = useState(false);
-
-const [orderInfo,setOrderInfo] = useState(
-  {
-    fullname:"",
-    phone:"",
-    email:"",
-    additional_info:"",
-    special_handling:"",
-    shipnment_type:"",
-    origin:"",
-    destination:""
-  }
-)
-
-
-const togglePopup = () => {
-  setIsOpen(!isOpen);
-};
+   
 
 
 
-const addItem = () => {
-  setItems([...items, {  description: "", trackingNo: "", ctnNo: "", cbm: "", amount: "" }]);
-};
 
-const removeItem = (index) => {
-  setItems(items.filter((_, i) => i !== index));
-};
 
-const handleSubmit = (e) => {
-  e.preventDefault()
-  setCreatingOrder(true)
-  setTimeout(()=>{
-    socket.emit("createOrder",{items,...orderInfo,tracking_id: v4()})
-  },1000)
+
+
+
   
-  // Reset form
-  
-  setItems([{ description: "", trackingNo: "", ctnNo: "", cbm: "", amount: "" }]);
-  togglePopup();
-};
 
-function deleteOrder(order_id,customer_id){  //function to delete an order
  
-    setTimeout(()=>{
-      socket.emit("deleteOrder",{order_id,customer_id})
-  
-    },5000)
-      
-  }
-
-
 
   
 
-  const [invoiceNumber, setInvoiceNumber] = useState("");
-  const [invoiceDate, setInvoiceDate] = useState("");
-  const [invoiceDueDate, setInvoiceDueDate] = useState("");
-  
+ 
 
-  const[total,setTotal] =useState(0)
-  
-  const [items, setItems] = useState([
-      { description: "", trackingNo: "", ctnNo: "", cbm: "", Amount: "",length:"",width:"",height:"" }
-  ]);
-
-  // Generate a random invoice number
-  const generateInvoiceNumber = () => {
-      const invNumber = 'INV-' + Math.floor(100000 + Math.random() * 900000);
-      setInvoiceNumber(invNumber);
-  };
-
-  // Format the date to dd/mm/yyyy
-  const formatDateToDDMMYYYY = (date) => {
-      let dd = date.getDate();
-      let mm = date.getMonth() + 1; // Months are zero-based
-      const yyyy = date.getFullYear();
-
-      // Ensure two digits for day and month
-      if (dd < 10) dd = '0' + dd;
-      if (mm < 10) mm = '0' + mm;
-
-      return `${dd}/${mm}/${yyyy}`;
-  };
-
-  useEffect(() => {
-    const newTotal = items.reduce((sum, row) => {
-      const amount = parseFloat(row.Amount) || 0;
-      return sum + amount;
-    }, 0);
-    setTotal(newTotal.toFixed(2));
-  }, [items]); // Only rerun when items change
-
-  function calculateCBM(index) {
-    // Create a new array to avoid mutating the state directly
-    const newItems = [...items];
-    
-    // Calculate CBM based on dimensions
-    const cbm = items[index].length * items[index].width * items[index].height;
-    newItems[index]["cbm"] = cbm.toFixed(3);
-
-    // Calculate the amount based on CBM
-    const amount = cbm * 230;
-    newItems[index]["Amount"] = amount.toFixed(2);
-
-    // Update the items state, which will trigger the effect to recalculate the total
-    setItems(newItems);
-    setActiveIndex(activeIndex === index ? null : index);
-
-  }
 
   
 
   // Set the current date as Invoice Date and format it
-  const setInvoice_date = () => {
-      const today = new Date();
-      setInvoiceDate(formatDateToDDMMYYYY(today));
-      setInvoiceDueDate(formatDateToDDMMYYYY(new Date(today.setDate(today.getDate() + 3))));
-  };
+  
 
 
  
 
-  // Handle input changes for item rows
-  const handleInputChange = (index, event) => {
-      const { name, value } = event.target;
-      const newItems = [...items];
-      newItems[index][name] = value;
+ 
 
-      if (name === "length" || name === "width" || name === "height") {
-          const length = parseFloat(newItems[index].length || 0);
-          const width = parseFloat(newItems[index].width || 0);
-          const height = parseFloat(newItems[index].height || 0);
-          const cbm = (length * width * height).toFixed(3);
-          newItems[index].cbm = cbm;
-
-          // Calculate amount (example rate: $230 per CBM)
-          newItems[index].Amount = (cbm * 230).toFixed(2);
-      }
-
-      setItems(newItems);
-  };
-
-  // Initialize on component mount
-  useEffect(() => {
-      generateInvoiceNumber();
-      setInvoice_date();
-  }, []);
+ 
 
 
-  const [showPopup, setShowPopup] = useState(false);
 
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const toggleDimensions = (index) => {
-    setActiveIndex(activeIndex === index ? null : index); // Toggle visibility
-  };
   
 
   return (
@@ -262,6 +136,8 @@ function deleteOrder(order_id,customer_id){  //function to delete an order
             
           </div>
               <textarea className="textArea" placeholder='Additional details: Any special requests or instructions'></textarea>
+         
+              <button type="submit" className="send_button">Submit</button>
           </div>
     
   )

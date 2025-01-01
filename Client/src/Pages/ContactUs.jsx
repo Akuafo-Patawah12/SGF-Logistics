@@ -48,6 +48,8 @@ const ContactUs = () => {
             
           </div>
               <textarea className="textArea" placeholder='Message'></textarea>
+
+              <button type="submit" className="send_button">Send Message</button>
           </form>
   )
 }
