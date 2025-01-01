@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
-import { PhoneOutlined,  WhatsAppOutlined,  EnvironmentOutlined, MailOutlined,FacebookOutlined,  InstagramOutlined,  YoutubeOutlined}  from '@ant-design/icons'
+import { PhoneOutlined,  WhatsAppOutlined,  EnvironmentOutlined, MailOutlined,FacebookOutlined,  InstagramOutlined,  YoutubeOutlined, TikTokOutlined}  from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
 
-import { ReactComponent as Tiktok} from "../Icons/Tiktok.svg"
+
 
 
 
@@ -23,7 +23,7 @@ const Header = () => {
           <a href="https://t.me/sfghanalogistics" target="_blank"> </a>
           <a href="https://whatsapp.com/channel/0029VahZ9ep9hXFEXBAVWL3G" target="_blank"><WhatsAppOutlined/> </a>
           <a href="https://www.tiktok.com/@sfghanalogistics" target="_blank" rel="noopener noreferrer">
-             <Tiktok style={{transform:"translateY(4px)"}}/>
+              <TikTokOutlined />
           </a>
         
           </section>

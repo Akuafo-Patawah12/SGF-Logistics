@@ -1,9 +1,9 @@
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    grid-template-columns: repeat(3, 1fr); /* 4 equal columns */
     grid-auto-rows: 300px; /* Default row height */
     gap: 10px; /* Spacing between grid items */
-    margin-top: 30px;
+    margin-block: 30px;
     width: 95%;
     margin-inline: auto;
   }
@@ -26,27 +26,27 @@
   }
 
   /* Specific item sizes */
-  .item-1 {
+  .item{
     grid-column: span 2; /* Takes 2 columns */
     grid-row: span 1; /* Takes 1 row */
   }
 
-  .item-2 {
+  .item {
     grid-column: span 1; /* Takes 1 column */
     grid-row: span 1; /* Takes 1 row */
   }
 
-  .item-3 {
+  .item {
     grid-column: span 1; /* Takes 1 column */
     grid-row: span 2; /* Takes 2 rows */
   }
 
-  .item-4 {
+  .item {
     grid-column: span 1; /* Takes 2 columns */
     grid-row: span 1; /* Takes 1 row */
   }
 
-  .item-5 {
+  .item {
     grid-column: span 2; /* Takes 1 column */
     grid-row: span 1; /* Takes 1 row */
   }

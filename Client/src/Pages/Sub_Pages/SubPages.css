@@ -104,6 +104,58 @@
  .key_benefit li{
     font-size: 15px;
   }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 4 equal columns */
+    grid-auto-rows: 300px; /* Default row height */
+    gap: 10px; /* Spacing between grid items */
+    margin-top: 30px;
+    width: 95%;
+    margin-inline: auto;
+  }
+
+  .grid-item {
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid var(--green);
+  }
+
+  .grid-item > img{
+     width: 100%;
+     height: 100%;
+     
+  }
+
+  /* Specific item sizes */
+  .item1{
+    grid-column: span 2; /* Takes 2 columns */
+    grid-row: span 1; /* Takes 1 row */
+  }
+
+  .item2 {
+    grid-column: span 1; /* Takes 1 column */
+    grid-row: span 1; /* Takes 1 row */
+  }
+
+  .item3{
+    grid-column: span 1; /* Takes 1 column */
+    grid-row: span 2; /* Takes 2 rows */
+  }
+
+  .item4 {
+    grid-column: span 1; /* Takes 2 columns */
+    grid-row: span 1; /* Takes 1 row */
+  }
+
+  .item5{
+    grid-column: span 2; /* Takes 1 column */
+    grid-row: span 1; /* Takes 1 row */
+  }
   
 
  @media (max-width: 768px) {

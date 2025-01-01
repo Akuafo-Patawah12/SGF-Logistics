@@ -1,5 +1,5 @@
 import React,{useEffect, useState,useMemo} from 'react'
-import LogisticFooter from "../Components/LogisticFooter"
+
 import io from "socket.io-client"
 import {v4} from "uuid"
 import { useNavigate,Link } from 'react-router-dom'
@@ -11,9 +11,7 @@ import { useNavigate,Link } from 'react-router-dom'
 
 import "./Orders.css"
 
-import ButtonLoader from '../Icons/ButtonLoader'
-import { PlusOutlined, SendOutlined } from '@ant-design/icons'
-import PaymentPopUp from './Components/PaymentPopUp'
+
 
 
 

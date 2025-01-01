@@ -18,8 +18,10 @@
   }
 
   .slideheader{
-      max-width: 80%;
+      min-width: 80%;
+      
       margin-left: 2%;
+      background: yellow;
   }
 
   .flexbox_1:first-child{
@@ -200,7 +202,7 @@
 
     & p{
       font-weight: 500;
-      color: #555;
+      color: #444;
       font-size: 15px;
       font-weight: 400;
     }
@@ -218,7 +220,7 @@
     width: 48%;
     position:relative;
     z-index: -1;
-    height: 500px;
+    height: 560px;
     opacity: 1;
     border-radius: 10px;
     background-image: url("../../public/SFG_images/Get_in_Touch.jpg");
@@ -304,6 +306,9 @@
     width: 100%;
     z-index: 9;
     background: rgba(0, 0, 0, 0.1);
+
+
+    
   }
   .cover > section{
      margin-top: 80px;
