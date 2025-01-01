@@ -17,11 +17,20 @@
     
   }
 
-  .slideheader{
-      min-width: 80%;
+  .slideheader:first-child  {
       
+      display: grid;
+      grid-template-columns: 1fr;
       margin-left: 2%;
-      background: yellow;
+      
+      
+  }
+
+  .slideheader :nth-child(2),
+  .slideheader :nth-child(3),
+  .slideheader :nth-child(4){
+      white-space: nowrap;
+      margin-left: 2%;
   }
 
   .flexbox_1:first-child{
