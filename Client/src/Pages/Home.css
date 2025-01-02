@@ -111,7 +111,7 @@
   
   position: relative;
   border: 5px solid var(--green);
-  margin-block: 100px 60px;
+  margin-block: 70px 50px;
   width: 100%;
   border-radius: 10px;
   height: 350px;
@@ -148,15 +148,16 @@
 }
 
 .rate{
-  display:flex;
-  justify-content: space-between;
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
   width: 100%;
   background-color: #bd5dde;
   border-radius: 10px;
 
 
   & div{
-    padding-block: 50px;
+    padding-block: 30px;
+    text-align: center;
   }
 }
 

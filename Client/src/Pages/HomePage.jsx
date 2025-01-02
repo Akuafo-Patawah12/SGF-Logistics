@@ -6,6 +6,10 @@ import{ ReactComponent as Truck } from "../Icons/Truck.svg"
 import{ ReactComponent as Anchor } from "../Icons/Anchor.svg"
 import{ ReactComponent as Container } from "../Icons/Container.svg"
 
+import{ ReactComponent as CargoShip } from "../Icons/CargoShip.svg"
+import{ ReactComponent as CargoPlane } from "../Icons/CargoPlane.svg"
+import{ ReactComponent as RMBrate } from "../Icons/RMBrate.svg"
+
 import "./Home.css"
 import io from "socket.io-client"
 
@@ -516,9 +520,9 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
         <div className='rate'>
-           <div>SEA FREIGHT<br/> $230 PER CBM</div>
-           <div>AIR FREIGHT <br/>$18 PER KILO</div>
-           <div>RMB RATE<br/>0.425</div>
+           <div style={{borderRight:"2px solid #222"}}><CargoShip/> <br/><span style={{fontSize:"15px"}}>SEA FREIGHT</span><br/><span style={{fontSize:"15px",fontWeight:"500"}}> $230 PER CBM</span></div>
+           <div style={{borderRight:"2px solid #222"}}><CargoPlane/><br/><span style={{fontSize:"15px"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"15px",fontWeight:"500"}}>$18 PER KILO</span></div>
+           <div><RMBrate/><br/><span style={{fontSize:"15px"}}>RMB RATE</span><br/><span style={{fontSize:"15px",fontWeight:"500"}}>0.425</span></div>
         </div>
 
       </motion.div>

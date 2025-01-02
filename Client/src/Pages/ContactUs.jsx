@@ -16,7 +16,7 @@ const ContactUs = () => {
     <h3 style={{marginBlock:"20px 10px",fontWeight:"500"}}>Make An Enquiry</h3>
 
     <p style={{marginBottom:"30px",fontSize:"14px"}}>Fill out the form below to get a tailored for your shipping needs.<br/>
-       Our tean will get back to you after 12hours with the details.
+       Our team will get back to you after 12hours with the details.
     </p>
    <div className='free_quote_input'>
       <input type="text"  placeholder='First name' />
