@@ -154,9 +154,12 @@
 
   animation: hover 0.3s linear;
   z-index: 40;
+  box-shadow: 1px 2px 5px #bbb;
 
   & p{
-    padding-block: 5px;
+    margin-top: 0;
+    padding-block: 3px;
+    border-bottom: 1px solid #ddd;
   }
 }
 
