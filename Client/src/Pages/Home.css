@@ -111,10 +111,10 @@
   
   position: relative;
   border: 5px solid var(--green);
-  margin-block: 100px;
-  width: 45%;
+  margin-block: 100px 60px;
+  width: 100%;
   border-radius: 10px;
-  height: 400px;
+  height: 350px;
   background: transparent;
   isolation: isolate;
 }
@@ -139,8 +139,25 @@
 
 
 .why{
-  display: flex;
-  justify-content: space-between; 
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(2,1fr);
+  width: 95%;
+  
+  margin-inline: auto;
+}
+
+.rate{
+  display:flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #bd5dde;
+  border-radius: 10px;
+
+
+  & div{
+    padding-block: 50px;
+  }
 }
 
 .fade-image{
@@ -298,8 +315,8 @@
   }
 
   .Why_choose_slider{
-     width: 45%;
-     margin-inline: auto;
+     width: 100%;
+
      
      margin-bottom: 10px;
   }
@@ -745,9 +762,7 @@ animation: animat 10s linear infinite;
     }
     
 
-    .Why_choose_slider{
-      width: 95%;
-   }
+    
 
     .welcome_hero{
       height: max-content;
@@ -802,10 +817,11 @@ animation: animat 10s linear infinite;
     
 
     .why{
-      flex-direction: column;
+      grid-template-columns: 1fr;
     }
     .scattered{
       width: 90%;
+
       margin-inline: auto;
     }
    .services{

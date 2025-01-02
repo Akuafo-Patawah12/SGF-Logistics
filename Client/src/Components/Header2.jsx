@@ -29,7 +29,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
         const Link_text={textDecoration:"none", fontSize:"15px"}
   return (
     <div className="h_child2">
-        <Link to={"/"} style={{transform:"translateY(10px)"}}><SvgIcon /></Link>
+        <Link to={"/"} style={{transform:"translateY(10px)",marginLeft:"2%"}}><SvgIcon /></Link>
     
     <nav  className="nav1" style={{transform:"translateY(10px)"}}>
          <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"600",}}>Home</span> </NavLink>

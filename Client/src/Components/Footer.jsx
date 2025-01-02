@@ -2,9 +2,15 @@ import React from 'react'
 import {DoubleRightOutlined, VideoCameraOutlined,EnvironmentOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, MailOutlined, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
 import { ReactComponent as Tiktok} from "../Icons/Tiktok.svg"
 import Accordion from './Accordion'
+import { Link } from 'react-router-dom'
 
 
 const Footer = () => {
+
+  const backtotop = () => {
+    
+    window.scrollTo({top:0,behavior:"smooth"})
+  };
   const contact_style={display:"flex",alignItems:"center",justifyContent:"center",border:"2px solid #A7C756",color:"#A7C756",textAlign:"center",borderRadius:"5px",width:"30px",height:"30px",paddingLeft:"3px"}
   return (
     <footer className="footer">
@@ -18,28 +24,27 @@ const Footer = () => {
           </section>
           <section style={{color:"#ddd"}} className='nav_1'>
             <h4>Quick Link</h4>
-             <div><DoubleRightOutlined /> Home</div>
-             <div><DoubleRightOutlined /> Services</div>
-             <div><DoubleRightOutlined /> About</div>
-             <div><DoubleRightOutlined /> Contact</div>
+             <Link to={"/"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Home</div></Link>
+             <Link to={"/Services"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Services</div></Link>
+             <Link to={"/About"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> About</div></Link>
+             <Link to={"/Contact_Us"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Contact</div></Link>
           </section>
           
           <section style={{color:"#ddd"}} className='nav_1'>
             <h4>Services we offer</h4>
-             <div><DoubleRightOutlined /> Sea Freight</div>
-             <div><DoubleRightOutlined /> Air Freight</div>
-             <div><DoubleRightOutlined /> Door to door delivery</div>
-             <div><DoubleRightOutlined /> Warehousing</div>
-             <div><DoubleRightOutlined /> Procurement</div>
+             <Link to={"/Services/SeaFreight"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Sea Freight</div></Link>
+             <Link to={"/Services/AirFreight"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Air Freight</div></Link>
+             <Link to={"/Services/Door2Door"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Door to door delivery</div></Link>
+             <Link to={"/Services/Procurement"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Procurement</div></Link>
           </section>
 
           
           <section style={{color:"#ddd"}} className='nav_1'>
           <h4>Support</h4>
-             <div><DoubleRightOutlined /> Why choose us</div>
-             <div><DoubleRightOutlined /> Terms & Conditions</div>
-             <div><DoubleRightOutlined /> FAQs</div>
-             <div><DoubleRightOutlined /> Report a Bug</div>
+             <Link to={"/About"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Why choose us</div></Link>
+             <Link to={"/TermsAndCondition"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Terms & Conditions</div></Link>
+             <Link to={"/More/FAQs"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> FAQs</div></Link>
+
           </section>
         <section className="About">
           

@@ -486,8 +486,10 @@ const [value, setValue] = useState(0);  // State to hold the value
               exit={{ opacity: 0, x: -100 }} 
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.2 }}
-        
-       className='scattered'>
+
+       >
+
+       <div className='scattered'>
         <section>
         
             <p style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/money-bag.gif" style={{width:"100px",height:"100px"}} /></p>
@@ -509,7 +511,20 @@ const [value, setValue] = useState(0);  // State to hold the value
               
         </section>
         <div className="bar"></div>
+
+
+        </div>
+
+        <div className='rate'>
+           <div>SEA FREIGHT<br/> $230 PER CBM</div>
+           <div>AIR FREIGHT <br/>$18 PER KILO</div>
+           <div>RMB RATE<br/>0.425</div>
+        </div>
+
       </motion.div>
+
+
+      
       <div className='Why_choose_slider'>
       <div style={{ marginTop:"50px",border:"3px solid #a0c444",paddingBottom: "5px",width:"100%"}} >
        <div className='fade-image'>
@@ -531,7 +546,7 @@ const [value, setValue] = useState(0);  // State to hold the value
       >
        <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}+ </span> <br/> Satisfied customers</p>
       </motion.div>
-       </div>
+        </div>
       </div>
       </div>
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444"}}></div>
