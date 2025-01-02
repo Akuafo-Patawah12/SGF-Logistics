@@ -9,6 +9,8 @@ import TermsAndCondition from '../Pages/TermsAndCondition'
 import Tracking from '../Components/Tracking'
 import LoginPrompt from '../Components/LoginPrompt'
 import Header2 from '../Components/Header2'
+import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
+import HowItWorksVideo from '../Pages/Components/HowItWorksVideo'
 const Gallery = lazy(()=> import('../Pages/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
@@ -87,6 +89,8 @@ const Layout = () => {
 
      
  const [isPrompt,setPrompt] = useState(false)
+
+ const [isVideo,setIsVideo] = useState(false)
         
   return (
     <div>
@@ -94,7 +98,10 @@ const Layout = () => {
         <Header />
         <Header2 buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop} />
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
-
+        {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"99",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
+           <HowItWorksVideo />
+       </div>}
         
         <LoginPrompt prompt={[isPrompt,setPrompt]}/>
       
@@ -102,7 +109,7 @@ const Layout = () => {
             <Routes>
                 <Route path='/' element={
                     <Suspense fallback={<Loader />}>
-                        <HomePage setShowAuth={setShowAuth} showAuth={showAuth} />
+                        <HomePage setShowAuth={setShowAuth} showAuth={showAuth} setIsVideo={setIsVideo}/>
                     </Suspense> }
                 /> 
                 <Route path='/TermsAndCondition' element={<TermsAndCondition />} />

@@ -24,7 +24,7 @@ import EndUsersIcon from '../Icons/EndUsersIcon'
 import TrackingIcon from '../Icons/TrackingIcon'
 import ServicesIcon from '../Icons/ServicesIcon'
 import ServicesComponent from './Components/ServicesComponent'
-const HomePage = ({setShowAuth,showAuth}) => {
+const HomePage = ({setShowAuth,showAuth,setIsVideo}) => {
   const socket= useMemo(() => io("http://localhost:4040",{
     transports: ["websocket","polling"],
     withCredentials: true,
@@ -136,7 +136,7 @@ const [isVisible, setIsVisible] = useState(false);
   
   
 
-  const [isVideo,setIsVideo] = useState(false)
+
 
   const[seeMore,setSeeMore] =useState("Read More...")
   const[ see,setSee] = useState(false)
@@ -556,10 +556,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444"}}></div>
       
 
-        {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"60",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
-          <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
-           <HowItWorksVideo />
-       </div>}
+        
     </motion.div>
   )
 }

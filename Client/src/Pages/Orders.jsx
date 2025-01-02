@@ -102,7 +102,7 @@ const [creatingOrder,setCreatingOrder]= useState(false);
   return (
   <div className="order">
 
-    <h3 style={{marginBlock:"20px 10px"}}>Requst a free quote</h3>
+    <h3 style={{marginBlock:"20px 10px"}}>Request a free quote</h3>
    <div className='free_quote_input'>
       <input type="text"  placeholder='Shipping Mark' />
       <input type="text"  placeholder='Tracking Number'/>
