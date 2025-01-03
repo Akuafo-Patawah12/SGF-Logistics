@@ -151,7 +151,7 @@
   display:grid;
   grid-template-columns: repeat(3,1fr);
   width: 100%;
-  background-color: #bd5dde;
+  background-color: var(--purple);
   border-radius: 10px;
 
 
@@ -239,7 +239,7 @@
     color: white;
     border: none;
     position: absolute;
-    bottom: 30px;
+    bottom: 90px;
     z-index: 4;
   }
   .welcome_image{
@@ -812,6 +812,7 @@ animation: animat 10s linear infinite;
       top: -250px;
       left: 50%;
       border-radius: 5px;
+      bottom: 30px;
       transform: translate(-50%,-10%)
     }
 

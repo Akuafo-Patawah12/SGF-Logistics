@@ -1,7 +1,7 @@
 .head_image{
     background: url("../../../public/SFG_images/Get_in_Touch.jpg") no-repeat  fixed 100%;
     background-size: cover;
-    height: 200px;
+    height: 300px;
 }
 
 .head_image > div{
@@ -37,7 +37,7 @@
     display: flex;
     width: 95%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     background: #A7C756;
     margin-inline:auto;
@@ -82,5 +82,9 @@
 
     .faq{
         grid-template-columns: 1fr;
+    }
+
+    .parent{
+        margin-top: 90px;
     }
 }

@@ -49,7 +49,7 @@ const Footer = () => {
         <section className="About">
           
          <Accordion header="Quick Links" link="Services" span1="Services" span2="About" span3="Contacts"/>
-         <Accordion header="Support" link="TermsAndCondition" span1="Terms & conditions" span2="FAQs" span3="Report a Bug"/>
+         <Accordion header="Support" link="TermsAndCondition" span1="Terms & conditions" span2="FAQs" />
           
          
         </section>

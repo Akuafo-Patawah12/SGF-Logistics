@@ -29,7 +29,7 @@ const FAQs = () => {
 
    const InputStyle={padding: "10px"}
   return (
-    <div  style={{marginTop:"90px"}}>
+    <div className="parent">
       <section className='head_image'>
         <div>
           <h4>FAQ's</h4>
@@ -38,7 +38,7 @@ const FAQs = () => {
       </section>
         <h4 style={{marginTop:"30px",marginLeft:"2.5%",marginBlock:"20px",fontSize:"25px",fontWeight:"700"}}>FREQUENTLY ASKED <span className='faq_title'>QUESTIONS.</span> </h4>
      <div className="faq" style={{width:"95%",marginInline:"auto"}}>
-       <FAQsAccordion 
+       <FAQsAccordion  
           Questions="What services does SF Ghana Logistics offer? "
 
           Answers="We offer a range of services including groupage shipping, air cargo, RMB 
@@ -89,31 +89,7 @@ const FAQs = () => {
               <button type='submit' style={InputStyle}>Send <SendOutlined /></button>
             </section>
            </form>
-           <section className="child2">
-            <div style={{display:"flex",marginBottom:"5px",gap:"5px"}}>
-                <span style={{color:"white",fontSize:"38px"}}><EnvironmentFilled /></span>
-                <div>
-               <h3>Address</h3>
-               <p>George Bush Highway, Plot No. 67, Dzorwulu, Accra-Ghana</p>
-               </div>
-               </div>
-
-               <div style={{display:"flex",marginBottom:"5px",gap:"5px"}}>
-               <span style={{color:"white",fontSize:"38px",}}><MailFilled /> </span>
-                 <div>
-                  <h3>Email</h3>
-                  <p>sfghanalogistics24@gmail.com</p>
-                  </div>
-               </div>
-
-               <div style={{display:"flex",marginBottom:"5px",gap:"5px"}}>
-                  <span style={{color:"white",fontSize:"38px"}}><PhoneFilled /></span>
-                  <div>
-                  <h4>Telephone</h4>
-                  <p>020 811 6360 / 053 948 0433</p>
-                  </div>
-               </div>
-           </section>
+          
         </div>
     </div>
   )
