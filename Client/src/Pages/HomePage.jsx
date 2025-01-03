@@ -520,7 +520,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
         <div className='rate'>
-           <div style={{borderRight:"2px solid #222"}}><CargoShip/> <br/><span style={{fontSize:"15px"}}>SEA FREIGHT</span><br/><span style={{fontSize:"15px",fontWeight:"500"}}> $230 PER CBM</span></div>
+           <div style={{borderRight:"2px solid #222"}}><CargoShip/> <br/><span style={{fontSize:"15px"}}>SEA FREIGHT</span><br/><span style={{fontSize:"15px",fontWeight:"500"}}> $220 PER CBM</span></div>
            <div style={{borderRight:"2px solid #222"}}><CargoPlane/><br/><span style={{fontSize:"15px"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"15px",fontWeight:"500"}}>$18 PER KILO</span></div>
            <div><RMBrate/><br/><span style={{fontSize:"15px"}}>RMB RATE</span><br/><span style={{fontSize:"15px",fontWeight:"500"}}>0.425</span></div>
         </div>
