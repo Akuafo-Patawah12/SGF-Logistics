@@ -50,6 +50,7 @@ const Sidebar = ({popUp,setPopUp1,popRef}) => {
             {show3 && <div className='side_drop'>
                <Link to={"/FAQs"} onClick={closeSidebar}>FAQs</Link>
                <Link to={"/More/Gallery"} onClick={closeSidebar}>Galery</Link>
+               <Link to={"/More/Privacy"} onClick={closeSidebar}>Privacy</Link>
                
             </div>}
             </div>
