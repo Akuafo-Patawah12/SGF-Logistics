@@ -11,20 +11,22 @@ import LoginPrompt from '../Components/LoginPrompt'
 import Header2 from '../Components/Header2'
 import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
 import HowItWorksVideo from '../Pages/Components/HowItWorksVideo'
-const Gallery = lazy(()=> import('../Pages/Gallery')) 
+import PageNotFound from '../Pages/PageNotFound'
+import Privacy from '../Pages/More/Privacy'
+const Gallery = lazy(()=> import('../Pages/More/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
 const Invoice = lazy(()=> import( '../Pages/Invoice'))
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
-const SeaFreight = lazy(()=> import('../Pages/Sub_Pages/SeaFreight'))
-const Groupage = lazy(()=> import('../Pages/Sub_Pages/Groupage'))
-const Procurement = lazy(()=> import('../Pages/Sub_Pages/Procurement'))
-const Door2door = lazy(()=> import('../Pages/Sub_Pages/Door2door'))
-const ContainerClearance = lazy(()=> import('../Pages/Sub_Pages/ContainerClearance'))
+const SeaFreight = lazy(()=> import('../Pages/Services/SeaFreight'))
+const Groupage = lazy(()=> import('../Pages/Services/Groupage'))
+const Procurement = lazy(()=> import('../Pages/Services/Procurement'))
+const Door2door = lazy(()=> import('../Pages/Services/Door2door'))
+const ContainerClearance = lazy(()=> import('../Pages/Services/ContainerClearance'))
 const ContactUs =lazy(()=> import('../Pages/ContactUs'))
-const AirFreight = lazy(()=> import('../Pages/Sub_Pages/AirFreight'))
-const Services= lazy(()=> import('../Pages/Services'))
+const AirFreight = lazy(()=> import('../Pages/Services/AirFreight'))
+const Services= lazy(()=> import('../Pages/Services/Services'))
 const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
 const Mapbox = lazy(()=> import('../Pages/Mapbox'))
@@ -107,6 +109,11 @@ const Layout = () => {
       
         <Tracking track_comp={[trackPop,setTrackPop]} trackRef={trackRef}/>
             <Routes>
+
+            
+                <Route path='*' element={<PageNotFound />}/> 
+
+
                 <Route path='/' element={
                     <Suspense fallback={<Loader />}>
                         <HomePage setShowAuth={setShowAuth} showAuth={showAuth} setIsVideo={setIsVideo}/>
@@ -161,7 +168,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-<Route path='/More/Gallery' element={
+                     <Route path='/More/Gallery' element={
                         <Suspense fallback={<Loader />}>
                           <Gallery />   
                         </Suspense>} 
@@ -220,6 +227,12 @@ const Layout = () => {
                         <ContainerClearance />
                     </Suspense>} 
                 />          
+
+<Route path='/More/Privacy' element={
+                    <Suspense fallback={<Loader />}>
+                        <Privacy />
+                    </Suspense>} 
+                />        
             
             </Routes>
             

@@ -1,11 +1,11 @@
 import React,{useState} from 'react'
-import "./Components/Services.css"
-import ServicesComponent from './Components/ServicesComponent'
-import { RocketOutlined } from '@ant-design/icons'
+import "../Components/Services.css"
+import ServicesComponent from '../Components/ServicesComponent'
+
 import Map, { Marker,  NavigationControl } from "react-map-gl";
-import Rocket from '../Icons/Rocket'
-import Callicon from '../Icons/Callicon'
-import MailIcon from '../Icons/MailIcon'
+import Rocket from '../../Icons/Rocket'
+import Callicon from '../../Icons/Callicon'
+import MailIcon from '../../Icons/MailIcon'
 import {EnvironmentOutlined} from "@ant-design/icons"
 import { transform } from 'framer-motion'
 
