@@ -1,16 +1,19 @@
 import React from 'react'
-
+import "./Privacy.css"
 const Privacy = () => {
   return (
-    <div>
-
+    <div className='privacy'>
+   
+   <div className="privacy_container">
     <h3>Privacy Policy</h3>
         <p>
           At Shun Feng Ghana Logistics (SFGL), we are committed to safeguarding your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, disclose, and protect your information when you visit our website and use our services.
 
         </p>
-        
 
+        </div>
+        
+          <div className="privacy_container item-1">
         <h3>1. Information We Collect</h3>
         <p>
           We collect personal information that you voluntarily provide when you interact with us through our website or services. This may occur when you:
@@ -24,15 +27,9 @@ const Privacy = () => {
             <li>Participate in surveys, promotions, or other activities related to our services.</li>
         </ul>
         
+        </div>
 
-        <p>Types of Information We Collect:</p>
-        <ul>
-            <li>Personal Details: Name, email address, phone number, and other contact details.</li>
-            <li>Shipping Information: Delivery address, tracking number, and shipping mark.</li>
-            <li>Billing Information: Payment details, including credit card or bank account information.</li>
-            <li>Business Information: Details about your business, if applicable, and relevant shipping needs.</li>
-        </ul>
-
+        <div className="privacy_container item-3">
         <h3>2. How We Use Your Information</h3>
         <p>SFGL uses the information we collect from you for the following purposes:</p>
 
@@ -44,7 +41,9 @@ const Privacy = () => {
           <li>Legal and Compliance: To comply with legal obligations, protect our rights, and ensure the security of our systems and services.</li>
         
         </ul>
+        </div>
 
+        <div className="privacy_container item-4">
         <h3>3. How We Share Your Information</h3>
 
       <p>We value your privacy and do not sell or rent your personal information to third parties. However, we may share your information under specific circumstances, including:</p>
@@ -55,9 +54,25 @@ const Privacy = () => {
 
       
       </ul>
+      </div>
 
+      
+  <div className="privacy_container item-2">
+        <p>Types of Information We Collect:</p>
+        <ul>
+            <li>Personal Details: Name, email address, phone number, and other contact details.</li>
+            <li>Shipping Information: Delivery address, tracking number, and shipping mark.</li>
+            <li>Billing Information: Payment details, including credit card or bank account information.</li>
+            <li>Business Information: Details about your business, if applicable, and relevant shipping needs.</li>
+        </ul>
+
+        </div>
+  
+  
+  <div className="privacy_container item-5">
       <h3>4. Changes to This Privacy Policy</h3>
       <p>SFGL may update this Privacy Policy periodically to reflect changes in our practices, services, or legal obligations. Any updates will be posted on our website with the revised effective date. We encourage you to review this Privacy Policy regularly to stay informed about how we protect your personal information.</p>
+    </div>
     </div>
   )
 }
