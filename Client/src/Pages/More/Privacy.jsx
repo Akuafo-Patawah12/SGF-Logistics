@@ -34,11 +34,11 @@ const Privacy = () => {
         <p>SFGL uses the information we collect from you for the following purposes:</p>
 
         <ul>
-          <li>Service Delivery: To provide, operate, and maintain our logistics services, including the processing and management of orders, payments, and shipments.</li>
-          <li>Customer Communication: To respond to inquiries, provide customer support, and keep you informed about your shipments and transactions.</li>
-          <li>Marketing and Updates: To send you newsletters, marketing communications, and updates about our services (only with your consent).</li>
-          <li>Improving Our Services: To enhance our website, improve service offerings, and optimize user experience based on usage patterns and customer feedback.</li>
-          <li>Legal and Compliance: To comply with legal obligations, protect our rights, and ensure the security of our systems and services.</li>
+          <li><span>Service Delivery:</span> To provide, operate, and maintain our logistics services, including the processing and management of orders, payments, and shipments.</li>
+          <li><span>Customer Communication:</span> To respond to inquiries, provide customer support, and keep you informed about your shipments and transactions.</li>
+          <li><span>Marketing and Updates:</span> To send you newsletters, marketing communications, and updates about our services (only with your consent).</li>
+          <li><span>Improving Our Services:</span> To enhance our website, improve service offerings, and optimize user experience based on usage patterns and customer feedback.</li>
+          <li><span>Legal and Compliance:</span> To comply with legal obligations, protect our rights, and ensure the security of our systems and services.</li>
         
         </ul>
         </div>
@@ -48,22 +48,22 @@ const Privacy = () => {
 
       <p>We value your privacy and do not sell or rent your personal information to third parties. However, we may share your information under specific circumstances, including:</p>
       <ul>
-        <li>Service Providers: We may share your information with trusted third-party service providers who assist us in operating our website, processing payments, and delivering logistics services. These partners are bound by strict confidentiality agreements and are only permitted to use your data as necessary to provide their services.</li>
-        <li>Business Partners or Affiliates: We may collaborate with affiliated companies or business partners to offer related services or promotions that may be of interest to you. Any such data sharing is done with your consent.</li>
-        <li>Legal Requirements: We may disclose your information when required by law or in response to valid legal requests from governmental or regulatory authorities. This may include situations where we need to protect the safety and security of our company, clients, or others.</li>
+        <li><span>Service Providers:</span> We may share your information with trusted third-party service providers who assist us in operating our website, processing payments, and delivering logistics services. These partners are bound by strict confidentiality agreements and are only permitted to use your data as necessary to provide their services.</li>
+        <li><span>Business Partners or Affiliates:</span> We may collaborate with affiliated companies or business partners to offer related services or promotions that may be of interest to you. Any such data sharing is done with your consent.</li>
+        <li><span>Legal Requirements:</span> We may disclose your information when required by law or in response to valid legal requests from governmental or regulatory authorities. This may include situations where we need to protect the safety and security of our company, clients, or others.</li>
 
       
       </ul>
       </div>
 
-      
+
   <div className="privacy_container item-2">
         <p>Types of Information We Collect:</p>
         <ul>
-            <li>Personal Details: Name, email address, phone number, and other contact details.</li>
-            <li>Shipping Information: Delivery address, tracking number, and shipping mark.</li>
-            <li>Billing Information: Payment details, including credit card or bank account information.</li>
-            <li>Business Information: Details about your business, if applicable, and relevant shipping needs.</li>
+            <li><span>Personal Details:</span> Name, email address, phone number, and other contact details.</li>
+            <li><span>Shipping Information:</span> Delivery address, tracking number, and shipping mark.</li>
+            <li><span>Billing Information:</span> Payment details, including credit card or bank account information.</li>
+            <li><span>Business Information:</span> Details about your business, if applicable, and relevant shipping needs.</li>
         </ul>
 
         </div>

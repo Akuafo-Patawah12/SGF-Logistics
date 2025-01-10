@@ -36,6 +36,12 @@
         font-weight: 600;
         font-size: 15px;
     }
+
+    & span{
+        font-weight: 500;
+        font-style: italic;
+        font-size: 14px;
+    }
 }
   
 
