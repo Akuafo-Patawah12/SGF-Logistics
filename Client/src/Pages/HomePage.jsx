@@ -1,5 +1,5 @@
 import React,{useState,useRef,useEffect,useMemo} from 'react'
-import {motion,useAnimation} from "framer-motion"
+import {motion,transform,useAnimation} from "framer-motion"
 import{ ReactComponent as OpenQuote } from "../Icons/OpenQuote.svg"
 import{ ReactComponent as CloseQuote } from "../Icons/CloseQuote.svg"
 import{ ReactComponent as Truck } from "../Icons/Truck.svg"
@@ -520,9 +520,9 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
         <div className='rate'>
-           <div style={{borderRight:"2px solid #222"}}><CargoShip/> <br/><span style={{fontSize:"15px"}}>SEA FREIGHT</span><br/><span style={{fontSize:"15px",fontWeight:"500"}}> $220 PER CBM</span></div>
-           <div style={{borderRight:"2px solid #222"}}><CargoPlane/><br/><span style={{fontSize:"15px"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"15px",fontWeight:"500"}}>$18 PER KILO</span></div>
-           <div><RMBrate/><br/><span style={{fontSize:"15px"}}>RMB RATE</span><br/><span style={{fontSize:"15px",fontWeight:"500"}}>0.425</span></div>
+           <div style={{borderRight:"2px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500"}}> $220 PER CBM</span></div>
+           <div style={{borderRight:"2px solid #222"}}><CargoPlane style={{transform:"translateX(3px)"}}/><br/><span style={{fontSize:"14px"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"14px",fontWeight:"500"}}>$18 PER KILO</span></div>
+           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500"}}>0.425</span></div>
         </div>
 
       </motion.div>
