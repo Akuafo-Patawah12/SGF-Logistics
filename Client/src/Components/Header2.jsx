@@ -59,7 +59,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
                 <p><Link to={"/More/FAQs"} style={Link_text}>FAQs</Link></p>
                 <p><Link to={"/Orders"} style={Link_text}>Get a quote</Link></p>
                 <p><Link to={"/More/Gallery"} style={Link_text}>Gallery</Link></p>
-                <p><Link to={"/More/Privacy"} style={Link_text}>Privacy</Link></p>
+                <p><Link to={"/More/Privacy"} style={Link_text}>Privacy & Policy</Link></p>
                 
          
          </div>
