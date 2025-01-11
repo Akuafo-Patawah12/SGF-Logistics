@@ -4,18 +4,18 @@
    
 
 .privacy {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    grid-auto-rows: auto; /* Default row height */
+  display: flex;
+  flex-direction: column;
     gap: 10px; /* Spacing between grid items */
     margin-top: 20px;
     padding: 2.5%;
     margin-inline: auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .privacy_container{
-    background-color: #f3f3f3;
-    border: 1px solid #ccc;
+  
     display: flex;
     flex-direction: column;
     
@@ -33,8 +33,9 @@
     }
 
     & h3{
-        font-weight: 600;
-        font-size: 15px;
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--purple);
     }
 
     & span{
@@ -45,39 +46,16 @@
 }
   
 
-  /* Specific item sizes */
-  .item-1 {
-    grid-column: span 2; /* Takes 2 columns */
-    grid-row: span 1; /* Takes 1 row */
-  }
+  
 
-  .item-2 {
-    grid-column: span 1; /* Takes 1 column */
-    grid-row: span 1; /* Takes 1 row */
-  }
-
-  .item-3 {
-    grid-column: span 1; /* Takes 1 column */
-    grid-row: span 2; /* Takes 2 rows */
-  }
-
-  .item-4 {
-    grid-column: span 2; /* Takes 2 columns */
-    grid-row: span 1; /* Takes 1 row */
-  }
-
-  .item-5 {
-    grid-column: span 1; /* Takes 1 column */
-    grid-row: span 1; /* Takes 1 row */
-  }
+ 
 
 
   @media (max-width: 768px) {
     .privacy{
-        display: flex;
+        
         flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
+        
         margin-top: 90px;
     }
   }
