@@ -11,8 +11,9 @@ const ContactUs = () => {
 
     
   return (
+    <div className='order_cont'>
     <form className="order">
-
+   
     <h3 style={{marginBlock:"20px 10px",fontWeight:"500"}}>Make An Enquiry</h3>
 
     <p style={{marginBottom:"30px",fontSize:"14px"}}>Fill out the form below to get a tailored for your shipping needs.<br/>
@@ -51,6 +52,7 @@ const ContactUs = () => {
 
               <button type="submit" className="send_button">Send Message</button>
           </form>
+          </div>
   )
 }
 

@@ -33,58 +33,72 @@
     color: transparent;
     font-size: 25px;
 }
-.questions_info{
-    display: flex;
-    width: 95%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background: #A7C756;
-    margin-inline:auto;
-    padding-block:20px;
+/* FAQPage.css */
 
-} 
-.accordion_btn{
+/* Container */
+.faq-container {
+    min-height: 100vh;
+    background-color: #f7fafc;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
+  }
+  
+  .faq-content {
+    max-width: 800px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+  
+  .faq-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3182ce;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .faq-list {
+    margin-top: 2rem;
+  }
+  
+  .faq-item {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 0;
-}
-
-@keyframes animate{
-    from{height: 30px;}
-    to{height: 100px;}
-}
-
-@keyframes animateDown{
-    from{height: 100px;}
-    to{height: 30px;}
-}
-
-
-
-.child1,.child2{
-    width: 45%;
-}
-
-
-@media (max-width: 768px){
-    .questions_info{
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px;
-        
-    }
-    .child1,.child2{
-        width: 95%;
-    }
-
-    .faq{
-        grid-template-columns: 1fr;
-    }
-
-    .parent{
-        margin-top: 90px;
-    }
-}
+    cursor: pointer;
+    background-color: #f9fafb;
+    padding: 1rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+  }
+  
+  .question-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+  
+  .faq-toggle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3182ce;
+  }
+  
+  .faq-answer {
+    color: #4a5568;
+    margin-top: 0.5rem;
+    padding-left: 1rem;
+    background-color: #f9fafb;
+    padding-bottom: 1rem;
+  }
+  

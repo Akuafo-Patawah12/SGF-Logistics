@@ -251,6 +251,27 @@ const [value, setValue] = useState(0);  // State to hold the value
   };
 
 
+  const testimonials = [
+    {
+      name: 'Linda Asare',
+      role: 'Operations Manager at DEF Enterprises',
+      text: 'The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly where our goods are at all times.',
+      image: 'https://via.placeholder.com/100',
+    },
+    {
+      name: 'Kwame Mensah',
+      role: 'CEO of ABC Trading',
+      text: 'SF Ghana Logistics has become an indispensable part of our supply chain. Their dedication to efficiency and reliability is unparalleled.',
+      image: 'https://via.placeholder.com/100',
+    },
+    {
+      name: 'Michael Osei',
+      role: 'Owner of GHI Retailers',
+      text: 'Exceptional service and timely deliveries! SFGL truly lives up to its motto, "Whatever the load, we carry it."',
+      image: 'https://via.placeholder.com/100',
+    },
+  ];
+
   return (
     
     <motion.div
@@ -436,42 +457,23 @@ const [value, setValue] = useState(0);  // State to hold the value
           <Link to={"/Contact_us"}><button className="scroll-content-btn">Contact Us</button></Link>
         </div>
         </div>
+    
+        <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
 
-
-         <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
-       <section className="testimonals" style={{display:"flex",justifyContent:"space-between",paddingInline:"2.5%",marginBlock:"30px"}}>
-          <div className='child'>
-          <div className="absolute1"></div>
-          <div className="absolute1"><CloseQuote/></div>
-          <div className="absolute1"><OpenQuote/></div>
-          <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
-            <p className='quote'>The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly 
-               where our goods are at all times.</p>
-               <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Linda Asare, Operations Manager at DEF Enterprises </h4>
+        <div className="testimonial-container">
+      {testimonials.map((testimonial, index) => (
+        <div className="testimonial" key={index}>
+          <img className="testimonial-image" src={testimonial.image} alt={testimonial.name} />
+          <div className="testimonial-content">
+            <p className="testimonial-text">"{testimonial.text}"</p>
+            <p className="testimonial-name">{testimonial.name}</p>
+            <p className="testimonial-role">{testimonial.role}</p>
           </div>
+        </div>
+      ))}
+    </div>
 
-
-          <div className='child'>
-           <div className="absolute1"></div>
-           <div className="absolute1"><CloseQuote/></div>
-           <div className="absolute1"><OpenQuote/></div>
-            <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
-            <p className='quote'>SF Ghana Logistics has become an indispensable part of our supply chain. Their dedication to 
-            efficiency and reliability is unparalleled.</p>
-            <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Kwame Mensah, CEO of ABC Trading </h4>
-          </div>
-
-
-          <div className='child'>
-          <div className="absolute1"></div>
-          <div className="absolute1"><CloseQuote/></div>
-          <div className="absolute1"><OpenQuote/></div>
-             <span className="stars"><StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /> <StarFilled /></span>
-             <p className='quote'> Exceptional service and timely deliveries! SFGL truly lives up to its motto, 'Whatever the load, 
-             we carry it.</p>
-             <h4 className="quote_name"><span style={{color:"#8B14B1"}}>—</span> Michael Osei, Owner of GHI Retailers </h4>
-          </div>
-       </section>
+        
        
        
        <p id="why_choose_us" style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>

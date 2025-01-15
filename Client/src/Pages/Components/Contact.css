@@ -1,3 +1,20 @@
+.order_cont {
+    min-height: 100vh;
+    background-color: #f7fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .order {
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+  }
+
 .check,.radio{
     display: grid;
     grid-template-columns: repeat(3,1fr);

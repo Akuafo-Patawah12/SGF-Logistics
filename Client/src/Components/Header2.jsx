@@ -27,6 +27,8 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
         const[popNav2,setPopNav2]= useState(false)
 
         const Link_text={textDecoration:"none", fontSize:"15px"}
+
+
   return (
     <div className="h_child2">
         <Link to={"/"} className="logo"><SvgIcon /></Link>

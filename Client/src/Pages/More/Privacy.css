@@ -1,61 +1,80 @@
+/* PrivacyPolicyPage.css */
 
-
-
-   
-
-.privacy {
+/* Container */
+.privacy-container {
+  min-height: 100vh;
+  background-color: #f7fafc;
   display: flex;
-  flex-direction: column;
-    gap: 10px; /* Spacing between grid items */
-    margin-top: 20px;
-    padding: 2.5%;
-    margin-inline: auto;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .privacy_container{
-  
-    display: flex;
-    flex-direction: column;
-    
-    align-items: center;
-    
-    
-    width: 93%;
-    padding: 3.5%;
-
-
-    & p,li{
-        font-size: 15px;
-        
-        list-style-position: inside;
-    }
-
-    & h3{
-        font-weight: 700;
-        font-size: 20px;
-        color: var(--purple);
-    }
-
-    & span{
-        font-weight: 500;
-        font-style: italic;
-        font-size: 14px;
-    }
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
 }
-  
+
+.privacy-content {
+  max-width: 1200px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+/* Title */
+.privacy-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3182ce;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Introduction Text */
+.privacy-intro {
+  color: #4a5568;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Sections */
+.privacy-sections {
+  margin-top: 2rem;
+}
+
+.privacy-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.privacy-text {
+  color: #4a5568;
+  margin-bottom: 1rem;
+  font-size: 15px;
+}
+
+.privacy-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  color: #4a5568;
+}
+
+.privacy-contact {
+  list-style-type: none;
+  padding-left: 0;
+  color: #4a5568;
 
   
+}
+
+.privacy-contact li {
+  margin-bottom: 0.5rem;
 
  
+}
 
+.privacy_span{
+  font-style: italic;
+  color: #444;
+  font-weight: 500;
+}
 
-  @media (max-width: 768px) {
-    .privacy{
-        
-        flex-wrap: wrap;
-        
-        margin-top: 90px;
-    }
-  }
