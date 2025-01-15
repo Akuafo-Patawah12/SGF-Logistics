@@ -11,7 +11,7 @@
 }
 
 .privacy-content {
-  max-width: 1200px;
+  max-width: 1500px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -31,6 +31,7 @@
 .privacy-intro {
   color: #4a5568;
   text-align: center;
+  font-size: 17px;
   margin-bottom: 2rem;
 }
 
@@ -40,7 +41,7 @@
 }
 
 .privacy-subtitle {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #2d3748;
   margin-bottom: 0.5rem;
@@ -49,18 +50,24 @@
 .privacy-text {
   color: #4a5568;
   margin-bottom: 1rem;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .privacy-list {
   list-style-type: disc;
   padding-left: 1.5rem;
+  
   color: #4a5568;
+}
+
+.privacy-list li{
+  font-size: 17px;
 }
 
 .privacy-contact {
   list-style-type: none;
   padding-left: 0;
+  font-size: 17px;
   color: #4a5568;
 
   
@@ -68,13 +75,20 @@
 
 .privacy-contact li {
   margin-bottom: 0.5rem;
-
+  font-size: 17px;
  
 }
 
 .privacy_span{
   font-style: italic;
   color: #444;
+  font-size: 16px;
   font-weight: 500;
+}
+
+@media (max-width: 500px){
+  .privacy-content {
+    max-width: 95%;
+  }
 }
 

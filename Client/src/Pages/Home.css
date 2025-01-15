@@ -855,13 +855,14 @@ animation: animat 10s linear infinite;
 
 .testimonial-name {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 5px;
   color: #333;
 }
 
 .testimonial-role {
   color: #777;
+  font-size: 17px;
 }
 
 /* Responsive Design: Stack Testimonials on Smaller Screens */

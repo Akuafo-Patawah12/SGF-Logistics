@@ -54,7 +54,7 @@
   }
   
   .faq-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #3182ce;
     text-align: center;
@@ -83,7 +83,7 @@
   }
   
   .question-text {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #2d3748;
   }
