@@ -1,5 +1,6 @@
 import React from "react";
 import "./Privacy.css"; // Import the CSS file for styling
+import AnimatedBubbles from "../Components/AnimatedBubbles";
 
 const Privacy = () => {
   return (
@@ -83,8 +84,10 @@ const Privacy = () => {
               <li>Address:  George Bush Highway, Dzorwulu,
               Accra-Ghana</li>
             </ul>
+            <AnimatedBubbles />
           </section>
         </div>
+        
       </div>
     </div>
   );

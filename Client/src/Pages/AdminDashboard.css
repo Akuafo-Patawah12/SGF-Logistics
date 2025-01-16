@@ -1,27 +1,95 @@
-tr {
-    transition: opacity 0.5s ease-in, height 0.5s ease-in;
-    opacity: 1;
-    height: 40px; /* Adjust based on your row height */
-    overflow: hidden; /* Helps to collapse the height smoothly */
-  }
-  
-  tr.fade-out {
-    opacity: 0;
-    height: 0;
+/* Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.dashboard-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Sections */
+.dashboard-section {
+  margin-bottom: 40px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Input Fields */
+.input-field,
+.textarea-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+.primary-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.primary-button:hover {
+  background-color: #0056b3;
+}
+
+/* List Styling */
+.order-list {
+  list-style: none;
+  padding: 0;
+}
+
+.order-item {
+  padding: 10px;
+  background: #f1f1f1;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 15px;
   }
 
-  .admin_header{
-    top: 0;
-    position: fixed;
-    height: 90px;
-    display: flex;
+  .primary-button {
     width: 100%;
-    align-items: center;
-    justify-content: space-between;
   }
-
-  .items{
-    margin-top: 90px;
-    display: flex;
-    gap: 10px;
-  }
+}

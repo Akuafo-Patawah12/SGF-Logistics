@@ -11,6 +11,7 @@ import{ ReactComponent as CargoPlane } from "../Icons/CargoPlane.svg"
 import{ ReactComponent as RMBrate } from "../Icons/RMBrate.svg"
 
 import "./Home.css"
+import "./Components/AnimatedBubbles.css"
 import io from "socket.io-client"
 
 import {Link} from "react-router-dom"
@@ -461,6 +462,13 @@ const [value, setValue] = useState(0);  // State to hold the value
         <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
 
         <div className="testimonial-container">
+        <div className='bubbles'>
+        <div className="bubbles-container">
+      {Array.from({ length: 20 }).map((_, index) => (
+        <div className="bubble" key={index}></div>
+      ))}
+    </div>
+    </div>
       {testimonials.map((testimonial, index) => (
         <div className="testimonial" key={index}>
           <img className="testimonial-image" src={testimonial.image} alt={testimonial.name} />
