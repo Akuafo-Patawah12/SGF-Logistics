@@ -4,30 +4,34 @@ import "./Components/FAQ.css"; // Import the CSS file for styling
 const FAQs = () => {
   const faqs = [
     {
-      question: "What services does Andy Logistics offer?",
+      question: "What services does SF Ghana Logistics offer?",
       answer:
-        "Andy Logistics specializes in sea freight, air freight, warehousing, and supply chain management services tailored to your needs.",
+        "We offer a range of services including groupage shipping, air cargo, RMB  exchange services, door-to-door delivery, container booking and clearance, and  free procurement and sourcing training.",
     },
     {
-      question: "How can I track my shipment?",
+      question: "How do I track my shipment?",
       answer:
-        "You can track your shipment using the 'Track Shipment' feature on our website. Simply enter your tracking ID to get real-time updates.",
+        "You can easily track your shipment using our real-time tracking feature available on our website. Simply enter your tracking number to view the current status and location of your goods.",
     },
     {
-      question: "What is the estimated delivery time for shipments?",
+      question: "What is the minimum chargeable volume (CBM)?",
       answer:
-        "Delivery times depend on the destination and type of service chosen. For more accurate estimates, contact our support team or check your shipment details.",
+        "The minimum chargeable volume is 0.02 CBM. Shipments below this volume will be charged at the minimum rate.",
     },
     {
-      question: "How do I contact customer support?",
+      question: "How does SFGL ensure the safety of my goods?",
       answer:
-        "You can reach our customer support team via email at support@andylogistics.com or by calling +1 (123) 456-7890.",
+        "We implement rigorous security checks, expert handling, and adhere to international shipping regulations to ensure the safety of your goods. ",
     },
     {
-      question: "Do you offer international shipping?",
+      question: "Can I get credit terms for container clearance?",
       answer:
-        "Yes, we offer international shipping services across multiple destinations worldwide.",
+        "Yes, we offer flexible payment options for container clearance to support your cash flow needs.",
     },
+    {
+      question:"What are the storage charges at your warehouse?",
+      answer:"Goods remaining in our warehouse for more than 4 days post-arrival incur a storage charge of GHS 20 per CBM per day." 
+    }
   ];
 
   const [activeIndex, setActiveIndex] = useState(null);

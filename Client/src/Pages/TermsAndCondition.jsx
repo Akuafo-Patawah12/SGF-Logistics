@@ -3,7 +3,7 @@ import "./Terms.css"
 
 const TermsAndCondition = () => {
   return (
-    <div style={{marginTop:"90px"}}>
+    <div className='term'>
       <div>
         <div style={{height:"400px",position:"relative"}}>
            <img src='./SFG_images/Air.jpg' alt='terms' style={{width:"100%",height:"inherit",objectFit:"cover"}}></img>

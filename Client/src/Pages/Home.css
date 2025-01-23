@@ -880,6 +880,12 @@ animation: animat 10s linear infinite;
   }
 }
 
+@media (max-width:500px){
+  .testimonial{
+  width: 90%;
+  }
+}
+
 
 
 

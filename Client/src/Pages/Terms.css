@@ -53,3 +53,9 @@
     position: absolute;
     content: counter(my-counter) " ";
   }
+
+  @media(max-width:768px){
+      .term{
+        margin-top: 90px;
+      }
+  }
