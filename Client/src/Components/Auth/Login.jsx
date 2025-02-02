@@ -39,7 +39,7 @@ const Login = () => {
 
        try{
 
-        const response = await fetch("http://localhost:4040", {
+        const response = await fetch("https://sfghanalogistics.com", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

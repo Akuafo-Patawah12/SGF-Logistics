@@ -12,6 +12,47 @@ const AdminDashboard = () => {
   const [newAdmin, setNewAdmin] = useState({ username: '', password: '' });
   const [shipment, setShipment] = useState({ route: 'A', tracking: '', status: 'Pending' });
 
+  
+  const [formData, setFormData] = useState({
+    trackingNumber: '',
+    origin: '',
+    destination: '',
+    status: 'Pending',
+  });
+
+  // Fetch all shipments on component mount
+  
+
+  
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('/api/shipments/create', formData);
+      alert('Shipment created successfully!');
+      setFormData({ trackingNumber: '', origin: '', destination: '', status: 'Pending' });
+      fetchShipments(); // Refresh the list
+    } catch (error) {
+      console.error('Error creating shipment:', error);
+    }
+  };
+
+  const handleUpdateStatus = async (id, status) => {
+    try {
+      await axios.put(`/api/shipments/${id}`, { status });
+      alert('Shipment status updated successfully!');
+      fetchShipments(); // Refresh the list
+    } catch (error) {
+      console.error('Error updating shipment status:', error);
+    }
+  };
+
+
   useEffect(() => {
     socket.emit('get_shipment');
 
@@ -194,6 +235,93 @@ const AdminDashboard = () => {
           ))}
         </ul>
       </section>
+
+     
+  
+  
+    <div>
+      <h1>Shipment Management</h1>
+
+      {/* Create Shipment Form */}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Tracking Number:</label>
+          <input
+            type="text"
+            name="trackingNumber"
+            value={formData.trackingNumber}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Origin:</label>
+          <input
+            type="text"
+            name="origin"
+            value={formData.origin}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Destination:</label>
+          <input
+            type="text"
+            name="destination"
+            value={formData.destination}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Status:</label>
+          <select
+            name="status"
+            value={formData.status}
+            onChange={handleInputChange}
+          >
+            <option value="Pending">Pending</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </div>
+        <button type="submit">Create Shipment</button>
+      </form>
+
+      {/* Shipments Table */}
+      <h2>All Shipments</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tracking Number</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {shipments.map((shipment) => (
+            <tr key={shipment._id}>
+              <td>{shipment.trackingNumber}</td>
+              <td>{shipment.origin}</td>
+              <td>{shipment.destination}</td>
+              <td>{shipment.status}</td>
+              <td>
+                <button onClick={() => handleUpdateStatus(shipment._id, 'In Transit')}>
+                  Mark as In Transit
+                </button>
+                <button onClick={() => handleUpdateStatus(shipment._id, 'Delivered')}>
+                  Mark as Delivered
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+ 
     </div>
   );
 };
