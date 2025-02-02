@@ -52,7 +52,7 @@ const SignUp = ({slide}) => {
     }
 
 
-    const response = await fetch("http://sfghanalogistics.com/sign_up", {
+    const response = await fetch("https://sfghanalogistics.com/sign_up", {
       
       method: 'POST',
       headers: {
