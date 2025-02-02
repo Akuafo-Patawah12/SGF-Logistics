@@ -48,7 +48,7 @@ const Sidebar = ({popUp,setPopUp1,popRef}) => {
             <NavLink onClick={closeSidebar} to={"/Contact_us"} style={style} className="side_link"><PhoneOutlined style={{transform:"rotate(90deg)"}}/>Contact</NavLink>
             <NavLink to={"/More"} style={style} className="side_link"><MoreOutlined />More<button onClick={()=> setShow3(!show3)} style={style1}><DownOutlined/> </button></NavLink>
             {show3 && <div className='side_drop'>
-               <Link to={"/FAQs"} onClick={closeSidebar}>FAQs</Link>
+               <Link to={"/More/FAQs"} onClick={closeSidebar}>FAQs</Link>
                <Link to={"/More/Gallery"} onClick={closeSidebar}>Galery</Link>
                <Link to={"/More/Privacy"} onClick={closeSidebar}>Privacy & Policy</Link>
                
