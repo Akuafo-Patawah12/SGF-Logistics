@@ -57,7 +57,7 @@ const FAQs = () => {
                 </span>
               </button>
               {activeIndex === index && (
-                <div className="faq-answer">{faq.answer}</div>
+                <div className="faq-answer" >{faq.answer}</div>
               )}
             </div>
           ))}
