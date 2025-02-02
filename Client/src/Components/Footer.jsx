@@ -88,7 +88,7 @@ const Footer = () => {
         </section>
         </main>
         <div className="copyright_header">
-          <p>© 2024 SFGL | developed by @Anej High Tech</p>
+          <p>© 2024 SFGL | developed by <a href="https://wa.me/qr/J67ECZFBZBBAF1" target="_blank">@Anej High Tech</a></p>
         </div>
 
 
