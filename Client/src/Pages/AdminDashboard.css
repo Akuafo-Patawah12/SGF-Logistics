@@ -1,95 +1,116 @@
-/* Container */
-.dashboard-container {
+/* Admin Page Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.admin-page {
+  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Title */
-.dashboard-title {
+h1 {
+  font-size: 2rem;
   text-align: center;
-  color: #333;
   margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
+  color: #2c3e50;
 }
 
-/* Sections */
-.dashboard-section {
-  margin-bottom: 40px;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+section {
+  margin-bottom: 30px;
 }
 
-.section-title {
-  color: #333;
+h2 {
+  font-size: 1.5rem;
   margin-bottom: 15px;
-  border-bottom: 2px solid #007bff;
-  display: inline-block;
-  padding-bottom: 5px;
+  color: #34495e;
 }
 
-/* Input Fields */
-.input-field,
-.textarea-field {
+input, select {
+  display: block;
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
 }
 
-.input-field:focus,
-.textarea-field:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Buttons */
-.primary-button {
-  padding: 10px 20px;
-  font-size: 16px;
+.create-shipment button {
+  background-color: #3498db;
   color: #fff;
-  background-color: #007bff;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.primary-button:hover {
-  background-color: #0056b3;
+.create-shipment button:hover {
+  background-color: #2980b9;
 }
 
-/* List Styling */
-.order-list {
+/* Shipments List Table */
+.shipments-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.shipments-list table th, .shipments-list table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.shipments-list table th {
+  background-color: #2c3e50;
+  color: #fff;
+}
+
+.shipments-list table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.shipments-list table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Users List */
+.users-list ul {
   list-style: none;
   padding: 0;
 }
 
-.order-item {
-  padding: 10px;
-  background: #f1f1f1;
+.users-list ul li {
+  background: #ecf0f1;
   margin-bottom: 10px;
-  border-radius: 5px;
-  color: #555;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding: 15px;
-  }
+/* Add Admin and Create Shipment Sections */
+.add-admin, .create-shipment {
+  background: #ecf0f1;
+  padding: 20px;
+  border-radius: 8px;
+}
 
-  .primary-button {
-    width: 100%;
-  }
+.add-admin input, .create-shipment input {
+  width: calc(100% - 20px);
+  margin: 0 auto 10px;
+}
+
+.add-admin button, .create-shipment button {
+  display: block;
+  margin: 0 auto;
 }

@@ -1,8 +1,8 @@
 import React,{useRef,useState,useEffect} from 'react'
 import "./Components.css"
 import {useNavigate} from "react-router-dom"
-import SignUp from './Auth_foder/SignUp'
-import Login from './Auth_foder/Login'
+import SignUp from './Auth/SignUp'
+import Login from './Auth/Login'
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 const Authentication = () => {
     
@@ -66,7 +66,7 @@ const Authentication = () => {
         </div>
      <section ref={parentRef} className='auth_slider' style={{ height: `${windowHeight}px` }}>
         <div  ref={formRef1} className='slide'>
-            <SignUp />
+            <SignUp slide={slider}/>
         </div >
 
         <div ref={formRef2} className='slide'>

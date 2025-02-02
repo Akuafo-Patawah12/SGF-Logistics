@@ -12,7 +12,7 @@ import Header2 from '../Components/Header2'
 import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
 import HowItWorksVideo from '../Pages/Components/HowItWorksVideo'
 import PageNotFound from '../Pages/PageNotFound'
-import Privacy from '../Pages/More/Privacy'
+const Privacy = lazy(()=> import('../Pages/More/Privacy')) 
 const Gallery = lazy(()=> import('../Pages/More/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
@@ -228,7 +228,7 @@ const Layout = () => {
                     </Suspense>} 
                 />          
 
-<Route path='/More/Privacy' element={
+               <Route path='/More/Privacy' element={
                     <Suspense fallback={<Loader />}>
                         <Privacy />
                     </Suspense>} 

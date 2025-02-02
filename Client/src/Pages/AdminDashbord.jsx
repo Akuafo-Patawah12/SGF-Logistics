@@ -1,155 +1,202 @@
-import React, { useState, useEffect } from "react";
-import { io } from "socket.io-client";
-import axios from "axios";
-import "./AdminDashboard.css"; // Import the CSS file
-
-const socket = io("http://localhost:3001");
+// Frontend - React with CSS
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
+import './AdminDashboard.css'
+import axios from "axios"
+const socket = io('http://localhost:4040');
 
 const AdminDashboard = () => {
   const [admins, setAdmins] = useState([]);
-  const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState([]);
   const [shipments, setShipments] = useState([]);
-  const [newAdmin, setNewAdmin] = useState({ name: "", email: "" });
-  const [emailData, setEmailData] = useState({ to: "", subject: "", text: "" });
-  const [shipmentData, setShipmentData] = useState({
-    client: "",
-    items: [],
-    deliveryDate: "",
-  });
+  const [newAdmin, setNewAdmin] = useState({ username: '', password: '' });
+  const [shipment, setShipment] = useState({ route: 'A', tracking: '', status: 'Pending' });
 
   useEffect(() => {
-    socket.emit("fetchOrders");
+    socket.emit('get_shipment');
 
-    socket.on("ordersList", (ordersList) => {
-      setOrders(ordersList);
+    socket.on('shipmentData', (data) => {
+      setShipments(data);
     });
 
-    socket.on("orderAdded", (newOrder) => {
-      setOrders((prevOrders) => [...prevOrders, newOrder]);
+    socket.on('new-shipment', (data) => {
+      setShipments((prev) => [...prev, data]);
     });
 
-    socket.on("shipmentCreated", (newShipment) => {
-      setShipments((prevShipments) => [...prevShipments, newShipment]);
+    socket.on('update-shipment', (data) => {
+      setShipments((prev) => prev.map((s) => (s._id === data._id ? data : s)));
     });
 
-    return () => {
-      socket.off("ordersList");
-      socket.off("orderAdded");
-      socket.off("shipmentCreated");
-    };
+    socket.on('delete-shipment', (id) => {
+      setShipments((prev) => prev.filter((s) => s._id !== id));
+    });
   }, []);
 
-  const addAdmin = async () => {
-    const response = await axios.post("http://localhost:3001/add-admin", newAdmin);
-    if (response.data.success) {
-      setAdmins((prevAdmins) => [...prevAdmins, response.data.newAdmin]);
-      setNewAdmin({ name: "", email: "" });
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/users');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
     }
   };
 
-  const createShipment = () => {
-    socket.emit("createShipment", shipmentData);
-    setShipmentData({ client: "", items: [], deliveryDate: "" });
+  const fetchShipments = async () => {
+    const response = await fetch('http://localhost:5000/shipments');
+    const data = await response.json();
+    setShipments(data);
   };
 
-  const sendEmail = () => {
-    socket.emit("sendEmail", emailData);
-    setEmailData({ to: "", subject: "", text: "" });
+  const handleAddAdmin = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/add-admin', newAdmin, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      alert('Admin added successfully');
+      setNewAdmin({ username: '', password: '' });
+    } catch (error) {
+      console.error('Error adding admin:', error);
+    }
+  };
+
+  const handleCreateShipment = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/shipments', {
+        shipmentIds: selectedShipments,
+
+      });
+      console.log('Shipment created:', response.data);
+      // Clear selected shipments after creation
+      setSelectedShipments([]);
+    } catch (error) {
+      console.error('Error creating shipment:', error);
+    }
+  
+  };
+
+  const handleUpdateShipment = async (id, status) => {
+    await fetch(`http://localhost:5000/update-shipment/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status })
+    });
+  };
+
+  const handleDeleteShipment = async (id) => {
+    await fetch(`http://localhost:5000/delete-shipment/${id}`, {
+      method: 'DELETE'
+    });
+  };
+
+  const [selectedShipments, setSelectedShipments] = useState([]);
+
+  const handleSelectShipment = (id) => {
+    setSelectedShipments((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((shipmentId) => shipmentId !== id)
+        : [...prevSelected, id]
+    );
   };
 
   return (
-    <div className="dashboard-container">
-      <h1 className="dashboard-title">Admin Dashboard</h1>
+    <div className="admin-page">
+      <h1>Admin Dashboard</h1>
 
-      {/* Add Admin Section */}
-      <section className="dashboard-section">
-        <h2 className="section-title">Add Admin</h2>
+      <section className="add-admin">
+        <h2>Add Admin</h2>
         <input
-          className="input-field"
           type="text"
-          placeholder="Name"
-          value={newAdmin.name}
-          onChange={(e) => setNewAdmin({ ...newAdmin, name: e.target.value })}
+          placeholder="Username"
+          value={newAdmin.username}
+          onChange={(e) => setNewAdmin({ ...newAdmin, username: e.target.value })}
         />
         <input
-          className="input-field"
-          type="email"
-          placeholder="Email"
-          value={newAdmin.email}
-          onChange={(e) => setNewAdmin({ ...newAdmin, email: e.target.value })}
+          type="password"
+          placeholder="Password"
+          value={newAdmin.password}
+          onChange={(e) => setNewAdmin({ ...newAdmin, password: e.target.value })}
         />
-        <button className="primary-button" onClick={addAdmin}>
-          Add Admin
-        </button>
+        <button onClick={handleAddAdmin}>Add Admin</button>
       </section>
 
-      {/* View Orders Section */}
-      <section className="dashboard-section">
-        <h2 className="section-title">Orders</h2>
-        <ul className="order-list">
-          {orders.map((order) => (
-            <li className="order-item" key={order.id}>
-              {order.fullname}
-            </li>
+      <section className="create-shipment">
+        <h2>Create Shipment</h2>
+        <select
+          value={shipment.route}
+          onChange={(e) => setShipment({ ...shipment, route: e.target.value })}
+        >
+          {[...Array(7)].map((_, i) => (
+            <option key={i} value={String.fromCharCode(65 + i)}>
+              Route {String.fromCharCode(65 + i)}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          placeholder="Tracking"
+          value={shipment.tracking}
+          onChange={(e) => setShipment({ ...shipment, tracking: e.target.value })}
+        />
+        
+      </section>
+
+      <section className="shipments-list">
+        <h2>Shipments</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Route</th>
+              <th>Tracking</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shipments?.map((shipment) => (
+              <tr key={shipment?._id}>
+              <td>
+            <input
+              type="checkbox"
+              checked={selectedShipments.includes(shipment?._id)}
+              onChange={() => handleSelectShipment(shipment?._id)}
+            />
+          </td>
+                <td>{shipment?.route}</td>
+                <td>{shipment?.tracking}</td>
+                <td>{shipment?.status}</td>
+                <td>
+                  <select
+                    value={shipment?.status}
+                    onChange={(e) => handleUpdateShipment(shipment?._id, e.target.value)}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Active">Active</option>
+                    <option value="Delivered">Delivered</option>
+                  </select>
+                  <button onClick={() => handleDeleteShipment(shipment._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button onClick={handleCreateShipment}>Create Shipment for Selected Orders</button>
+      </section>
+
+      <section className="users-list">
+        <h2>All Users</h2>
+        <ul>
+          {users?.map((user) => (
+            <li key={user?._id}>{user?.username}</li>
           ))}
         </ul>
-      </section>
-
-      {/* Create Shipment Section */}
-      <section className="dashboard-section">
-        <h2 className="section-title">Create Shipment</h2>
-        <input
-          className="input-field"
-          type="text"
-          placeholder="Client Name"
-          value={shipmentData.client}
-          onChange={(e) =>
-            setShipmentData({ ...shipmentData, client: e.target.value })
-          }
-        />
-        <input
-          className="input-field"
-          type="date"
-          value={shipmentData.deliveryDate}
-          onChange={(e) =>
-            setShipmentData({ ...shipmentData, deliveryDate: e.target.value })
-          }
-        />
-        <button className="primary-button" onClick={createShipment}>
-          Create Shipment
-        </button>
-      </section>
-
-      {/* Send Email Section */}
-      <section className="dashboard-section">
-        <h2 className="section-title">Send Email</h2>
-        <input
-          className="input-field"
-          type="email"
-          placeholder="Recipient Email"
-          value={emailData.to}
-          onChange={(e) => setEmailData({ ...emailData, to: e.target.value })}
-        />
-        <input
-          className="input-field"
-          type="text"
-          placeholder="Subject"
-          value={emailData.subject}
-          onChange={(e) => setEmailData({ ...emailData, subject: e.target.value })}
-        />
-        <textarea
-          className="textarea-field"
-          placeholder="Message"
-          value={emailData.text}
-          onChange={(e) => setEmailData({ ...emailData, text: e.target.value })}
-        />
-        <button className="primary-button" onClick={sendEmail}>
-          Send Email
-        </button>
       </section>
     </div>
   );
 };
 
-export default AdminDashboard;
 
+export default AdminDashboard;

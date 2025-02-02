@@ -43,22 +43,26 @@ const mailer = async(email)=>{
 
 const shipping=(socket,users)=>{
 
-   socket.on("create_shippment",async(data)=>{
+   socket.on("shipments",async(data)=>{
 
     try{
       console.log(data)
-      const Order=  await order.findOne({tracking_id:tracking_id})
+      const Order=  await order.updateMany(
+        { _id: { $in: data.shipmentIds } },
+        { route }
+      );
       socket.emit("get_shippment",data)
+      io.emit('shipmentUpdated', { shipmentIds, route });
       mailer(Order.email)
     }catch(error){
         console.log(error)
     }
-   }) 
-
-
-   socket.on("track",({tracking_id})=>{
-      
    })
+   
+   
+
+
+   
    socket.on("disconnect",()=>{
     const userId = Object.keys(users).find((id) => users[id] === socket.id);
 

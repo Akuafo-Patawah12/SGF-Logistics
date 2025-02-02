@@ -25,14 +25,7 @@
     grid-template-columns: repeat(3,1fr);
     grid-gap: 10px;
 }
-.faq_title{
-    background: url("../../../public/SFG_images/Sea.jpg") no-repeat fixed 100%;
-    background-size: cover;
-    height: fit-content;
-    background-clip: text;
-    color: transparent;
-    font-size: 25px;
-}
+
 /* FAQPage.css */
 
 /* Container */

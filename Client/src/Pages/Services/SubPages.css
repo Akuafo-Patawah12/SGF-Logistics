@@ -1,176 +1,183 @@
-.Freight_image_header{
-    position: relative;
-    background: url("../../../public/SFG_images/Slider2.jpg") no-repeat  fixed 100%;
-    background-size: cover;
-    height: 200px;
-    margin-bottom: 50px;
- }
-
-
- .parallelogram{
-   padding-inline: 5px;
-   display: flex;
-   max-width:260px;
-   transform: translateY(0);
-   margin-left: 2.5%;
-   
-   height: 30px;
-   background-color: #eee;
-   gap:10px;
-   padding: 10px;
-  clip-path: polygon(0% 0%, 75% 0%, 100% 100%,75% 100%,0% 100%);
- }
-
-
- .parallelogram > section{
-  line-height: 30px;
-  font-size: 15px;
-
-  & a{
-    font-size: 15px;
-  }
- }
- .parallelogram > section:not(:first-child){
-  border-left: 2px solid  #ddd;
-  padding-left: 4px;
-  
- }
 
  
- 
- .freight {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    background-color: white;
-    border-radius: 8px;
-    padding-inline: 2.5%;
-    grid-gap: 10px;
-    
+ /* filepath: /C:/Users/maxwe/OneDrive/Desktop/SGF-Logistics/Client/src/Pages/Services/AirFreight.css */
 
-    & p,h3{
-      width: 90%;
-      margin-left: auto;
-    }
-  }
+/* filepath: /C:/Users/maxwe/OneDrive/Desktop/SGF-Logistics/Client/src/Pages/Services/AirFreight.css */
+.relative-container {
+  position: relative;
+  height: 400px;
+}
 
- 
+.overlay-section {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 40px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.title {
+  font-size: 2.25rem; /* equivalent to text-4xl */
+  font-weight: 700; /* equivalent to font-bold */
+  color: #1f2937; /* equivalent to text-gray-800 */
+  margin-bottom: 1rem; /* equivalent to mb-4 */
+  text-align: center;
+}
+
+ .freight_container {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+}
+
+.freight_head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.freight_head p {
+  color: #4b5563;
+  font-size: 1.125rem;
+}
+
+
+.test{
+   display:grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 1rem;
+}
+
+.freight_section {
   
-  
-  .freight div{
-    background: white;
-    margin-inline: auto;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .freight h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    padding-block: 10px;
-    position: relative;
-  }
-  
-  .freight p {
-    font-size: 15px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-    color: #333;
-    width: 83%;
-    padding-right: 3%;
-  }
-  
-  .freight ul {
-    list-style-type: none;
-    margin-left: auto;
-    width: 90%;
-    margin-bottom: 15px;
-  }
-  
-  .freight ul li {
-    margin-bottom: 8px;
-    font-size: 1rem;
-  }
-  
-  .freight h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    color: #555;
-    border-bottom: 1px solid #ddd;
-    padding-block: 5px;
-  }
+  margin-bottom: 4rem;
+}
 
- .key_benefit li{
-    font-size: 15px;
-  }
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 4 equal columns */
-    grid-auto-rows: 300px; /* Default row height */
-    gap: 10px; /* Spacing between grid items */
-    margin-top: 30px;
-    width: 95%;
-    margin-inline: auto;
-  }
+.section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
 
-  .grid-item {
-    background-color: #f3f3f3;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    text-align: center;
-    border: 2px solid var(--green);
-  }
+.section p {
+  color: #4b5563;
+  line-height: 1.75;
+}
 
-  .grid-item > img{
-     width: 100%;
-     height: 100%;
-     
-  }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
 
-  /* Specific item sizes */
-  .item1{
-    grid-column: span 2; /* Takes 2 columns */
-    grid-row: span 1; /* Takes 1 row */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  .item2 {
-    grid-column: span 1; /* Takes 1 column */
-    grid-row: span 1; /* Takes 1 row */
-  }
+.card {
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: box-shadow 0.3s;
+}
 
-  .item3{
-    grid-column: span 1; /* Takes 1 column */
-    grid-row: span 2; /* Takes 2 rows */
-  }
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
 
-  .item4 {
-    grid-column: span 1; /* Takes 2 columns */
-    grid-row: span 1; /* Takes 1 row */
-  }
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  margin: 0 auto 1rem;
+}
 
-  .item5{
-    grid-column: span 2; /* Takes 1 column */
-    grid-row: span 1; /* Takes 1 row */
-  }
-  
+.icon-blue {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
 
- @media (max-width: 768px) {
-    .cont{
-        margin-top: 90px;
-    }
+.icon-green {
+  background-color: #10b981;
+  color: #ffffff;
+}
 
-    .freight{
-      grid-template-columns: repeat(2,1fr);
-    }
-    
- }
+.icon-yellow {
+  background-color: #f59e0b;
+  color: #ffffff;
+}
 
- @media (max-width: 500px) {
-  .freight{
-    grid-template-columns: repeat(1,1fr);
-  }
-  }
+.card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #4b5563;
+}
+
+.testimonial_ {
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  border: 2px solid #ddd;
+}
+
+.testimonial_ p {
+  color: #4b5563;
+  font-style: italic;
+}
+
+.testimonial_ .author {
+  margin-top: 1rem;
+  text-align: right;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.cta {
+  text-align: center;
+  background-color: var(--purple);
+  color: #ffffff;
+  padding: 3rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta button {
+  background-color: #ffffff;
+  color: #3b82f6;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s;
+}
+
+.cta button:hover {
+  background-color: #f3f4f6;
+}

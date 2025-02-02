@@ -1,6 +1,6 @@
 import React from "react";
 import "./Privacy.css"; // Import the CSS file for styling
-import AnimatedBubbles from "../Components/AnimatedBubbles";
+
 
 const Privacy = () => {
   return (
@@ -8,7 +8,7 @@ const Privacy = () => {
       <div className="privacy-content">
         <h1 className="privacy-title">Privacy Policy</h1>
         <p className="privacy-intro">
-        At Shun Feng Ghana Logistics (SFGL), we are committed to safeguarding your privacy and
+        At Shun Feng Ghana Logistics SFGL, we are committed to safeguarding your privacy and
          ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, disclose,
          and protect your information when you visit our website and use our services.
         </p>
@@ -84,7 +84,7 @@ const Privacy = () => {
               <li>Address:  George Bush Highway, Dzorwulu,
               Accra-Ghana</li>
             </ul>
-            <AnimatedBubbles />
+            
           </section>
         </div>
         

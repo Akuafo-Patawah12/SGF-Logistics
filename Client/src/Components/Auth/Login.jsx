@@ -24,6 +24,12 @@ const Login = () => {
         });
       };
     
+      // Validation (you can expand this further)
+      const validationErrors = {};
+
+      const handleFocus = () => {
+        setErrors("");
+      };
 
       const [loader,setLoader]= useState(false)
       const navigate= useNavigate()
@@ -33,7 +39,7 @@ const Login = () => {
 
        try{
 
-        const response = await fetch("https://sgf-logistics-1.onrender.com", {
+        const response = await fetch("http://localhost:4040", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -45,29 +51,35 @@ const Login = () => {
         const data = await response.json();
 
         
-        // Validation (you can expand this further)
-        const validationErrors = {};
         
-        if (response.status===401){
-           validationErrors.password = "Invalid password";
-           setLoader(false)
+        
+        
+        
+        if (!formData.email) {
+          validationErrors.email = "Email is required";
+          setLoader(false)
+          return setErrors(validationErrors)
         }
+
+        if (!formData.password){
+          validationErrors.password = "Password is required";
+          setLoader(false)
+           return setErrors(validationErrors)
+    }
+        if (response.status===400){
+           validationErrors.password="Invalid accout type"
+           setLoader(false)
+           return setErrors(validationErrors)
+        }
+       
         if (response.status===404) {
           validationErrors.password = "Email doesn't exist";
           setLoader(false)
         }
-        if (!formData.email) {
-          validationErrors.email = "Email is required";
+        if (response.status===401){
+          validationErrors.password = "Invalid password";
           setLoader(false)
-        }
-        if (response.status===400){
-           validationErrors.password="Invalid accout type"
-           setLoader(false)
-        }
-        if (!formData.password){
-              validationErrors.password = "Password is required";
-              setLoader(false)
-        }
+       }
     
         setErrors(validationErrors);
     
@@ -76,11 +88,8 @@ const Login = () => {
           if(data.message==="Logged in as a client" ){
             setLoader(false)
           setSuccess(true);
-          localStorage.setItem('accesstoken', data.accessToken);
-          
-          
-         const auto_url= localStorage.getItem('auto_url');
-          navigate(`${auto_url=== "" ? "/Invoice": auto_url}`)
+         
+          navigate(`/Invoice`)
           
           }
           if(data.message==="Logged in as an admin"){
@@ -96,6 +105,12 @@ const Login = () => {
       }catch(error){
         setLoader(false)
         console.error(error)
+        if (error.response && error.response.status === 404) {
+          validationErrors.email = "Email doesn't exist";
+          setLoader(false)
+        }
+        setErrors(validationErrors);
+        
       }
       };
   return (
@@ -111,6 +126,7 @@ const Login = () => {
       <input
         type="email"
         name="email"
+        onFocus={()=>handleFocus()}
         value={formData.email}
         onChange={handleChange}
         placeholder="Enter email"
@@ -123,6 +139,7 @@ const Login = () => {
       <input
         type="password"
         name="password"
+        onFocus={()=>handleFocus()}
         value={formData.password}
         onChange={handleChange}
         placeholder="Enter password"
@@ -135,6 +152,7 @@ const Login = () => {
       <input
         type="checkbox"
         name="rememberMe"
+        onFocus={()=>handleFocus()}
         value={formData.rememberMe}
         onChange={handleChange}
         id='check'

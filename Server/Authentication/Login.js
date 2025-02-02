@@ -11,13 +11,15 @@ async function login(req,res){
     try{
         const email_Exist=  await data.findOne({email:email}); /* check whether the email exist in the database 
        and store it in email exist variable */
-       const password_Is_Correct = await  bcrypt.compare(password, email_Exist.password);
+      
         
       
-       if (email_Exist=== null || "") {
-          res.status(404).json({ message: "invalid email" }); // Email not found
-          return
+       if (!email_Exist) {
+        return res.status(404).json({ message: "Invalid email" }); // Email not found
+          
         }
+
+        const password_Is_Correct = await  bcrypt.compare(password, email_Exist.password);
        
          const protected= email_Exist.account_type // find the user's account type "whether it's a personal or business account"
 
@@ -48,7 +50,7 @@ async function login(req,res){
         }
        
         if (!password_Is_Correct) {
-            return res.status(401).json({ message: 'invalid password' }); // Incorrect password
+            return res.status(401).json({ message: 'Invalid password' }); // Incorrect password
         }
 
         switch (protected) {
