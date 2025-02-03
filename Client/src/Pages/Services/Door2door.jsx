@@ -1,64 +1,108 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import { DollarCircleOutlined, ContainerOutlined, ShopOutlined, SmileOutlined } from '@ant-design/icons';
+
 import "./SubPages.css"
+
+import {ReactComponent as Secure } from "../../Icons/Secure.svg"
+import {ReactComponent as Speed } from "../../Icons/Speed.svg"
+import {ReactComponent as Global } from "../../Icons/Global.svg"
 
 const Door2door = () => {
   return (
-    <div className="cont" >
-      <div className='Freight_image_header'>
-           <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
-           <p style={{fontSize:"40px",fontWeight:"700",textAlign:"center",width:"",marginInline:"auto"}}>Door To Door Delivery.</p>
-           </section>
-
-           
-        </div>
-        <div className="parallelogram">
-          <section ><Link to={"/"}>Home</Link></section>
-          <section ><Link to={"/Services"}>Services</Link></section>
-          <section style={{color:"#A7C756"}}>Door to door</section>
-        </div>
-        <section className="freight">
-    <div>
-      <h3 className="fright_head">Door to door delivery</h3>
-        <p>
-            Our Door-to-Door Delivery Service offers a hassle-free solution, managing the entire logistics 
-            process from pickup to final delivery. 
-        </p>
-        </div>
-
-        <div>
-      <h3>Key Benefits:</h3>
-      <ul>
-        <li><strong>Hassle-Free: </strong><p> We handle every aspect of the delivery, from our warehouse to your 
-        doorstep.</p> </li>
-        <li><strong>Secure Handling:</strong> <p>Your goods are managed with the utmost care at every stage of the 
-        journey.</p></li>
-      </ul>
+      <div className="freight_container">
+        <div className="relative-container">
+        <section className="overlay-section">
+          <h1 className="title">
+            Door To Door Services
+          </h1>
+        </section>
       </div>
-
-      <div>
-      <h3>How it Works:</h3>
-      <p>
-         Once your shipment is ready, we take care of everything—customs clearance, transportation, and 
-        delivery directly to the recipient’s location, making the process easy and efficient.
-      </p>
+        {/* Page Header */}
+        <div className="page_section">
+        <header className="freight_head">
+          <p>
+            Delivering your goods with speed, reliability, and care across the globe.
+          </p>
+        </header>
+  
+        {/* Introduction Section */}
+        
+        <section className="freight_section">
+          <h2>
+            Why Choose Our Door to door Services?
+          </h2>
+          <p>
+            Our air freight solutions are designed to provide you with fast, secure, and flexible delivery options for your cargo. With an extensive global network, real-time tracking, and professional handling, we ensure that your shipments are delivered on time and in perfect condition. Whether you're shipping small parcels or large cargo, we have the expertise to meet your needs.
+          </p>
+        </section>
+  
+        {/* Features Section */}
+        <section className="grid">
+          <div className="card">
+            <div className="icon icon-blue">
+              <Global style={{transform:"translateX(1px)"}}/>
+            </div>
+            <h3>Global Reach</h3>
+            <p>
+              We connect you to destinations across the world with our extensive air freight network.
+            </p>
+          </div>
+  
+          <div className="card">
+            <div className="icon icon-green">
+              <Speed style={{transform:"translateX(1px)"}}/>
+            </div>
+            <h3>Speed & Reliability</h3>
+            <p>
+              Fast transit times and reliable delivery schedules to meet your business needs.
+            </p>
+          </div>
+  
+          <div className="card">
+            <div className="icon icon-yellow">
+              <Secure style={{transform:"translateX(1px)"}}/>
+            </div>
+            <h3>Secure Handling</h3>
+            <p>
+              Professional cargo handling and monitoring to ensure your shipment's safety.
+            </p>
+          </div>
+        </section>
+  
+        {/* Testimonials Section */}
+        <section className="section">
+          <h2>
+            What Our Clients Say
+          </h2>
+          <div className="test">
+            <div className="testimonial_">
+              <p>
+                "Their door to door services are outstanding! Our goods arrived on time, and the team was incredibly professional throughout the process."
+              </p>
+              <p className="author">- Jane Doe, Logistics Manager</p>
+            </div>
+            <div className="testimonial_">
+              <p>
+                "Fast, reliable, and secure! I highly recommend their air freight solutions for anyone looking for premium logistics services."
+              </p>
+              <p className="author">- John Smith, CEO of ABC Corp</p>
+            </div>
+          </div>
+        </section>
+  
+        {/* Call-to-Action Section */}
+        <section className="cta">
+          <h2>We Are Ready To Deliver.</h2>
+          <p>
+            Get in touch with us today and experience the best air freight services.
+          </p>
+          <button>
+            Get a Quote
+          </button>
+        </section>
+        </div>
       </div>
-
-      <div>
-      <h3>Ideal For:</h3>
-      <ul>
-        <li><ShopOutlined style={{ color: '#004d80', marginRight: '8px' }} />
-          <strong>Businesses needing full logistics support</strong>
-        </li>
-        <li><SmileOutlined style={{ color: '#004d80', marginRight: '8px' }} />
-          <strong>Clients looking for a stress-free shipping experience</strong>
-        </li>
-      </ul>
-      </div>
-    </section>
-    </div>
-  )
+    );
 }
 
 export default Door2door

@@ -3,9 +3,19 @@
  /* filepath: /C:/Users/maxwe/OneDrive/Desktop/SGF-Logistics/Client/src/Pages/Services/AirFreight.css */
 
 /* filepath: /C:/Users/maxwe/OneDrive/Desktop/SGF-Logistics/Client/src/Pages/Services/AirFreight.css */
+
+
+
+
 .relative-container {
   position: relative;
   height: 400px;
+}
+
+.relative-1 {
+  
+  background: url("../../../public/SFG_images/Air2.jpg");
+ 
 }
 
 .overlay-section {
@@ -23,9 +33,10 @@
 .title {
   font-size: 2.25rem; /* equivalent to text-4xl */
   font-weight: 700; /* equivalent to font-bold */
-  color: #1f2937; /* equivalent to text-gray-800 */
+  color: var(--purple); /* equivalent to text-gray-800 */
   margin-bottom: 1rem; /* equivalent to mb-4 */
   text-align: center;
+  -webkit-text-stroke: 2px white;
 }
 
  .freight_container {
@@ -186,7 +197,7 @@
   background-color: #f3f4f6;
 }
 
-@media (max-width:500px){
+@media (max-width:768px){
   .relative-container {
     margin-top: 80px;
   }
