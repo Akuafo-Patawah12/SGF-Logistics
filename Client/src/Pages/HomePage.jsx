@@ -172,17 +172,9 @@ useEffect(() => {
   };
 }, [divWidth]);
 
-const [displayService,setDisplayService]  = useState(false)
-const[serviceText,setServiceText]= useState("SEE ALL OUR SERVICES")
-function ToggleServices(){
-  if(!displayService){
-    setServiceText("SEE LESS...")
-    setDisplayService(true)
-  return
-}
-setServiceText("SEE ALL OUR SERVICES")
-setDisplayService(false)
-}
+
+
+
 
 
 const image= ["Air.jpg","Sea.jpg","Slider2.jpg","Slider3.jpg"] 
@@ -439,7 +431,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
        
 
-       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444",paddingBlock:"2px 20px"}}><button onClick={ToggleServices} style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",border:"2px solid #222",borderRadius:"5px",fontSize:"16px" ,padding:"10px",fontWeight:"500"}}>SEE ALL OUR SERVICES</button></Link>
+       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444",paddingBlock:"2px 20px"}}><button  style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",border:"2px solid #222",borderRadius:"5px",fontSize:"16px" ,padding:"10px",fontWeight:"500"}}>SEE ALL OUR SERVICES</button></Link>
       
 
        
