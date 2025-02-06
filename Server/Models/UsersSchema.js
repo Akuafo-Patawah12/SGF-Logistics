@@ -21,6 +21,9 @@ const userSchema= Schema({
         type:String,
         enum:["Admin","User"]
     },
+    device_info: {
+      type: [String] // To specify that it's an array of strings
+    },
     created_At:{
         type:Date,
         default: Date.now()

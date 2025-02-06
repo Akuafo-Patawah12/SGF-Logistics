@@ -14,9 +14,10 @@ const SignUp= async(req,res)=>{
     type: parser.getDevice().type || "PC",
     os: parser.getOS().name + " " + parser.getOS().version,
     browser: parser.getBrowser().name + " " + parser.getBrowser().version,
-    userAgent: userAgent,
+    Agent: userAgent,
   };
   console.log(deviceInfo)
+  const {device,brand,type,os,browser,Agent}=deviceInfo
             const {username,email,password,account_type}= req.body.formData;
            
             try{
@@ -32,12 +33,13 @@ const SignUp= async(req,res)=>{
                         username,
                         email,
                         password: encrypted_password,
-                        account_type
+                        account_type,
+                        device_info: [`${device},${brand},${type},${os},${browser},${Agent}`]
                     }
                   )
 
                   await user.save()
-
+                  
                   return res.json({message:"Signed up successful"})
                   
                   

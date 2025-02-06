@@ -76,11 +76,20 @@ const Login = () => {
         if (response.status===404) {
           validationErrors.password = "Email doesn't exist";
           setLoader(false)
+          return
         }
+
+        if(response.status===402){
+          navigate("/verify")
+          return 
+      }
+
         if (response.status===401){
           validationErrors.password = "Invalid password";
           setLoader(false)
        }
+
+       
     
         setErrors(validationErrors);
     
