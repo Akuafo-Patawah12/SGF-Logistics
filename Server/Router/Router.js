@@ -2,7 +2,7 @@ const router= require('express').Router()
 const { login } = require('../Authentication/Login')
 const SignUp = require('../Authentication/SignUp')
 const updatePassword = require('../Authentication/UpdatePassword')
-const AskedQuestion = require('../Mailer/Question')
+const AskedQuestion = require('../Mail/Question')
 
 
 router.post("/", login)

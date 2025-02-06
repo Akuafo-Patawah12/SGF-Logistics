@@ -402,7 +402,7 @@ const [value, setValue] = useState(0);  // State to hold the value
             China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
             and experience the SFGL difference. 
           </p>
-          <Link to={"/Auth"} className='welcome_button'><button className='welcome_butt'><span>GET STARTED</span>
+          <Link to={"/Auth/sign_up"} className='welcome_button'><button className='welcome_butt'><span>GET STARTED</span>
           <div className='liquid'></div></button></Link>
          </motion.div>
 
@@ -429,9 +429,8 @@ const [value, setValue] = useState(0);  // State to hold the value
        <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
              <ServicesComponent />
 
+             <div style={{paddingBlock:"6px",display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444",}}><Link to={"/Services"} style={{border:"2px solid #444",borderRadius:"5px",marginInline:"auto",padding:"10px 7px"}}>  SEE ALL OUR SERVICES</Link></div>
        
-
-       <Link to={"/Services"} style={{display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444",paddingBlock:"2px 20px"}}><button  style={{marginInline:"auto",background:"transparent",transition:"all 0.3s",border:"2px solid #222",borderRadius:"5px",fontSize:"16px" ,padding:"10px",fontWeight:"500"}}>SEE ALL OUR SERVICES</button></Link>
       
 
        

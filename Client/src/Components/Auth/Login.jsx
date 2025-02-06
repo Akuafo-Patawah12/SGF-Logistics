@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 import './Auth.css'; 
 import axios from "axios"
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import ButtonLoader from '../../Icons/ButtonLoader';
+import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 
 
 const Login = () => {
@@ -39,7 +40,7 @@ const Login = () => {
 
        try{
 
-        const response = await fetch("https://sfghanalogistics.com", {
+        const response = await fetch("http://localhost:4040", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -114,8 +115,10 @@ const Login = () => {
       }
       };
   return (
-    
-      
+    <div className="form-container">
+     <header className='auth_header'>
+       <SvgIcon/>
+     </header> 
     <form  className="login-form" onSubmit={handleSubmit}>
     <h2>Login</h2>
 
@@ -147,7 +150,7 @@ const Login = () => {
       {errors.password && <span className="error">{errors.password}</span>}
     </div>
 
-    <div className="check">
+    <div className="checkbox">
       
       <input
         type="checkbox"
@@ -157,20 +160,20 @@ const Login = () => {
         onChange={handleChange}
         id='check'
       />
-      <label for="check">Stay Signed in</label>
+      <label htmlFor="check">Stay Signed in</label>
      
     </div>
 
     
 
     
-   <div className=".form-group">
+   <div className="form-group">
     <button type="submit" className="form_button" style={{cursor:`${loader? "not-allowed":"pointer"}`}} disabled={loader?true:false}><span>Login</span> {loader && <span><ButtonLoader /></span>}</button>
-    <p>Don't have an account?</p>
+    <Link to={"/Auth/sign_up"}>Don't have an account?</Link>
     </div>
     {success && <p className="success-message">Login successful!</p>}
   </form>
- 
+  </div>
   )
 }
 

@@ -12,11 +12,13 @@ import Header2 from '../Components/Header2'
 import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
 import HowItWorksVideo from '../Pages/Components/HowItWorksVideo'
 import PageNotFound from '../Pages/PageNotFound'
+
 const Privacy = lazy(()=> import('../Pages/More/Privacy')) 
 const Gallery = lazy(()=> import('../Pages/More/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
 const Invoice = lazy(()=> import( '../Pages/Invoice'))
+const New = lazy(()=> import( '../Pages/New'))
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
 const SeaFreight = lazy(()=> import('../Pages/Services/SeaFreight'))
@@ -118,7 +120,16 @@ const Layout = () => {
                     <Suspense fallback={<Loader />}>
                         <HomePage setShowAuth={setShowAuth} showAuth={showAuth} setIsVideo={setIsVideo}/>
                     </Suspense> }
-                /> 
+                />
+
+                <Route path='/New' element={
+                    <Suspense fallback={<Loader />}>
+                        <New/>
+                    </Suspense> }
+                />
+
+                
+
                 <Route path='/TermsAndCondition' element={<TermsAndCondition />} />
                 <Route path='/More/FAQs' element={<FAQs />}/>
                 <Route path='/Orders' element={

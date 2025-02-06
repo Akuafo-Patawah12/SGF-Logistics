@@ -143,10 +143,57 @@ const AdminDashboard = () => {
     );
   };
 
+
+  const [direction, setDirection] = useState("Allow Location");
+
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [ripple, setRipple] = useState(false);
+
+  const handleClick = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+
+    setRipple(true);
+    setTimeout(() => setRipple(false), 600); // Remove ripple effect after 600ms
+  };
+
+  const getInitials = (name) => {
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase();
+  };
+
   return (
     <div className="admin-page">
-      <h1>Admin Dashboard</h1>
+      <header className="Admin-head">
+      {/* Logo */}
+      <div className="logo">🌍 Logistics</div>
 
+      {/* User Info */}
+      <div className="user-info">
+        <span className="user-name">"Andrew</span>
+        <div className="user-initials">{getInitials("Andrew")}</div>
+      </div>
+    </header>
+
+      <h1>Admin Dashboard</h1>
+      <button className="direction-button" onMouseEnter={handleClick} onClick={handleClick}>
+      Add users
+      {ripple && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
+    </button>
+    <button className="direction-button" onMouseEnter={handleClick} onClick={handleClick}>
+      View users
+      {ripple && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
+    </button>
+    <button className="direction-button" onMouseEnter={handleClick} onClick={handleClick}>
+      View Shipment
+      {ripple && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
+    </button>
       <section className="add-admin">
         <h2>Add Admin</h2>
         <input
@@ -243,51 +290,7 @@ const AdminDashboard = () => {
       <h1>Shipment Management</h1>
 
       {/* Create Shipment Form */}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Tracking Number:</label>
-          <input
-            type="text"
-            name="trackingNumber"
-            value={formData.trackingNumber}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Origin:</label>
-          <input
-            type="text"
-            name="origin"
-            value={formData.origin}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Destination:</label>
-          <input
-            type="text"
-            name="destination"
-            value={formData.destination}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Status:</label>
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleInputChange}
-          >
-            <option value="Pending">Pending</option>
-            <option value="In Transit">In Transit</option>
-            <option value="Delivered">Delivered</option>
-          </select>
-        </div>
-        <button type="submit">Create Shipment</button>
-      </form>
+     
 
       {/* Shipments Table */}
       <h2>All Shipments</h2>

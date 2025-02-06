@@ -9,8 +9,8 @@ app.use(cookieParser())
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
-const DB_connection = require("./DatabaseConnection/Connection")
-const router = require("./AuthRoutes/Router")
+const DB_connection = require("./Connections/Connection")
+const router = require("./Router/Router")
 
 
 

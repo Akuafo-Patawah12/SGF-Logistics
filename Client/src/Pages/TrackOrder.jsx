@@ -1,9 +1,8 @@
 import React,{useEffect,useMemo} from 'react'
 import "./TrackOrder&Map.css"
-import {  RightCircleFilled } from '@ant-design/icons';
-import  { useState } from "react";
+
 import { useParams,Link } from 'react-router-dom'
-import LogisticFooter from '../Components/LogisticFooter';
+
 
 
 import { transform } from 'framer-motion';
@@ -65,7 +64,7 @@ const TrackOrder = () => {
 
       
         
-      <LogisticFooter />
+      
     </div>
   )
 }

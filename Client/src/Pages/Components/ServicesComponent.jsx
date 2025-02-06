@@ -12,6 +12,7 @@ const ServicesComponent = () => {
           exit={{ opacity: 0, y: 100 }} 
           transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
           viewport={{ once: true, amount: 0.3 }}
+          style={{marginBottom:"0"}}
        className={`services `} >
           
           <div

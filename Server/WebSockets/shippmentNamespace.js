@@ -1,6 +1,6 @@
 const nodemailer= require("nodemailer")
 const tls= require("tls")
-const order = require("../DatabaseModels/Order")
+const order = require("../Models/Order")
 
 const mailer = async(email)=>{
   try{

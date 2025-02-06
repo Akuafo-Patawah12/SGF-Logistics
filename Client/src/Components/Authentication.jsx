@@ -65,19 +65,11 @@ const Authentication = () => {
 
         </div>
      <section ref={parentRef} className='auth_slider' style={{ height: `${windowHeight}px` }}>
-        <div  ref={formRef1} className='slide'>
-            <SignUp slide={slider}/>
-        </div >
+        
 
-        <div ref={formRef2} className='slide'>
-            <Login />
-        </div>
+        
 
-        <div ref={formRef3} className='slide'> 
-            <input type='email'/>
-            <input type='submit'/>
-            
-        </div>
+        
      </section>
      </div>
     </div>

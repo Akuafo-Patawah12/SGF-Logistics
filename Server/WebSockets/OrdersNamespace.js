@@ -1,41 +1,31 @@
- const Order= require("../DatabaseModels/Order")
- const User= require("../DatabaseModels/UsersSchema")
+ const Order= require("../Models/Order")
+ const User= require("../Models/UsersSchema")
+ const moment = require('moment');
+ 
 
 const orderFunc=(socket,adminNamespace,users)=>{
     
 
-    socket.on("createOrder", async(data) => { //receiving createOrders data from clientside
-        console.log(data)
-     
-        try {
-            //Inserting new data received from clientside in to orders table
+    socket.on("submitOrder", (data, callback) => {
+        console.log("Received shipment data:", data);
+        
+        // Save to database (Example with MongoDB)
+        data.date = moment(data.date, 'DD-MM-YY').toDate(); // Convert to Date object
+        new Order(data)
+            .save()
+            .then(() => callback({ status: "ok" }))
+            .catch((err) =>{
+                 callback({ status: "error", message: err.message })
+                   console.log(err)
+                 }
+                 );
 
-            const order = new Order({ 
-                fullname:data.fullname,
-                email: data.email,
-                phone: parseInt(data.phone),
-                additional_info: data.additional_info,
-                items:data.items,
-                origin:data.origin,
-                 destination:data.destination,
-                 tracking_id: data.tracking_id,
-                 totalAmount: data.length 
-                });// creating new order
-
-            await order.save();  // saving new order the database
-            
-            socket.emit("receive",order) //send this data the user connected to this namespace
-            adminNamespace.in("AdminRoom").emit("receivedOrder", {_id: order._id,...order,Status: order.Status}); // Emit to all in "/order" room
-            
-        }catch(err) {
-            console.error("Error saving order or emitting event:", err);
-        }
-});
+      });
 
     socket.on("allOrders",async(id)=>{
         try{
             //find all Orders with this particular customer's id
-             const orders= await Order.find({customer_id:id}) 
+             const orders= await Order.find({user_id:id}) 
             
              socket.emit("getOrders",orders) // sending orders of all user to myself
         }catch(error){

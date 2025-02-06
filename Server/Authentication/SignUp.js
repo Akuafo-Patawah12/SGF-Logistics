@@ -1,11 +1,24 @@
 const bcrypt = require("bcrypt");
-const users = require("../DatabaseModels/UsersSchema");
+const UAParser = require("ua-parser-js");
+const users = require("../Models/UsersSchema");
+
 
 const SignUp= async(req,res)=>{
     
-        
+  const userAgent = req.headers["user-agent"];
+  const parser = new UAParser(userAgent);
+  
+  const deviceInfo = {
+    device: parser.getDevice().model || "Unknown Device",
+    brand: parser.getDevice().vendor || "Unknown Brand",
+    type: parser.getDevice().type || "PC",
+    os: parser.getOS().name + " " + parser.getOS().version,
+    browser: parser.getBrowser().name + " " + parser.getBrowser().version,
+    userAgent: userAgent,
+  };
+  console.log(deviceInfo)
             const {username,email,password,account_type}= req.body.formData;
-            console.log(username,email,password,account_type)
+           
             try{
                   
                   const finduser= await users.findOne({email:email})

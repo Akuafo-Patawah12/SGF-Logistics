@@ -1,5 +1,5 @@
 import React, { useState,useEffect ,useMemo} from 'react';
-
+import {useNavigate} from "react-router-dom"
 import './Auth.css'; // Import the CSS file
 
 
@@ -15,7 +15,7 @@ const SignUp = ({slide}) => {
   });
 
 
- 
+ const navigate= useNavigate()
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
@@ -52,7 +52,7 @@ const SignUp = ({slide}) => {
     }
 
 
-    const response = await fetch("https://sfghanalogistics.com/sign_up", {
+    const response = await fetch("http://localhost:4040/sign_up", {
       
       method: 'POST',
       headers: {
@@ -70,7 +70,7 @@ const SignUp = ({slide}) => {
     if (Object.keys(validationErrors).length === 0) {
       if(data.message==="Signed up successful")
       setSuccess(true);
-      slide(1)
+      navigate("/Auth/login")
       
       
     }

@@ -1,16 +1,28 @@
 
-
+.auth_header{
+  background: white;
+  height: 80px;
   
+}
+.form-container{
+  width: 100%;
+
+}
 
   .signup-form,
   .login-form{
     
     border-radius: 8px;
-    width: 90%;
+    width: 40%;
     display: flex;
-    padding-inline: 20%;
+    padding-inline: 5%;
     flex-direction: column;
+    background: white;
     margin:auto;
+    padding-block: 20px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 3px #ddd;
     
     
   }
@@ -36,9 +48,10 @@
     color: #555;
   }
   
-  .form-group input {
-    
-    padding: 10px;
+  .form-group input[type="email"],
+  .form-group input[type="password"],.form-group input[type="text"] {
+    width: inherit;
+    padding: 15px ;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -68,14 +81,20 @@
     height: 40px;
     margin-inline: auto;
   }
-  .check{
+  .checkbox{
     display: flex;
+    align-items: center;
     gap: 2px;
-    width: 90%;
+    width: fit-content;
     margin-bottom: 2rem;
 
+
+    & input{
+      height: 30px;
+    }
     & label{
-      font-size: 13px;
+      white-space: nowrap;
+      font-size: 16px;
       font-weight: 600;
     }
     
@@ -90,6 +109,114 @@
     margin-top: 15px;
     font-size: 14px;
   }
+
+
+  /* Center the OTP input container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 16px;
+}
+
+
+.otp_background{
+  display: flex block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  height: 100vh;
+
+
+}
+/* OTP input container */
+.otp {
+  display: flex;
+  gap: 8px;
+}
+
+.otp-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 50px;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid var(--purple);
+}
+
+/* OTP input fields */
+.otp-input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 24px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+/* Focus effect */
+.otp-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.verification-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.verification-container h3 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.verification-container p {
+  font-size: 14px;
+  color: #555;
+}
+
+.email-text {
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+.resend-container {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.resend-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.resend-btn:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+
 
 
   @media (max-width: 568px){

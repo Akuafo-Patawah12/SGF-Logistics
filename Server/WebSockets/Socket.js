@@ -124,10 +124,6 @@ function initializeSocket(server){
         console.log("connected to the order namespace")
       })
 
-      
-
-
-      
       return io
     }
 

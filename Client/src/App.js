@@ -1,10 +1,15 @@
-import {useState,useEffect,useRef} from "react"
+import {useState,useEffect,useRef,Suspense,lazy} from "react"
 import { Routes,Route } from "react-router-dom";
 import './App.css';
 import Layout from "./Layouts/Layout";
 import AdminDashboard from "./Pages/AdminDashbord";
-
+import Loader from "./Icons/Loader"
 import Authentication from "./Components/Authentication";
+import OTP from "./Components/Auth/OTP";
+const Login = lazy(()=> import('./Components/Auth/Login'))
+const SignUp = lazy(()=> import('./Components/Auth/SignUp'))
+
+
 
 
 
@@ -24,6 +29,19 @@ function App() {
                         } 
                     />
         <Route path="/Auth"  element={<Authentication/>} />
+        <Route path="/verify" element={<OTP/>} />
+
+        <Route path='/Auth/login' element={
+                    <Suspense fallback={<Loader />}>
+                        <Login />
+                    </Suspense> }
+                />
+
+                <Route path='/Auth/sign_up' element={
+                    <Suspense fallback={<Loader />}>
+                        <SignUp />
+                    </Suspense> }
+                />
          <Route path="/*" element={<Layout />} />
       </Routes>
 
