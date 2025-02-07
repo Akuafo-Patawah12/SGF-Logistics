@@ -1,66 +1,60 @@
+const user= require("../Models/UsersSchema")
+const UAParser= require("ua-parser-js")
 
-const nodemailer= require("nodemailer")
 
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
-            auth: {
-                user: process.env.EMAIL,//email that will be sending messages from the server to the client
-                pass: process.env.PASSWORD  //generated password form less secured apps from Google
-            },
-            tls: {
-                rejectUnauthorized: false, //do not reject self-signed certificates  
-              },
-  });
-  
-  // Generate a 4-digit OTP
-  const generateOTP = () => Math.floor(1000 + Math.random() * 9000).toString();
-  
-  // **1️⃣ Send OTP**
-  app.post("/send-otp", async (req, res) => {
-    const { email } = req.body;
-    const otp = generateOTP();
-    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 min expiry
-  
-    try {
-      // Store OTP in DB (delete previous if exists)
-      await OTP.deleteMany({ email });
-      await OTP.create({ email, otp, expiresAt });
-  
-      // Send OTP via email
-      await transporter.sendMail({
-        from: process.env.EMAIL,
-        to: email,
-        subject: "Your OTP Code",
-        text: `Your OTP is: ${otp}. It expires in 5 minutes.`,
-      });
-  
-      res.json({ success: true, message: "OTP sent!" });
-    } catch (error) {
-      res.status(500).json({ success: false, message: "Error sending OTP" });
-    }
-  });
   
   // **2️⃣ Verify OTP**
-  app.post("/verify-otp", async (req, res) => {
+  const verify= async (req, res) => {
     const { email, otp } = req.body;
-    const record = await OTP.findOne({ email });
+
+    const userAgent = req.headers["user-agent"];
+           const parser = new UAParser(userAgent);
+           
+           
+           const deviceInfo = {
+             device: parser.getDevice().model || "Unknown Device",
+             brand: parser.getDevice().vendor || "Unknown Brand",
+             type: parser.getDevice().type || "PC",
+             os: parser.getOS().name + " " + parser.getOS().version,
+             browser: parser.getBrowser().name + " " + parser.getBrowser().version,
+             Agent: userAgent,
+           };
+           console.log(deviceInfo)
+           const {device,brand,type,os,browser,Agent}=deviceInfo
+         const userDeviceInfo = `${device},${brand},${type},${os},${browser},${Agent}`; // User's device info
+    console.log({ email, otp })
+    try{
+
+    const record = await user.findOne({ email });
   
     if (!record) {
-      return res.status(400).json({ success: false, message: "OTP not found!" });
+      return res.status(404).json({ success: false, message: "OTP not found!" });
+    }
+    
+    if (record.verification_code.toString() !== otp.toString()) {
+        return res.status(403).json({ success: false, message: "Invalid OTP!" });
+    }
+    
+
+    if (record.code_expires_at < new Date()) {
+      return res.status(401).json({ success: false, message: "OTP expired!" });
     }
   
-    if (record.expiresAt < new Date()) {
-      return res.status(400).json({ success: false, message: "OTP expired!" });
-    }
-  
-    if (record.otp !== otp) {
-      return res.status(400).json({ success: false, message: "Invalid OTP!" });
-    }
+    
   
     // OTP verified, delete from DB
-    await OTP.deleteOne({ email });
-  
+    record.verification_code= null
+    record.code_expires_at=null
+    if (!record.device_info.includes(userDeviceInfo)) {
+        record.device_info.push(userDeviceInfo);
+    }
+    await record.save()
     res.json({ success: true, message: "OTP verified!" });
-  });
+
+}catch(err){
+    console.log(err)
+    return res.status(500).json({message:"Internal server error",err})
+}
+  }
+
+  module.exports= verify

@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import "./Auth.css"; // Import the CSS file
+import { useNavigate} from "react-router-dom"
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 import axios from "axios"
 
@@ -8,6 +9,7 @@ const OTP = ({email}) => {
 
   
   const [otp, setOtp] = useState(new Array(4).fill(""));
+  const navigate= useNavigate()
   const inputRefs = useRef([]);
 
   const handleChange = (e, index) => {
@@ -46,9 +48,12 @@ const OTP = ({email}) => {
   const verifyOTP = async (enteredOtp) => {
     try {
       const response = await axios.post("http://localhost:4040/verify-otp", {
-        email,
-        otp: enteredOtp,
+        email:email,
+        otp: enteredOtp
       });
+      if(response.data.message==="OTP verified!"){
+        navigate(`/Invoice`)
+      }
       alert(response.data.message); // Show success message
     } catch (error) {
       alert(error.response?.data?.message || "Verification failed!");
@@ -66,6 +71,7 @@ const OTP = ({email}) => {
   return (
     <div className="otp_background">
     <div className="otp-container">
+    {email}
     <span><SvgIcon/></span>
     <div class="verification-container">
   <h3>Enter Verification Code</h3>

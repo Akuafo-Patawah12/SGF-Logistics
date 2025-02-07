@@ -16,8 +16,10 @@ const SignUp = lazy(()=> import('./Components/Auth/SignUp'))
 
 
 function App() {
-
-
+const [email,setEmail] = useState("")
+function getEmail(mail){
+    setEmail(mail)
+}
   return (
     <div className="App">
      
@@ -29,11 +31,11 @@ function App() {
                         } 
                     />
         <Route path="/Auth"  element={<Authentication/>} />
-        <Route path="/verify" element={<OTP/>} />
+        <Route path="/verify" element={<OTP email={email}/>} />
 
         <Route path='/Auth/login' element={
                     <Suspense fallback={<Loader />}>
-                        <Login />
+                        <Login getEmail={getEmail}/>
                     </Suspense> }
                 />
 

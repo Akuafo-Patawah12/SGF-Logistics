@@ -24,6 +24,8 @@ const userSchema= Schema({
     device_info: {
       type: [String] // To specify that it's an array of strings
     },
+    verification_code:{type:Number,default:null},
+    code_expires_at:{type:Date,default:null},
     created_At:{
         type:Date,
         default: Date.now()

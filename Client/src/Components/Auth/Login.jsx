@@ -6,7 +6,7 @@ import ButtonLoader from '../../Icons/ButtonLoader';
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 
 
-const Login = () => {
+const Login = ({getEmail}) => {
     const [formData, setFormData] = useState({
         email: '',
         account_type:"User",
@@ -80,6 +80,7 @@ const Login = () => {
         }
 
         if(response.status===402){
+          getEmail(formData.email)
           navigate("/verify")
           return 
       }
