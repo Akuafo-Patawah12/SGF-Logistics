@@ -218,7 +218,7 @@ const Invoice = () => {
         
         
 
-<div>
+<div className="getQuote_conatiner">
 <div>
 </div>
 
@@ -346,9 +346,9 @@ const Invoice = () => {
 
 
 {items.map((item, index) => (
-  <div key={index} className="table">
+  <div key={index} className="table_cont">
   
-  <section>
+        <div className="input_sec">
           <input
             type="text"
             name="description"
@@ -356,8 +356,8 @@ const Invoice = () => {
             value={item.description}
             onChange={(e) => handleInputChange(index, e)}
           />
-        </section>
-        <section>
+        </div>
+        <div className="input_sec">
           <input
             type="text"
             name="trackingNo"
@@ -365,8 +365,8 @@ const Invoice = () => {
             value={item.trackingNo}
             onChange={(e) => handleInputChange(index, e)}
           />
-        </section>
-        <section>
+        </div>
+        <div className="input_sec">
           <input
             type="text"
             name="ctnNo"
@@ -374,8 +374,8 @@ const Invoice = () => {
             value={item.ctnNo}
             onChange={(e) => handleInputChange(index, e)}
           />
-        </section>
-        <section>
+        </div>
+        <div className="input_sec">
           <input
             type="text"
             name="cbm"
@@ -386,8 +386,8 @@ const Invoice = () => {
             onChange={(e) => handleInputChange(index, e)}
           />
           <button className="dimensions" type="button" onClick={() => toggleDimensions(index)} >Add dimensions</button>
-        </section>
-        <section>
+        </div>
+        <div className="input_sec">
           <input
             type="text"
             name="amount"
@@ -397,7 +397,7 @@ const Invoice = () => {
             onChange={(e) => handleInputChange(index, e)}
             disabled={true}
           />
-        </section>
+        </div>
         {activeIndex === index && (<div className='dimen-container'>
         
         <div className="dimen">

@@ -3,6 +3,7 @@ import { Routes,Route } from "react-router-dom";
 import './App.css';
 import Layout from "./Layouts/Layout";
 import AdminDashboard from "./Pages/AdminDashbord";
+import AdminOrder from "./Pages/AdminOrder";
 import Loader from "./Icons/Loader"
 import Authentication from "./Components/Authentication";
 import OTP from "./Components/Auth/OTP";
@@ -30,6 +31,12 @@ function getEmail(mail){
                           <AdminDashboard />   
                         } 
                     />
+       <Route path='/AdminOrder' element={
+                       
+                       <AdminOrder />   
+                     } 
+                 />
+
         <Route path="/Auth"  element={<Authentication/>} />
         <Route path="/verify" element={<OTP email={email}/>} />
 

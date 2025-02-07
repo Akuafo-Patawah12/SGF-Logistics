@@ -50,14 +50,9 @@ const Layout = () => {
     },[location.pathname,path])
 
 
-    const [isFooter,setIsFooter]= useState(true)
-    useEffect(()=>{
-      if(location.pathname==="/Orders" || location.pathname==="/Track_order" ||  location.pathname==="/AllOrders"){
-        setIsFooter(false)
-          return 
-      }
-      setIsFooter(true)
-},[location.pathname])
+    
+    const hideFooterOn = ["/Orders", "/Invoice", "/AllOrders"]
+   
 
 
     const[showAuth,setShowAuth] = useState(false)
@@ -247,7 +242,7 @@ const Layout = () => {
             
             </Routes>
             
-       {isFooter &&<Footer />} 
+            { !hideFooterOn.includes(location.pathname) && <Footer /> }
     </div>
   )
 }

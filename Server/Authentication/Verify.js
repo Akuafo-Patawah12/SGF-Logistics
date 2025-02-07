@@ -1,5 +1,6 @@
 const user= require("../Models/UsersSchema")
-const UAParser= require("ua-parser-js")
+const UAParser= require("ua-parser-js");
+const sendCookie = require("../Utils/Cookie");
 
 
   
@@ -30,6 +31,12 @@ const UAParser= require("ua-parser-js")
     if (!record) {
       return res.status(404).json({ success: false, message: "OTP not found!" });
     }
+
+    const payload = {
+        id: record._id, // Example user ID
+        iat: Math.floor(Date.now() / 1000) // Set issued at timestamp
+        
+      };
     
     if (record.verification_code.toString() !== otp.toString()) {
         return res.status(403).json({ success: false, message: "Invalid OTP!" });
@@ -49,6 +56,7 @@ const UAParser= require("ua-parser-js")
         record.device_info.push(userDeviceInfo);
     }
     await record.save()
+    sendCookie(payload,rememberMe===true,res)
     res.json({ success: true, message: "OTP verified!" });
 
 }catch(err){

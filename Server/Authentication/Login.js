@@ -4,13 +4,14 @@ const data= require("../Models/UsersSchema")
 require("dotenv").config()
 const UAParser= require("ua-parser-js")
 const sendVerificationEmail = require("./SendOTP")
+const sendCookie = require("../Utils/Cookie")
 
 
 async function login(req,res){
    
     
     const {email,password,rememberMe }= req.body.formData   //grabing user credentials from the client side.
-     console.log(email,password)
+     
      const userAgent = req.headers["user-agent"];
        const parser = new UAParser(userAgent);
        
@@ -69,22 +70,7 @@ async function login(req,res){
             expiresIn: '15m', // create an access cookie for authorization  
         })
 
-        function sendCookie(){
-            // create refresh token
-            const refresh_token= jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET,{
-                expiresIn: rememberMe ? '30d' : '1h' // 30 days if "Remember Me" is checked, else 1 hour  
-            })
-            /*send refresh token to browser cookies when ever the user logs in "this determine the 
-            particular user who is logged in that's what res.cookie does"*/ 
-
-            res.cookie('refreshToken', refresh_token, {
-                httpOnly: true,   // Ensures that the cookie is only accessible via HTTP(S) requests
-                path: '/',        // Specifies the path for which the cookie is valid
-                secure: true,          // Indicates that the cookie should only be sent over HTTPS
-                sameSite: 'Strict',      // Specifies same-site cookie attribute to prevent cross-site request forgery
-                maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
-        });   
-        }
+        
        
         if (!password_Is_Correct) {
             return res.status(401).json({ message: 'Invalid password' }); // Incorrect password
@@ -92,14 +78,14 @@ async function login(req,res){
 
         switch (protected) {
             case "User":
-                sendCookie(); // Set the refresh token cookie
+                sendCookie(payload,rememberMe,res) // Set the refresh token cookie
                 return res.json({
                     message: "Logged in as a client",
                     accessToken: access_token
                 });
 
             case "Admin":
-                sendCookie(); // Set the refresh token cookie
+                sendCookie(payload,rememberMe,res); // Set the refresh token cookie
                 return res.json({
                     message: "Logged in as an admin",
                     accessToken: access_token
@@ -109,6 +95,7 @@ async function login(req,res){
                 return res.status(400).json({ message: 'Invalid account type' }); // Unexpected account type
         }
     }catch(err){
+        console.log(err)
        return res.status(500).json(err) //Console 500 error message if server crashes
     }}
 module.exports={login}

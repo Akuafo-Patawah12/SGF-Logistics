@@ -487,8 +487,9 @@ footer a{
 
 .h_child2{
   position: fixed;
-  
+  width: 98%;
   top: 0;
+  
   z-index: 30;
 }
 
