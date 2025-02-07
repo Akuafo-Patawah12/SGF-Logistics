@@ -9,7 +9,7 @@ import { Link, NavLink } from 'react-router-dom'
 const Header = () => {
  
   return (
-    <header className="header">
+    <header className="main_header">
       <div className="h_child1">
           <button style={{border:"none",}}><EnvironmentOutlined /> George Bush Highway, Dzorwulu,<br/> Accra-Ghana </button>
           <button style={{border:"none"}}><PhoneOutlined style={{rotate:"90deg"}}/> 020 811 6360 / 053 948 0433</button>

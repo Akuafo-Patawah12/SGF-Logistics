@@ -63,10 +63,10 @@ body{
    opacity: 0;
 }
 
-.header{
+.main_header{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  
 
 }
 .h_child1{
@@ -103,7 +103,7 @@ body{
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  width: 100%;
+  
   align-items: center;
  
  
