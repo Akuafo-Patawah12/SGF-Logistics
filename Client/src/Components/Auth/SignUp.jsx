@@ -1,6 +1,9 @@
 import React, { useState,useEffect ,useMemo} from 'react';
 import {useNavigate} from "react-router-dom"
 import './Auth.css'; // Import the CSS file
+import { Link } from "react-router-dom";
+import { Form, Input, Button, Typography, Card } from "antd";
+const { Title, Text } = Typography;
 
 
 const SignUp = ({slide}) => {
@@ -29,8 +32,8 @@ const SignUp = ({slide}) => {
 
 
   
-  const handleSubmit = async(e) => {
-    e.preventDefault();
+  const handleSubmit = async() => {
+    
     
     try{
      
@@ -84,60 +87,68 @@ const SignUp = ({slide}) => {
 
   return (
     
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
+    <Card style={{ maxWidth: 400, margin: "auto", padding: 20 }}>
+    <Title level={3} style={{ textAlign: "center" }}>Sign Up</Title>
 
-        <div className="form-group">
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            placeholder="Enter username"
-          />
-          {errors.username && <span className="error">{errors.username}</span>}
-        </div>
+    <Form layout="vertical" onFinish={handleSubmit} className="signup-form">
+      {/* Username Input */}
+      <Form.Item label="Username" validateStatus={errors.username ? "error" : ""} help={errors.username}>
+        <Input
+          type="text"
+          name="username"
+          placeholder="Enter username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+      </Form.Item>
 
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter email"
-          />
-          {errors.email && <span className="error">{errors.email}</span>}
-        </div>
+      {/* Email Input */}
+      <Form.Item label="Email" validateStatus={errors.email ? "error" : ""} help={errors.email}>
+        <Input
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </Form.Item>
 
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Enter password"
-          />
-          {errors.password && <span className="error">{errors.password}</span>}
-        </div>
+      {/* Password Input */}
+      <Form.Item label="Password" validateStatus={errors.password ? "error" : ""} help={errors.password}>
+        <Input.Password
+          name="password"
+          placeholder="Enter password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+      </Form.Item>
 
-        <div className="form-group">
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            placeholder="Confirm password"
-          />
-          {errors.confirmPassword && <span className="error">{errors?.confirmPassword}</span>}
-        </div>
+      {/* Confirm Password Input */}
+      <Form.Item label="Confirm Password" validateStatus={errors.confirmPassword ? "error" : ""} help={errors.confirmPassword}>
+        <Input.Password
+          name="confirmPassword"
+          placeholder="Confirm password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+        />
+      </Form.Item>
 
-        <button type="submit" className="form_button">Sign Up</button>
-        {success && <p className="success-message">Sign-up successful!</p>}
-      </form>
+      {/* Submit Button */}
+      <Form.Item>
+        <Button type="primary" htmlType="submit" block>
+          Sign Up
+        </Button>
+      </Form.Item>
+
+      {/* Login Link */}
+      <Text>
+        Already have an account? <Link to="/Auth/login">Login</Link>
+      </Text>
+
+      {/* Success Message */}
+      {success && <Text type="success" style={{ display: "block", textAlign: "center", marginTop: 10 }}>Sign-up successful!</Text>}
+    </Form>
+  </Card>
      
     
   );

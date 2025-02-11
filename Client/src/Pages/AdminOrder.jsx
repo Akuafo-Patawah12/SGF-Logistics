@@ -56,7 +56,7 @@ const AdminOrder = () => {
         <div style={{ padding: 20 }}>
             <h2>All Logistics Orders</h2>
             {loading ? (
-                <Spin size="large" />
+                <Spin size="large" style={{marginInline: "auto"}} />
             ) : (
                 <Table dataSource={orders} columns={columns} rowKey="_id" />
             )}

@@ -3,7 +3,10 @@ import './Auth.css';
 import axios from "axios"
 import {Link, useNavigate} from "react-router-dom"
 import ButtonLoader from '../../Icons/ButtonLoader';
+import { Form, Input, Button, Checkbox, Typography, Card } from "antd";
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
+
+const { Title, Text } = Typography;
 
 
 const Login = ({getEmail}) => {
@@ -34,8 +37,8 @@ const Login = ({getEmail}) => {
 
       const [loader,setLoader]= useState(false)
       const navigate= useNavigate()
-      const handleSubmit = async(e) => {
-        e.preventDefault();
+      const handleSubmit = async() => {
+        
         setLoader(true)
 
        try{
@@ -129,60 +132,61 @@ const Login = ({getEmail}) => {
      <header className='auth_header'>
        <SvgIcon/>
      </header> 
-    <form  className="login-form" onSubmit={handleSubmit}>
-    <h2>Login</h2>
+     <Card style={{ maxWidth: 400, margin: "auto",  }}>
+      <Title level={3} style={{ textAlign: "center" }}>Login</Title>
 
-   
+      <Form layout="vertical" onFinish={handleSubmit} className="login-form">
+        {/* Email Input */}
+        <Form.Item label="Email" validateStatus={errors.email ? "error" : ""} help={errors.email}>
+          <Input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={formData.email}
+            onFocus={handleFocus}
+            onChange={handleChange}
+          />
+        </Form.Item>
 
-    <div className="form-group">
-      <label>Email:</label>
-      <input
-        type="email"
-        name="email"
-        onFocus={()=>handleFocus()}
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="Enter email"
-      />
-      {errors.email && <span className="error">{errors.email}</span>}
-    </div>
+        {/* Password Input */}
+        <Form.Item label="Password" validateStatus={errors.password ? "error" : ""} help={errors.password}>
+          <Input.Password
+            name="password"
+            placeholder="Enter password"
+            value={formData.password}
+            onFocus={handleFocus}
+            onChange={handleChange}
+          />
+        </Form.Item>
 
-    <div className="form-group">
-      <label>Password:</label>
-      <input
-        type="password"
-        name="password"
-        onFocus={()=>handleFocus()}
-        value={formData.password}
-        onChange={handleChange}
-        placeholder="Enter password"
-      />
-      {errors.password && <span className="error">{errors.password}</span>}
-    </div>
+        {/* Remember Me Checkbox */}
+        <Form.Item>
+          <Checkbox
+            name="rememberMe"
+            checked={formData.rememberMe}
+            onFocus={handleFocus}
+            onChange={handleChange}
+          >
+            Stay Signed in
+          </Checkbox>
+        </Form.Item>
 
-    <div className="checkbox">
-      
-      <input
-        type="checkbox"
-        name="rememberMe"
-        onFocus={()=>handleFocus()}
-        value={formData.rememberMe}
-        onChange={handleChange}
-        id='check'
-      />
-      <label htmlFor="check">Stay Signed in</label>
-     
-    </div>
+        {/* Submit Button */}
+        <Form.Item>
+          <Button type="primary" htmlType="submit" block disabled={loader}>
+            {loader ? "Logging in..." : "Login"}
+          </Button>
+        </Form.Item>
 
-    
+        {/* Signup Link */}
+        <Text>
+          Don't have an account? <Link to="/Auth/sign_up">Sign Up</Link>
+        </Text>
 
-    
-   <div className="form-group">
-    <button type="submit" className="form_button" style={{cursor:`${loader? "not-allowed":"pointer"}`}} disabled={loader?true:false}><span>Login</span> {loader && <span><ButtonLoader /></span>}</button>
-    <Link to={"/Auth/sign_up"}>Don't have an account?</Link>
-    </div>
-    {success && <p className="success-message">Login successful!</p>}
-  </form>
+        {/* Success Message */}
+        {success && <Text type="success" style={{ display: "block", textAlign: "center", marginTop: 10 }}>Login successful!</Text>}
+      </Form>
+    </Card>
   </div>
   )
 }

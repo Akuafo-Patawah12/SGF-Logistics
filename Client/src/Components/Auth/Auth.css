@@ -13,7 +13,7 @@
   .login-form{
     
     border-radius: 8px;
-    width: 40%;
+    width: 100%;
     display: flex;
     padding-inline: 5%;
     flex-direction: column;

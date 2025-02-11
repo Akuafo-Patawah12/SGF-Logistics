@@ -3,6 +3,8 @@ const cookie= require("cookie")
 const jwt= require("jsonwebtoken");
 const orderFunc = require("./OrdersNamespace");
 const AdminPath = require("./AdminNamespace");
+const Tracking = require("./TrackingNamespace");
+const Shipping = require("./ShipmetNamespace");
 
 
 
@@ -48,9 +50,9 @@ function initializeSocket(server){
       }
 
       const trackingNamespace= io.of("/tracking")
-      const shippmentNamespace= io.of('/shippment')
       const ordersNamespace= io.of("/orders")
       const adminNamespace= io.of("/admin")
+      const   shipmentNamespace= io.of("/shipment")
       
 
    
@@ -63,15 +65,14 @@ function initializeSocket(server){
       trackingNamespace.use((socket,next)=>{
         middleware(socket,next)
       })
-
-      shippmentNamespace.use((socket,next)=>{
-        middleware(socket,next)
-      })
-
      
       ordersNamespace.use((socket,next)=>{
          middleware(socket,next)
       })
+
+      shipmentNamespace.use((socket,next)=>{
+        middleware(socket,next)
+     })
 
       adminNamespace.use((socket,next)=>{
         middleware(socket,next)
@@ -103,15 +104,19 @@ function initializeSocket(server){
 
       trackingNamespace.on("connection",(socket)=>{
         setUser(socket)
+        Tracking(socket,trackingNamespace,users)
 
         console.log("connected to the tracking namespace")
       })
 
-      shippmentNamespace.on("connection",(socket)=>{
+      shipmentNamespace.on("connection",(socket)=>{
         setUser(socket)
+        Shipping(socket,shipmentNamespace,users)
 
-        console.log("connected to the shippment namespace")
+        console.log("connected to the tracking namespace")
       })
+
+      
 
       adminNamespace.on("connection",(socket)=>{
         setUser(socket)

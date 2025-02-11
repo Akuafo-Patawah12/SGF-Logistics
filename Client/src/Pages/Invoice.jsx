@@ -1,7 +1,10 @@
 import React, { useState, useEffect,useMemo } from "react";
 import {io} from "socket.io-client";
 import {v4} from "uuid"
+import { CloseOutlined } from "@ant-design/icons";
+import { Input, Button, Card , message} from "antd";
 import {Link} from "react-router-dom"
+
 import LogisticFooter from "../Components/LogisticFooter"
 import ButtonLoader from '../Icons/ButtonLoader'
 import { PlusOutlined, SendOutlined } from '@ant-design/icons'
@@ -10,7 +13,7 @@ import PaymentPopUp from './Components/PaymentPopUp'
 import "./Invoice.css"
 
 const Invoice = () => {
-    const socket = useMemo(() =>io("https://sgf-logistics-1.onrender.com/orders",{
+    const socket = useMemo(() =>io("http://localhost:4040/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -30,6 +33,7 @@ const Invoice = () => {
         socket.on("receive",(data)=>{
           setCreatingOrder(false)
           setOrders(prev=>[data,...prev])
+          message.success("New order")
           console.log("order data",data)
         })
     
@@ -63,7 +67,7 @@ const Invoice = () => {
         email:"",
         additional_info:"",
         special_handling:"",
-        shipnment_type:"",
+        shipment_type:"",
         origin:"",
         destination:""
       }
@@ -88,7 +92,12 @@ const Invoice = () => {
       e.preventDefault()
       setCreatingOrder(true)
       setTimeout(()=>{
-        socket.emit("createOrder",{items,...orderInfo,tracking_id: v4()})
+        socket.emit("createOrder",{items,...orderInfo},(response) => {
+          if (response.status === "ok") {
+            message.success("Order created successfully");
+          } else {
+            message.error("Failed to fetch orders");
+          }})
       },1000)
       
       // Reset form
@@ -400,28 +409,37 @@ const Invoice = () => {
         </div>
         {activeIndex === index && (<div className='dimen-container'>
         
-        <div className="dimen">
-        <div className="dimen-index">{index+1}</div>
-        <button type="button" onClick={()=> toggleDimensions(index)} className='close-dimen'>X</button>
-          <input type='number' placeholder='Width'
-            name="width"
-            value={item.width}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-          <input type='number' placeholder='Height'
-            name="height"
-            value={item.height}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-          <input type='number' placeholder='Length'
-            name="length"
-            value={item.length}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-
-          <button type="button" onClick={()=> calculateCBM(index)}>Add</button>
-        </div>
-        </div>)}
+          <Card size="small" title={`Dimension ${index + 1}`} style={{width: 300}} extra={
+      <Button type="text" icon={<CloseOutlined />} onClick={() => toggleDimensions(index)} />
+    }>
+      <Input 
+        type="number" 
+        placeholder="Width" 
+        name="width" 
+        value={item.width} 
+        onChange={(e) => handleInputChange(index, e)} 
+        style={{ marginBottom: 8 }}
+      />
+      <Input 
+        type="number" 
+        placeholder="Height" 
+        name="height" 
+        value={item.height} 
+        onChange={(e) => handleInputChange(index, e)} 
+        style={{ marginBottom: 8 }}
+      />
+      <Input 
+        type="number" 
+        placeholder="Length" 
+        name="length" 
+        value={item.length} 
+        onChange={(e) => handleInputChange(index, e)} 
+        style={{ marginBottom: 8 }}
+      />
+      <Button type="primary" onClick={() => calculateCBM(index)}>Add</Button>
+    </Card>
+    </div>
+        )}
 
 
         <section>
@@ -483,13 +501,13 @@ const Invoice = () => {
                   </button>
                   <button
                     type="submit"
-                    onClick={() => setShowPopup(true)}
+                    
                     className="animated-button"
                     
                     style={{display:"flex",gap:"5px",background:"#A7C756",border:"none",color:"white",paddingBlock:"8px",paddingInline:"16px",borderRadius:"10px"}}
             
                   >
-                    Make Payment
+                   Submit
                   </button>
                   <Link to={"/AllOrders"}><button className="view">View Orders</button></Link>
                 </div>
@@ -503,7 +521,7 @@ const Invoice = () => {
       {showPopup && <PaymentPopUp onClose={() => setShowPopup(false)}  showPopup={showPopup}/>}
     </div>
          
-
+     
 
            <LogisticFooter />
         </div>

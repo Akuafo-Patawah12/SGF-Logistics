@@ -56,7 +56,8 @@ const sendCookie = require("../Utils/Cookie");
         record.device_info.push(userDeviceInfo);
     }
     await record.save()
-    sendCookie(payload,rememberMe===true,res)
+    let rememberMe;
+    sendCookie(payload,rememberMe=true,res)
     res.json({ success: true, message: "OTP verified!" });
 
 }catch(err){

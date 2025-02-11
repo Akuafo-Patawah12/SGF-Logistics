@@ -19,7 +19,7 @@ try{
                 })
   
     let mailOptions = {
-      from: '"Do Not Reply" <' + process.env.EMAIL + '>',
+      from: "SF Ghana Logistics",
       to: email,
       subject: "New Device Login - Verification Code",
       html: `

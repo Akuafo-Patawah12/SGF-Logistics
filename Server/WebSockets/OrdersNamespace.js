@@ -5,6 +5,31 @@
 
 const orderFunc=(socket,adminNamespace,users)=>{
     
+  socket.on("joinRoom", (roomName) => {
+    if (roomName) {
+      socket.join(roomName);
+      console.log(`Socket ${socket.id} joined room: ${roomName}`);
+    } else {
+      console.log("Room name is required to join a room.");
+    }
+  });
+
+
+  socket.on("createOrder",async(data,callback)=>{
+      console.log(data)
+      try {
+          const orders = new Order(data);
+          await orders.save();
+          console.log("Shipment created successfully", orders);
+          callback({ status: "ok" })
+          socket.to("adminRoom").emit('newOrder', orders)
+      } catch (error) {
+          console.error("Error creating shipment", error);
+          callback({ status: "error", message: error.message })
+      }
+  })
+
+  
 
     socket.on("submitOrder", (data, callback) => {
         console.log("Received shipment data:", data);
