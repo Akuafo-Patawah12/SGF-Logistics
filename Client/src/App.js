@@ -5,7 +5,7 @@ import Layout from "./Layouts/Layout";
 import AdminDashboard from "./Pages/AdminDashbord";
 import AdminOrder from "./Pages/AdminOrder";
 import Loader from "./Icons/Loader"
-import Authentication from "./Components/Authentication";
+
 import OTP from "./Components/Auth/OTP";
 const Login = lazy(()=> import('./Components/Auth/Login'))
 const SignUp = lazy(()=> import('./Components/Auth/SignUp'))
@@ -37,7 +37,7 @@ function getEmail(mail){
                      } 
                  />
 
-        <Route path="/Auth"  element={<Authentication/>} />
+        
         <Route path="/verify" element={<OTP email={email}/>} />
 
         <Route path='/Auth/login' element={

@@ -97,7 +97,7 @@ body{
   top: 0;
   z-index: 98;
   background: #fff;
-  padding-inline: 2% 0;
+  padding-inline: 2% 0 !important;
   border-bottom: 2px solid #ddd;
   display: flex;
   justify-content: space-between;
@@ -486,9 +486,6 @@ footer a{
 
 
 .h_child2{
-  position: fixed;
-  width: 98%;
-  top: 0;
   
   z-index: 30;
 }

@@ -2,7 +2,7 @@
 import React, { useState,useMemo, useEffect } from 'react';
 import io from 'socket.io-client';
 import { EyeOutlined, EditOutlined, DeleteOutlined  } from '@ant-design/icons';
-import { Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal , Select} from "antd";
+import {Form, Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal , Select} from "antd";
 import './AdminDashboard.css'
 import axios from "axios"
 
@@ -34,11 +34,12 @@ const AdminDashboard = () => {
 
 
   const routes = {
-    A: ["USA", "Canada", "Mexico", "Brazil", "UK", "France", "Germany"],
-    B: ["China", "India", "Japan", "South Korea", "Thailand", "Vietnam", "Singapore"],
-    C: ["South Africa", "Nigeria", "Kenya", "Egypt", "Ghana", "Morocco", "Ethiopia"],
-    D: ["Australia", "New Zealand", "Fiji", "Papua New Guinea", "Indonesia", "Malaysia", "Philippines"],
-    E: ["Russia", "Ukraine", "Poland", "Sweden", "Norway", "Denmark", "Finland"],
+    A: ["China", "Sri Lanka", "Yemen", "Egypt", "Algeria", "Sierra Leone", "Ghana"],
+    
+    B: ["China", "Saudi Arabia", "Egypt", "Lybia", "Morocco", "Guinea", "Ghana"],
+    C: ["China", "Sri Lanka", "Tunisia", "Mauritania", "Guinea Bissau", "Cote D’Ivoire", "Ghana"],
+    D: ["China", "Yemen", "Egypt", "Morocco", "Senegal", "Liberia", "Ghana"],
+    E: ["China", "Saudi Arabia", "Egypt", "Algeria", "Spain", "Gambia", "Ghana"],
   };
 
   const statusOptions = ["All","Pending...", "In Transit", "Delivered", "Cancelled"]; 
@@ -146,22 +147,14 @@ const AdminDashboard = () => {
 
 
 
-  const handleSelectShipment = (shipmentId) => {
-    setSelectedShipments((prev) =>
-      prev.includes(shipmentId)
-        ? prev.filter((id) => id !== shipmentId) // Remove if exists
-        : [...prev, shipmentId] // Add if not exists
-    );
-
-    
-  };
+  
   
 
   
   
 
 
-  const [direction, setDirection] = useState("Allow Location");
+
 
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [ripple, setRipple] = useState(false);
@@ -515,6 +508,14 @@ const AdminDashboard = () => {
               </Select.Option>
             ))}
           </Select>
+
+          <Form.Item>
+          <Checkbox
+            name="rememberMe"
+          >
+            Send invoice
+          </Checkbox>
+        </Form.Item>
         </div>
       </div>
 

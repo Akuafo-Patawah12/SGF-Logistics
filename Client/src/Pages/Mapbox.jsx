@@ -1,6 +1,9 @@
-import React from 'react'
+import React,{useState,useMemo,useEffect,useRef} from 'react'
+import {useSearchParams} from "react-router-dom"
 import "./TrackOrder&Map.css"
-import  { useState,useEffect } from "react";
+import io from "socket.io-client"
+import { message,Empty } from "antd"
+
 import {route1,route2,route3,route4,route5} from "./Components/Routes"
 import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
 import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
@@ -10,28 +13,115 @@ import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 
 const Mapbox = () => {
 
+
+  const socket = useMemo(() =>io("http://localhost:4040/tracking",{
+    transports: ["websocket","polling"],
+    withCredentials: true,
+  secure: true
+  }),[])
+  
+  const [route,setRoute] = useState("")
+  const [country , setCountry] = useState("")
+  const [lineGeoJSON, setLineGeoJSON] = useState(null);
+useEffect(()=>{
+socket.on('connect',()=>{
+    console.log("Connected to server")
+})
+
+socket.on('get_item_location',(data)=>{
+  console.log("tracking order",data)
+  setRoute(data.route || "")
+  setCountry(data.country || "")
+})
+
+socket.on("disconnect", reason => console.log(reason))
+return()=>{
+socket.off("connect")
+socket.off("get_item_location")
+socket.off("disconnect")
+
+}
+},[socket]);
+
+
+const [searchParams] = useSearchParams();
+const trackingId = searchParams.get("tracking_id");
+
     const [viewport,setViewport] = useState({
         latitude: 23.0848,
         longitude: 113.4348,
         zoom: 2,
       });
-  
-      const lineGeoJSON = {
-        type: "Feature",
-        geometry: {
-          type: "LineString",
-          coordinates: [
-            [route1[0].Longitude,route1[0].Latitude],
-            [route1[1].Longitude,route1[1].Latitude],
-            [route1[2].Longitude,route1[2].Latitude],
-            [route1[3].Longitude,route1[3].Latitude],
-            [route1[4].Longitude,route1[4].Latitude],
-            [route1[5].Longitude,route1[5].Latitude],
-            [route1[6].Longitude,route1[6].Latitude],
-            ],
-        },
-        properties: {},
+
+
+      const routesMap = {
+        A: route1,
+        B: route2,
+        C: route3,
+        D: route4,
+        E: route5,
+        
       };
+ 
+      const selectedRoute = routesMap[route] || [];
+      const pRefs = useRef([]);
+  
+      useEffect(() => {
+        if (route && routesMap[route]) {
+          setLineGeoJSON({
+            type: "Feature",
+            geometry: {
+              type: "LineString",
+              coordinates: routesMap[route].map(({ Longitude, Latitude }) => [
+                Longitude,
+                Latitude,
+              ]),
+            },
+          });
+        }
+      }, [route]);
+
+      const [xPosition, setXposition] = useState(0);
+const [bound, setBound] = useState(0);
+const countRef = useRef(null);
+// Function to update bound when the country is found
+const updateBound = () => {
+  if (!pRefs.current) return;
+
+  pRefs.current.forEach((p) => {
+    if (p && p.innerHTML.trim() === country) {
+      const newBound = Math.round(p.getBoundingClientRect().x);
+      setBound(newBound);
+
+      // Reset animation if already running
+      if (countRef.current) clearInterval(countRef.current);
+
+      countRef.current = setInterval(() => {
+        setXposition((previousNumber) => {
+          if (previousNumber >= newBound) {
+            clearInterval(countRef.current);
+            return previousNumber;
+          }
+          return previousNumber + 1;
+        });
+      }, 50);
+    }
+  });
+};
+
+// Runs when country changes
+useEffect(() => {
+  updateBound();
+}, [country]);
+
+// Runs when window is resized
+useEffect(() => {
+  const handleResize = () => updateBound();
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, [bound]);
+
 
       const [scrollPosition, setScrollPosition] = useState(0); // Track scroll position
       const [showButton, setShowButton] = useState(false); // Show/hide the back-to-top button
@@ -62,63 +152,41 @@ const Mapbox = () => {
         };
       }, []);
   
+ useEffect(()=>{
+  socket.emit("track",trackingId,(response)=>{
+    response.status==="ok"  ? message.success(response.message)  : message.error(response.message);
+  })
+ },[])
+  
+
+
   return (
-    <div>
+    <>
+   {routesMap[route] ? <div>
         <div className="headline">
         <div className="line_header">SHIPPING ROUTE FROM CHINA TO GHANA.</div>
+         
         </div>
         
         <div className="line_map">
         <div className="line_inner">
-         
-        <div  className="ship"><ShipIcon style={{transform:"translateX(30%)"}}/></div>
+        {xPosition} {bound}
+        <div  className="ship" style={{background:"yellow"}}><ShipIcon style={{transform:`translateX(${xPosition}px)`}}/></div>
         <section className="line" style={{position:"relative"}}>
           
-          <div className='current_city '>
+        
+      {routesMap[route].map((port, index) => (
+        <div key={index} className="current_city">
           <div>
-
-          <span><CheckOutlined style={{position:"absolute"}} /> </span>
-          <p>{route1[0].countryPort}</p>
-
+            <span>{index === 0 && <CheckOutlined style={{ position: "absolute" }} />}</span>
+            <p ref={(el) => (pRefs.current[index] = el)}>{port.country}</p>
           </div>
-          </div>
-          <ArrowRightOutlined className="arrow arrow_1" />
-          <div className='current_city'>
-          <div>
-          <span> </span>
-          <p>{route1[1].countryPort}</p>
-          </div>
-          </div>
-          <ArrowRightOutlined className="arrow arrow_2" />
-          <div className='current_city'>
-          <div><span> </span>
-          <p>{route1[2].countryPort}</p>
-          </div>
-          </div>
-          <ArrowRightOutlined className="arrow arrow_3" />
-          <div className='current_city'>
-          <div><span> </span>
-          <p>{route1[3].countryPort}</p>
-          </div>
-          </div>
-          <ArrowRightOutlined className="arrow arrow_4" />
-          <div className='current_city'>
-             <div><span> </span>
-             <p>{route1[4].countryPort}</p>
-              </div>
-          </div>
-          <ArrowRightOutlined className="arrow arrow_5" />
-          <div className='current_city'>
-          <div><span> </span> 
-          <p>{route1[5].countryPort}</p>
-           </div>
-          </div>
-          <ArrowRightOutlined className="arrow arrow_6" />
-          <div className='current_city'>
-          <div><span> </span>
-          <p>{route1[6].countryPort}</p>
-           </div>
-          </div>
+          {index < routesMap[route].length - 1 && (
+            <ArrowRightOutlined className={`arrow arrow_${index + 1}`} />
+          )}
+        </div>
+      ))}
+    
 
         </section>
         
@@ -140,41 +208,41 @@ const Mapbox = () => {
         <div><ShipIcon/></div>
       </Marker>
 
-      <Marker longitude={route1[0].Longitude} latitude={route1[0].Latitude} color="blue">
+      <Marker longitude={routesMap[route][0].Longitude} latitude={routesMap[route][0].Latitude} color="blue">
         <div>
-          <p style={{ fontSize:"12px", color: "blue" }}>{route1[0].countryPort}</p>
+          <p style={{ fontSize:"12px", color: "blue" }}>{routesMap[route][0].countryPort}</p>
         </div>
       </Marker>
-      <Marker longitude={route1[1].Longitude} latitude={route1[1].Latitude} color="green">
+      <Marker longitude={routesMap[route][1].Longitude} latitude={routesMap[route][1].Latitude} color="green">
         <div>
-          <p style={{ fontSize: "12px", color: "green" }}>{route1[1].countryPort}</p>
+          <p style={{ fontSize: "12px", color: "green" }}>{routesMap[route][1].countryPort}</p>
         </div>
       </Marker>
-      <Marker longitude={route1[2].Longitude} latitude={route1[2].Latitude} color="red">
+      <Marker longitude={routesMap[route][2].Longitude} latitude={routesMap[route][2].Latitude} color="red">
         <div>
-          <p style={{ fontSize: "12px", color: "red" }}>{route1[2].countryPort}</p>
-        </div>
-      </Marker>
-
-      <Marker longitude={route1[3].Longitude} latitude={route1[3].Latitude} color="red">
-        <div>
-          <p style={{ fontSize: "12px", color: "red" }}>{route1[3].countryPort}</p>
+          <p style={{ fontSize: "12px", color: "red" }}>{routesMap[route][2].countryPort}</p>
         </div>
       </Marker>
 
-       <Marker longitude={route1[4].Longitude} latitude={route1[4].Latitude} color="red">
+      <Marker longitude={routesMap[route][3].Longitude} latitude={route1[3].Latitude} color="red">
         <div>
-          <p style={{ fontSize: "12px", color: "red" }}>{route1[4].countryPort}</p>
+          <p style={{ fontSize: "12px", color: "red" }}>{routesMap[route][3].countryPort}</p>
         </div>
       </Marker>
 
-       <Marker longitude={route1[5].Longitude} latitude={route1[5].Latitude} color="red">
+       <Marker longitude={routesMap[route][4].Longitude} latitude={routesMap[route][4].Latitude} color="red">
         <div>
-          <p style={{ fontSize: "12px", color: "red" }}>{route1[5].countryPort}</p>
+          <p style={{ fontSize: "12px", color: "red" }}>{routesMap[route][4].countryPort}</p>
         </div>
       </Marker>
 
-      <Marker longitude={route1[6].Longitude} latitude={route1[6].Latitude} color="red">
+       <Marker longitude={routesMap[route][5].Longitude} latitude={routesMap[route][5].Latitude} color="red">
+        <div>
+          <p style={{ fontSize: "12px", color: "red" }}>{routesMap[route][5].countryPort}</p>
+        </div>
+      </Marker>
+
+      <Marker longitude={routesMap[route][6].Longitude} latitude={routesMap[route][6].Latitude} color="red">
         <div>
           <p style={{ fontSize: "12px", color: "red" }}>{route1[6].countryPort}</p>
         </div>
@@ -211,7 +279,12 @@ const Mapbox = () => {
         </button>
       )}
 
-    </div>
+    </div>: 
+     <div style={{height:"400px",display:"flex",alignItems:"center",justifyContent:"center"}}>
+     <Empty description={<span style={{ fontSize: "16px", fontWeight: "500",marginLeft:"-25px" }}>No Data Available</span>} />
+     </div>
+    }
+    </>
   )
 }
 

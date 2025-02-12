@@ -14,7 +14,7 @@ const Login = ({getEmail}) => {
         email: '',
         account_type:"User",
         password: '',
-        rememberMe:false
+        rememberMe: false
        
       });
     
@@ -27,6 +27,14 @@ const Login = ({getEmail}) => {
           [e.target.name]: e.target.value
         });
       };
+
+      const handleCheck = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value, // Handle checkbox properly
+    }));
+  };
     
       // Validation (you can expand this further)
       const validationErrors = {};
@@ -54,10 +62,6 @@ const Login = ({getEmail}) => {
     
         const data = await response.json();
 
-        
-        
-        
-        
         
         if (!formData.email) {
           validationErrors.email = "Email is required";
@@ -163,9 +167,9 @@ const Login = ({getEmail}) => {
         <Form.Item>
           <Checkbox
             name="rememberMe"
-            checked={formData.rememberMe}
             onFocus={handleFocus}
-            onChange={handleChange}
+            checked={formData.rememberMe}
+            onChange={handleCheck}
           >
             Stay Signed in
           </Checkbox>

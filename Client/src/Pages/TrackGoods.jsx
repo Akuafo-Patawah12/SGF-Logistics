@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
 import "./TrackOrder&Map.css"
+import { useNavigate } from "react-router-dom";
 
 const TrackGoods = () => {
-
+  
   const [trackingNumber, setTrackingNumber] = useState("");
+  const navigate= useNavigate()
 
   const handleChange = (e) => {
     setTrackingNumber(e.target.value);
@@ -12,6 +14,9 @@ const TrackGoods = () => {
   const handleTrack = () => {
     if (trackingNumber.trim() !== "") {
       
+      navigate(`/More/Map?tracking_id=${trackingNumber}`);
+
+     
     } else {
       alert("Please enter a tracking number.");
     }

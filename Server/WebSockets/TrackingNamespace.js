@@ -1,18 +1,21 @@
 
 const order = require("../Models/Order")
-
+const fs = require("fs");
+const path = require("path");
 
 const Tracking=(socket,trackigNamespace,users)=>{
 
    socket.on("track",async(data,callback)=>{
-
+   console.log(data)
     try{
       console.log(data)
       const Order = await order.find({ items: { $elemMatch: { trackingNo: data } } });
-      if(!Order){
-         callback({success: false, message:"Your tracking id is not associated with any order"})
+      if(Order.length===0){
+         callback({status: "error", message:"Your tracking id is not associated with any order"})
       }
-      socket.emit("get_item_location",{route: Order.route,country: Order.select_country})
+      console.log(Order)
+      callback({status: "ok",message:"Tracking"})
+      socket.emit("get_item_location",{route: Order[0].route,country: Order[0].selected_country})
       
     }catch(error){
         console.log(error)

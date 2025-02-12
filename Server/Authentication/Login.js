@@ -11,7 +11,7 @@ async function login(req,res){
    
     
     const {email,password,rememberMe }= req.body.formData   //grabing user credentials from the client side.
-     
+     console.log({email,password,rememberMe })
      const userAgent = req.headers["user-agent"];
        const parser = new UAParser(userAgent);
        

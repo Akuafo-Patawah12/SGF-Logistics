@@ -186,7 +186,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-                    <Route path='/Map/:id' element={
+                    <Route path='/More/Map' element={
                         <Suspense fallback={<Loader />}>
                           <Mapbox />   
                         </Suspense>} 
