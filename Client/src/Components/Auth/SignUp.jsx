@@ -2,7 +2,7 @@ import React, { useState,useEffect ,useMemo} from 'react';
 import {useNavigate} from "react-router-dom"
 import './Auth.css'; // Import the CSS file
 import { Link } from "react-router-dom";
-import { Form, Input, Button, Typography, Card } from "antd";
+import { Form, Input, Button, Typography, Card  } from "antd";
 const { Title, Text } = Typography;
 
 

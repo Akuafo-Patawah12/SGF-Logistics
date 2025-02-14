@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import "./Auth.css"; // Import the CSS file
+import { message } from "antd"
 import { useNavigate} from "react-router-dom"
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 import axios from "axios"
@@ -54,9 +55,9 @@ const OTP = ({email}) => {
       if(response.data.message==="OTP verified!"){
         navigate(`/Invoice`)
       }
-      alert(response.data.message); // Show success message
+      message.success(response.data.message); // Show success message
     } catch (error) {
-      alert(error.response?.data?.message || "Verification failed!");
+      message.error(error.response?.data?.message || "Verification failed!");
     }
   };
   const handlePaste = (e) => {

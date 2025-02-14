@@ -1,4 +1,5 @@
 const Order= require("../Models/Order")
+const User= require("../Models/UsersSchema")
 
 
 const  AdminPath=(Socket,OrdersNamespace,users)=>{
@@ -11,6 +12,25 @@ const  AdminPath=(Socket,OrdersNamespace,users)=>{
            Socket.emit("joined","hello i joind order room")  /*sending message to all users in the room */
            
     })
+
+
+    Socket.on("getUsers", async () => {
+      const users = await User.find({},"-password -verification_code -device_info -code_expires_at");
+      Socket.emit("userList", users);
+    });
+  
+    // Handle user deletion
+    Socket.on("deleteUser", async (userId,callback) => {
+      try {
+        await User.findByIdAndDelete(userId);
+        Socket.emit("userDeleted", userId); // Notify all clients
+        callback({status: "ok",message:"User deleted successfully!"})
+      } catch (error) {
+        console.error("Error deleting user:", error);
+      }
+    });
+
+
     Socket.on("clientOrders",async(id)=>{
           try{
                
@@ -61,14 +81,7 @@ const  AdminPath=(Socket,OrdersNamespace,users)=>{
         }
     })
 
-    Socket.on("getUserOrder",async(data)=>{
-        try{
-            const orders=await Order.find({customer_id:data})
-           Socket.emit("sendUserOrder",orders)
-        }catch(error){
-            console.log(error)
-        }
-    })
+    
     
     Socket.on('disconnect', () => {  
      console.log('User disconnected from the tracking namespace');

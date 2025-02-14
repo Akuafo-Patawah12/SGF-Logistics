@@ -1,69 +1,136 @@
-import React,{useRef} from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import "./Components.css"
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Layout, Menu, Button,Drawer } from "antd";
 import {
   HomeOutlined,
   InfoCircleOutlined,
   AppstoreOutlined,
   PhoneOutlined,
   MoreOutlined,
+  DownOutlined,
+  CloseOutlined
 } from "@ant-design/icons";
+import "./Components.css";
 
-import { DownOutlined } from '@ant-design/icons'
-const Sidebar = ({popUp,setPopUp1,popRef}) => {
-  const [show1,setShow1]= React.useState(false)
-  const [show2,setShow2]= React.useState(false)
-  const [show3,setShow3]= React.useState(false)
-  
+
+
+const Sidebar = ({ popUp, setPopUp1, popRef }) => {
+  const [show1, setShow1] = React.useState(false);
+  const [show2, setShow2] = React.useState(false);
+  const [show3, setShow3] = React.useState(false);
+
   const closeSidebar = () => {
     setPopUp1(false);
-    window.scrollTo({top:0,behavior:"smooth"})
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
-  const style={width:"90%",paddingBlock:"20px",alignItems:"center",display:"flex",gap:"4px",textDecoration:"none",fontWeight:"500"}
-  const style1= {position:"absolute",right:"0",zIndex:"2",border:"2px solid #A7C756",borderRadius:"10px",width:"40px",textAlign:"center",height:"25px"}
+
   return (
     <>
-    {popUp && <aside >
-        <nav ref={popRef} style={{overflow:"auto",paddingTop:"70px",animation:`${popUp ? "side-appear 0.4s linear": "side-disappear 0.4s linear"}`}} className='side_nav'>
-          <div style={{display:"flex",flexDirection:"column"}}>
-            <NavLink onClick={closeSidebar} to={"/"} style={style} className="side_link"><HomeOutlined />Home</NavLink>
-            <NavLink onClick={closeSidebar} to={"/About"} style={style} className="side_link"><InfoCircleOutlined/>About <button onClick={()=> setShow1(!show1)} style={style1}><DownOutlined/> </button></NavLink>
-            {show1 &&<div className='side_drop'>
-               <Link >Vision</Link>
-               <Link >Mission</Link>
+      {popUp && (
+        <Drawer
+  title={
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <span className="text-xl font-semibold">Navigation</span>
+      <Button
+        icon={<CloseOutlined />}
+        className="close-btn"
+        onClick={() => setPopUp1(false)}
+      />
+    </div>
+  }
+  placement="left"
+  closable={false}
+  onClose={() => setPopUp1(false)}
+  visible={popUp}
+  width="100%"
+  className="fullscreen-drawer light-theme"
+>
+  <Menu theme="light" mode="inline" className="side_menu">
+    <Menu.Item key="1" icon={<HomeOutlined />}>
+      <NavLink to="/" onClick={closeSidebar}>
+        Home
+      </NavLink>
+    </Menu.Item>
 
-               
- 
-  
-               
-            </div>}
-            <NavLink onClick={closeSidebar} to={"/Services"} style={style} className="side_link"><AppstoreOutlined />Services <button onClick={()=> setShow2(!show2)} style={style1}><DownOutlined/> </button></NavLink>
-            {show2 && <div className='side_drop'>
-               <Link to={"/Services/AirFreight"} >Air Freight</Link>
-               <Link to={"/Services/SeaFreight"} >Sea Freight</Link>
-               <Link to={"/Services/Procurement"}>Procurement</Link>
-               <Link to={"/Services/Door2door"}>Door to door delivery</Link>
-            </div>}
-            <NavLink onClick={closeSidebar} to={"/Contact_us"} style={style} className="side_link"><PhoneOutlined style={{transform:"rotate(90deg)"}}/>Contact</NavLink>
-            <NavLink to={"/More"} style={style} className="side_link"><MoreOutlined />More<button onClick={()=> setShow3(!show3)} style={style1}><DownOutlined/> </button></NavLink>
-            {show3 && <div className='side_drop'>
-               <Link to={"/More/FAQs"} onClick={closeSidebar}>FAQs</Link>
-               <Link to={"/More/Gallery"} onClick={closeSidebar}>Galery</Link>
-               <Link to={"/More/Privacy"} onClick={closeSidebar}>Privacy & Policy</Link>
-               
-            </div>}
-            </div>
-            <div style={{color:"#333",position:"absolute",bottom:"0",borderTop:"1px solid #ccc",width:"85%",fontSize:"14px",paddingBlock:"10px"}}>© 2024 SF Ghana Logistics.</div>
-        </nav>
+    <Menu.SubMenu
+      key="2"
+      icon={<InfoCircleOutlined />}
+      title="About"
+      onTitleClick={() => setShow1(!show1)}
+    >
+      {show1 && (
+        <>
+          <Menu.Item key="2-1">
+            <Link to="#">Vision</Link>
+          </Menu.Item>
+          <Menu.Item key="2-2">
+            <Link to="#">Mission</Link>
+          </Menu.Item>
+        </>
+      )}
+    </Menu.SubMenu>
 
+    <Menu.SubMenu
+      key="3"
+      icon={<AppstoreOutlined />}
+      title="Services"
+      onTitleClick={() => setShow2(!show2)}
+    >
+      {show2 && (
+        <>
+          <Menu.Item key="3-1">
+            <Link to="/Services/AirFreight">Air Freight</Link>
+          </Menu.Item>
+          <Menu.Item key="3-2">
+            <Link to="/Services/SeaFreight">Sea Freight</Link>
+          </Menu.Item>
+          <Menu.Item key="3-3">
+            <Link to="/Services/Procurement">Procurement</Link>
+          </Menu.Item>
+          <Menu.Item key="3-4">
+            <Link to="/Services/Door2door">Door to Door Delivery</Link>
+          </Menu.Item>
+        </>
+      )}
+    </Menu.SubMenu>
 
-        
-    </aside>}
+    <Menu.Item key="4" icon={<PhoneOutlined rotate={90} />}>
+      <NavLink to="/Contact_us" onClick={closeSidebar}>
+        Contact
+      </NavLink>
+    </Menu.Item>
 
+    <Menu.SubMenu
+      key="5"
+      icon={<MoreOutlined />}
+      title="More"
+      onTitleClick={() => setShow3(!show3)}
+    >
+      {show3 && (
+        <>
+          <Menu.Item key="5-1">
+            <Link to="/More/FAQs">FAQs</Link>
+          </Menu.Item>
+          <Menu.Item key="5-2">
+            <Link to="/More/Gallery">Gallery</Link>
+          </Menu.Item>
+          <Menu.Item key="5-3">
+            <Link to="/More/Privacy">Privacy & Policy</Link>
+          </Menu.Item>
+        </>
+      )}
+    </Menu.SubMenu>
+  </Menu>
 
+  {/* Footer */}
+  <div className="sidebar_footer">
+    © 2024 SF Ghana Logistics.
+  </div>
+</Drawer>
+
+      )}
     </>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

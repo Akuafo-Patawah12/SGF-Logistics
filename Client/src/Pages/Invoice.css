@@ -140,9 +140,9 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 
 }
 .order_note{
-    width: 85%;
+    width: 85% !important;
     border: 2px dashed red;
-    padding-inline: 10% 5%;
+    padding-inline: 10% 5% !important;
     padding-block: 10px;
 
     border-radius: 10px;
@@ -273,9 +273,7 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
             border-top: none;
            
         }
-        .getQuote_conatiner{
-            margin-top: 80px;
-        }
+        
    
 
         .shipment_radio_checks{
