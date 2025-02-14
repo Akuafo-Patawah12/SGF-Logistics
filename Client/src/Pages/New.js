@@ -1,16 +1,19 @@
-import React from "react";
+import React ,{useState} from "react";
 import "./New.css";
+import { Button } from "antd"
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 
-const New = () => {
+const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs}) => {
+
+  
   const invoiceData = {
     invoiceNumber: "INV-2025001",
     date: "February 3, 2025",
     sender: {
       name: "SF Ghana Logistics",
-      address: "123 Logistics Street, Accra, Ghana",
-      phone: "+233 50 123 4567",
-      email: "info@sfghanalogistics.com",
+      address: "George Bush Highway, Dzorwulu,Accra-Ghana",
+      phone: "053 948 0433",
+      email: "sfghanalogistics24@gmail.com",
     },
     receiver: {
       invoice_date: "1st February",
@@ -26,8 +29,11 @@ const New = () => {
   };
 
   return (
-    <div className="invoice-container">
-    <SvgIcon/>
+    <div className="Invoice">
+   <Button onClick={()=> setShowInvoice(false)}>Close</Button>
+    
+{invoice ?  <div  ref={divRef} className="invoice-container">
+       <SvgIcon/>
       <div className="invoice-header">
         <h2>Invoice</h2>
         <p>Invoice #: {invoiceData.invoiceNumber}</p>
@@ -40,7 +46,7 @@ const New = () => {
           <p><strong>{invoiceData.sender.name}</strong></p>
           <p>{invoiceData.sender.address}</p>
           <p>Phone: {invoiceData.sender.phone}</p>
-          <p>Email: {invoiceData.sender.email}</p>
+          <p>Email: sfghanalogistics24@gmail.com</p>
         </div>
 
         <div className="invoice-details">
@@ -64,21 +70,21 @@ const New = () => {
             </tr>
           </thead>
           <tbody>
-            {invoiceData.shipmentDetails.map((item, index) => (
-              <tr key={index}>
-                <td>{item.description}</td>
-                <td>{item.tracking_no}</td>
-                <td>{item.cbm}</td>
-                <td>{item.ctn}</td>
-                <td>${item.price.toFixed(2)}</td>
+            
+              <tr>
+                <td>{invoice.description}</td>
+                <td>{invoice.trackingNo}</td>
+                <td>{invoice.cbm}</td>
+                <td>{invoice.ctn}</td>
+                <td>${invoice.total}</td>
               </tr>
-            ))}
+            
           </tbody>
         </table>
       </div>
        
       <div className="invoice-footer">
-        <h3>Total: ${invoiceData.total.toFixed(2)}</h3>
+        <h3>Total: ${invoice.total}</h3>
         
       </div>
       <div className="information">
@@ -130,6 +136,19 @@ const New = () => {
         </section>
         </div>
       </div>
+    </div>   :
+    <div>No data</div>}
+
+    <Button onClick={
+      ()=>{
+        generateAndSendPDFs(invoice.email);
+        setShowInvoice(false)
+      }
+    }
+    style={{marginBottom:"30px"}}
+    >
+    Send Invoice
+    </Button>
     </div>
   );
 };

@@ -15,7 +15,7 @@ try {
       { _id: { $in: shipments } },
       { $set: { route, selected_country, status } }
     );
-    console.log("This is our new update",update)
+    
     callback({status: "ok", message: "Shipments updated successfully" });
     socket.emit("updated_shipment",data)
   } catch (error) {
@@ -47,7 +47,7 @@ socket.on("get_orders",async(data,callback)=>{
     try {
         const orders = await Shipment.find({});
         
-        console.log("Shipment created successfully", orders);
+        
         socket.emit("all_orders",orders)
     } catch (error) {
         console.error("Error creating shipment", error);

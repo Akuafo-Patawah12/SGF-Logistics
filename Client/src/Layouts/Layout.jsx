@@ -18,7 +18,7 @@ const Gallery = lazy(()=> import('../Pages/More/Gallery'))
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
 const Invoice = lazy(()=> import( '../Pages/Invoice'))
-const New = lazy(()=> import( '../Pages/New'))
+
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
 const SeaFreight = lazy(()=> import('../Pages/Services/SeaFreight'))
@@ -117,11 +117,7 @@ const Layout = () => {
                     </Suspense> }
                 />
 
-                <Route path='/New' element={
-                    <Suspense fallback={<Loader />}>
-                        <New/>
-                    </Suspense> }
-                />
+                
 
                 
 

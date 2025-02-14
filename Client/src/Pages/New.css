@@ -1,9 +1,18 @@
+.Invoice{
+   position: fixed;
+   background-color: #fff;
+   top:0;
+   width: 100%;
+   overflow: auto;
+   height: 100vh;
+   padding: 30px 0;
+}
 .invoice-container {
     width: 800px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 60px 20px;
     border: 2px solid #ddd;
-    border-radius: 10px;
+    
     font-family: Arial, sans-serif;
     background: #fff;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);

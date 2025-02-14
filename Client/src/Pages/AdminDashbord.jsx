@@ -1,10 +1,14 @@
 // Frontend - React with CSS
-import React, { useState,useMemo, useEffect } from 'react';
+import React, { useState,useMemo, useEffect,useRef } from 'react';
 import io from 'socket.io-client';
-import { EyeOutlined, EditOutlined, DeleteOutlined  } from '@ant-design/icons';
-import {Form, Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal , Select} from "antd";
+import { EyeOutlined, EditOutlined, DeleteOutlined , FilePdfOutlined } from '@ant-design/icons';
+import {Form,Tooltip, Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal , Select} from "antd";
 import './AdminDashboard.css'
+import UserShipmentData from "./UserShipmentData"
 import axios from "axios"
+import New from "./New"
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const { Title } = Typography;
 
@@ -30,12 +34,25 @@ const AdminDashboard = () => {
   const [selectedShipments, setSelectedShipments] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [shipmentStatus, setShipmentStatus] = useState(null); 
-
-
-
+  const [selectedShipmentsPdf, setSelectedShipmentsPdf ] = useState([]); // New state to store selected shipments
+  const [showInvoice,setShowInvoice] = useState(false)
+  const [loading1, setLoading1] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [ invoice,setInvoice] = useState(
+    {
+      description:"",
+      email:"",
+      trackingNo:"",
+      ctn:"",
+      cbm:"",
+      total:""
+    }
+  )
+  const [shipmentData, setShipmentData] = useState(null);
+ 
+     
   const routes = {
-    A: ["China", "Sri Lanka", "Yemen", "Egypt", "Algeria", "Sierra Leone", "Ghana"],
-    
+    A: ["China", "Sri Lanka", "Yemen", "Egypt", "Algeria", "Sierra Leone", "Ghana"], 
     B: ["China", "Saudi Arabia", "Egypt", "Lybia", "Morocco", "Guinea", "Ghana"],
     C: ["China", "Sri Lanka", "Tunisia", "Mauritania", "Guinea Bissau", "Cote D’Ivoire", "Ghana"],
     D: ["China", "Yemen", "Egypt", "Morocco", "Senegal", "Liberia", "Ghana"],
@@ -117,7 +134,7 @@ const AdminDashboard = () => {
        socket.off("newOrder")
        socket.off("delete-shipment")
     }
-  }, [socket]);
+  }, [socket,shipments]);
 
   
 
@@ -217,6 +234,11 @@ const AdminDashboard = () => {
     setSelectedCountry(null); // Reset country selection when route changes
   };
 
+  useEffect(() => {
+    // Update selectedShipments when selectedShipmentIds change
+    setSelectedShipmentsPdf(shipments.filter((shipment) => selectedShipments.includes(shipment.id)));
+  }, [selectedShipments, shipments]);   // Runs when either `selectedShipmentIds` or `shipments` change
+
   const handleSave = () => {
     if (selectedShipments.length === 0 || !selectedCountry || !shipmentStatus) {
       console.error("Please select shipments, a country, and a status before updating.");
@@ -258,7 +280,9 @@ const AdminDashboard = () => {
   };
 
   
-
+  function viewInvoice(){
+    setShowInvoice(true)
+   }
   
 
 
@@ -270,9 +294,11 @@ const AdminDashboard = () => {
             if (e.target.checked) {
               setIsModalVisible(true); // Show modal when all are selected
               setSelectedShipments(shipments.map((shipment) => shipment._id)); // Select all
+              
             } else {
               setIsModalVisible(false); // Show modal when all are selected
               setSelectedShipments([]); // Deselect all
+              
             }
           }}
           checked={selectedShipments.length === shipments.length && shipments.length > 0} 
@@ -289,6 +315,10 @@ const AdminDashboard = () => {
                 ? [...prev, shipment._id]  // Select only this shipment
                 : prev.filter(id => id !== shipment._id) // Deselect only this shipment
             );
+            
+            
+
+        
           }}
         />
       ),
@@ -323,14 +353,55 @@ const AdminDashboard = () => {
         render: (_, shipment) => (
             <div style={{ display: "flex", gap: "10px",justifyContent:"center" }}>
                   
-                  <EyeOutlined
+                  <EyeOutlined 
+                    onClick={()=>{
+                     
+                     setShipmentData ({
+                          fullname: shipment.fullname,
+                          email: shipment.email,
+                          phone: shipment.phone,
+                          status: shipment.status,
+                          createdAt: shipment.createdAt,
+                          updatedAt: shipment.updatedAt,
+                          selected_country: shipment.selected_country,
+                          route: shipment.route,
+                          items: [
+                            {
+                              description: shipment.items[0].description,
+                              Amount: shipment.items[0].Amount,
+                              ctnNo: shipment.items[0].ctnNo,
+                              cbm: shipment.items[0].cbm,
+                              trackingNo: shipment.items[0].trackingNo,
+                            },
+                          ],
+                        })
+                        handleOpen();
+                    }}
+                  />
+                  <Tooltip title="Invoice">
+                  <FilePdfOutlined
                    style={{ color: "red", cursor: "pointer" }} 
+                   onClick={()=>{
+                    
+                    setInvoice({
+                      description: shipment.items[0].description,
+                      email:shipment.email,
+                      trackingNo: shipment.items[0].trackingNo,
+                      ctn:shipment.items[0].ctnNo,
+                      cbm:shipment.items[0].cbm,
+                      total:shipment.items[0].Amount,
+                    })
+                    viewInvoice();
+                   }}
                     />
-                  
+                  </Tooltip>
+
+                  <Tooltip title="Edit">
                   <EditOutlined
                     style={{ color: "#1890ff", cursor: "pointer" }}
                     onClick={() => console.log("Edit Shipment:", shipment._id)}
                   />
+                  </Tooltip>
                   <DeleteOutlined
                     style={{ color: "red", cursor: "pointer" }}
                     onClick={() => handleDeleteShipment(shipment._id)}
@@ -341,6 +412,91 @@ const AdminDashboard = () => {
         ),
     },
 ];
+
+
+
+  const divRef = useRef(); // Store refs dynamically
+
+ 
+
+  const generateAndSendPDFs = async (email) => {
+  console.log(email)
+  setVisible(true); // Show popup
+  setLoading1(true); // Show loader
+    try {
+      
+      const formData = new FormData();
+
+      
+        const divElement = divRef.current;
+
+       if (!divElement) return;
+
+        // Capture the div as an image
+        const canvas = await html2canvas(divElement); // Reduce scale to 1 (default is 2)
+        const imgData = canvas.toDataURL("image/jpeg", 0.7); // Use JPEG instead of PNG, lower quality to 70%
+
+
+        // Create PDF
+        const pdf = new jsPDF({
+          orientation: "p",
+          unit: "mm",
+          format: "a4",
+          compress: true, // Enable compression
+        });
+        
+        const imgWidth = 190;  // Max width for A4 (210mm - margins)
+        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Keep aspect ratio
+
+        pdf.addImage(imgData, "JPEG", 10, 10, imgWidth, imgHeight);
+
+
+        // Convert PDF to Blob & append to FormData
+        const pdfBlob = pdf.output("blob");
+        formData.append("pdf", pdfBlob, "invoice.pdf");
+      
+
+      formData.append("email", email); // Send as JSON string
+
+      const response=await axios.post("http://localhost:4040/send-pdf", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (response.status === 200) {
+        message.success("Invoice sent successfully!");
+      } else {
+        message.error("Failed to send invoice.");
+      }
+    } catch (error) {
+      message.error("Error sending invoice.");
+    } finally {
+      setLoading1(false);
+      setTimeout(() => setVisible(false), 1000); // Close modal after a short delay
+    }
+  };
+
+   
+  const [visible2, setVisible2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
+  
+
+  
+
+  const handleOpen = () => {
+    setLoading3(true);
+    setVisible2(true);
+
+    // Simulating data fetching delay
+    setTimeout(() => {
+      
+      setLoading3(false);
+    }, 1000);
+  };
+
+  const handleClose = () => {
+    setVisible2(false);
+    
+  };
+
 
   return (
     <div className="admin-page">
@@ -355,7 +511,14 @@ const AdminDashboard = () => {
       </div>
     </header>
 
-      <h1>Admin Dashboard</h1>
+      <h1 style={{marginTop:"20px"}}>Admin Dashboard</h1>
+
+      <Modal open={visible} footer={null} closable={false} centered width={300}>
+        <div style={{marginInline:"auto",justifyContent:"center", textAlign: "center",gap:"10px" ,display:"flex",alignItems:"center"}}>
+           
+          <p style={{fontSize:"16px",fontWeight:"600"}}>Sending Invoice...</p><Spin size="small" />
+        </div>
+      </Modal>
 
       <div className="shipment-container-buttons">
       <section style={{marginBottom:"auto",display:"flex",gap:"10px",justifyContent:"center",alignItems:"flex-end"}}>
@@ -519,7 +682,9 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      <Button type="primary" style={{ marginTop: "10px",height:"40px", width: "100%" }} onClick={handleSave} disabled={!selectedRoute || !selectedCountry || !shipmentStatus}>
+      <Button type="primary" style={{ marginTop: "10px",height:"40px", width: "100%" }} 
+      onClick={ handleSave  }
+      disabled={!selectedRoute || !selectedCountry || !shipmentStatus}>
         Save Changes
       </Button>
     </Modal>
@@ -570,8 +735,20 @@ const AdminDashboard = () => {
         </div>
       )}
 
-
-
+     
+    {showInvoice && <New invoice={invoice} divRef={divRef} setShowInvoice={setShowInvoice} generateAndSendPDFs={generateAndSendPDFs}/>}
+    
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    
+   <UserShipmentData
+       visible={visible2}
+        onClose={handleClose}
+        shipmentData={shipmentData}
+        loading3={loading3}
+   
+    />
+      
+    </div>
     </div>
   );
 };
