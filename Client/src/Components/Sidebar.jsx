@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Layout, Menu, Button,Drawer } from "antd";
+import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 import {
   HomeOutlined,
   InfoCircleOutlined,
@@ -30,7 +31,7 @@ const Sidebar = ({ popUp, setPopUp1, popRef }) => {
         <Drawer
   title={
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-      <span className="text-xl font-semibold">Navigation</span>
+      <span className="text-xl font-semibold"><SvgIcon /></span>
       <Button
         icon={<CloseOutlined />}
         className="close-btn"
