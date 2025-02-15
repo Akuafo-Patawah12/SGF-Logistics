@@ -2,7 +2,7 @@
     background: url("./../../public/SFG_images/map.jpg") no-repeat;
     background-size: cover;
     position: relative;
-    height: 300px;
+    height: 500px;
 }
 .track_1 , .track_2{
     position: absolute;
@@ -191,7 +191,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    
     margin: 20px auto;
     width: 100%;
     max-width: 400px;
@@ -207,13 +207,13 @@
   }
   
   .tracking-input:focus {
-    border-color: #007bff;
+    border-color: var(--purple);
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px var(--purple);
   }
   
   .track-button {
-    background-color: #007bff;
+    background-color: var(--purple);
     color: white;
     border: none;
     padding: 12px 18px;
@@ -235,7 +235,5 @@
 }
 
 @media (max-width: 768px){
-.Track_cont{
-     margin-top: 80px;
-}
+
 }

@@ -1,6 +1,6 @@
 import React,{useEffect,useMemo} from 'react'
 import "./TrackOrder&Map.css"
-
+import { Space, Button } from "antd"
 import { useParams,Link } from 'react-router-dom'
 
 
@@ -54,10 +54,14 @@ const TrackOrder = () => {
       <div className='Track_cont'>
       <div className="track_1">
           <p>TRACK YOUR SHIPMENTS</p>
-          <section>
-              <Link to={"/More/Track_order/Goods"}><button >Goods</button></Link>
-              <Link to={"/More/Track_order/Container"}><button>Container</button></Link>
-          </section>
+          <Space size="middle">
+        <Link to="/More/Track_order/Goods">
+          <Button type="primary" size="large">Goods</Button>
+        </Link>
+        <Link to="/More/Track_order/Container">
+          <Button type="default" size="large">Container</Button>
+        </Link>
+      </Space>
          
       </div>
       

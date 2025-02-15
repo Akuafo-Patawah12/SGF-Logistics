@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import "./TrackOrder&Map.css"
 import { useNavigate } from "react-router-dom";
+import { message } from "antd"
 
 const TrackGoods = () => {
   
@@ -18,7 +19,7 @@ const TrackGoods = () => {
 
      
     } else {
-      alert("Please enter a tracking number.");
+      message.error("Please enter a tracking number.");
     }
   };
 
