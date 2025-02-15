@@ -479,12 +479,12 @@ const [value, setValue] = useState(0);  // State to hold the value
        <p
   style={{
     width: "90%",
-    background: "#E6E6FA", // Light purple background
+    background: " #E6E6FA", // Light purple background
     color: "#444",
-    borderRadius: "10px",
-    border: "2px solid #D8BFD8", // Slightly deeper purple border
+    borderRadius: "7px",
+    border: "1px solid #f0a7f0", // Slightly deeper purple border
     fontSize: "15px",
-    fontWeight: "500",
+    fontWeight: "400",
     padding: "20px 10px",
     textAlign: "justify",
     marginInline: "auto",
@@ -536,9 +536,9 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
         <div className='rate'>
-           <div style={{borderRight:"2px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500"}}> $220 PER CBM</span></div>
-           <div style={{borderRight:"2px solid #222"}}><CargoPlane style={{transform:"translateX(3px)"}}/><br/><span style={{fontSize:"14px"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"14px",fontWeight:"500"}}>$18 PER KILO</span></div>
-           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500"}}>0.425</span></div>
+           <div style={{borderRight:"1px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px",color:"#111"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}> $220 PER CBM</span></div>
+           <div style={{borderRight:"1px solid #222"}}><CargoPlane style={{transform:"translateX(3px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>$18 PER KILO</span></div>
+           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>0.425</span></div>
         </div>
 
       </motion.div>
