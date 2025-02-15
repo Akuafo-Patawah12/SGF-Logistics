@@ -476,10 +476,25 @@ const [value, setValue] = useState(0);  // State to hold the value
        
        
        <p id="why_choose_us" style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
-       <p style={{width:"90%",background:"#eee",color:"#444",fontSize:"15px",fontWeight:"500",padding:"20px 10px", textAlign:"justify",marginInline:"auto"}}>
-          At SF Ghana Logistics (SFGL), we are committed to delivering exceptional logistics 
-          solutions tailored to your specific needs. Here's why we stand out in the industry:
-       </p>
+       <p
+  style={{
+    width: "90%",
+    background: "#E6E6FA", // Light purple background
+    color: "#444",
+    borderRadius: "10px",
+    border: "2px solid #D8BFD8", // Slightly deeper purple border
+    fontSize: "15px",
+    fontWeight: "500",
+    padding: "20px 10px",
+    textAlign: "justify",
+    marginInline: "auto",
+    marginBottom:"20px"
+  }}
+>
+  At SF Ghana Logistics (SFGL), we are committed to delivering exceptional logistics 
+  solutions tailored to your specific needs. Here's why we stand out in the industry:
+</p>
+
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}></div>
 
        <div className='why'>

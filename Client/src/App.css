@@ -9,6 +9,8 @@
 :root{
    --purple: #a422d0;
    --green: #a0c444;
+   --bg: rgb(210, 154, 228);
+   --border: #a422d0;
 }
 
 body{
