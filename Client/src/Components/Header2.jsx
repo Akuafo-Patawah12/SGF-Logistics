@@ -68,7 +68,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
          </NavLink>     
           </nav> 
      
-      <div style={{marginRight:"3px",display:"flex",alignItems:"center",gap:"4px"}}>
+      <div style={{width:"fit-content",marginRight:"3px",display:"flex",alignItems:"center"}}>
      <Link to={"/More/Track_order"}><button  className="shipment_btn" style={{border:"none",background:"#a422d0",borderRadius:"10px",paddingInline:"10px",color:"#fff",fontSize:"16px",fontWeight:"500"}}>Track shipments</button></Link>
 
 

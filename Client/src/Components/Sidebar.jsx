@@ -125,7 +125,7 @@ const Sidebar = ({ popUp, setPopUp1, popRef }) => {
 
   {/* Footer */}
   <div className="sidebar_footer">
-    © 2024 SF Ghana Logistics.
+    © 2025 SF Ghana Logistics.
   </div>
 </Drawer>
 

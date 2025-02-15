@@ -396,7 +396,7 @@ const [value, setValue] = useState(0);  // State to hold the value
                 <div className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p style={{color:"white"}}>Join us for <br/> seamless logistics.</p><Link to={"/Auth/login"}><button>Sign up</button></Link></div> </div>
                 <div  className="flexbox_1"style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p className="p-info" style={{color:"white"}}>Track your shipment. <br/> in realtime </p><Link to={"/Track_order"}><button>Track</button></Link></div> </div>
             </section>
-           <h3 style={{marginLeft:"2.5%"}}>Welcome to SF Ghana Logistics.</h3>
+           <h3 style={{marginLeft:"2.5%",marginTop:"10px"}}>Welcome to SF Ghana Logistics.</h3>
           <p style={{textAlign:"justify",marginInline:"auto",width:"95%"}}>
             Your trusted partner in providing seamless and reliable shipping solutions between Ghana and 
             China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
@@ -415,7 +415,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
 
       <div style={{marginInline:"auto",width:"290px",}}>
-      <h3 style={{color:"#1C1818",marginLeft:"0",display:"flex",gap:"10px",width:"fit-content",textAlign:"center",marginTop:"20px",fontSize:"25px"}}>OUR MAJOR
+      <h3 style={{color:"#1C1818",marginLeft:"0",display:"flex",gap:"10px",width:"fit-content",textAlign:"center",marginTop:"30px",fontSize:"25px"}}>OUR MAJOR
           <div className="content">
               <h3>SERVICES.</h3>
               <h3>SERVICES.</h3>
