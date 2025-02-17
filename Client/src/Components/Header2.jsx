@@ -26,7 +26,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
 
         const[popNav2,setPopNav2]= useState(false)
 
-        const Link_text={textDecoration:"none", fontSize:"15px"}
+        const Link_text={textDecoration:"none", fontSize:"16px",fontWeight:"400 !important"}
 
 
   return (
@@ -37,12 +37,11 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
          <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"500",}}>Home</span> </NavLink>
          <NavLink to={"/About"} style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>About  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"200%",padding:"8px",zIndex:"40"}}>
-                <a href='#why_choose_us'><p ><Link to={"/"} style={{fontSize:"15px"}}>Why choose us</Link></p></a>
-                <p><Link to={"/About"} style={{fontSize:"15px"}}>About us</Link></p>
+                <a href='#why_choose_us'><p ><Link to={"/"} style={{fontSize:"15px"}}>Mission</Link></p></a>
+                <p><Link to={"/About"} style={{fontSize:"15px"}}>Vision</Link></p>
                 
          </div>
          </NavLink>
-
          
          <NavLink to={"/Services"} style={{position:"relative",}} className="click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",isolation:"isolate",zIndex:"99"}}>

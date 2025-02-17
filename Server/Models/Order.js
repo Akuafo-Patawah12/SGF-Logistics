@@ -12,6 +12,7 @@ const ItemSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
+    userId: {type: mongoose.Types.ObjectId, ref:"user"},
     items: { type: [ItemSchema], required: true },
     fullname: { type: String, required: true },
     phone: { type: String, required: true },

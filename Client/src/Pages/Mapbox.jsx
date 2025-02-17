@@ -13,7 +13,7 @@ import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 
 const Mapbox = () => {
 
-
+  const parent= useRef(null)
   const socket = useMemo(() =>io("http://localhost:4040/tracking",{
     transports: ["websocket","polling"],
     withCredentials: true,
@@ -47,13 +47,11 @@ socket.off("disconnect")
 const [searchParams] = useSearchParams();
 const trackingId = searchParams.get("tracking_id");
 
-    const [viewport,setViewport] = useState({
-        latitude: 23.0848,
-        longitude: 113.4348,
-        zoom: 2,
-      });
+    
 
-
+      const pRefs = useRef([]);
+      
+      const child= useRef([])
       const routesMap = {
         A: route1,
         B: route2,
@@ -63,8 +61,11 @@ const trackingId = searchParams.get("tracking_id");
         
       };
  
+
+      
+       
       const selectedRoute = routesMap[route] || [];
-      const pRefs = useRef([]);
+      
   
       useEffect(() => {
         if (route && routesMap[route]) {
@@ -83,26 +84,50 @@ const trackingId = searchParams.get("tracking_id");
 
       const [xPosition, setXposition] = useState(0);
 const [bound, setBound] = useState(0);
+const [Index,setIndex] = useState(0)
+const [scroll,setScroll] = useState(0)
+
+function Scroll(){
+  if (parent.current) {
+  setScroll(parent.current.scrollLeft)
+  }
+}
+useEffect(() => {
+  const element= parent.current
+  if (!element) return;
+  
+  element.addEventListener('scroll', Scroll); // Add scroll event listener
+  
+  return () => {
+    
+    element.removeEventListener('scroll', Scroll); // Cleanup on unmount
+    
+  };
+}, [scroll,xPosition]);
+
 const countRef = useRef(null);
 // Function to update bound when the country is found
 const updateBound = () => {
   if (!pRefs.current) return;
 
-  pRefs.current.forEach((p) => {
+  pRefs.current.forEach((p,index) => {
+    setIndex(pRefs.current.findIndex(p => p && p.innerHTML.trim() === country))
     if (p && p.innerHTML.trim() === country) {
-      const newBound = Math.round(p.getBoundingClientRect().x);
+      const rect = p.getBoundingClientRect();
+      const newBound = Math.round(rect.left + window.pageXOffset); // Adjust for scroll
       setBound(newBound);
-
+      
       // Reset animation if already running
       if (countRef.current) clearInterval(countRef.current);
 
       countRef.current = setInterval(() => {
         setXposition((previousNumber) => {
-          if (previousNumber >= newBound) {
+          if (previousNumber === newBound) {
             clearInterval(countRef.current);
             return previousNumber;
           }
-          return previousNumber + 1;
+
+          return previousNumber < newBound ? previousNumber + 1 : previousNumber - 1;
         });
       }, 50);
     }
@@ -112,7 +137,7 @@ const updateBound = () => {
 // Runs when country changes
 useEffect(() => {
   updateBound();
-}, [country]);
+}, [country,Index]);
 
 // Runs when window is resized
 useEffect(() => {
@@ -120,7 +145,7 @@ useEffect(() => {
   window.addEventListener("resize", handleResize);
 
   return () => window.removeEventListener("resize", handleResize);
-}, [bound]);
+}, [bound,xPosition]);
 
 
       const [scrollPosition, setScrollPosition] = useState(0); // Track scroll position
@@ -168,24 +193,44 @@ useEffect(() => {
          
         </div>
         
-        <div className="line_map">
-        <div className="line_inner">
-        {xPosition} {bound}
-        <div  className="ship" style={{background:"yellow"}}><ShipIcon style={{transform:`translateX(${xPosition}px)`}}/></div>
-        <section className="line" style={{position:"relative"}}>
+        <div className="line_map" ref={parent}>
+        <div className="line_inner" >
+         
+        <div  className="ship" style={{background:"yellow !important",position:"relative"}}><ShipIcon style={{ position: "absolute",top:"-40px", left: `${xPosition-5}px` }} />
+         </div>
+        <section className="line" style={{position:"relative"}} >
           
         
       {routesMap[route].map((port, index) => (
-        <div key={index} className="current_city">
-          <div>
-            <span>{index === 0 && <CheckOutlined style={{ position: "absolute" }} />}</span>
-            <p ref={(el) => (pRefs.current[index] = el)}>{port.country}</p>
-          </div>
-          {index < routesMap[route].length - 1 && (
-            <ArrowRightOutlined className={`arrow arrow_${index + 1}`} />
+        <div key={index} className="current_city" >
+        <div className="ship-cont">
+      <div
+        style={{
+          background: "var(--green)",
+          position: "relative",
+          height: "30px",
+          width: "30px",
+          borderRadius:"50%",
+        }}
+      >
+        {pRefs.current[index]?.getBoundingClientRect &&
+          pRefs.current[index].getBoundingClientRect().left +
+            Math.round(scroll) <=
+            xPosition + 10 && (
+            <CheckOutlined style={{ position: "relative", top: "0", left: "0" }} />
           )}
-        </div>
-      ))}
+      </div>
+      <p style={{ height: "33px" }} ref={(el) => (pRefs.current[index] = el)}>
+        {port.country}
+      </p>
+    </div>
+
+    {/* Insert Arrow After Every Ship-Cont Except the Last One */}
+    {index > 0 && index < routesMap[route].length + 2 ? (
+      <ArrowRightOutlined className={`arrow arrow_${index + 1}`} />
+    ) : null}
+  </div>
+))}
     
 
         </section>
@@ -198,13 +243,17 @@ useEffect(() => {
           <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'><Ship2Icon /> ROUTE MAP <RightCircleFilled style={{color:"#A7C756",marginLeft:"10px"}}/> </button></a></div>
         
         <Map
-      initialViewState={viewport}
+      initialViewState={{
+        latitude: routesMap[route][Index].Latitude,
+        longitude: routesMap[route][Index].Longitude,
+        zoom: 2,
+      }}
       style={{ width: "100%", height:"400px",marginTop:"30px" }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
       mapboxAccessToken="pk.eyJ1IjoiYWt1YWZvLTEiLCJhIjoiY200MXhxNnJrMDQzNjJrcjAzbXg4cTliMCJ9.6cwG6dff4E2UjnQz7q963A"
       id="Map"
     >
-      <Marker latitude={23.0848} longitude={113.4348}>
+      <Marker latitude={routesMap[route][Index].Latitude} longitude={routesMap[route][Index].Longitude}>
         <div><ShipIcon/></div>
       </Marker>
 

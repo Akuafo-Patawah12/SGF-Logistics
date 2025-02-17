@@ -1,11 +1,11 @@
 .order_container{
-    margin-top:90px;
+    
     background-color: #eee;
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    
     padding-block: 20px 30px;
 }
 
@@ -43,10 +43,16 @@
     }
 }
 
-.three_dot{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    
-    
+
+.my_item_grid{
+    display: grid;
+    background: yellow;
+    width: 95%;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 768px){
+    .my_item_grid{
+        grid-template-columns: 1fr;
+    }
 }

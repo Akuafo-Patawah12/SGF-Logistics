@@ -4,9 +4,14 @@ import { ReactComponent as Tiktok} from "../Icons/Tiktok.svg"
 import Accordion from './Accordion'
 import { Link } from 'react-router-dom'
 
+import { Typography, Space, Card } from "antd";
+
+const { Text } = Typography;
+
+
 
 const Footer = () => {
-
+  const { Title } = Typography;
   const backtotop = () => {
     
     window.scrollTo({top:0,behavior:"smooth"})
@@ -16,36 +21,118 @@ const Footer = () => {
     <footer className="footer">
 
         <main style={{marginInline:"auto"}} className='footer_nav'>
-          <section style={{color:"#ddd"}} className="nav_1">
-            <p>George Bush Highway, Plot No. 67,<br/> Dzorwulu, Accra-Ghana</p>
-            <p>+(233)20 811 6360 / 053 948 0433</p>
-            <p>sfghanalogistics24@gmail.com</p>
-
-          </section>
-          <section style={{color:"#ddd"}} className='nav_1'>
-            <h4>Quick Link</h4>
-             <Link to={"/"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Home</div></Link>
-             <Link to={"/Services"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Services</div></Link>
-             <Link to={"/About"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> About</div></Link>
-             <Link to={"/Contact_Us"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Contact</div></Link>
-          </section>
+        <Card
+        className="nav_1"
+      style={{
+        background: "transparent",
+        color: "#ddd",
+        padding: "20px",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      }}
+    >
+      <Text style={{ color: "#ddd", fontSize: "16px", display: "block", marginBottom: "10px" }}>
+        <EnvironmentOutlined style={{ marginRight: "8px" }} />
+        George Bush Highway, Plot No. 67,<br/> Dzorwulu, Accra-Ghana
+      </Text>
+      <Text style={{ color: "#ddd", fontSize: "16px", display: "block", marginBottom: "10px" }}>
+        <PhoneOutlined style={{ marginRight: "8px" }} />
+        +(233)20 811 6360 / 053 948 0433
+      </Text>
+      <Text style={{ color: "#ddd", fontSize: "16px", display: "block" }}>
+        <MailOutlined style={{ marginRight: "8px" }} />
+        sfghanalogistics24@gmail.com
+      </Text>
+    </Card>
           
-          <section style={{color:"#ddd"}} className='nav_1'>
-            <h4>Services we offer</h4>
-             <Link to={"/Services/SeaFreight"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Sea Freight</div></Link>
-             <Link to={"/Services/AirFreight"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Air Freight</div></Link>
-             <Link to={"/Services/Door2Door"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Door to door delivery</div></Link>
-             <Link to={"/Services/Procurement"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Procurement</div></Link>
-          </section>
+          <Card
+
+          className="nav_1"
+      style={{
+        background: "transparent",
+        color: "#ddd",
+        padding: "20px",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      }}
+    >
+      <Title level={4} style={{ color: "#fff", marginBottom: "15px" }}>
+        Quick Links
+      </Title>
+
+      <Space direction="vertical" size="middle">
+        <Link to="/" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Home
+        </Link>
+        <Link to="/Services" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Services
+        </Link>
+        <Link to="/About" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> About
+        </Link>
+        <Link to="/Contact_Us" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Contact
+        </Link>
+      </Space>
+    </Card>
+          
+    <Card
+      className="nav_1"
+      style={{
+        background: "transparent",
+        color: "#ddd",
+        padding: "20px",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      }}
+    >
+      <Title level={4} style={{ color: "#fff", marginBottom: "15px" }}>
+        Services We Offer
+      </Title>
+
+      <Space direction="vertical" size="middle">
+        <Link to="/Services/SeaFreight" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Sea Freight
+        </Link>
+        <Link to="/Services/AirFreight" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Air Freight
+        </Link>
+        <Link to="/Services/Door2Door" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Door to Door Delivery
+        </Link>
+        <Link to="/Services/Procurement" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Procurement
+        </Link>
+      </Space>
+    </Card>
 
           
-          <section style={{color:"#ddd"}} className='nav_1'>
-          <h4>Support</h4>
-             <Link to={"/About"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Why choose us</div></Link>
-             <Link to={"/TermsAndCondition"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> Terms & Conditions</div></Link>
-             <Link to={"/More/FAQs"} onClick={()=>backtotop()}><div><DoubleRightOutlined /> FAQs</div></Link>
+          <Card
+          className="nav_1"
+      style={{
+        background: "transparent",
+        color: "#ddd",
+        padding: "20px",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+      }}
+    >
+      <Title level={4} style={{ color: "#fff", marginBottom: "15px" }}>
+        Support
+      </Title>
 
-          </section>
+      <Space direction="vertical" size="middle">
+        <Link to="/About" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Why Choose Us
+        </Link>
+        <Link to="/TermsAndCondition" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> Terms & Conditions
+        </Link>
+        <Link to="/More/FAQs" onClick={backtotop} style={{ color: "#ddd", fontSize: "16px" }}>
+          <DoubleRightOutlined /> FAQs
+        </Link>
+      </Space>
+    </Card>
         <section className="About">
           
          <Accordion header="Quick Links" link="Services" span1="Services" span2="About" span3="Contacts"/>
@@ -73,22 +160,44 @@ const Footer = () => {
           </div>
           </section>
 
-        <section className="socials_media_handles">
-          <h5 style={{color:"white"}}>Follow Us</h5>
-          <div>
-          <a href="https://www.instagram.com/sfghanalogistic?igsh=bnlyd3R2d3FyN2du" target="_blank"><InstagramOutlined /> </a>
-          <a href="https://www.youtube.com/@SFGhanaLogistics" target="_blank"><YoutubeOutlined/> </a>
-          <a href="https://www.facebook.com/profile.php?id=61560412809015&mibextid=ZbWKwL" target="_blank"><FacebookOutlined /> </a>
-          <a href="https://t.me/sfghanalogistics" target="_blank"> </a>
-          <a href="https://whatsapp.com/channel/0029VahZ9ep9hXFEXBAVWL3G" target="_blank"><WhatsAppOutlined/> </a>
-          <a href="https://www.tiktok.com/@sfghanalogistics" target="_blank" rel="noopener noreferrer">
-             <Tiktok style={{transform:"translateY(4px)"}}/>
-          </a>
-        </div>
-        </section>
+          
+
+        
         </main>
         <div className="copyright_header">
           <p>© 2024 SFGL | developed by <a href="https://wa.me/qr/J67ECZFBZBBAF1" target="_blank">@Anej High Tech</a></p>
+          <Card
+          className="social_media_handles"
+      style={{
+        background: "transparent",
+        borderRadius: "10px",
+        display:"flex",
+        justify:"flex-end",
+        alignItems:"center",
+        height:"100%",
+        
+      }}
+    >
+     
+      <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          <InstagramOutlined style={{ fontSize: "24px", color: "#E1306C" }} />
+        </a>
+        <a href="https://www.youtube.com/@SFGhanaLogistics" target="_blank" rel="noopener noreferrer">
+          <YoutubeOutlined style={{ fontSize: "24px", color: "#FF0000" }} />
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61560412809015&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">
+          <FacebookOutlined style={{ fontSize: "24px", color: "#1877F2" }} />
+        </a>
+        
+        <a href="https://whatsapp.com/channel/0029VahZ9ep9hXFEXBAVWL3G" target="_blank" rel="noopener noreferrer">
+          <WhatsAppOutlined style={{ fontSize: "24px", color: "#25D366" }} />
+        </a>
+        <a href="https://www.tiktok.com/@sfghanalogistics" target="_blank" rel="noopener noreferrer">
+        <Tiktok style={{transform:"translateY(4px)"}}/>
+        </a>
+      </div>
+    </Card>
         </div>
 
 

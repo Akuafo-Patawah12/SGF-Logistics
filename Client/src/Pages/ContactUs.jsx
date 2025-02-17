@@ -1,59 +1,76 @@
-import React,{useState} from 'react'
-import "./Components/Contact.css"
-import "./Orders.css"
-import Map, { Marker,  NavigationControl } from "react-map-gl";
-import ContactIcon from '../Icons/ContactIcon'
-import {EnvironmentOutlined} from "@ant-design/icons"
+import { Form, Input, Button, Row, Col, Card, Typography } from "antd";
+import { PhoneOutlined, MailOutlined, EnvironmentOutlined } from "@ant-design/icons";
 
-
+const { Title, Text } = Typography;
 
 const ContactUs = () => {
+  const onFinish = (values) => {
+    console.log("Submitted:", values);
+  };
 
-    
   return (
-    <div className='order_cont'>
-    <form className="order">
-   
-    <h3 style={{marginBlock:"20px 10px",fontWeight:"500"}}>Make An Enquiry</h3>
+    <Row justify="center" style={{ minHeight: "100vh", background: "#f5f5f5", padding: "40px 20px" }}>
+      <Col xs={24} sm={20} md={16} lg={12}>
+        <Card
+          style={{ borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}
+          title={<Title level={2} style={{ textAlign: "center", marginBottom: 0 }}>Contact Us</Title>}
+        >
+          <Text type="secondary" style={{ display: "block", textAlign: "center", marginBottom: "20px" }}>
+            We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
+          </Text>
 
-    <p style={{marginBottom:"30px",fontSize:"14px"}}>Fill out the form below to get a tailored for your shipping needs.<br/>
-       Our team will get back to you after 12hours with the details.
-    </p>
-   <div className='free_quote_input'>
-      <input type="text"  placeholder='First name' />
-      <input type="text"  placeholder='Last name'/>
-      <input type='text'  placeholder='Email' />
-      <input type="text"  placeholder='WhatsApp number'/>
+          <Form layout="vertical" onFinish={onFinish}>
+            <Form.Item
+              label="Full Name"
+              name="name"
+              rules={[{ required: true, message: "Please enter your name" }]}
+            >
+              <Input placeholder="John Doe" />
+            </Form.Item>
 
-   </div>
+            <Form.Item
+              label="Email Address"
+              name="email"
+              rules={[
+                { required: true, message: "Please enter your email" },
+                { type: "email", message: "Please enter a valid email" }
+              ]}
+            >
+              <Input placeholder="example@email.com" />
+            </Form.Item>
 
-      <div className="shipment_radio_checks">    
-            <div>
-              <div style={{fontWeight:"500",fontSize:"16px"}}>Shipment Type</div>
-              <section   className="check">
-              
-              <label> <div className="input_container"><input type='radio' name="shippemt_type"/> </div>Sea Freight</label>
-               <label> <div className="input_container"><input type='radio' name="shippemt_type"/> </div>Air Freight </label>
-                <label><div className="input_container"><input type='radio' name="shippemt_type"/> </div>Door-to-door delivery</label>
+            <Form.Item
+              label="Message"
+              name="message"
+              rules={[{ required: true, message: "Please enter your message" }]}
+            >
+              <Input.TextArea rows={4} placeholder="Write your message here..." />
+            </Form.Item>
 
-                <label><div className="input_container"><input type='radio' name="shippemt_type"/></div>RMB Exchange </label>
-                <label><div className="input_container"><input type='radio' name="shippemt_type"/></div>Container Clearence or Booking </label>
-              </section>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" block>
+                Send Message
+              </Button>
+            </Form.Item>
+          </Form>
+
+          {/* Contact Info Section */}
+          <div style={{ marginTop: "30px", textAlign: "center" }}>
+            <Text strong>Or reach us at:</Text>
+            <div style={{ marginTop: "10px" }}>
+              <PhoneOutlined /> <Text type="secondary">020 811 6360 / 053 948 0433</Text>
             </div>
-
-            
-
-
-            
-
-            
+            <div>
+              <MailOutlined /> <Text type="secondary">sfghanalogistics24@gmail.com</Text>
+            </div>
+            <div>
+              <EnvironmentOutlined /> <Text type="secondary">George Bush Highway, Dzorwulu, Accra-Ghana</Text>
+            </div>
           </div>
-              <textarea className="textArea" placeholder='Message'></textarea>
+        </Card>
+      </Col>
+    </Row>
+  );
+};
 
-              <button type="submit" className="send_button">Send Message</button>
-          </form>
-          </div>
-  )
-}
-
-export default ContactUs
+export default ContactUs;

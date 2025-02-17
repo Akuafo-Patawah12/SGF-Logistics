@@ -262,18 +262,7 @@ footer a{
   display: none;
 }
 
-.socials_media_handles{
-  padding-block: 20px;
-  background: #251D1D;
-  margin-top: 1.5rem;
-  border-radius: 5px;
-  text-align: center;
-  
 
-  & a{
-    font-size: 16px;
-  }
-}
 
 .About > div{
    overflow: hidden;
@@ -320,7 +309,7 @@ footer a{
 .open:hover{
   background: transparent;
 }
-.nav_1,
+
 .nav_2{
   display: flex;
   flex: 1 1 auto;
@@ -349,10 +338,10 @@ footer a{
 
   height: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border-top: 5px solid #fff;
-
+  padding-inline: 2.5%;
 
   & p{
     
@@ -395,7 +384,9 @@ footer a{
   background-color: #0056b3;
 }
 
-
+.social_media_handles{
+  display: flex;
+}
 
 @media (max-width: 568px){
   *{
@@ -473,7 +464,9 @@ footer a{
 }
 
 @media (max-width: 768px){
-
+  .social_media_handles{
+    display: none;
+  }
   .About{
     display: flex;
   }

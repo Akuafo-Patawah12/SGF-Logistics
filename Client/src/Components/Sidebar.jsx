@@ -87,7 +87,7 @@ const Sidebar = ({ popUp, setPopUp1, popRef }) => {
           </Menu.Item>
           <Menu.Item key="3-3">
             <Link to="/Services/Procurement">Procurement</Link>
-          </Menu.Item>
+           </Menu.Item>
           <Menu.Item key="3-4">
             <Link to="/Services/Door2door">Door to Door Delivery</Link>
           </Menu.Item>
