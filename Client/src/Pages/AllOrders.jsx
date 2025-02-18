@@ -127,6 +127,10 @@ const AllOrders=()=>{
     >
       {/* Three-dot icon */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Text strong>Invoice to:  </Text>
+        <Text>{order.fullname}</Text>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <Text strong>Status:  </Text>
         <Text>{order.status}</Text>
       </div>

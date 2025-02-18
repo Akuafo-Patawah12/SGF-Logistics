@@ -87,7 +87,8 @@ const Login = ({getEmail}) => {
         }
 
         if(response.status===402){
-          getEmail(formData.email)
+          
+          localStorage.setItem("email",formData.email)
           navigate("/verify")
           return 
       }
@@ -107,7 +108,7 @@ const Login = ({getEmail}) => {
             setLoader(false)
           setSuccess(true);
          
-          navigate(`/Invoice`)
+          navigate(`/AllOrders`)
           
           }
           if(data.message==="Logged in as an admin"){

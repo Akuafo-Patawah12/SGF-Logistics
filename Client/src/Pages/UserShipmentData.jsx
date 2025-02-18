@@ -11,7 +11,7 @@ const UserShipmentData = ({visible, onClose, shipmentData, loading3}) => {
         email,
         phone,
         status,
-        createdAt,
+        
         updatedAt,
         selected_country,
         route,
@@ -38,15 +38,13 @@ const UserShipmentData = ({visible, onClose, shipmentData, loading3}) => {
       ) : (
         <>
           <Descriptions bordered column={1} size="small">
-            <Descriptions.Item label="Full Name">{fullname}</Descriptions.Item>
+            <Descriptions.Item label="Shipping mark">{fullname}</Descriptions.Item>
             <Descriptions.Item label="Email">{email}</Descriptions.Item>
             <Descriptions.Item label="Phone">{phone}</Descriptions.Item>
             <Descriptions.Item label="Country">{selected_country}</Descriptions.Item>
             <Descriptions.Item label="Route">{route}</Descriptions.Item>
             <Descriptions.Item label="Status">{status}</Descriptions.Item>
-            <Descriptions.Item label="Created At">
-              {new Date(createdAt).toLocaleString()}
-            </Descriptions.Item>
+            
             <Descriptions.Item label="Last Updated">
               {new Date(updatedAt).toLocaleString()}
             </Descriptions.Item>

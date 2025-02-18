@@ -216,7 +216,7 @@ useEffect(() => {
         {pRefs.current[index]?.getBoundingClientRect &&
           pRefs.current[index].getBoundingClientRect().left +
             Math.round(scroll) <=
-            xPosition + 10 && (
+            xPosition + 10  && (
             <CheckOutlined style={{ position: "relative", top: "0", left: "0" }} />
           )}
       </div>

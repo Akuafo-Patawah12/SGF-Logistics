@@ -5,6 +5,7 @@ import { EyeOutlined, EditOutlined, DeleteOutlined , FilePdfOutlined } from '@an
 import {Form,Tooltip, Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal , Select} from "antd";
 import './AdminDashboard.css'
 import UserShipmentData from "./UserShipmentData"
+import { Link } from "react-router-dom"
 import axios from "axios"
 import New from "./New"
 import jsPDF from "jspdf";
@@ -529,10 +530,13 @@ const AdminDashboard = () => {
       Add users
       {ripple && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
     </button>
+
+    <Link to={"/users"}>
     <button className="direction-button" onMouseEnter={(e)=> handleClick(e,1)} onClick={(e)=> handleClick(e,1)}>
       View users
       {ripple1 && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
     </button>
+    </Link>
     </section>
 
 

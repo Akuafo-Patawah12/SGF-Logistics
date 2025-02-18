@@ -5,13 +5,19 @@ import { useNavigate} from "react-router-dom"
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 import axios from "axios"
 
-const OTP = ({email}) => {
+const OTP = () => {
   
 
   
   const [otp, setOtp] = useState(new Array(4).fill(""));
   const navigate= useNavigate()
   const inputRefs = useRef([]);
+  const[email,setEmail] = useState("")
+
+  function getEmail(){
+    setEmail(localStorage.getItem("email"))
+  }
+  getEmail()
 
   const handleChange = (e, index) => {
     const value = e.target.value.replace(/\D/g, ""); // Allow only numbers
@@ -67,7 +73,14 @@ const OTP = ({email}) => {
       verifyOTP(pasteData); // Auto-send OTP when pasting
     }
   };
-
+   async function resendOtp(){
+      try{
+        if(email==="") return
+        axios.post("http://localhost:4040/resend-otp", email)
+      }catch(error){
+        console.error(error)
+      }
+   }
 
   return (
     <div className="otp_background">
@@ -95,7 +108,7 @@ const OTP = ({email}) => {
       ))}
     </div>
     <div class="resend-container">
-  <p>Didn't receive a code? <button class="resend-btn">Click to resend</button></p>
+  <p>Didn't receive a code? <button class="resend-btn" onClick={resendOtp}>Click to resend</button></p>
 </div>
 </div>
     </div>

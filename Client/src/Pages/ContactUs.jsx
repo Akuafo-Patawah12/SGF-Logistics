@@ -1,12 +1,28 @@
-import { Form, Input, Button, Row, Col, Card, Typography } from "antd";
+import { Form, Input, Button, Row, Col, Card, Typography , message} from "antd";
 import { PhoneOutlined, MailOutlined, EnvironmentOutlined } from "@ant-design/icons";
-
+import axios from "axios"
+import {useState} from "react"
 const { Title, Text } = Typography;
 
 const ContactUs = () => {
-  const onFinish = (values) => {
-    console.log("Submitted:", values);
-  };
+  const [formData,setFormData]= useState({
+    name:"",
+    email:"",
+    message:""
+  })
+  const onFinish = async() => {
+    try{
+    const response = await axios.post("http://localhost:4040/contact_us", {formData})
+    if ( response.status===200){
+      message.success(response.data.message)
+    }else{
+       message.error("Internal server error")
+    }
+    
+  }catch(error){
+    message.error("Oops, something went wrong")
+  }
+}
 
   return (
     <Row justify="center" style={{ minHeight: "100vh", background: "#f5f5f5", padding: "40px 20px" }}>
@@ -25,7 +41,7 @@ const ContactUs = () => {
               name="name"
               rules={[{ required: true, message: "Please enter your name" }]}
             >
-              <Input placeholder="John Doe" />
+              <Input placeholder="John Doe" value={formData.name} onChange={(e)=> setFormData({...formData, name: e.target.value})} />
             </Form.Item>
 
             <Form.Item
@@ -36,7 +52,7 @@ const ContactUs = () => {
                 { type: "email", message: "Please enter a valid email" }
               ]}
             >
-              <Input placeholder="example@email.com" />
+              <Input placeholder="example@email.com" value={formData.email} onChange={(e)=> setFormData({...formData, email: e.target.value})} />
             </Form.Item>
 
             <Form.Item
@@ -44,7 +60,7 @@ const ContactUs = () => {
               name="message"
               rules={[{ required: true, message: "Please enter your message" }]}
             >
-              <Input.TextArea rows={4} placeholder="Write your message here..." />
+              <Input.TextArea rows={4} placeholder="Write your message here..." value={formData.message} onChange={(e)=> setFormData({...formData, message: e.target.value})}  />
             </Form.Item>
 
             <Form.Item>
