@@ -51,7 +51,7 @@ const Login = ({getEmail}) => {
 
        try{
 
-        const response = await fetch("https://sfghanalogistis.com", {
+        const response = await fetch("https://sfghanalogistics.com", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
