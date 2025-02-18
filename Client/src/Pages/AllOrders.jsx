@@ -106,7 +106,7 @@ const AllOrders=()=>{
       </Space>
 
       {/* Create Order Button */}
-      <Link to="/Orders">
+      <Link to="/invoice">
         <Button type="primary">Create Order</Button>
       </Link>
     </section>

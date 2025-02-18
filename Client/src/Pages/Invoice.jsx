@@ -509,7 +509,7 @@ const Invoice = () => {
                   >
                    Submit
                   </button>
-                  <Link to={"/invoice"}><button className="view">View Orders</button></Link>
+                  <Link to={"/AllOrder"}><button className="view">View Orders</button></Link>
                 </div>
               </form>
             </div>
