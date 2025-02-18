@@ -1,6 +1,7 @@
 import React, { useState,useEffect ,useMemo} from 'react';
 import {useNavigate} from "react-router-dom"
 import './Auth.css'; // Import the CSS file
+import axios from "axios"
 import { Link } from "react-router-dom";
 import { Form, Input, Button, Typography, Card  } from "antd";
 const { Title, Text } = Typography;
@@ -55,16 +56,7 @@ const SignUp = ({slide}) => {
     }
 
 
-    const response = await fetch("https://sfghanalogistics.com/sign_up", {
-      
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({formData}), // example payload
-    });
-
-    const data = await response.json();
+    const response = await axios.post("https://sfghanalogistics.com/sign_up", formData)
 
     if(response.status===403) validationErrors.email="Email already exist"
     
