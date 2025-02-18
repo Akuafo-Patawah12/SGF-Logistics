@@ -56,7 +56,7 @@ const SignUp = ({slide}) => {
     }
 
 
-    const response = await axios.post("https://sfghanalogistics.com/sign_up", formData)
+    const response = await axios.post("https://sfghanalogistics.com/sign_up", {formData})
 
     if(response.status===403) validationErrors.email="Email already exist"
     
