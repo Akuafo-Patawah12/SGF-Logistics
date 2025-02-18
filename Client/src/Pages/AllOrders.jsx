@@ -12,7 +12,7 @@ import { EllipsisOutlined, DownloadOutlined, EyeOutlined } from "@ant-design/ico
 import "./AllOrders.css"
 const AllOrders=()=>{
     const { Text } = Typography;
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    const socket = useMemo(() =>io("https://sfghanalogistis.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true

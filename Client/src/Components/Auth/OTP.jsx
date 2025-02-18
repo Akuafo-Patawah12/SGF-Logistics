@@ -54,7 +54,7 @@ const OTP = () => {
 
   const verifyOTP = async (enteredOtp) => {
     try {
-      const response = await axios.post("http://localhost:4040/verify-otp", {
+      const response = await axios.post("https://sfghanalogistis.com/verify-otp", {
         email:email,
         otp: enteredOtp
       });

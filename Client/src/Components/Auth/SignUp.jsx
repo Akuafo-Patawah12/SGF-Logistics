@@ -55,7 +55,7 @@ const SignUp = ({slide}) => {
     }
 
 
-    const response = await fetch("http://localhost:4040/sign_up", {
+    const response = await fetch("https://sfghanalogistis.com/sign_up", {
       
       method: 'POST',
       headers: {

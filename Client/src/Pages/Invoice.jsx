@@ -13,7 +13,7 @@ import PaymentPopUp from './Components/PaymentPopUp'
 import "./Invoice.css"
 
 const Invoice = () => {
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    const socket = useMemo(() =>io("https://sfghanalogistis.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
