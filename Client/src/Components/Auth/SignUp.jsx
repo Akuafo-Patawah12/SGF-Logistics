@@ -63,7 +63,7 @@ const SignUp = ({slide}) => {
 
     // If there are no validation errors, show success message
     if (Object.keys(validationErrors).length === 0) {
-      if(data.message==="Signed up successful")
+      if(response.data.message==="Signed up successful")
       setSuccess(true);
       navigate("/Auth/login")
       
