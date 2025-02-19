@@ -58,7 +58,7 @@ const AllOrders=()=>{
     return () => {
         socket.off('ordersByUser', handlePostData);
     };
-  },[])
+  },[socket])
 
 
     const [loadingProgress, setLoadingProgress] = useState(false);
