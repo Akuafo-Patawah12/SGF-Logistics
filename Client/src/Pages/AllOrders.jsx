@@ -243,7 +243,7 @@ const AllOrders=()=>{
 
         />
       </div>
-    </Card> : <Spin size="small"/>}</> 
+    </Card> : <Spin size="medium"/>}</> 
         ))}
         </div> : <Empty description="No orders found" />}
         
