@@ -50,7 +50,7 @@
 
 .my_item_grid{
     display: grid;
-    background: yellow;
+    gap: 15px;
     width: 95%;
     grid-template-columns: 1fr 1fr 1fr;
 }
