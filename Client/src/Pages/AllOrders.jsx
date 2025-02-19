@@ -167,10 +167,10 @@ const AllOrders=()=>{
         </Button>
       </Link>
     </section>
-        
-     {myorders.length > 0 ? <div className="my_item_grid">
+    {!loadingProgress ? 
+      <div className="my_item_grid">
         {myorders && myorders.map((order,index)=>(
-           <>{!loadingProgress ? <Card
+           <Card
       key={index}
       bordered={false}
       style={{
@@ -243,9 +243,10 @@ const AllOrders=()=>{
 
         />
       </div>
-    </Card> : <Spin size="medium"/>}</> 
+    </Card>  
         ))}
-        </div> : <Empty description="No orders found" />}
+        </div> 
+        : <Spin size="medium"/>}
         
         <UserShipmentData
        visible={visible2}
