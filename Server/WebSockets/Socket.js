@@ -78,6 +78,20 @@ function initializeSocket(server){
         middleware(socket,next)
      })
 
+     shipmentNamespace.use((socket, next) => {
+      try {
+        const decoded = socket.user 
+
+        if (decoded.role !== "admin") {
+          return next(new Error("403: Unauthorized role"));
+        }
+
+        next();
+      } catch (err) {
+        return next(new Error("401: Invalid refresh token"));
+      }
+    });
+
      function setUser(socket){
       const userId=socket.user.id  // Extracting users id from socket
       users[userId]=socket.id 

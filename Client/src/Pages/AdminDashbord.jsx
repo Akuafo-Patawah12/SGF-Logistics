@@ -2,8 +2,9 @@
 import React, { useState,useMemo, useEffect,useRef } from 'react';
 import io from 'socket.io-client';
 import { EyeOutlined, EditOutlined, DeleteOutlined , FilePdfOutlined } from '@ant-design/icons';
-import {Form,Tooltip, Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal , Select} from "antd";
+import {Form,Tooltip, Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal, Result, Select} from "antd";
 import './AdminDashboard.css'
+import { useNavigate } from "react-router-dom"
 import UserShipmentData from "./UserShipmentData"
 import { Link } from "react-router-dom"
 import axios from "axios"
@@ -21,8 +22,11 @@ const AdminDashboard = () => {
     withCredentials: true,
     secure: true
   }),[])
+
+  const navigate= useNavigate()
   const [admins, setAdmins] = useState([]);
   const [users, setUsers] = useState([]);
+  const [permission,setPermission] = useState(false)
   const [shipments, setShipments] = useState([]);
   const [addUserPop,setAddUsersPop] = useState(false)
     const [loading, setLoading] = useState(true);
@@ -123,6 +127,20 @@ const AdminDashboard = () => {
       setShipments((prev) => prev.filter((s) => s._id !== id));
     });
 
+    socket.on("connect_error", (err)=>{
+      if (err.message.includes("404: Refresh token not found")) {
+        console.error("Refresh token is missing. Redirecting to login...");
+        window.location.href = "/login"; // Redirect to login
+      } else if (err.message.includes("403: Unauthorized role")) {
+        setPermission(true)
+        alert("You do not have permission to access this feature.");
+      } else if (err.message.includes("401: Invalid refresh token")) {
+        console.error("Invalid refresh token. Please log in again.");
+        window.location.href = "/login";
+      }
+    });
+    
+
     socket.on("disconnect",(reason)=>{
        console.log(reason)
     })
@@ -133,6 +151,7 @@ const AdminDashboard = () => {
        socket.off("all_orders")
        socket.off("disconnect")
        socket.off("newOrder")
+       socket.off("connect_error")
        socket.off("delete-shipment")
     }
   }, [socket,shipments]);
@@ -500,7 +519,8 @@ const AdminDashboard = () => {
 
 
   return (
-    <div className="admin-page">
+    <>
+    {permission ? <div className="admin-page">
       <header className="Admin-head">
       {/* Logo */}
       <div className="logo">🌍 Logistics</div>
@@ -753,7 +773,21 @@ const AdminDashboard = () => {
     />
       
     </div>
-    </div>
+    </div> :
+
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <Result
+        status="403"
+        title="403"
+        subTitle="You are not permitted to view this page."
+        extra={
+          <Button type="primary" onClick={() => navigate("/")}>
+            Go Home
+          </Button>
+        }
+      />
+    </div>}
+    </>
   );
 };
 
