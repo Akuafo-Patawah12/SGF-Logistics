@@ -102,7 +102,7 @@ const AllOrders=()=>{
       style={{
         
         
-        width: "90%",
+        width: "95%",
         border: "1px solid #ddd",
         
         background: "#f5f5f5",
@@ -125,7 +125,7 @@ const AllOrders=()=>{
       </Link>
     </section>
         
-     <div className="my_item_grid">
+     {myorders.length > 0 ? <div className="my_item_grid">
         {myorders && myorders.map((order,index)=>(
             <Card
       key={index}
@@ -202,7 +202,7 @@ const AllOrders=()=>{
       </div>
     </Card>
         ))}
-        </div>
+        </div> : <div>No data</div>}
         
         <UserShipmentData
        visible={visible2}
