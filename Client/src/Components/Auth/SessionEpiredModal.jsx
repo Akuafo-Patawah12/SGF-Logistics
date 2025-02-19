@@ -6,10 +6,7 @@ const SessionExpiredModal = ({isModalOpen,setIsModalOpen}) => {
   
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Simulate session expiration (you can trigger this from your auth logic)
-    setIsModalOpen(true);
-  }, []);
+ 
 
   const handleOk = () => {
     setIsModalOpen(false);

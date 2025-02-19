@@ -131,7 +131,16 @@ const AdminDashboard = () => {
 
     socket.on("connect_error", (err)=>{
       console.log(err)
-     
+      if (err.message.includes("404: Refresh token not found")) {
+        setTimeout(()=>{
+        setIsModalOpen(true)
+      },1000)
+        
+     } else if (err.message.includes("401: Invalid refresh token")) {
+        setTimeout(()=>{
+          setIsModalOpen(true)
+        },1000)
+      }
     });
     
 
