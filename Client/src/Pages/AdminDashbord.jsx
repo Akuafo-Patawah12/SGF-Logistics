@@ -520,7 +520,7 @@ const AdminDashboard = () => {
 
   return (
     <>
-    {permission ? <div className="admin-page">
+    {!permission ? <div className="admin-page">
       <header className="Admin-head">
       {/* Logo */}
       <div className="logo">🌍 Logistics</div>
