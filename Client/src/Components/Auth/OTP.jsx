@@ -5,7 +5,7 @@ import { useNavigate} from "react-router-dom"
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 import axios from "axios"
 
-const OTP = () => {
+const OTP = ({mail}) => {
   
 
   
@@ -61,7 +61,7 @@ const OTP = () => {
   const verifyOTP = async (enteredOtp) => {
     try {
       const response = await axios.post("https://sfghanalogistics.com/verify-otp", {
-        email:email,
+        email:email || mail,
         otp: enteredOtp
       });
       if(response.data.message==="OTP verified!"){
@@ -81,7 +81,7 @@ const OTP = () => {
   };
    async function resendOtp(){
       try{
-        if(email==="") return
+        if(email==="") return 
         axios.post("https://sfghanalogistics.com/resend-otp", email)
       }catch(error){
         console.error(error)

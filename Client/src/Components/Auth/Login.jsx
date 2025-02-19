@@ -89,7 +89,9 @@ const Login = ({getEmail}) => {
         if(response.status===402){
           
           localStorage.setItem("email",formData.email)
+          getEmail(formData.email)
           navigate("/verify")
+
           return 
       }
 

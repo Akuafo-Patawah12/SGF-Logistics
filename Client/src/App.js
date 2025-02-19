@@ -45,7 +45,7 @@ function getEmail(mail){
                  />
 
         
-        <Route path="/verify" element={<OTP email={email}/>} />
+        <Route path="/verify" element={<OTP mail={email}/>} />
 
         <Route path='/Auth/login' element={
                     <Suspense fallback={<Loader />}>
