@@ -1,6 +1,6 @@
 import React,{useState, useMemo, useEffect} from "react"
 import {Link} from "react-router-dom"
-import { message }  from "antd"
+import { message,Empty }  from "antd"
 import io from "socket.io-client"
 import { formatDistanceToNow, subDays } from "date-fns";
 import UserShipmentData from "./UserShipmentData"
@@ -202,7 +202,7 @@ const AllOrders=()=>{
       </div>
     </Card>
         ))}
-        </div> : <div>No data</div>}
+        </div> : <Empty description="No orders found" />}
         
         <UserShipmentData
        visible={visible2}
