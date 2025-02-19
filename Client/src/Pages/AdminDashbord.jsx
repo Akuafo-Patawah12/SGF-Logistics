@@ -131,13 +131,17 @@ const AdminDashboard = () => {
 
     socket.on("connect_error", (err)=>{
       if (err.message.includes("404: Refresh token not found")) {
+        setTimeout(()=>{
         setIsModalOpen(true)
+      },1000)
         
       } else if (err.message.includes("403: Unauthorized role")) {
         setPermission(true)
 
       } else if (err.message.includes("401: Invalid refresh token")) {
-        setIsModalOpen(true)
+        setTimeout(()=>{
+          setIsModalOpen(true)
+        },1000)
       }
     });
     
