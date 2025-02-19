@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import { EyeOutlined, EditOutlined, DeleteOutlined , FilePdfOutlined } from '@ant-design/icons';
 import {Form,Tooltip, Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal, Result, Select} from "antd";
 import './AdminDashboard.css'
+import SessionExpiredModal from "../Components/Auth/SessionEpiredModal"
 import { useNavigate } from "react-router-dom"
 import UserShipmentData from "./UserShipmentData"
 import { Link } from "react-router-dom"
@@ -43,6 +44,7 @@ const AdminDashboard = () => {
   const [showInvoice,setShowInvoice] = useState(false)
   const [loading1, setLoading1] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [ invoice,setInvoice] = useState(
     {
       description:"",
@@ -129,14 +131,13 @@ const AdminDashboard = () => {
 
     socket.on("connect_error", (err)=>{
       if (err.message.includes("404: Refresh token not found")) {
-        console.error("Refresh token is missing. Redirecting to login...");
-        window.location.href = "/login"; // Redirect to login
+        setIsModalOpen(true)
+        
       } else if (err.message.includes("403: Unauthorized role")) {
         setPermission(true)
 
       } else if (err.message.includes("401: Invalid refresh token")) {
-        console.error("Invalid refresh token. Please log in again.");
-        window.location.href = "/login";
+        setIsModalOpen(true)
       }
     });
     
@@ -773,6 +774,7 @@ const AdminDashboard = () => {
     />
       
     </div>
+    <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
     </div> :
 
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
