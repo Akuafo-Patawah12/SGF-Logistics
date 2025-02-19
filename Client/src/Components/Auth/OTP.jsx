@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Auth.css"; // Import the CSS file
 import { message } from "antd"
 import { useNavigate} from "react-router-dom"
@@ -14,10 +14,16 @@ const OTP = () => {
   const inputRefs = useRef([]);
   const[email,setEmail] = useState("")
 
+
+  useEffect(()=>{
+
+  
   function getEmail(){
     setEmail(localStorage.getItem("email"))
   }
   getEmail()
+
+},[])
 
   const handleChange = (e, index) => {
     const value = e.target.value.replace(/\D/g, ""); // Allow only numbers
