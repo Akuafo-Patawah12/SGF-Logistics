@@ -82,7 +82,7 @@ const OTP = () => {
    async function resendOtp(){
       try{
         if(email==="") return
-        axios.post("http://localhost:4040/resend-otp", email)
+        axios.post("https://sfghanalogistics.com/resend-otp", email)
       }catch(error){
         console.error(error)
       }

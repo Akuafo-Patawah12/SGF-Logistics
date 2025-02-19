@@ -9,6 +9,10 @@
     padding-block: 20px 30px;
 }
 
+.create_order_button{
+    display: flex;
+}
+
 .nav_button{
     display: flex;
     justify-content: space-between;
@@ -51,8 +55,22 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.filter_gap{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
 @media (max-width: 768px){
     .my_item_grid{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 689px){
+    .create_order_button{
+        width: 100%;
+    }
+    .filter_gap{
         grid-template-columns: 1fr;
     }
 }

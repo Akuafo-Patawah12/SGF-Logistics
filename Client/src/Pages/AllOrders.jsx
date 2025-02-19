@@ -97,17 +97,31 @@ const AllOrders=()=>{
     return(
         
         <main className="order_container">
-        <section style={{ display: "flex",width:"90%",border:"1px solid #ddd", justifyContent: "space-between", alignItems: "center", padding: "12px 2.5%", background: "#f5f5f5", borderRadius: "8px" }}>
+        <section
+         className="filter_gap"
+      style={{
+        
+        
+        width: "90%",
+        border: "1px solid #ddd",
+        
+        background: "#f5f5f5",
+        borderRadius: "8px",
+       
+      }}
+    >
       {/* Sort By Section */}
-      <Space>
+      <Space wrap> {/* Ensures buttons wrap on small screens */}
         <Typography.Text strong>Sort by:</Typography.Text>
         <Button type="primary">New</Button>
         <Button>Old</Button>
       </Space>
 
       {/* Create Order Button */}
-      <Link to="/invoice">
-        <Button type="primary">Create Order</Button>
+      <Link to="/invoice" className="create_order_button">
+        <Button type="primary" style={{width:"100%"}}>
+          Create Order
+        </Button>
       </Link>
     </section>
         
