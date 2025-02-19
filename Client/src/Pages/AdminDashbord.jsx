@@ -133,7 +133,7 @@ const AdminDashboard = () => {
         window.location.href = "/login"; // Redirect to login
       } else if (err.message.includes("403: Unauthorized role")) {
         setPermission(true)
-        alert("You do not have permission to access this feature.");
+
       } else if (err.message.includes("401: Invalid refresh token")) {
         console.error("Invalid refresh token. Please log in again.");
         window.location.href = "/login";
