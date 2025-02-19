@@ -61,7 +61,7 @@ const OTP = ({mail}) => {
   const verifyOTP = async (enteredOtp) => {
     try {
       const response = await axios.post("https://sfghanalogistics.com/verify-otp", {
-        email:email || mail,
+        email: `${email==="" ? mail : email}`,
         otp: enteredOtp
       });
       if(response.data.message==="OTP verified!"){
