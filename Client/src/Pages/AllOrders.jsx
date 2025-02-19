@@ -11,6 +11,7 @@ import { EllipsisOutlined, DownloadOutlined, EyeOutlined } from "@ant-design/ico
 
 import "./AllOrders.css"
 const AllOrders=()=>{
+  const [loadingProgress, setLoadingProgress] = useState(true);
     const { Text } = Typography;
     const socket = useMemo(() =>io("https://sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
@@ -33,60 +34,30 @@ const AllOrders=()=>{
             console.log("connected to server")
         })
         
+        socket.on('ordersByUser', (data)=>{
+          setMyOrders(data)
+          setLoadingProgress(false)
+        })
+        
         socket.on("disconnect",(reason)=>{
             console.log(reason)
         })
 
         return()=>{
             socket.off("connect")
+            socket.off('ordersByUser')
             socket.off("disconnect")
         }
     }, [socket]);
 
-    useEffect(() => {
-      // Listen for 'getPost' event from the server
-      
-      const handlePostData = (data) => {
-        console.log(" this is my post data", data)
-        fetchData(data);
-    };
+    
 
-    // Attach event listener for 'getPost'
-    socket.on('ordersByUser', handlePostData);
-
-    // Cleanup function to remove the event listener
-    return () => {
-        socket.off('ordersByUser', handlePostData);
-    };
-  },[socket])
-
-
-    const [loadingProgress, setLoadingProgress] = useState(false);
 
     
-    const [hasFetched, setHasFetched] = useState(false);
-      const fetchData = async (postData) => {
-        console.log(postData)
-        try {
-        
-            const totalData = postData.length;
-          if(!hasFetched){
-          // Fetch data sequentially
-          for (let i = 0; i < totalData; i++) {
-            // Update the state to add the new item
-            setMyOrders(prevData => [...prevData, postData[i]]);
-            // Update the loading progress
-            setLoadingProgress(true);
-            // Simulate delay for sequential loading
-            await new Promise(resolve => setTimeout(resolve, 500));
-          }
-          setHasFetched(true);
-          setLoadingProgress(false)
-        }
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
+
+    
+    
+      
    
 
      const [visible2, setVisible2] = useState(false);
