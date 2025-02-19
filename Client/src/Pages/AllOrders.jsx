@@ -170,7 +170,7 @@ const AllOrders=()=>{
         
      {myorders.length > 0 ? <div className="my_item_grid">
         {myorders && myorders.map((order,index)=>(
-           <>{loadingProgress ? <Card
+           <>{!loadingProgress ? <Card
       key={index}
       bordered={false}
       style={{
@@ -243,7 +243,7 @@ const AllOrders=()=>{
 
         />
       </div>
-    </Card> : <Spin size="small"/>}</>
+    </Card> : <Spin size="small"/>}</> 
         ))}
         </div> : <Empty description="No orders found" />}
         
