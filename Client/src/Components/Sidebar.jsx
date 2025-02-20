@@ -91,7 +91,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
             <Menu.Item key="1" icon={<HomeOutlined />}>
               <NavLink to="/" onClick={closeSidebar}>Home</NavLink>
             </Menu.Item>
-
+ 
             <Menu.SubMenu
               key="2"
               icon={<InfoCircleOutlined />}
@@ -134,7 +134,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
             >
               {showdrop3 && (
                 <>
-                  <Menu.Item key="5-1"><Link to="/More/FAQs">FAQs</Link></Menu.Item>
+                  <Menu.Item key="5  -1"><Link to="/More/FAQs">FAQs</Link></Menu.Item>
                   <Menu.Item key="5-2"><Link to="/More/Gallery">Gallery</Link></Menu.Item>
                   <Menu.Item key="5-3"><Link to="/More/Privacy">Privacy & Policy</Link></Menu.Item>
                 </>
