@@ -1,7 +1,10 @@
 
 .auth_header{
+  display: flex;
+  justify-content: space-between;
   background: white;
   height: 80px;
+  align-items: center;
   
 }
 .form-container{
@@ -33,20 +36,7 @@
     color: #333;
   }
   
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    
-    margin-bottom: 15px;
-    text-align: left;
-  }
   
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #555;
-  }
   
   .form-group input[type="email"],
   .form-group input[type="password"],.form-group input[type="text"] {
@@ -226,6 +216,17 @@ h2 {
     padding-inline: 5%;
     
     
+  }
+
+  .otp-container{
+     width: 90%;
+     padding: 30px 2.5%;
+  }
+
+  .otp-input {
+    width: 30px;
+    height: 30px;
+    font-size: 19px;
   }
   }
   

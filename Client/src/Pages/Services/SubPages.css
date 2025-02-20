@@ -18,9 +18,31 @@
  
 }
 
+.relative-2{
+  background: url("../../../public/SFG_images/map.jpg") ;
+ 
+}
+
+.relative-3{
+  background: url("../../../public/SFG_images/map.jpg") ;
+ 
+}
+
+.relative-4{
+  background: url("../../../public/SFG_images/map.jpg") ;
+ 
+}
+
+.relative-5{
+  background: url("../../../public/SFG_images/map.jpg") ;
+ 
+}
+
 .overlay-section {
   position: absolute;
-  inset: 0;
+  top:0;
+  left: 0;
+  width: 100%;
   background: rgba(0, 0, 0, 0.3);
   font-size: 40px;
   font-weight: 700;
@@ -28,6 +50,7 @@
   align-items: center;
   justify-content: center;
   color: white;
+  height: 100%;
 }
 
 .title {

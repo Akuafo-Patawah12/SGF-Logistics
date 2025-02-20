@@ -12,7 +12,7 @@ const SeaFreight = () => {
 
 
     <div className="freight_container">
-      <div className="relative-container">
+      <div className="relative-container relative-5">
       <section className="overlay-section">
         <h1 className="title">
           Sea Freight Services

@@ -10,7 +10,7 @@ import {ReactComponent as Global } from "../../Icons/Global.svg"
 const Door2door = () => {
   return (
       <div className="freight_container">
-        <div className="relative-container">
+        <div className="relative-container relative-2">
         <section className="overlay-section">
           <h1 className="title">
             Door To Door Services

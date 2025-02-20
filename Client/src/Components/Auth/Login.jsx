@@ -51,7 +51,7 @@ const Login = ({getEmail}) => {
 
        try{
 
-        const response = await fetch("https://sfghanalogistics.com", {
+        const response = await fetch("http://localhost:4040", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -138,9 +138,10 @@ const Login = ({getEmail}) => {
     <div className="form-container">
      <header className='auth_header'>
        <SvgIcon/>
+       <h3>Login</h3>
      </header> 
      <Card style={{ maxWidth: 400, margin: "auto",  }}>
-      <Title level={3} style={{ textAlign: "center" }}>Login</Title>
+      
 
       <Form layout="vertical" onFinish={handleSubmit} className="login-form">
         {/* Email Input */}

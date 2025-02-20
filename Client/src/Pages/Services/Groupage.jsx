@@ -6,7 +6,7 @@ import "./SubPages.css"
 const Groupage = () => {
   return (
     <div className="cont">
-      <div className='Freight_image_header'>
+      <div className='Freight_image_header relative-3'>
            <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
            <p style={{fontSize:"40px",fontWeight:"700",textAlign:"center",maxWidth:"80%",marginInline:"auto"}}>Groupage Services.</p>
            </section>

@@ -95,7 +95,7 @@ const OTP = ({mail}) => {
     <span><SvgIcon/></span>
     <div class="verification-container">
   <h3>Enter Verification Code</h3>
-  <p>We have sent a code to <span class="email-text">burxells873@gmail.com</span></p>
+  <p>We have sent a code to <span class="email-text">{email}</span></p>
 </div>
 
     <div className="otp">

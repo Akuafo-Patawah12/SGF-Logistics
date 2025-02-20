@@ -228,6 +228,7 @@ footer a{
   flex-direction: row;
   justify-content: center;
   width:96%;
+  gap: 10px;
   padding-bottom: 2em;
 }
 .About{

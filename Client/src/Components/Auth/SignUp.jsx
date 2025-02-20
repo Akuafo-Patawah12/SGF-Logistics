@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 import './Auth.css'; // Import the CSS file
 import axios from "axios"
 import { Link } from "react-router-dom";
+import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 import { Form, Input, Button, Typography, Card  } from "antd";
 const { Title, Text } = Typography;
 
@@ -78,8 +79,13 @@ const SignUp = ({slide}) => {
   };
 
   return (
+    <div className="form-container">
+         <header className='auth_header'>
+           <SvgIcon/>
+           <h3>Login</h3>
+         </header> 
     
-    <Card style={{ maxWidth: 400, margin: "auto", padding: 20 }}>
+    <Card style={{ width: 400, margin: "auto", padding: 20 }}>
     <Title level={3} style={{ textAlign: "center" }}>Sign Up</Title>
 
     <Form layout="vertical" onFinish={handleSubmit} className="signup-form">
@@ -141,6 +147,7 @@ const SignUp = ({slide}) => {
       {success && <Text type="success" style={{ display: "block", textAlign: "center", marginTop: 10 }}>Sign-up successful!</Text>}
     </Form>
   </Card>
+  </div>
      
     
   );

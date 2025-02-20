@@ -18,7 +18,7 @@ const { Title } = Typography;
 
 const AdminDashboard = () => {
 
-  const socket = useMemo(() =>io("https://sfghanalogistics.com/shipment",{
+  const socket = useMemo(() =>io("http://localhost:5000/shipment",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
