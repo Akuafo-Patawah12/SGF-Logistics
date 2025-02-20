@@ -324,7 +324,9 @@ aside{
         text-decoration: none;
         color: #444;
     }
-
+    .fullscreen-drawer{
+        display: none;
+    }
 
     
     

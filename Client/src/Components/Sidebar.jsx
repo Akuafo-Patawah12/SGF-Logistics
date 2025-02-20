@@ -52,6 +52,23 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
     setShowdrop3(false);
   };
 
+
+  const [browserWidth, setBrowserWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setBrowserWidth(window.innerWidth); // Update state with new width
+      if (window.innerWidth > 566) {
+        setPopUp1(false);
+      }
+    };
+  
+    window.addEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       {popUp && (
@@ -59,6 +76,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
           title={
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span className="text-xl font-semibold"><SvgIcon /></span>
+              <>{browserWidth}</>
               <Button icon={<CloseOutlined />} className="close-btn" onClick={closeSidebar} />
             </div>
           }
@@ -67,7 +85,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
           onClose={closeSidebar}
           visible={popUp}
           width="100%"
-          className="fullscreen-drawer light-theme"
+          className="fullscreen-drawer light-theme side"
         >
           <Menu theme="light" mode="inline" className="side_menu">
             <Menu.Item key="1" icon={<HomeOutlined />}>
