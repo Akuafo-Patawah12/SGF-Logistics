@@ -24,7 +24,7 @@ const TrackGoods = () => {
   };
 
   return (
-    <div className='Track_cont'>
+    <div className='Track_cont1'>
     <div className="track_2">
         <p>TRACK YOUR SHIPMENTS</p>
         <p>Enter upto 10 digits of your tracking number</p>

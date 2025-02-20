@@ -1,8 +1,21 @@
 .Track_cont{
-    background: url("./../../public/SFG_images/map.jpg") no-repeat;
+    background: url("./../../public/SFG_images/TrackNeutral.jpg") no-repeat;
     background-size: cover;
     position: relative;
     height: 500px;
+}
+
+.Track_cont1{
+    background: url("./../../public/SFG_images/Goods.jpg") no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 500px; 
+}
+.Track_cont2{
+    background: url("./../../public/SFG_images/ContainerTrack.jpg") no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 500px; 
 }
 .track_1 , .track_2{
     position: absolute;

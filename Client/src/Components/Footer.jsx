@@ -171,9 +171,7 @@ const Footer = () => {
       style={{
         background: "transparent",
         borderRadius: "10px",
-        display:"flex",
-        justify:"flex-end",
-        alignItems:"center",
+        
         height:"100%",
         
       }}
