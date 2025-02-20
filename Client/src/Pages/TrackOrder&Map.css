@@ -27,7 +27,7 @@
     justify-content: center;
     gap: 30px;
     z-index: 2;
-    background: rgb(225,225, 225,0.8);
+    background: rgb(225,225, 225,0.3);
    
 
     & p:first-child{
@@ -206,12 +206,11 @@
     align-items: center;
     
     margin: 20px auto;
-    width: 100%;
-    max-width: 400px;
+
+    width: 400px;
   }
   
   .tracking-input {
-    flex: 1;
     padding: 12px;
     border: 2px solid #ccc;
     border-radius: 8px;
@@ -245,9 +244,28 @@
     .line_inner{
         width: 310%;
     }
+
+    
     
 }
 
 @media (max-width: 768px){
+    .tracking-container{
+        flex-direction: column;
+       
+        
+    }
 
+    .tracking-input{
+        width: 95%;
+        padding: 12px  2.5% ;
+        font-size: 16px;
+        flex: 1;
+    }
+    .track-button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        flex: 1;
+    }
 }
