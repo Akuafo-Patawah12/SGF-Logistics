@@ -13,7 +13,7 @@ import "./AllOrders.css"
 const AllOrders=()=>{
   const [loadingProgress, setLoadingProgress] = useState(true);
     const { Text } = Typography;
-    const socket = useMemo(() =>io("http://localhost/orders",{
+    const socket = useMemo(() =>io("https://sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
