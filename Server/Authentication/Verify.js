@@ -34,6 +34,7 @@ const sendCookie = require("../Utils/Cookie");
 
     const payload = {
         id: record._id, // Example user ID
+        role: record.accountype,
         iat: Math.floor(Date.now() / 1000) // Set issued at timestamp
         
       };
@@ -58,7 +59,12 @@ const sendCookie = require("../Utils/Cookie");
     await record.save()
     let rememberMe;
     sendCookie(payload,rememberMe=true,res)
-    res.json({ success: true, message: "OTP verified!" });
+
+    if(record.account_type==="User"){
+      res.status(200).json({ success: true, message: "OTP verified!" });
+    }else{
+        res.status(201).json({ success: true, message: "Verified!" })
+    }
 
 }catch(err){
     console.log(err)

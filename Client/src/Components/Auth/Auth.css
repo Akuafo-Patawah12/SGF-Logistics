@@ -4,12 +4,29 @@
   justify-content: space-between;
   background: white;
   height: 80px;
+  padding-inline: 2.5%;
   align-items: center;
-  
+  border-bottom: 2px solid #ddd;
+  border-top: 3px solid var(--purple);
+}
+
+.auth_card{
+  width: 400px;
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 .form-container{
   width: 100%;
+  height: 110vh;
+  position: relative;
+  
 
+}
+.form_cont2{
+  height: 130vh !important;
 }
 
   .signup-form,
@@ -179,8 +196,8 @@ h2 {
 }
 
 .email-text {
-  font-weight: bold;
-  color: #007bff;
+  font-weight: nedium;
+  color: var(--purple);
 }
 
 
@@ -194,8 +211,8 @@ h2 {
 .resend-btn {
   background: none;
   border: none;
-  color: #007bff;
-  font-weight: bold;
+  color: var(--purple);
+  font-weight: medium;
   cursor: pointer;
   text-decoration: underline;
   padding: 0;
@@ -204,6 +221,7 @@ h2 {
 .resend-btn:hover {
   color: #0056b3;
   text-decoration: none;
+  background: transparent;
 }
 
 
@@ -216,6 +234,10 @@ h2 {
     padding-inline: 5%;
     
     
+  }
+
+  .auth_card{
+    width: 95%;
   }
 
   .otp-container{

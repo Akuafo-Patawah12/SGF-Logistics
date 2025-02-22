@@ -11,6 +11,7 @@ import { PlusOutlined, SendOutlined } from '@ant-design/icons'
 import PaymentPopUp from './Components/PaymentPopUp'
 
 import "./Invoice.css"
+import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 
 const Invoice = () => {
     const socket = useMemo(() =>io("https://sfghanalogistics.com/orders",{
@@ -21,6 +22,7 @@ const Invoice = () => {
     
     const[orders,setOrders] =useState([])
     const [creatingOrder,setCreatingOrder]= useState(false);
+    const[isModalOpen, setIsModalOpen] = useState(false)
     
      
     
@@ -36,6 +38,15 @@ const Invoice = () => {
           message.success("New order")
           console.log("order data",data)
         })
+
+        socket.on("connect_error",(error)=>{
+          console.log(error)
+          if(error.message.includes("Refresh token expired")){
+            setTimeout(()=>{
+              setIsModalOpen(true)
+            },1000)
+          }
+        })
     
         socket.on('disconnect',(reasons)=>{
             console.log(reasons)
@@ -47,6 +58,7 @@ const Invoice = () => {
         return()=>{
             socket.off('connect');
             socket.off("receive")
+            socket.off("connect_error")
             socket.off('disconnect');
                   
         }
@@ -65,7 +77,6 @@ const Invoice = () => {
         fullname:"",
         phone:"",
         email:"",
-        additional_info:"",
         special_handling:"",
         shipment_type:"",
         origin:"",
@@ -81,7 +92,7 @@ const Invoice = () => {
     
     
     const addItem = () => {
-      setItems([...items, {  description: "", trackingNo: "", ctnNo: "", cbm: "", amount: "" }]);
+      setItems([...items, {  description: "", trackingNo: "" }]);
     };
     
     const removeItem = (index) => {
@@ -102,18 +113,11 @@ const Invoice = () => {
       
       // Reset form
       
-      setItems([{ description: "", trackingNo: "", ctnNo: "", cbm: "", amount: "" }]);
+      setItems([{ description: "", trackingNo: ""}]);
       togglePopup();
     };
     
-    function deleteOrder(order_id,customer_id){  //function to delete an order
-     
-        setTimeout(()=>{
-          socket.emit("deleteOrder",{order_id,customer_id})
-      
-        },5000)
-          
-      }
+   
     
     
     
@@ -124,10 +128,10 @@ const Invoice = () => {
       const [invoiceDueDate, setInvoiceDueDate] = useState("");
       
     
-      const[total,setTotal] =useState(0)
+      
       
       const [items, setItems] = useState([
-          { description: "", trackingNo: "", ctnNo: "", cbm: "", Amount: "",length:"",width:"",height:"" }
+          { description: "", trackingNo: ""}
       ]);
     
       // Generate a random invoice number
@@ -149,31 +153,9 @@ const Invoice = () => {
           return `${dd}/${mm}/${yyyy}`;
       };
     
-      useEffect(() => {
-        const newTotal = items.reduce((sum, row) => {
-          const amount = parseFloat(row.Amount) || 0;
-          return sum + amount;
-        }, 0);
-        setTotal(newTotal.toFixed(2));
-      }, [items]); // Only rerun when items change
+       // Only rerun when items change
     
-      function calculateCBM(index) {
-        // Create a new array to avoid mutating the state directly
-        const newItems = [...items];
-        
-        // Calculate CBM based on dimensions
-        const cbm = items[index].length * items[index].width * items[index].height;
-        newItems[index]["cbm"] = cbm.toFixed(3);
-    
-        // Calculate the amount based on CBM
-        const amount = cbm * 230;
-        newItems[index]["Amount"] = amount.toFixed(2);
-    
-        // Update the items state, which will trigger the effect to recalculate the total
-        setItems(newItems);
-        setActiveIndex(activeIndex === index ? null : index);
-    
-      }
+      
     
       
     
@@ -193,17 +175,7 @@ const Invoice = () => {
           const newItems = [...items];
           newItems[index][name] = value;
     
-          if (name === "length" || name === "width" || name === "height") {
-              const length = parseFloat(newItems[index].length || 0);
-              const width = parseFloat(newItems[index].width || 0);
-              const height = parseFloat(newItems[index].height || 0);
-              const cbm = (length * width * height).toFixed(3);
-              newItems[index].cbm = cbm;
-    
-              // Calculate amount (example rate: $230 per CBM)
-              newItems[index].Amount = (cbm * 230).toFixed(2);
-          }
-    
+          
           setItems(newItems);
       };
     
@@ -244,7 +216,7 @@ const Invoice = () => {
                   <input
                         className="contact_input"
                         type="text"
-                        placeholder="Fullname"
+                        placeholder="Shipping mark"
                         onChange={(e)=>{setOrderInfo({...orderInfo,fullname:e.target.value})}}
                         
                         
@@ -287,9 +259,7 @@ const Invoice = () => {
     <tr>
       <th>DESCRIPTION</th>
       <th>TRACKING NO.</th>
-      <th>CTN NO.</th>
-      <th>CBM</th>
-      <th>Amount $</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -311,34 +281,9 @@ const Invoice = () => {
             onChange={(e) => handleInputChange(index, e)}
           />
         </td>
-        <td>
-          <input
-            type="text"
-            name="ctnNo"
-            value={item.ctnNo}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </td>
-        <td style={{display:"flex",minWidth:"100px"}}>
-          <input
-            type="text"
-            name="cbm"
-            placeholder="Dimension"
-            value={item.cbm}
-            onChange={(e) => handleInputChange(index, e)}
-            disabled={true}
-          />
-          <button>Add</button>
-        </td>
-        <td>
-          <input
-            type="text"
-            name="amount"
-            value={item.Amount}
-            onChange={(e) => handleInputChange(index, e)}
-            disabled={true}
-          />
-        </td>
+        
+        
+        
         <td>
           <button
             type="button"
@@ -375,71 +320,10 @@ const Invoice = () => {
             onChange={(e) => handleInputChange(index, e)}
           />
         </div>
-        <div className="input_sec">
-          <input
-            type="text"
-            name="ctnNo"
-            placeholder="Ctn No."
-            value={item.ctnNo}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-        </div>
-        <div className="input_sec">
-          <input
-            type="text"
-            name="cbm"
-            placeholder="CBM"
-            value={item.cbm}
-            disabled={true}
-            style={{cursor:"not-allowed"}}
-            onChange={(e) => handleInputChange(index, e)}
-          />
-          <button className="dimensions" type="button" onClick={() => toggleDimensions(index)} >Add dimensions</button>
-        </div>
-        <div className="input_sec">
-          <input
-            type="text"
-            name="amount"
-            placeholder="Amount $"
-            value={item.Amount}
-            style={{cursor:"not-allowed"}}
-            onChange={(e) => handleInputChange(index, e)}
-            disabled={true}
-          />
-        </div>
-        {activeIndex === index && (<div className='dimen-container'>
         
-          <Card size="small" title={`Dimension ${index + 1}`} style={{width: 300}} extra={
-      <Button type="text" icon={<CloseOutlined />} onClick={() => toggleDimensions(index)} />
-    }>
-      <Input 
-        type="number" 
-        placeholder="Width" 
-        name="width" 
-        value={item.width} 
-        onChange={(e) => handleInputChange(index, e)} 
-        style={{ marginBottom: 8 }}
-      />
-      <Input 
-        type="number" 
-        placeholder="Height" 
-        name="height" 
-        value={item.height} 
-        onChange={(e) => handleInputChange(index, e)} 
-        style={{ marginBottom: 8 }}
-      />
-      <Input 
-        type="number" 
-        placeholder="Length" 
-        name="length" 
-        value={item.length} 
-        onChange={(e) => handleInputChange(index, e)} 
-        style={{ marginBottom: 8 }}
-      />
-      <Button type="primary" onClick={() => calculateCBM(index)}>Add</Button>
-    </Card>
-    </div>
-        )}
+        
+        
+        
 
 
         <section>
@@ -455,10 +339,7 @@ const Invoice = () => {
   </div>
 ))}
                  
-<div className="total">
-  <section>Total</section>
-  <section>${total}</section>
-</div>   
+   
                   <button
                     type="button"
                     className="add_btn"
@@ -521,7 +402,7 @@ const Invoice = () => {
       {showPopup && <PaymentPopUp onClose={() => setShowPopup(false)}  showPopup={showPopup}/>}
     </div>
          
-     
+    <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> 
 
            <LogisticFooter />
         </div>

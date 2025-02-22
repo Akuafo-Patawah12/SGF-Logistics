@@ -79,14 +79,14 @@ const SignUp = ({slide}) => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container form_cont2">
          <header className='auth_header'>
-           <SvgIcon/>
+           <Link to={"/"}><SvgIcon/></Link>
            <h3>Login</h3>
          </header> 
     
-    <Card style={{ width: 400, margin: "auto", padding: 20 }}>
-    <Title level={3} style={{ textAlign: "center" }}>Sign Up</Title>
+    <Card className="auth_card ">
+
 
     <Form layout="vertical" onFinish={handleSubmit} className="signup-form">
       {/* Username Input */}
@@ -101,7 +101,7 @@ const SignUp = ({slide}) => {
       </Form.Item>
 
       {/* Email Input */}
-      <Form.Item label="Email" validateStatus={errors.email ? "error" : ""} help={errors.email}>
+      <Form.Item label="Email" style={{fontWeight:"small"}} validateStatus={errors.email ? "error" : ""} help={errors.email}>
         <Input
           type="email"
           name="email"
@@ -112,7 +112,7 @@ const SignUp = ({slide}) => {
       </Form.Item>
 
       {/* Password Input */}
-      <Form.Item label="Password" validateStatus={errors.password ? "error" : ""} help={errors.password}>
+      <Form.Item label="Password" style={{fontWeight:"small"}} validateStatus={errors.password ? "error" : ""} help={errors.password}>
         <Input.Password
           name="password"
           placeholder="Enter password"
@@ -122,7 +122,7 @@ const SignUp = ({slide}) => {
       </Form.Item>
 
       {/* Confirm Password Input */}
-      <Form.Item label="Confirm Password" validateStatus={errors.confirmPassword ? "error" : ""} help={errors.confirmPassword}>
+      <Form.Item label="Confirm Password" style={{fontWeight:"small"}} validateStatus={errors.confirmPassword ? "error" : ""} help={errors.confirmPassword}>
         <Input.Password
           name="confirmPassword"
           placeholder="Confirm password"

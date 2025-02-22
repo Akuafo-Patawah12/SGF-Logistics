@@ -60,12 +60,14 @@ const OTP = ({mail}) => {
 
   const verifyOTP = async (enteredOtp) => {
     try {
-      const response = await axios.post("https://sfghanalogistics.com/verify-otp", {
+      const response = await axios.post("http://localhost:4040/verify-otp", {
         email: `${email==="" ? mail : email}`,
         otp: enteredOtp
       });
-      if(response.data.message==="OTP verified!"){
-        navigate(`/Invoice`)
+      if(response.status===200){
+        navigate(`/AllOrders`)
+      }else{
+        navigate("/AdminDashboard")
       }
       message.success(response.data.message); // Show success message
     } catch (error) {
@@ -90,8 +92,9 @@ const OTP = ({mail}) => {
 
   return (
     <div className="otp_background">
+    
     <div className="otp-container">
-    {email}
+    
     <span><SvgIcon/></span>
     <div class="verification-container">
   <h3>Enter Verification Code</h3>

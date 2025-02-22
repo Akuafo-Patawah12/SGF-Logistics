@@ -56,7 +56,6 @@ const UserShipmentData = ({visible, onClose, shipmentData, loading3}) => {
             <Card key={index} style={{ marginBottom: "10px", background: "#f9f9f9" }}>
               <Text strong>Description:</Text> <Text>{item.description}</Text><br />
               <Text strong>Amount:</Text> <Text>${item.Amount}</Text><br />
-              <Text strong>CTN No:</Text> <Text>{item.ctnNo}</Text><br />
               <Text strong>CBM:</Text> <Text>{item.cbm}</Text><br />
               <Text strong>Tracking No:</Text> <Text>{item.trackingNo}</Text>
             </Card>

@@ -238,30 +238,9 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
     
 }
 
-.total{
-    width: 200px;
-    margin-left: auto;
-    background-color: #fff;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    display: flex;
-    height: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.total section:first-child{
-    height: 100%;
-    width: 30%;
-    border-right: 1px solid #ddd;
-    line-height: 2.5rem;
-    text-align: center;
-}
-.total section:last-child{
-    height: 100%;
-    width: 70%;
-    
-    line-height: 2.5rem;
-    text-align: center;
-}
+
+
+
 
     @media (max-width: 500px){
         .one{
@@ -359,28 +338,11 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
 
     }
 
-    .dimensions{
-        position: absolute;
-        right: 6%;
-        font-size: 13px;
-        padding: 6px 4px;
-        border-radius: 5px;
-        top: 13%;
-        background: #ddd;
-        border: none;
-    }
+    
       
     
 
-    .dimen-container{
-        position: fixed;
-        background: rgb(0, 0, 0,0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 3;
-        inset: 0;
-    }
+    
 
     .dimen{
         display: flex;
@@ -413,11 +375,7 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
         border: 1px solid #ccc;
     }
 
-    .total{
-        width: 90%;
-        border:none;
-        margin-inline: auto;
-    } 
+    
   
      
   

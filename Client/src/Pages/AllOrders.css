@@ -11,6 +11,11 @@
 
 .create_order_button{
     display: flex;
+    justify-content: flex-end;
+}
+
+.create_order-btn{
+    width: 50%;
 }
 
 .nav_button{
@@ -68,6 +73,10 @@
 
 @media (max-width: 689px){
     .create_order_button{
+        
+        width: 100%;
+    }
+    .create_order-btn{
         width: 100%;
     }
     .filter_gap{

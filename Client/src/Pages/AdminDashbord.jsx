@@ -24,6 +24,8 @@ const AdminDashboard = () => {
     secure: true
   }),[])
 
+
+  const [form] = Form.useForm();
   const navigate= useNavigate()
   const [admins, setAdmins] = useState([]);
   const [users, setUsers] = useState([]);
@@ -35,13 +37,12 @@ const AdminDashboard = () => {
     const[isEdit,setIsEdit]= useState(false)
     const[isModalVisible,setIsModalVisible]= useState(false)
   const [newAdmin, setNewAdmin] = useState({ username: '', password: '' });
-  const [shipment, setShipment] = useState({ route: 'A', tracking: '', status: 'Pending' });
-  const [selectedRoute, setSelectedRoute] = useState(null);
+
+  
   const [selectedShipments, setSelectedShipments] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [shipmentStatus, setShipmentStatus] = useState(null); 
   const [selectedShipmentsPdf, setSelectedShipmentsPdf ] = useState([]); // New state to store selected shipments
   const [showInvoice,setShowInvoice] = useState(false)
+  const [containerNumber, setContainerNumber] = useState("");
   const [loading1, setLoading1] = useState(false);
   const [visible, setVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,14 +59,7 @@ const AdminDashboard = () => {
   const [shipmentData, setShipmentData] = useState(null);
  
      
-  const routes = {
-    A: ["China", "Sri Lanka", "Yemen", "Egypt", "Algeria", "Sierra Leone", "Ghana"], 
-    B: ["China", "Saudi Arabia", "Egypt", "Lybia", "Morocco", "Guinea", "Ghana"],
-    C: ["China", "Sri Lanka", "Tunisia", "Mauritania", "Guinea Bissau", "Cote D’Ivoire", "Ghana"],
-    D: ["China", "Yemen", "Egypt", "Morocco", "Senegal", "Liberia", "Ghana"],
-    E: ["China", "Saudi Arabia", "Egypt", "Algeria", "Spain", "Gambia", "Ghana"],
-  };
-
+  
   const statusOptions = ["All","Pending...", "In Transit", "Delivered", "Cancelled"]; 
   const [filterStatus, setFilterStatus] = useState("All");
 
@@ -110,7 +104,7 @@ const AdminDashboard = () => {
       setLoading(false);
        
     })
-    message.error("Failed to fetch shipment")
+    
 
     socket.on('shipmentData', (data) => {
       setShipments(data);
@@ -135,12 +129,23 @@ const AdminDashboard = () => {
         setTimeout(()=>{
         setIsModalOpen(true)
       },1000)
+    
+     }else if(err.message.includes("403: Unauthorized")) {
+        setTimeout(()=>{
+        setPermission(true)
+      },1000)
         
      } else if (err.message.includes("401: Invalid refresh token")) {
         setTimeout(()=>{
           setIsModalOpen(true)
         },1000)
       }
+    else if(err.message.includes("No cookies found")) {
+      setTimeout(()=>{
+      setIsModalOpen(true)
+    },1000)
+      
+   }
     });
     
 
@@ -252,10 +257,7 @@ const AdminDashboard = () => {
     }
   };
   
-  const handleRouteChange = (route) => {
-    setSelectedRoute(route);
-    setSelectedCountry(null); // Reset country selection when route changes
-  };
+  
 
   useEffect(() => {
     // Update selectedShipments when selectedShipmentIds change
@@ -263,17 +265,12 @@ const AdminDashboard = () => {
   }, [selectedShipments, shipments]);   // Runs when either `selectedShipmentIds` or `shipments` change
 
   const handleSave = () => {
-    if (selectedShipments.length === 0 || !selectedCountry || !shipmentStatus) {
-      console.error("Please select shipments, a country, and a status before updating.");
-      return;
-    }
+    
 
     // Emit the data to the server
     socket.emit("update_Shipments", {
-      shipments: selectedShipments,
-      route: selectedRoute,
-      selected_country: selectedCountry,
-      status: shipmentStatus,
+      containerNumber,
+      selectedShipments
     },(response)=>{
       if (response.status === "ok") {
                   message.success("Shipment updated successfully");
@@ -302,6 +299,30 @@ const AdminDashboard = () => {
     setIsModalVisible(false);
   };
 
+
+  
+
+const allSelected = selectedShipments.length === shipments.length && shipments.length > 0;
+const someSelected = selectedShipments.length > 0 && selectedShipments.length < shipments.length;
+
+const handleSelectAll = (e) => {
+  if (e.target.checked) {
+    setIsModalVisible(true); // Show modal when all are selected
+    setSelectedShipments(shipments.map((shipment) => ({ orderId: shipment._id, userId: shipment.userId }))); // Select all
+  } else {
+    setIsModalVisible(false);
+    setSelectedShipments([]); // Deselect all
+  }
+};
+
+const handleSelectSingle = (e, shipment) => {
+  setSelectedShipments((prev) =>
+    e.target.checked
+      ? [...prev, { orderId: shipment._id, userId: shipment.userId }] // Add selected shipment
+      : prev.filter((s) => s.orderId !== shipment._id) // Remove deselected shipment
+  );
+};
+
   
   function viewInvoice(){
     setShowInvoice(true)
@@ -313,37 +334,17 @@ const AdminDashboard = () => {
     {
       title: (
         <Checkbox
-          onChange={(e) => {
-            if (e.target.checked) {
-              setIsModalVisible(true); // Show modal when all are selected
-              setSelectedShipments(shipments.map((shipment) => shipment._id)); // Select all
-              
-            } else {
-              setIsModalVisible(false); // Show modal when all are selected
-              setSelectedShipments([]); // Deselect all
-              
-            }
-          }}
-          checked={selectedShipments.length === shipments.length && shipments.length > 0} 
-          indeterminate={selectedShipments.length > 0 && selectedShipments.length < shipments.length}
-        />
+        onChange={handleSelectAll}
+        checked={allSelected}
+        indeterminate={someSelected}
+      />
       ),
       key: "_id",
       render: (shipment) => (
         <Checkbox
-          checked={selectedShipments.includes(shipment._id)}
-          onChange={(e) => {
-            setSelectedShipments((prev) => 
-              e.target.checked
-                ? [...prev, shipment._id]  // Select only this shipment
-                : prev.filter(id => id !== shipment._id) // Deselect only this shipment
-            );
-            
-            
-
-        
-          }}
-        />
+        checked={selectedShipments.some((s) => s.orderId === shipment._id)}
+        onChange={(e) => handleSelectSingle(e, shipment)}
+      />
       ),
     }
     ,
@@ -392,7 +393,6 @@ const AdminDashboard = () => {
                             {
                               description: shipment.items[0].description,
                               Amount: shipment.items[0].Amount,
-                              ctnNo: shipment.items[0].ctnNo,
                               cbm: shipment.items[0].cbm,
                               trackingNo: shipment.items[0].trackingNo,
                             },
@@ -560,6 +560,13 @@ const AdminDashboard = () => {
       {ripple1 && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
     </button>
     </Link>
+
+    <Link to={"/containers"}>
+    <button className="direction-button" onMouseEnter={(e)=> handleClick(e,0)} onClick={(e)=> handleClick(e,0)}>
+      View containers
+      {ripple && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
+    </button>
+    </Link>
     </section>
 
 
@@ -618,7 +625,7 @@ const AdminDashboard = () => {
         </div>
     
         <Modal
-        title="Manage Selected Shipments"
+        title="Manage Assigned Container"
         open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={[
@@ -636,84 +643,29 @@ const AdminDashboard = () => {
           </Button>,
         ]}
       >
-        <p>{selectedShipments.length} shipments selected</p>
+        <p>{selectedShipments.length} Orders selected</p>
         <p>Do you want to Edit or Remove them?</p>
       </Modal>
 
 
-       <Modal title="Edit Shipments" visible={isEdit} onCancel={() => setIsEdit(false)} footer={null}>
-      <div>
-        <h3 style={{ fontWeight: "600", marginBottom: "10px" }}>{selectedShipments.length} Selected Shipments</h3>
+       <Modal title="Assign orders to container" visible={isEdit} onCancel={() => setIsEdit(false)} footer={null}>
+       <Form form={form} onFinish={handleSave} layout="vertical">
+       <Form.Item
+        name="containerNumber"
+        rules={[{ required: true, message: "Please enter a container number" }]}
+      >
+        <Input placeholder="Enter Container Number" value={containerNumber} onChange={(e)=> setContainerNumber(e.target.value)} />
+      </Form.Item>
+      
 
-        {/* Select Route */}
-        <div style={{ marginBottom: "15px" }}>
-          <label style={{ fontWeight: "bold", display: "block", marginBottom: "5px" }}>Select Route:</label>
-          <Select
-            style={{ width: "100%" ,height:"40px"}}
-            onChange={handleRouteChange}
-            placeholder="Select Route"
-            value={selectedRoute}
-          >
-            {Object.keys(routes).map((route) => (
-              <Select.Option key={route} value={route} >
-                Route {route}
-              </Select.Option>
-            ))}
-          </Select>
-        </div>
-
-        {/* Select Country (Only if Route is selected) */}
-        {selectedRoute && (
-          <div style={{ marginBottom: "15px" }}>
-            <label style={{ fontWeight: "600", display: "block", marginBottom: "5px" }}>
-              Select Country in Route {selectedRoute}:
-            </label>
-            <Select
-              style={{ width: "100%",height:"40px" }}
-              onChange={(country) => setSelectedCountry(country)}
-              placeholder="Select Country"
-              value={selectedCountry}
-            >
-              {routes[selectedRoute].map((country) => (
-                <Select.Option key={country} value={country}>
-                  {country}
-                </Select.Option>
-              ))}
-            </Select>
-          </div>
-        )}
-
-        {/* Select Shipment Status (Applies to all selected shipments) */}
-        <div style={{ marginBottom: "15px" }}>
-          <label style={{ fontWeight: "600", display: "block", marginBottom: "5px" }}>Update Status:</label>
-          <Select
-            style={{ width: "100%" }}
-            onChange={(status) => setShipmentStatus(status)}
-            placeholder="Select Status"
-            value={shipmentStatus}
-          >
-            {statusOptions.map((status) => (
-              <Select.Option key={status} value={status}>
-                {status}
-              </Select.Option>
-            ))}
-          </Select>
-
-          <Form.Item>
-          <Checkbox
-            name="rememberMe"
-          >
-            Send invoice
-          </Checkbox>
-        </Form.Item>
-        </div>
-      </div>
+         
 
       <Button type="primary" style={{ marginTop: "10px",height:"40px", width: "100%" }} 
-      onClick={ handleSave  }
-      disabled={!selectedRoute || !selectedCountry || !shipmentStatus}>
+      htmlType="submit"
+      disabled={ false}>
         Save Changes
       </Button>
+      </Form>
     </Modal>
 
 

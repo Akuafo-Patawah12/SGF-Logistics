@@ -8,6 +8,7 @@ import Loader from "./Icons/Loader"
 
 import OTP from "./Components/Auth/OTP";
 import UsersList from "./Pages/UserList"
+import ContainerPage from "./Pages/ContainerPage"
 const Login = lazy(()=> import('./Components/Auth/Login'))
 const SignUp = lazy(()=> import('./Components/Auth/SignUp'))
 
@@ -35,6 +36,12 @@ function getEmail(mail){
        <Route path='/AdminOrder' element={
                        
                        <AdminOrder />   
+                     } 
+                 />
+
+<Route path='/Containers' element={
+                       
+                       <ContainerPage />   
                      } 
                  />
 

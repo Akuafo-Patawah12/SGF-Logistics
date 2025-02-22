@@ -12,7 +12,7 @@ import Header2 from '../Components/Header2'
 import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
 import HowItWorksVideo from '../Pages/Components/HowItWorksVideo'
 import PageNotFound from '../Pages/PageNotFound'
-
+import More from "../Pages/More/More"
 const Privacy = lazy(()=> import('../Pages/More/Privacy')) 
 const Gallery = lazy(()=> import('../Pages/More/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
@@ -120,7 +120,7 @@ const Layout = () => {
                 
 
                 
-
+                <Route path='/More' element={<More/>}/>
                 <Route path='/TermsAndCondition' element={<TermsAndCondition />} />
                 <Route path='/More/FAQs' element={<FAQs />}/>
                 <Route path='/Orders' element={

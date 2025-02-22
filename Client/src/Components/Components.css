@@ -296,8 +296,10 @@ aside{
       
       .sidebar_footer {
         position: absolute;
-        bottom: 20px;
+        bottom: 0;
         left: 0;
+        padding-block: 5px;
+        background: white;
         width: 100%;
         text-align: center;
         color: #666;
@@ -310,6 +312,7 @@ aside{
         border: none;
         font-size: 20px;
         cursor: pointer;
+        border: 1px soild var(--purple);
       }
       
       .close-btn:hover {

@@ -1,22 +1,17 @@
-const mongoose= require("mongoose")
+const mongoose = require("mongoose");
 
-const {Schema} = mongoose
+const ShipmentSchema = new mongoose.Schema({
+  containerName: { type: String, required: true },  // Name of the container
+  containerNumber: { type: Number, required: true }, // Unique container number
+  loadingDate: { type: Date, required: true },  // Date when the shipment is loaded
+  eta: { type: Date, required: true },         // Estimated time of arrival
+  status: { 
+    type: String, 
+    enum: ["pending", "shipped", "delivered"], 
+    default: "pending",
+    required: true 
+  },  // Current shipment status
+  
+}, { timestamps: true });
 
-const shippmentSchema= Schema({
-    
-    order_id:{type:Schema.Types.ObjectId, ref:"order"},
-    tracking_id:String,
-
-    status:String,
-
-    created_At:{
-        type:Date,
-        default: Date.now()
-    },
-    updated_At:{
-        type:Date
-    }
-
-})
-
-const shippent= mongoose.model('shipment',shippmentSchema )
+module.exports = mongoose.model("Shipment", ShipmentSchema);

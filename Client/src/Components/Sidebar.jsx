@@ -76,7 +76,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
           title={
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span className="text-xl font-semibold"><SvgIcon /></span>
-              <>{browserWidth}</>
+              
               <Button icon={<CloseOutlined />} className="close-btn" onClick={closeSidebar} />
             </div>
           }
@@ -87,7 +87,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
           width="100%"
           className="fullscreen-drawer light-theme side"
         >
-          <Menu theme="light" mode="inline" className="side_menu">
+          <Menu theme="light" mode="inline" className="side_menu" style={{marginBottom:"25px"}}>
             <Menu.Item key="1" icon={<HomeOutlined />}>
               <NavLink to="/" onClick={closeSidebar}>Home</NavLink>
             </Menu.Item>

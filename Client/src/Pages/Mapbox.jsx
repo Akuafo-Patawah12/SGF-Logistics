@@ -82,7 +82,7 @@ const trackingId = searchParams.get("tracking_id");
         }
       }, [route]);
 
-      const [xPosition, setXposition] = useState(0);
+const [xPosition, setXposition] = useState(0);
 const [bound, setBound] = useState(0);
 const [Index,setIndex] = useState(0)
 const [scroll,setScroll] = useState(0)
@@ -106,45 +106,38 @@ useEffect(() => {
 }, [scroll,xPosition]);
 
 const countRef = useRef(null);
-const getScrollX = () => window.pageXOffset || document.documentElement.scrollLeft;
-
 // Function to update bound when the country is found
-const smoothMove = (target) => {
-  if (!countRef.current) return;
-  
-  countRef.current = requestAnimationFrame(() => {
-    setXposition((prev) => {
-      if (prev === target) {
-        cancelAnimationFrame(countRef.current);
-        return prev;
-      }
-      return prev < target ? prev + 1 : prev - 1;
-    });
-    smoothMove(target); // Recursively animate
-  });
-};
-
 const updateBound = () => {
   if (!pRefs.current) return;
 
-  pRefs.current.forEach((p, index) => {
-    setIndex(pRefs.current.findIndex(p => p && p.innerHTML.trim() === country));
+  pRefs.current.forEach((p,index) => {
+    setIndex(pRefs.current.findIndex(p => p && p.innerHTML.trim() === country))
     if (p && p.innerHTML.trim() === country) {
       const rect = p.getBoundingClientRect();
-      const newBound = Math.round(rect.left + getScrollX());
-
+      const newBound = Math.round(rect.left + window.pageXOffset); // Adjust for scroll
       setBound(newBound);
-      cancelAnimationFrame(countRef.current); // Cancel previous animation
-      smoothMove(newBound); // Use animation frame instead of setInterval
+      
+      // Reset animation if already running
+      if (countRef.current) clearInterval(countRef.current);
+
+      countRef.current = setInterval(() => {
+        setXposition((previousNumber) => {
+          if (previousNumber === newBound) {
+            clearInterval(countRef.current);
+            return previousNumber;
+          }
+
+          return previousNumber < newBound ? previousNumber + 1 : previousNumber - 1;
+        });
+      }, 50);
     }
   });
 };
 
-
 // Runs when country changes
 useEffect(() => {
-  setTimeout(updateBound, 100); // Wait for UI to update before recalculating
-}, [country, Index]);
+  updateBound();
+}, [country,Index]);
 
 // Runs when window is resized
 useEffect(() => {
@@ -202,7 +195,7 @@ useEffect(() => {
         
         <div className="line_map" ref={parent}>
         <div className="line_inner" >
-         
+          {scroll} {xPosition} {bound}
         <div  className="ship" style={{background:"yellow !important",position:"relative"}}><ShipIcon style={{ position: "absolute",top:"-40px", left: `${xPosition-5}px` }} />
          </div>
         <section className="line" style={{position:"relative"}} >

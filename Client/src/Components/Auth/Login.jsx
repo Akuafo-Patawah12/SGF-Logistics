@@ -3,7 +3,7 @@ import './Auth.css';
 import axios from "axios"
 import {Link, useNavigate} from "react-router-dom"
 import ButtonLoader from '../../Icons/ButtonLoader';
-import { Form, Input, Button, Checkbox, Typography, Card } from "antd";
+import { Form, Input, Button, Checkbox, Typography, Card, message } from "antd";
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 
 const { Title, Text } = Typography;
@@ -49,6 +49,18 @@ const Login = ({getEmail}) => {
         
         setLoader(true)
 
+        if (!formData.email) {
+          validationErrors.email = "Email is required";
+          setLoader(false)
+          return setErrors(validationErrors)
+        }
+
+        if (!formData.password){
+          validationErrors.password = "Password is required";
+          setLoader(false)
+           return setErrors(validationErrors)
+    }
+
        try{
 
         const response = await fetch("https://sfghanalogistics.com", {
@@ -63,17 +75,7 @@ const Login = ({getEmail}) => {
         const data = await response.json();
 
         
-        if (!formData.email) {
-          validationErrors.email = "Email is required";
-          setLoader(false)
-          return setErrors(validationErrors)
-        }
-
-        if (!formData.password){
-          validationErrors.password = "Password is required";
-          setLoader(false)
-           return setErrors(validationErrors)
-    }
+        
         if (response.status===400){
            validationErrors.password="Invalid accout type"
            setLoader(false)
@@ -81,7 +83,7 @@ const Login = ({getEmail}) => {
         }
        
         if (response.status===404) {
-          validationErrors.password = "Email doesn't exist";
+          validationErrors.email = "Email doesn't exist";
           setLoader(false)
           return
         }
@@ -109,6 +111,7 @@ const Login = ({getEmail}) => {
           if(data.message==="Logged in as a client" ){
             setLoader(false)
           setSuccess(true);
+          message.success("login successful")
          
           navigate(`/AllOrders`)
           
@@ -116,6 +119,7 @@ const Login = ({getEmail}) => {
           if(data.message==="Logged in as an admin"){
             setLoader(false)
           setSuccess(true);
+          message.success("login successful")
           localStorage.setItem('accesstoken', data.accessToken);
           navigate("/AdminDashboard")
         }
@@ -137,10 +141,10 @@ const Login = ({getEmail}) => {
   return (
     <div className="form-container">
      <header className='auth_header'>
-       <SvgIcon/>
-       <h3>Login</h3>
+       <Link to={"/"}><SvgIcon/></Link>
+       <h3>Sign up</h3>
      </header> 
-     <Card style={{ maxWidth: 400, margin: "auto",  }}>
+     <Card  className="auth_card">
       
 
       <Form layout="vertical" onFinish={handleSubmit} className="login-form">

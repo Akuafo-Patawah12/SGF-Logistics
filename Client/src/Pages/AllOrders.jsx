@@ -1,19 +1,22 @@
 import React,{useState, useMemo, useEffect} from "react"
 import {Link} from "react-router-dom"
-import { message,Empty, Spin }  from "antd"
+import { message,Empty, Spin ,Card, Typography, Space,Button}  from "antd"
 import io from "socket.io-client"
 import { formatDistanceToNow, subDays } from "date-fns";
 import UserShipmentData from "./UserShipmentData"
 import LogisticFooter from "../Components/LogisticFooter"
-import { Card, Typography, Space,Button } from "antd";
+
 import { EllipsisOutlined, DownloadOutlined, EyeOutlined } from "@ant-design/icons";
 
 
 import "./AllOrders.css"
+import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 const AllOrders=()=>{
   const [loadingProgress, setLoadingProgress] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [noresult,setNoresult] = useState(false)
     const { Text } = Typography;
-    const socket = useMemo(() =>io("https://sfghanalogistics.com/orders",{
+    const socket = useMemo(() =>io("http://localhost:4040/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -37,15 +40,28 @@ const AllOrders=()=>{
         socket.on('ordersByUser', (data)=>{
           setMyOrders(data)
           setLoadingProgress(false)
+          if(data.length===0){
+            setNoresult(true)
+          }
         })
 
         socket.on("disconnect",(reason)=>{
             console.log(reason)
         })
 
+        socket.on("connect_error",(error)=>{
+          console.log(error)
+          if(error.message.includes("Refresh token expired")){
+            setTimeout(()=>{
+              setIsModalOpen(true)
+            },1000)
+          }
+        })
+
         return()=>{
             socket.off("connect")
             socket.off('ordersByUser')
+            socket.off("connect_error")
             socket.off("disconnect")
         }
     }, [socket]);
@@ -108,6 +124,21 @@ const AllOrders=()=>{
             }
         })
     }
+
+
+    const sortAscending = () => {
+      setMyOrders((prevOrders) => 
+        [...prevOrders].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      );
+    };
+  
+    // Function to sort in Descending order (Newest first)
+    const sortDescending = () => {
+      setMyOrders((prevOrders) => 
+        [...prevOrders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      );
+    };
+    
     return(
         
         <main className="order_container">
@@ -127,17 +158,19 @@ const AllOrders=()=>{
       {/* Sort By Section */}
       <Space wrap> {/* Ensures buttons wrap on small screens */}
         <Typography.Text strong>Sort by:</Typography.Text>
-        <Button type="primary">New</Button>
-        <Button>Old</Button>
+        <Button type="primary" onClick={sortDescending}>New</Button>
+        <Button onClick={sortAscending}>Old</Button>
       </Space>
 
       {/* Create Order Button */}
       <Link to="/invoice" className="create_order_button">
-        <Button type="primary" style={{width:"100%"}}>
+        <Button type="primary" className="create_order-btn">
           Create Order
         </Button>
       </Link>
     </section>
+
+    {!noresult ?<>
     {!loadingProgress ? 
       <div className="my_item_grid">
         {myorders && myorders.map((order,index)=>(
@@ -218,6 +251,7 @@ const AllOrders=()=>{
         ))}
         </div> 
         : <Spin size="medium"/>}
+        </> : <Empty style={{paddingBlock:"70px"}}/>}
         
         <UserShipmentData
        visible={visible2}
@@ -226,7 +260,11 @@ const AllOrders=()=>{
         loading3={loading3}
    
     />
+
+<SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> <SessionExpiredModal />
            <LogisticFooter />
+
+
         </main>
 
     )

@@ -204,7 +204,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
     margin: 20px auto;
 
     width: 400px;
@@ -264,8 +263,16 @@
     }
     .track-button {
         width: 100%;
-        padding: 12px;
-        font-size: 16px;
+        padding: 12px 0;
+        font-size: 18px;
         flex: 1;
+    }
+}
+
+@media (max-width: 568px){
+    .tracking-container{
+        width: 90%;
+       
+        
     }
 }
