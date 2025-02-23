@@ -85,6 +85,10 @@ const socket = useMemo(() =>io("https://sfghanalogistics.com/shipment",{
       setContainers((prev) => [...prev, updatedContainer]);
     });
 
+    socket.on("newContainerAdded",(data)=>{
+      setContainers(prev => [data,...prev])
+    })
+
     socket.on("connect_error", (err)=>{
           console.log(err)
           if (err.message.includes("404: Refresh token not found")) {
@@ -329,7 +333,7 @@ const socket = useMemo(() =>io("https://sfghanalogistics.com/shipment",{
 
     <AssignUsersModal isOpen={modalOpen}  assignedOrder_id={assignedOrder_id} onClose={() => setModalOpen(false)}/>
     
-    <Table columns={columns} dataSource={containers} rowKey="_id" />
+    <div style={{width:"95%",overflow:"auto",marginInline:"auto"}} className="table_scroll"><Table columns={columns} dataSource={containers} rowKey="_id" /></div>
     <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
     </div>
   );

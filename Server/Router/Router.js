@@ -10,6 +10,7 @@ const AskedQuestion = require('../Mail/Question')
 const pdf = require ("../SendPDF");
 const resendOtp = require('../Authentication/ResendOTP');
 const contactUs = require('../Mail/Contact');
+const addCBM = require('./AddCBM');
 
 
 
@@ -25,5 +26,6 @@ router.post("/asked_question", AskedQuestion)
 router.post("/send-pdf", upload.single("pdf"), pdf)
 router.post("/resend-otp", resendOtp)
 router.post("/contact_us", contactUs)
+router.post("/addCbm", addCBM)
 
 module.exports= router

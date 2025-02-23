@@ -11,6 +11,7 @@ import UsersList from "./Pages/UserList"
 import ContainerPage from "./Pages/ContainerPage"
 const Login = lazy(()=> import('./Components/Auth/Login'))
 const SignUp = lazy(()=> import('./Components/Auth/SignUp'))
+const ForgetPassword= lazy(()=> import('./Components/Auth/ForgetPassword'))
 
 
 
@@ -57,6 +58,12 @@ function getEmail(mail){
         <Route path='/Auth/login' element={
                     <Suspense fallback={<Loader />}>
                         <Login getEmail={getEmail}/>
+                    </Suspense> }
+                />
+
+<Route path='/Auth/forget_password' element={
+                    <Suspense fallback={<Loader />}>
+                       <ForgetPassword /> 
                     </Suspense> }
                 />
 

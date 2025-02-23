@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const ItemSchema = new mongoose.Schema({
   description: { type: String, required: true },
   trackingNo: { type: String, required: true },
+  cbm:{type:Number},
+  amount:{type:Number,default:0},
 });
 
 const OrderSchema = new mongoose.Schema({
@@ -17,8 +19,10 @@ const OrderSchema = new mongoose.Schema({
   origin: { type: String, default: "" },
   route:{type:String,default:""},
   selected_country:{type:String,default:""},
+  
   status:{type:String,enum:["Pending...","In Transit","Delivered","Cancelled"],default:"Pending..."},
   destination: { type: String, default: "" },
+
 },{ timestamps: true });
 
 

@@ -1,8 +1,9 @@
 const mongoose= require("mongoose")
+const Order = require("./Order")
 
 const {Schema} = mongoose
 
-const userSchema= Schema({
+let userSchema= Schema({
 
     username:String,
 
@@ -34,6 +35,14 @@ const userSchema= Schema({
         type:Date
     }
 })
+
+userSchema.pre("findOneAndDelete", async function (next) {
+    const user = await this.model.findOne(this.getFilter()); // Get the user being deleted
+    if (user) {
+      await Order.deleteMany({ userId: user._id }); // Delete all orders related to the user
+    }
+    next();
+  });
 
 const users= mongoose.model("user",userSchema)
 

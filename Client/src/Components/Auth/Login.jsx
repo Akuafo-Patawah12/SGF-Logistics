@@ -191,8 +191,11 @@ const Login = ({getEmail}) => {
         </Form.Item>
 
         {/* Signup Link */}
-        <Text>
-          Don't have an account? <Link to="/Auth/sign_up">Sign Up</Link>
+        <Text style={{alignSelf:"center"}}>
+           <Link to="/Auth/forget_password" style={{fontSize:"14px"}}>Forget password?</Link>
+        </Text>
+        <Text style={{alignSelf:"center"}}>
+          Don't have an account? <Link to="/Auth/sign_up" style={{fontSize:"14px"}}>Sign Up</Link>
         </Text>
 
         {/* Success Message */}

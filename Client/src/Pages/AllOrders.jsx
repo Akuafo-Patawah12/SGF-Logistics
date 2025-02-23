@@ -6,7 +6,7 @@ import { formatDistanceToNow, subDays } from "date-fns";
 import UserShipmentData from "./UserShipmentData"
 import LogisticFooter from "../Components/LogisticFooter"
 
-import { EllipsisOutlined, DownloadOutlined, EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined ,DeleteOutlined } from "@ant-design/icons";
 
 
 import "./AllOrders.css"
@@ -16,7 +16,7 @@ const AllOrders=()=>{
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noresult,setNoresult] = useState(false)
     const { Text } = Typography;
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    const socket = useMemo(() =>io("https://sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -156,7 +156,7 @@ const AllOrders=()=>{
       }}
     >
       {/* Sort By Section */}
-      <Space wrap> {/* Ensures buttons wrap on small screens */}
+      <Space wrap className="buttons_1"> {/* Ensures buttons wrap on small screens */}
         <Typography.Text strong>Sort by:</Typography.Text>
         <Button type="primary" onClick={sortDescending}>New</Button>
         <Button onClick={sortAscending}>Old</Button>
@@ -219,8 +219,8 @@ const AllOrders=()=>{
 
       {/* Action Buttons */}
       <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" }}>
-        <Button onClick={()=> cancelOrder(order._id)} type="text" icon={<DownloadOutlined />} />
-        <Button type="text"  icon={<EyeOutlined />} style={{ marginLeft: "8px" }} 
+
+        <Button type="text"  icon={<EyeOutlined />} style={{ marginLeft: "8px",background:"#ddd" }} 
            onClick={()=>{
             setViewData ({
                           fullname: order.fullname,
@@ -245,7 +245,8 @@ const AllOrders=()=>{
            }
            }
 
-        />
+        >View</Button>
+        <Button onClick={()=> cancelOrder(order._id)} type="text" icon={<DeleteOutlined style={{transform:"translateX(2px)"}}/>} style={{backgroundColor:" #ffcccc"}} />
       </div>
     </Card>  
         ))}

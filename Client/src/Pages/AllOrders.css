@@ -82,4 +82,8 @@
     .filter_gap{
         grid-template-columns: 1fr;
     }
+
+    .buttons_1{
+        border-bottom: 1px solid #ddd;
+    }
 }

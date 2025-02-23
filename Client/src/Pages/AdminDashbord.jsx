@@ -8,6 +8,7 @@ import SessionExpiredModal from "../Components/Auth/SessionEpiredModal"
 import { useNavigate } from "react-router-dom"
 import UserShipmentData from "./UserShipmentData"
 import { Link } from "react-router-dom"
+import CBMInputModal from "./Components/CBMInputModal"
 import axios from "axios"
 import New from "./New"
 import jsPDF from "jspdf";
@@ -31,7 +32,7 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [permission,setPermission] = useState(false)
   const [shipments, setShipments] = useState([]);
-  const [addUserPop,setAddUsersPop] = useState(false)
+  
     const [loading, setLoading] = useState(true);
     const[isModalData,setModalData] = useState([])
     const[isEdit,setIsEdit]= useState(false)
@@ -169,23 +170,13 @@ const AdminDashboard = () => {
  
 
 
-  const handleAddAdmin = async () => {
-    try {
-      const response = await axios.post('http://localhost:5000/add-admin', newAdmin, {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      alert('Admin added successfully');
-      setNewAdmin({ username: '', password: '' });
-    } catch (error) {
-      console.error('Error adding admin:', error);
-    }
-  };
+  
 
   
   
 
   const handleDeleteShipment = async (id) => {
-    await fetch(`http://localhost:5000/delete-shipment/${id}`, {
+    await fetch(`https://sfghanalogistics.com/delete-shipment/${id}`, {
       method: 'DELETE'
     });
   };
@@ -275,13 +266,37 @@ const AdminDashboard = () => {
       if (response.status === "ok") {
                   message.success("Shipment updated successfully");
                 } else {
-                  message.error("Failed to fetch shipments");
+                  message.error(response.error.message);
                 }})
     
 
     setIsEdit(false);
   };
 
+
+  function updateCBM(data) {
+    console.log("Before Update:", shipments);
+    setShipments((prevOrders) => {
+      const updatedOrders = prevOrders.map((order) =>
+        order.orderId === data.selectedOrder
+          ? {
+              ...order,
+              items: order.items.map((item, index) =>
+                index === 0
+                  ? { ...item, cbm: item.cbm === data.newCBM  }
+                  : item
+              ),
+            }
+          : order
+      );
+      console.log("After Update:", updatedOrders);
+      return updatedOrders;
+    });
+  }
+  
+  useEffect(() => {
+    console.log("Shipments Updated:", shipments);
+  }, [shipments]);
 
   const handleDelete = () => {
     if (selectedShipments.length === 0) {
@@ -372,6 +387,15 @@ const handleSelectSingle = (e, shipment) => {
         ),
     },
     {
+      title: "CBM",
+      dataIndex: "items",
+      key: "cbm",
+      render: (items) => (
+        items.map(item => item.cbm)
+          
+      ),
+  },
+    {
         title: <Title level={1} style={{fontSize:"19px", marginInline: "auto" }}>Actions</Title>,
         key: "actions",
         render: (_, shipment) => (
@@ -422,7 +446,7 @@ const handleSelectSingle = (e, shipment) => {
                   <Tooltip title="Edit">
                   <EditOutlined
                     style={{ color: "#1890ff", cursor: "pointer" }}
-                    onClick={() => console.log("Edit Shipment:", shipment._id)}
+                    onClick={() => cbmModalOpen(shipment._id)}
                   />
                   </Tooltip>
                   <DeleteOutlined
@@ -521,6 +545,19 @@ const handleSelectSingle = (e, shipment) => {
   };
 
 
+   const [isCBMVisible, setIsCBMVisible] = useState(false);
+   const [selectedOrder,setselectedOrder] = useState("")
+  
+    const cbmModalOpen = (orderId) =>{ 
+      setselectedOrder(orderId)
+      setIsCBMVisible(true);
+    }
+    const cbmModalClose = () => setIsCBMVisible(false);
+    const handleSubmit = (cbm) => {
+      console.log("Submitted CBM:", cbm); // Handle submission
+    };
+
+
   return (
     <>
     {!permission ? <div className="admin-page">
@@ -546,13 +583,7 @@ const handleSelectSingle = (e, shipment) => {
 
       <div className="shipment-container-buttons">
       <section style={{marginBottom:"auto",display:"flex",gap:"10px",justifyContent:"center",alignItems:"flex-end"}}>
-      <button className="direction-button" onMouseEnter={(e)=> handleClick(e,0)} onClick={(e)=>{ 
-      handleClick(e,0);
-      setAddUsersPop(true)
-      }}>
-      Add users
-      {ripple && <span className="ripple" style={{ top: coords.y, left: coords.x }} />}
-    </button>
+      
 
     <Link to={"/users"}>
     <button className="direction-button" onMouseEnter={(e)=> handleClick(e,1)} onClick={(e)=> handleClick(e,1)}>
@@ -569,7 +600,13 @@ const handleSelectSingle = (e, shipment) => {
     </Link>
     </section>
 
-
+    <CBMInputModal
+        isVisible={isCBMVisible}
+        onClose={cbmModalClose}
+        selectedOrder={selectedOrder}
+        updateCBM={updateCBM}
+        onSubmit={handleSubmit}
+      />
 
     <div style={{  display: "flex", gap: "7px" }}>
         {statusOptions.map((status) => (
@@ -586,26 +623,7 @@ const handleSelectSingle = (e, shipment) => {
     </div>
 
 
-      {addUserPop && <section className="add-admin">
-       <Card className="admin_sub" style={{ maxWidth: "400px", margin: "auto" }}>
-      <Title level={3}>Add Admin</Title>
-      <Input
-        placeholder="Username"
-        value={newAdmin.username}
-        onChange={(e) => setNewAdmin({ ...newAdmin, username: e.target.value })}
-        style={{ marginBottom: "10px",height: 30 }}
-      />
-      <Input.Password
-        placeholder="Password"
-        value={newAdmin.password}
-        onChange={(e) => setNewAdmin({ ...newAdmin, password: e.target.value })}
-        style={{ marginBottom: "10px" }}
-      />
-      <Button type="primary" block onClick={handleAddAdmin}>
-        Add Admin
-      </Button>
-    </Card>
-      </section>}
+      
 
       
 
@@ -615,12 +633,12 @@ const handleSelectSingle = (e, shipment) => {
 
       
      
-      <div style={{ padding: 20 ,display:"flex",justifyContent:"center",alignItems:"center"}}>
+      <div style={{ paddingBlock: 20 ,display:"flex",justifyContent:"center",alignItems:"center"}}>
             
             {loading ? (
                 <Spin size="large" />
             ) : (
-                <Table dataSource={filteredShipments} columns={columns} rowKey="_id" style={{width:"100%"}}/>
+                <div style={{width:"95%",overflow:"auto",}} className="table_scroll"><Table dataSource={filteredShipments} columns={columns} rowKey="_id" style={{width:"100%"}}/></div>
             )}
         </div>
     
@@ -713,6 +731,8 @@ const handleSelectSingle = (e, shipment) => {
           />
         </div>
       )}
+
+     
 
      
     {showInvoice && <New invoice={invoice} divRef={divRef} setShowInvoice={setShowInvoice} generateAndSendPDFs={generateAndSendPDFs}/>}

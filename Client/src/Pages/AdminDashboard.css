@@ -224,6 +224,10 @@ input, select, button {
   margin-right: 12px;
 }
 
+.table_scroll::-webkit-scrollbar {
+  display: none;
+}
+
 /* Circular Initials */
 .user-initials {
   width: 40px;
@@ -240,3 +244,96 @@ input, select, button {
 }
 
 
+.shipment-container-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 2.5% ;
+  border: 1px solid var(--bg);
+  background: #f8f9fa; /* Light background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  width: 90%;
+}
+
+.shipment-container-buttons section {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.direction-button {
+  position: relative;
+  background: #007bff;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.direction-button:hover {
+  background: #0056b3;
+}
+
+.ripple {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleEffect 0.5s linear;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.shipment-container-buttons div {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.shipment-container-buttons button {
+  font-size: 13px;
+  padding: 8px 14px;
+}
+
+/* Make it look great on smaller screens */
+@media (max-width: 480px) {
+  .shipment-container-buttons {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .shipment-container-buttons section {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .direction-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .shipment-container-buttons div {
+    justify-content: center;
+  }
+}
