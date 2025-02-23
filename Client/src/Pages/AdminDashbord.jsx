@@ -416,7 +416,7 @@ const handleSelectSingle = (e, shipment) => {
                           items: [
                             {
                               description: shipment.items[0].description,
-                              Amount: shipment.items[0].Amount,
+                              Amount: shipment.items[0].amount,
                               cbm: shipment.items[0].cbm,
                               trackingNo: shipment.items[0].trackingNo,
                             },
