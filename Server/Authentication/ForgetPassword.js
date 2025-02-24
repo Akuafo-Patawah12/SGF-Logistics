@@ -1,8 +1,9 @@
 const nodemailer = require('nodemailer');
 const tls = require('tls');
 const jwt= require('jsonwebtoken');
-const data=require('../Models/userSchema');
+const data=require('../Models/UsersSchema');
 const transport = require('../Utils/MailTransporter');
+const crypto = require('crypto')
 
 const forgetPassword = async(req,res)=>{
     const {email} =req.body  // get user email from client side
@@ -18,22 +19,22 @@ const forgetPassword = async(req,res)=>{
     const resetToken = crypto.randomBytes(32).toString('hex');
     confirm.passwordResetToken = resetToken;
     confirm.passwordResetExpiration = Date.now() + 300000; // Token valid for 1 hour
-    await user.save();
+    await confirm.save();
         
      
                     
         let transporter= transport()
           
         let mailOptions = { //How the message will look like in Gmail
-            from: '"Do Not Reply" <' + process.env.EMAIL + '>',
+            from: '"Sf Ghana logistics <' + process.env.EMAIL + '>',
             to: email,  //Client email
             subject: 'Reset your password',
             html: `
             <div style="text-align: center; font-family: Arial, sans-serif; padding: 20px;">
               <h2 style="color: #333;">Reset Your Password</h2>
               <p style="color: #555;">Click the button below to reset your password:</p>
-              <a href="http://localhost:3000/UpdatePassword/${resetToken}" 
-                 style="background-color: #007bff; color: #fff; padding: 12px 20px; 
+              <a href="http://localhost:3000/Auth/reset_password/${resetToken}" 
+                 style="background-color: #a422d0; color: #fff; padding: 12px 20px; 
                         text-decoration: none; border-radius: 5px; display: inline-block;
                         font-size: 16px; font-weight: bold;">
                 Reset Password

@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 
 const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
 
-    const socket = useMemo(() =>io("https://sfghanalogistics.com/shipment",{
+    const socket = useMemo(() =>io("http://localhost:4040/shipment",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true

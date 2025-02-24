@@ -1,4 +1,4 @@
-.Track_cont{
+.Track_cont3{
     background: url("./../../public/SFG_images/TrackNeutral.jpg") no-repeat;
     background-size: cover;
     position: relative;
@@ -232,6 +232,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    margin-bottom: 50px;
   }
   
   .track-button:hover {
@@ -251,27 +252,27 @@
 @media (max-width: 768px){
     .tracking-container{
         flex-direction: column;
-       
-        
+           
     }
 
     .tracking-input{
         width: 95%;
-        padding: 12px  2.5% ;
+        padding:12px 2.5%;
         font-size: 16px;
         flex: 1;
     }
+
     .track-button {
         width: 100%;
         padding: 12px 0;
-        font-size: 18px;
+        font-size: 16px;
         flex: 1;
     }
 }
 
 @media (max-width: 568px){
     .tracking-container{
-        width: 90%;
+        width: 85%;
        
         
     }

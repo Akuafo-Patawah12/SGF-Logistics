@@ -19,7 +19,13 @@ const { Title } = Typography;
 
 const AdminDashboard = () => {
 
-  const socket = useMemo(() =>io("https://sfghanalogistics.com/shipment",{
+  const socket = useMemo(() =>io("http://localhost:4040/shipment",{
+    transports: ["websocket","polling"],
+    withCredentials: true,
+    secure: true
+  }),[])
+
+  const socket1 = useMemo(() =>io("http://localhost:4040/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -54,7 +60,7 @@ const AdminDashboard = () => {
       trackingNo:"",
       ctn:"",
       cbm:"",
-      total:""
+      amount:""
     }
   )
   const [shipmentData, setShipmentData] = useState(null);
@@ -88,8 +94,31 @@ const AdminDashboard = () => {
  useEffect(()=>{
   socket.emit('get_orders',"sent");
 
-  socket.emit("joinRoom", "adminRoom")
+  socket1.emit("joinRoom", "adminRoom")
  },[])
+
+
+ useEffect(() => {
+  socket1.on('connect',()=>{
+    console.log("Connected to server")
+    
+   });
+
+   socket1.on("newOrder",(data)=>{
+      setShipments(prev => [data,...prev])
+      message.success(`New order received from ${data.fullname}`)
+   })
+   socket1.on('disconnect',()=>{
+    console.log("server disconnected")
+    
+   });
+  return()=>{
+   socket1.off("connect")
+   socket1.off("newOrder")
+   socket1.off('disconnect')
+  }
+ },[socket1])
+
 
   useEffect(() => {
     socket.on('connect',()=>{
@@ -436,7 +465,7 @@ const handleSelectSingle = (e, shipment) => {
                       trackingNo: shipment.items[0].trackingNo,
                       ctn:shipment.items[0].ctnNo,
                       cbm:shipment.items[0].cbm,
-                      total:shipment.items[0].Amount,
+                      amount:shipment.items[0].amount,
                     })
                     viewInvoice();
                    }}
@@ -648,6 +677,7 @@ const handleSelectSingle = (e, shipment) => {
         onCancel={() => setIsModalVisible(false)}
         footer={[
           <Button key="cancel" onClick={() => setIsModalVisible(false)}>
+          
             Cancel
           </Button>,
           <Button key="edit" type="primary" onClick={() => {
@@ -681,6 +711,7 @@ const handleSelectSingle = (e, shipment) => {
       <Button type="primary" style={{ marginTop: "10px",height:"40px", width: "100%" }} 
       htmlType="submit"
       disabled={ false}>
+      {selectedShipments.length}
         Save Changes
       </Button>
       </Form>

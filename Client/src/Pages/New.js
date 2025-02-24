@@ -76,7 +76,7 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs}) => {
                 <td>{invoice.trackingNo}</td>
                 <td>{invoice.cbm}</td>
                 <td>{invoice.ctn}</td>
-                <td>${invoice.total}</td>
+                <td>${invoice.amount}</td>
               </tr>
             
           </tbody>
@@ -84,7 +84,7 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs}) => {
       </div>
        
       <div className="invoice-footer">
-        <h3>Total: ${invoice.total}</h3>
+        <h3>Total: ${invoice.amount}</h3>
         
       </div>
       <div className="information">

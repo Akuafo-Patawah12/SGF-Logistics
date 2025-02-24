@@ -16,12 +16,20 @@ const ContactUs = () => {
     if ( response.status===200){
       message.success(response.data.message)
     }else{
-       message.error("Internal server error")
+      message.error("Oops, something went wrong")
+       
     }
     
+    
   }catch(error){
+    if(error.message==="Request failed with status code 429"){
+      message.error("Too many attempts, try in 5 minutes")
+      return
+    }
     message.error("Oops, something went wrong")
   }
+    
+  
 }
 
   return (
@@ -64,7 +72,7 @@ const ContactUs = () => {
             </Form.Item>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" block>
+              <Button type="primary" htmlType="submit" style={{background:'var(--purple)'}} block>
                 Send Message
               </Button>
             </Form.Item>

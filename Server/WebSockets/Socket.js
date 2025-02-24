@@ -130,7 +130,7 @@ function initializeSocket(server){
 
       shipmentNamespace.on("connection",(socket)=>{
         setUser(socket)
-        Shipping(socket,shipmentNamespace,users)
+        Shipping(socket,ordersNamespace,users)
 
         console.log("connected to the tracking namespace")
       })
@@ -144,6 +144,7 @@ function initializeSocket(server){
       
 
       ordersNamespace.on("connection",(socket)=>{
+        setUser(socket)
           orderFunc(socket,adminNamespace,users)
         console.log("connected to the order namespace")
       })

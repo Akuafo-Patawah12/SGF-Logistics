@@ -43,7 +43,7 @@ const OTP = ({mail}) => {
   };
 
   const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace") {
+    if (e.key === "Backspace" || e.inputType === "deleteContentBackward") {
       const newOtp = [...otp];
 
       if (otp[index]) {
@@ -64,14 +64,31 @@ const OTP = ({mail}) => {
         email: `${email==="" ? mail : email}`,
         otp: enteredOtp
       });
-      if(response.status===200){
+
+      setTimeout(() => {
+        // Clear OTP values after submission
+        setOtp(["", "", "", ""]);
+    
+        // Move focus back to the first input
+        inputRefs.current[0]?.focus();
+      }, 500);
+      
+      if(response.status===429){
+        message.error("Too many attempts. Try again in 5 minutes.")
+        return
+     
+      }else if(response.status===200){
         navigate(`/AllOrders`)
-      }else{
+      }else if(response.status===201){
         navigate("/AdminDashboard")
       }
       message.success(response.data.message); // Show success message
     } catch (error) {
-      message.error(error.response?.data?.message || "Verification failed!");
+      if(error.message==="Request failed with status code 403"){
+        message.error("Too many attempts, try in 5 minutes")
+        return
+      }
+      message.error(error.message || "Verification failed!");
     }
   };
   const handlePaste = (e) => {
@@ -84,7 +101,11 @@ const OTP = ({mail}) => {
    async function resendOtp(){
       try{
         if(email==="") return 
-        axios.post("https://sfghanalogistics.com/resend-otp", email)
+        const response= axios.post("https://sfghanalogistics.com/resend-otp", email)
+        if (response.status===429){
+          message.error("Too many login attempts. Try again in 5 minutes.")
+          
+       }
       }catch(error){
         console.error(error)
       }
@@ -111,6 +132,7 @@ const OTP = ({mail}) => {
           value={digit}
           onChange={(e) => handleChange(e, index)}
           onKeyDown={(e) => handleKeyDown(e, index)}
+          onBeforeInput={(e) => handleKeyDown(e, index)}
           onPaste={handlePaste}
           className="otp-input"
         />

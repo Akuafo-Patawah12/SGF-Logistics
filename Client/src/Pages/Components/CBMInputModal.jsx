@@ -7,7 +7,7 @@ const CBMInputModal = ({ isVisible, onClose, onSubmit ,selectedOrder ,updateCBM}
   const [cbm,setCbm] = useState()
   const handleSubmit = async() => {
     try{
-        const response= await axios.post("https://sfghanalogistics.com/addCbm",{cbm,selectedOrder })
+        const response= await axios.post("http://localhost:4040/addCbm",{cbm,selectedOrder })
         if(response.status===200){
             form.resetFields(); // Reset form after submission
             onClose();

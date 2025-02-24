@@ -139,12 +139,13 @@ box-shadow: 0 0 5px rgba(145, 205, 132, 0.3); /* Blue shadow on focus */
     margin-inline: auto;
 
 }
-.order_note{
-    width: 85% !important;
+.order_note1{
+    display: flex;
+    flex-direction: column;
     border: 2px dashed red;
-    padding-inline: 10% 5% !important;
+    padding-left: 10%  !important;
+    padding-right:5%;
     padding-block: 10px;
-
     border-radius: 10px;
     margin-top: 20px;
     

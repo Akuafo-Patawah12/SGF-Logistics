@@ -95,7 +95,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
             <Menu.SubMenu
               key="2"
               icon={<InfoCircleOutlined />}
-              title="About"
+              title={<NavLink to={"/About"} onClick={closeSidebar}>About</NavLink>}
               onTitleClick={() => setShowdrop1(prev => !prev)}
             >
               {showdrop1 && (
@@ -109,7 +109,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
             <Menu.SubMenu
               key="3"
               icon={<AppstoreOutlined />}
-              title="Services"
+              title={<NavLink to={"/Services"} onClick={closeSidebar}>Services</NavLink>}
               onTitleClick={() => setShowdrop2(prev => !prev)}
             >
               {showdrop2 && (
@@ -129,7 +129,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
             <Menu.SubMenu
               key="5"
               icon={<MoreOutlined />}
-              title="More"
+              title={<NavLink to={"/More"} onClick={closeSidebar}>More</NavLink>}
               onTitleClick={() => setShowdrop3(prev => !prev)}
             >
               {showdrop3 && (

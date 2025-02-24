@@ -46,8 +46,8 @@ const Login = ({getEmail}) => {
       const [loader,setLoader]= useState(false)
       const navigate= useNavigate()
       const handleSubmit = async() => {
-        
         setLoader(true)
+        
 
         if (!formData.email) {
           validationErrors.email = "Email is required";
@@ -63,7 +63,7 @@ const Login = ({getEmail}) => {
 
        try{
 
-        const response = await fetch("https://sfghanalogistics.com", {
+        const response = await fetch("http://localhost:4040", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const Login = ({getEmail}) => {
         if (response.status===404) {
           validationErrors.email = "Email doesn't exist";
           setLoader(false)
-          return
+          return setErrors(validationErrors)
         }
 
         if(response.status===402){
@@ -101,6 +101,13 @@ const Login = ({getEmail}) => {
           validationErrors.password = "Invalid password";
           setLoader(false)
        }
+
+       if (response.status===429){
+        message.error("Too many login attempts. Try again in 5 minutes.")
+        setLoader(false)
+     }
+
+
 
        
     
@@ -134,8 +141,12 @@ const Login = ({getEmail}) => {
           validationErrors.email = "Email doesn't exist";
           setLoader(false)
         }
+        
+        
         setErrors(validationErrors);
         
+      } finally {
+        setLoader(false);
       }
       };
   return (
@@ -185,7 +196,7 @@ const Login = ({getEmail}) => {
 
         {/* Submit Button */}
         <Form.Item>
-          <Button type="primary" htmlType="submit" block disabled={loader}>
+          <Button type="primary" htmlType="submit" style={{background:'var(--purple)',height:"45px"}} loading={loader} block >
             {loader ? "Logging in..." : "Login"}
           </Button>
         </Form.Item>

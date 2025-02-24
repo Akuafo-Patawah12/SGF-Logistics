@@ -4,7 +4,7 @@ import './Auth.css'; // Import the CSS file
 import axios from "axios"
 import { Link } from "react-router-dom";
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
-import { Form, Input, Button, Typography, Card  } from "antd";
+import { Form, Input, Button, Typography, Card ,message } from "antd";
 const { Title, Text } = Typography;
 
 
@@ -18,6 +18,7 @@ const SignUp = ({slide}) => {
     account_type:"User",
     confirmPassword: ''
   });
+  const [loading, setLoading] = useState(false);
 
 
  const navigate= useNavigate()
@@ -36,7 +37,7 @@ const SignUp = ({slide}) => {
   
   const handleSubmit = async() => {
     
-    
+    setLoading(true);
     try{
      
      
@@ -57,7 +58,7 @@ const SignUp = ({slide}) => {
     }
 
 
-    const response = await axios.post("https://sfghanalogistics.com/sign_up", {formData})
+    const response = await axios.post("http://localhost:4040/sign_up", {formData})
 
     if(response.status===403) validationErrors.email="Email already exist"
     
@@ -66,6 +67,7 @@ const SignUp = ({slide}) => {
     if (Object.keys(validationErrors).length === 0) {
       if(response.data.message==="Signed up successful")
       setSuccess(true);
+     message.success("Sign up successful")
       navigate("/Auth/login")
       
       
@@ -74,6 +76,8 @@ const SignUp = ({slide}) => {
   }catch(error){
      
     console.log(error)
+  } finally {
+    setLoading(false);
   }
     
   };
@@ -133,7 +137,7 @@ const SignUp = ({slide}) => {
 
       {/* Submit Button */}
       <Form.Item>
-        <Button type="primary" htmlType="submit" block>
+        <Button type="primary" style={{background:'var(--purple)',height:"45px"}} htmlType="submit" loading={loading} block>
           Sign Up
         </Button>
       </Form.Item>

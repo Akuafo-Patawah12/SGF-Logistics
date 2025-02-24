@@ -3,8 +3,9 @@ const {hash} = require("bcrypt")
 
 
 const updatePassword= async(req,res)=>{
-   const { token, password } = req.body;
-  console.log({ token, password })
+   const {  newPassword } = req.body;
+   const { token } = req.params;
+  console.log({ newPassword, token })
 
   try {
     // Find the user with the reset token
@@ -20,13 +21,13 @@ const updatePassword= async(req,res)=>{
     }
 
     // Hash the new password
-    const hashedPassword = await hash(password, 12);
+    const hashedPassword = await hash(newPassword, 12);
 
     // Update the user's password
     User.password = hashedPassword;
     User.passwordResetToken = null; // Clear the reset token
     User.passwordResetExpiration = null; // Clear expiration time
-    await user.save();
+    await User.save();
 
     res.status(200).json({ message: 'Password has been reset successfully' });
   } catch (err) {

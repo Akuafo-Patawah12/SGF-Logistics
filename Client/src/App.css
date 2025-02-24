@@ -231,7 +231,7 @@ footer a{
   gap: 10px;
   padding-bottom: 2em;
 }
-.About{
+.About_footer{
   display: none;
   flex-direction: column;
 
@@ -265,14 +265,14 @@ footer a{
 
 
 
-.About > div{
+.About_footer > div{
    overflow: hidden;
    transition: all 0.3s;
    height: 30px;
    border-top: 1px solid #ccc;
-   padding-block: 0.3rem;
+  
 }
-.About > div:nth-child(2){
+.About_footer > div:nth-child(2){
   border-bottom: 1px solid #ccc;
 }
 .accordion{
@@ -470,7 +470,7 @@ footer a{
   .social_media_handles{
     display: none;
   }
-  .About{
+  .About_footer{
     display: flex;
   }
   .nav_1{

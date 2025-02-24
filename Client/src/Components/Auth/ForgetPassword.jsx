@@ -1,16 +1,34 @@
-import React from "react";
+import React,{useState} from "react";
 import { Form, Input, Button, Card, Typography, message } from "antd";
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 import {Link} from "react-router-dom"
 import './Auth.css'; 
 import axios from "axios"
 
-const { Title, Text } = Typography;
+
 
 const ForgotPassword = () => {
-  const onFinish = (values) => {
-    console.log("Form values:", values);
-    message.success("Password reset link has been sent to your email.");
+  const { Title, Text } = Typography;
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [Message, setMessage] = useState("");
+  const onFinish = async() => {
+    setLoading(true);
+    try {
+      const res = await axios.post("http://localhost:4040/forget_password", { email });
+
+      if(res.status===200){
+      message.success("Password reset email sent")
+      }
+    } catch (error) {
+      if(error.message==="Request failed with status code 429"){
+        message.error("Too many attempts, try in 5 minutes")
+        return
+      }
+      setMessage(error.response.message);
+    }finally {
+        setLoading(false);
+      }
   };
 
   return (
@@ -37,11 +55,11 @@ const ForgotPassword = () => {
               { type: "email", message: "Enter a valid email!" }
             ]}
           >
-            <Input placeholder="Enter your email" />
+            <Input placeholder="Enter your email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" style={{background:'var(--purple)',height:"45px"}} loading={loading} block>
               Send Reset Link
             </Button>
           </Form.Item>

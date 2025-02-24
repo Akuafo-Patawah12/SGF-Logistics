@@ -51,12 +51,12 @@ const TrackOrder = () => {
     
 
 
-      <div className='Track_cont'>
-      <div className="track_1">
+      <div className='Track_cont3'>
+      <div className="track_2">
           <p>TRACK YOUR SHIPMENTS</p>
           <Space size="middle">
         <Link to="/More/Track_order/Goods">
-          <Button type="primary" size="large">Goods</Button>
+          <Button type="primary" size="large" style={{background:"var(--purple)"}}>Goods</Button>
         </Link>
         <Link to="/More/Track_order/Container">
           <Button type="default" size="large">Container</Button>

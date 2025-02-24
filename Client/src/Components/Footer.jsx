@@ -133,7 +133,7 @@ const Footer = () => {
         </Link>
       </Space>
     </Card>
-        <section className="About">
+        <section className="About_footer">
           
          <Accordion header="Quick Links" link="Services" span1="Services" span2="About" span3="Contacts"/>
          <Accordion header="Support" link="TermsAndCondition" span1="Terms & conditions" span2="FAQs" />

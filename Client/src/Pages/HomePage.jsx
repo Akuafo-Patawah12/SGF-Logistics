@@ -2,6 +2,7 @@ import React,{useState,useRef,useEffect,useMemo} from 'react'
 import {motion,transform,useAnimation} from "framer-motion"
 import{ ReactComponent as OpenQuote } from "../Icons/OpenQuote.svg"
 import{ ReactComponent as CloseQuote } from "../Icons/CloseQuote.svg"
+import { ReactComponent as Web3star } from "../Icons/Web3star.svg" 
 import{ ReactComponent as Truck } from "../Icons/Truck.svg"
 import{ ReactComponent as Anchor } from "../Icons/Anchor.svg"
 import{ ReactComponent as Container } from "../Icons/Container.svg"
@@ -10,7 +11,9 @@ import{ ReactComponent as CargoShip } from "../Icons/CargoShip.svg"
 import{ ReactComponent as CargoPlane } from "../Icons/CargoPlane.svg"
 import{ ReactComponent as RMBrate } from "../Icons/RMBrate.svg"
 
+ 
 import "./Home.css"
+
 import "./Components/AnimatedBubbles.css"
 import io from "socket.io-client"
 
@@ -177,24 +180,36 @@ useEffect(() => {
 
 
 
-const image= ["Air.jpg","Sea.jpg","Slider2.jpg","Slider3.jpg"] 
-  const [fadeIn, setFadeIn] = useState(false);
-const[index1,setIndex1]= useState(0)
-useEffect(()=>{
-  
-  const timer= setInterval(()=>{
-     setIndex1(prev => prev + 1)
-     setFadeIn(false)
-  },4000)
-    
-    if(index >= image.length - 2){
-      setIndex1(0)
-    }
-  return()=>{
-    clearInterval(timer)
-  }
-},[index1])
 
+
+const images = [
+  { src: "/SFG_images/Air.jpg", title: "Reliable Sea Freight Services" },
+  { src: "/SFG_images/Sea.jpg", title: "Optimized Freight Forwarding Services" },
+  { src: "/SFG_images/Slider2.jpg", title: "Real-Time Shipment Tracking & Visibility " },
+  { src: "/SFG_images/Slider3.jpg", title: "Efficient Air Freight Solutions" },
+];
+
+const [currentIndex, setCurrentIndex] = useState(0);
+
+// Auto-slide every 3 seconds
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, []);
+
+const prevSlide = () => {
+  setCurrentIndex((prevIndex) =>
+    prevIndex === 0 ? images.length - 1 : prevIndex - 1
+  );
+};
+
+const nextSlide = () => {
+  setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+};
+  
 
 const [value, setValue] = useState(0);  // State to hold the value
   const controls = useAnimation();  // Controls for the animation
@@ -456,7 +471,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         <div className='bubbles'>
         <div className="bubbles-container">
       {Array.from({ length: 20 }).map((_, index) => (
-        <div className="bubble" key={index}></div>
+        <Web3star className="bubble" key={index}/>
       ))}
     </div>
     </div>
@@ -546,11 +561,39 @@ const [value, setValue] = useState(0);  // State to hold the value
 
       
       <div className='Why_choose_slider'>
-      <div style={{ marginTop:"50px",border:"3px solid #a0c444",paddingBottom: "5px",width:"100%"}} >
-       <div className='fade-image'>
-          <img src={`./SFG_images/${image[index1]}`} alt="image"  className={fadeIn ? "":"fade_in"}/>
-       </div>
+      <div style={{ marginTop:"50px",border:"3px solid #a0c444",borderRadius:"8px",paddingBottom: "5px",width:"100%"}} >
        
+
+      <div className="carousel">
+      <button className="carousel_button prev" onClick={prevSlide}>&#10094;</button>
+
+      <div
+        className="carousel-inner"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`carousel-item ${index === currentIndex ? "active1" : ""}`}
+          >
+            <img src={image.src} alt={image.title} />
+            <h2 className="carousel-title">{image.title}</h2>
+          </div>
+        ))}
+      </div>
+
+      <button className="carousel_button next" onClick={nextSlide}>&#10095;</button>
+
+      <div className="dots">
+        {images.map((_, index) => (
+          <span
+            key={index}
+            className={`dot ${index === currentIndex ? "active1" : ""}`}
+            onClick={() => setCurrentIndex(index)}
+          ></span>
+        ))}
+      </div>
+    </div>
 
 
        <motion.div

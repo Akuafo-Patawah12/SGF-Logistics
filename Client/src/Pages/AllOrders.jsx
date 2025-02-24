@@ -16,7 +16,7 @@ const AllOrders=()=>{
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noresult,setNoresult] = useState(false)
     const { Text } = Typography;
-    const socket = useMemo(() =>io("https://sfghanalogistics.com/orders",{
+    const socket = useMemo(() =>io("http://localhost:4040/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -35,6 +35,10 @@ const AllOrders=()=>{
       useEffect(() => {
         socket.on("connect",()=>{
             console.log("connected to server")
+        })
+
+        socket.on("assign_to_container",(data)=>{
+            message.success("You order has been assigned to a container")
         })
         
         socket.on('ordersByUser', (data)=>{
@@ -61,6 +65,7 @@ const AllOrders=()=>{
         return()=>{
             socket.off("connect")
             socket.off('ordersByUser')
+            socket.off("assign_to_container")
             socket.off("connect_error")
             socket.off("disconnect")
         }

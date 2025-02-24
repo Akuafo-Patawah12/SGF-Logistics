@@ -143,6 +143,7 @@
   grid-gap: 30px;
   grid-template-columns: repeat(2,1fr);
   width: 95%;
+  border-radius: 8px;
   
   margin-inline: auto;
 }
@@ -161,27 +162,11 @@
   }
 }
 
-.fade-image{
-   width: 100%;
-   margin-bottom: 20px;
-  background-origin: 3px solid #000;
-   
-     
-   
-}
 
-.fade-image > img {
-  height: 400px;
-  width: 100%;
 
-  object-fit: cover;
-  opacity: 0;
-  transition: 1s ease-in-out;
-}
 
-.fade-image > img.fade_in {
-  opacity: 1;
-}
+
+
 
 .scattered :nth-child(2){
   
@@ -218,6 +203,11 @@
     
 
   }
+
+  .carousel{
+     width: 100%;
+  }
+
   .welcome_container{
     width: 48%;
     position: relative;
@@ -888,6 +878,99 @@ animation: animat 10s linear infinite;
   }
 }
 
+
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Title Animation */
+.carousel-title {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  z-index:4;
+  opacity: 0;
+  transition: all 0.6s ease-in-out;
+}
+
+/* Active Slide Animation */
+.carousel-item.active1 .carousel-title {
+  bottom: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+/* Navigation buttons */
+.carousel_button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.carousel_button.prev {
+  left: 10px;
+}
+
+.carousel_button.next {
+  right: 10px;
+}
+
+/* Dots */
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot.active1 {
+  background-color: #555;
+}
 
 
 

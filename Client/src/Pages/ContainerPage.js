@@ -14,7 +14,7 @@ const ContainerList = () => {
     const { Option } = Select;
 const { Text } = Typography;
 
-const socket = useMemo(() =>io("https://sfghanalogistics.com/shipment",{
+const socket = useMemo(() =>io("http://localhost:4040/shipment",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true

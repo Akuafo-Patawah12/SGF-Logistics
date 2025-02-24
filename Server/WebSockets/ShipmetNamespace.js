@@ -1,9 +1,9 @@
 const Shipment= require("../Models/Order")
-const Shipments= require("../Models/ShippmentSchema")
+
 const Container= require("../Models/Container")
 const mongoose = require("mongoose")
 
-const Shipping=(socket,shipmentNamespace,users)=>{
+const Shipping=(socket,ordersNamespace,users)=>{
 
 socket.on("update_Shipments",async(data,callback)=>{
 try {
@@ -22,7 +22,7 @@ try {
 
      const update = await Container.findOne({containerNumber:containerNumber})
      
-     console.log(update)
+     
      if(!update){
          callback({status:"error", message:"Container does not exist"})
          return
@@ -38,6 +38,15 @@ try {
     );
 console.log(updated)
     
+selectedShipments.forEach((selectedShipment) => {
+  const socketId = users[selectedShipment.userId];
+  if (socketId) {
+    ordersNamespace.to(socketId).emit("assign_to_container", "hello world");
+  } else {
+    console.error(`User ${selectedShipment.userId} is not connected.`);
+  }
+});
+        
     
     
     callback({status: "ok", message: "Shipments updated successfully" });
@@ -92,26 +101,16 @@ socket.on("deleteShipments", async (data,callback) => {
     }
   });
 
-socket.on("create_shipment",async(data,callback)=>{
-  try {
-    const newShipment = new Shipments(data);
-    await newShipment.save();
 
-    // Emit the new shipment to all clients
-    io.emit("newShipment", newShipment);
-    callback({status:"ok",message:"Shipment created"})
-  } catch (error) {
-    console.log(error)
-    callback({status:"error" , message: "failed create shipment" });
-  }
-
-})
 
   socket.on("assign_container", async(data,callback)=>{
     try {
       const { containerName, containerNumber, assignedOrders } = data;
-  
+
+      console.log(assignedOrders)
       let container = await Container.findOne({ containerNumber });
+
+      
   
       if (!container) {
         container = new Container({ containerName, containerNumber, assignedOrders });
@@ -119,7 +118,8 @@ socket.on("create_shipment",async(data,callback)=>{
         container.assignedOrders.push(...assignedOrders);
       }
   
-      await container.save();
+    const saved=  await container.save();
+    console.log(saved)
       
       // Emit update
       callback({status:"ok",message:"Users asigned to container"})
@@ -257,9 +257,16 @@ socket.on("get_orders",async(data,callback)=>{
 
 
 
-socket.on("disconnect", () => {
-    console.log("A user disconnected:", socket.id);
-  });
+socket.on("disconnect",()=>{
+  console.log("disconnected from shipment namespace")
+  const userId = Object.keys(users).find((id) => users[id] === socket.id);
+
+  // Remove the user from the `users` object if found
+  if (userId) {
+    delete users[userId];
+    console.log(`User with ID ${userId} disconnected and was removed`);
+  }
+})
 
   return socket;
 }

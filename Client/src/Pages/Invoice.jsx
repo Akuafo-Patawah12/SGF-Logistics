@@ -14,7 +14,7 @@ import "./Invoice.css"
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 
 const Invoice = () => {
-    const socket = useMemo(() =>io("https://sfghanalogistics.com/orders",{
+    const socket = useMemo(() =>io("http://localhost:4040/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -355,7 +355,7 @@ const Invoice = () => {
                
 
 
-            <div class="order_note">
+            <div class="order_note1">
             <h3>Note:</h3>
             <ol>
                 <li>SFGL does not ship contraband goods. Your goods will be security checked.</li>

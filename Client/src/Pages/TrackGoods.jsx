@@ -26,8 +26,8 @@ const TrackGoods = () => {
   return (
     <div className='Track_cont1'>
     <div className="track_2">
-        <p style={{color:"black",fontSize:"30px"}}>TRACK YOUR SHIPMENTS</p>
-        <p style={{color:"black" ,fontSize:"20px",fontWeight:"500"}}>Enter upto 10 digits of your tracking number</p>
+        <p style={{color:"black",fontSize:"25px",textAlign:"center",width:"90%",whiteSpace:"wrap"}}>TRACK YOUR SHIPMENTS</p>
+        <p style={{color:"black" ,fontSize:"20px",fontWeight:"500",textAlign:"center",width:"80%",whiteSpace:"wrap"}}>Enter upto 10 digits of your tracking number</p>
         <div className="tracking-container">
       <input
         type="text"

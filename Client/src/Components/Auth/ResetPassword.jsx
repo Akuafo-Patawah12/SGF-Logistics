@@ -1,0 +1,55 @@
+import { useState } from "react";
+import { useParams,useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Form, Input, Button, Card, Typography, message } from "antd";
+
+const { Title } = Typography;
+
+const ResetPassword = () => {
+  const { token } = useParams();
+  const [loading, setLoading] = useState(false);
+  const navigate=useNavigate()
+
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const res = await axios.put(`http://localhost:4040/reset-password/${token}`, {
+        newPassword: values.newPassword,
+      });
+      
+      
+      message.success(res.data.message);
+      navigate("/Auth/login")
+    } catch (error) {
+        if(error.message==="Request failed with status code 429"){
+                message.error("Too many attempts, try in 5 minutes")
+                return
+              }
+      message.error(error.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      <Card style={{ width: 400, textAlign: "center" }}>
+        <Title level={3}>Reset Password</Title>
+        <Form onFinish={handleSubmit} layout="vertical">
+          <Form.Item
+            label="New Password"
+            name="newPassword"
+            rules={[{ required: true, message: "Please enter your new password!" }]}
+          >
+            <Input.Password placeholder="Enter new password" />
+          </Form.Item>
+          <Button type="primary" htmlType="submit" style={{background:'var(--purple)',height:"45px"}} block loading={loading}>
+            Reset Password
+          </Button>
+        </Form>
+      </Card>
+    </div>
+  );
+};
+
+export default ResetPassword;

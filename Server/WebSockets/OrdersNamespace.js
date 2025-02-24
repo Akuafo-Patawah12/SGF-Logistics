@@ -118,7 +118,7 @@ const orderFunc=(socket,adminNamespace,users)=>{
     // Log the users currently in the /order room for debugging
     
     socket.on('disconnect', () => {
-        console.log('User disconnected from the tracking namespace');
+        console.log('User disconnected from the order namespace');
         const userId = Object.keys(users).find((id) => users[id] === socket.id);
 
         // Remove the user from the `users` object if found
