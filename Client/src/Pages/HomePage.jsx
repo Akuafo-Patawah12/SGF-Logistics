@@ -452,8 +452,8 @@ const [value, setValue] = useState(0);  // State to hold the value
       <div className="image-container">
         <div className="scrolling-content">
         
-          <h2 className="animator"></h2>
-          <h2 className="assist">assistance?</h2>
+          
+          <h2 className="assist">Do you need assistance?</h2>
           <p>
             We’re here to provide you with the support and information you 
             need to make your logistics experience seamless and efficient.
