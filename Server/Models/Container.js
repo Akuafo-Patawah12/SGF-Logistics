@@ -17,4 +17,7 @@ const ContainerSchema = new mongoose.Schema({
   ],
 }, { timestamps: true });
 
-module.exports = mongoose.model("Container", ContainerSchema);
+
+const container = mongoose.model("container", ContainerSchema);
+module.exports = container
+
