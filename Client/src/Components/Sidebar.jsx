@@ -123,7 +123,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
             </Menu.SubMenu>
 
             <Menu.Item key="4" icon={<PhoneOutlined rotate={90} />}>
-              <NavLink to="/Contact_us" onClick={closeSidebar}>Contact</NavLink>
+              <NavLink to="/Contact" onClick={closeSidebar}>Contact us</NavLink>
             </Menu.Item>
 
             <Menu.SubMenu

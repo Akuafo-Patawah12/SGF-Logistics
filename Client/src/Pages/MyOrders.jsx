@@ -9,7 +9,7 @@ import LogisticFooter from "../Components/LogisticFooter"
 import { EyeOutlined ,DeleteOutlined } from "@ant-design/icons";
 
 
-import "./AllOrders.css"
+import "./MyOrders.css"
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 const AllOrders=()=>{
   const [loadingProgress, setLoadingProgress] = useState(true);

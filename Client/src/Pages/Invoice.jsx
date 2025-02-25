@@ -1,5 +1,5 @@
 import React ,{useState} from "react";
-import "./New.css";
+import "./Invoice.css";
 import { Button } from "antd"
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 

@@ -135,7 +135,7 @@ const Footer = () => {
     </Card>
         <section className="About_footer">
           
-         <Accordion header="Quick Links" link="Services" span1="Services" span2="About" span3="Contacts"/>
+         <Accordion header="Quick Links" link="Services" span1="Services" span2="About" span3="Contact"/>
          <Accordion header="Support" link="TermsAndCondition" span1="Terms & conditions" span2="FAQs" />
           
          
