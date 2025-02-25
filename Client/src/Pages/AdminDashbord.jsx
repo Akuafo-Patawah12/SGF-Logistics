@@ -25,7 +25,7 @@ const AdminDashboard = () => {
     secure: true
   }),[])
 
-  const socket1 = useMemo(() =>io("http://localhost:4040/orders",{
+  const socket1 = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -205,7 +205,7 @@ const AdminDashboard = () => {
   
 
   const handleDeleteShipment = async (id) => {
-    await fetch(`https://sfghanalogistics.com/delete-shipment/${id}`, {
+    await fetch(`https://api.sfghanalogistics.com/delete-shipment/${id}`, {
       method: 'DELETE'
     });
   };

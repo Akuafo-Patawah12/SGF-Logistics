@@ -18,7 +18,7 @@ const UserList = () => {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const[ripple1,setRipple1] = useState(false)
 
-  const socket = useMemo(() =>io("http://localhost:4040/admin",{
+  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/admin",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true

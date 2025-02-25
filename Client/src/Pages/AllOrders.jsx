@@ -16,7 +16,7 @@ const AllOrders=()=>{
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noresult,setNoresult] = useState(false)
     const { Text } = Typography;
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
