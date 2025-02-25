@@ -158,7 +158,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-                 <Route path='/get_a_quote' element={
+                 <Route path='/More/get_a_qoute' element={
                         <Suspense fallback={<Loader />}>
                           <GetQuote />   
                         </Suspense>} 

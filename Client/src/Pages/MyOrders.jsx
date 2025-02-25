@@ -32,6 +32,11 @@ const AllOrders=()=>{
       })
    },[])
 
+   useEffect(() => {
+    localStorage.setItem("lastVisitedTab", "/MyOrders");
+  }, []);
+  
+
       useEffect(() => {
         socket.on("connect",()=>{
             console.log("connected to server")
@@ -168,7 +173,7 @@ const AllOrders=()=>{
       </Space>
 
       {/* Create Order Button */}
-      <Link to="/invoice" className="create_order_button">
+      <Link to="/More/get_a_qoute" className="create_order_button">
         <Button type="primary" className="create_order-btn">
           Create Order
         </Button>
