@@ -470,7 +470,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         <div className="testimonial-container">
         <div className='bubbles'>
         <div className="bubbles-container">
-      {Array.from({ length: 20 }).map((_, index) => (
+      {Array.from({ length: 30 }).map((_, index) => (
         <Web3star className="bubble" key={index}/>
       ))}
     </div>
