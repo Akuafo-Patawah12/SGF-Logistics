@@ -14,7 +14,7 @@ import "./Invoice.css"
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 
 const Invoice = () => {
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
