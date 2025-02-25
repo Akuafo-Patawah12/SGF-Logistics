@@ -10,7 +10,7 @@ import UserShipmentData from "./UserShipmentData"
 import { Link } from "react-router-dom"
 import CBMInputModal from "./Components/CBMInputModal"
 import axios from "axios"
-import New from "./New"
+import Invoice from "./Invoice"
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
@@ -766,7 +766,7 @@ const handleSelectSingle = (e, shipment) => {
      
 
      
-    {showInvoice && <New invoice={invoice} divRef={divRef} setShowInvoice={setShowInvoice} generateAndSendPDFs={generateAndSendPDFs}/>}
+    {showInvoice && <Invoice invoice={invoice} divRef={divRef} setShowInvoice={setShowInvoice} generateAndSendPDFs={generateAndSendPDFs}/>}
     
     <div style={{ textAlign: "center", marginTop: "50px" }}>
     

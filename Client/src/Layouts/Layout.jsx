@@ -17,7 +17,7 @@ const Privacy = lazy(()=> import('../Pages/More/Privacy'))
 const Gallery = lazy(()=> import('../Pages/More/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
-const Invoice = lazy(()=> import( '../Pages/Invoice'))
+const GetQuote = lazy(()=> import( '../Pages/GetQuote'))
 
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
@@ -32,7 +32,7 @@ const Services= lazy(()=> import('../Pages/Services/Services'))
 const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
 const Orders = lazy(()=> import( '../Pages/Orders'))
 const Mapbox = lazy(()=> import('../Pages/Mapbox'))
-const AllOrders = lazy(()=> import( '../Pages/AllOrders'))
+const MyOrders = lazy(()=> import( '../Pages/MyOrders'))
 const HomePage= lazy(()=>import('../Pages/HomePage'))
 
 const Layout = () => {
@@ -51,7 +51,7 @@ const Layout = () => {
 
 
     
-    const hideFooterOn = ["/Orders", "/invoice", "/AllOrders"]
+    const hideFooterOn = ["/Orders", "/get_a_quote", "/MyOrders"]
    
 
 
@@ -129,9 +129,9 @@ const Layout = () => {
                     </Suspense>} 
                 />
 
-                <Route path='/AllOrders' element={
+                <Route path='/MyOrders' element={
                     <Suspense fallback={<Loader />}>
-                        <AllOrders />
+                        <MyOrders />
                     </Suspense>} 
                 />
 
@@ -158,9 +158,9 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-                 <Route path='/Invoice' element={
+                 <Route path='/get_a_quote' element={
                         <Suspense fallback={<Loader />}>
-                          <Invoice />   
+                          <GetQuote />   
                         </Suspense>} 
                     />
 

@@ -241,7 +241,7 @@ useEffect(() => {
         </div>
        
           <div style={{width:"fit-content",marginInline:"auto",paddingBlock:"10px"}}><a href='#Map' ><button className='route_button'><Ship2Icon /> ROUTE MAP <RightCircleFilled style={{color:"#A7C756",marginLeft:"10px"}}/> </button></a></div>
-        
+        <div>
         <Map
       initialViewState={{
         latitude: routesMap[route][Index].Latitude,
@@ -314,6 +314,7 @@ useEffect(() => {
 <NavigationControl position="top-right" />
       {/* Add Popup or other components here */}
     </Map>  
+    </div>
 
 
     {showButton && (
