@@ -126,7 +126,7 @@ const Login = ({getEmail}) => {
             navigate(`/MyOrders`); // Redirect first-time users to Orders
           } else {
             // Redirect returning users to their last visited tab
-            const lastTab = localStorage.getItem("lastVisitedTab") || "/orders";
+            const lastTab = localStorage.getItem("lastVisitedTab") ;
             navigate(lastTab);
           }
           
