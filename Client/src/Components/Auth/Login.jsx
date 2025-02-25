@@ -120,7 +120,7 @@ const Login = ({getEmail}) => {
           setSuccess(true);
           message.success("login successful")
          
-          navigate(`/AllOrders`)
+          navigate(`/MyOrders`)
           
           }
           if(data.message==="Logged in as an admin"){
