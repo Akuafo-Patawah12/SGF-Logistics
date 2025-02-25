@@ -1,8 +1,9 @@
 import React, { useEffect, useState ,useMemo} from "react";
 import { io } from "socket.io-client";
-import { List, Card ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
+import { List, Card,Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 import { EyeOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom"
 import AssignUsersModal from "./Components/AssignUsersModal"
 
 
@@ -13,6 +14,7 @@ import AssignUsersModal from "./Components/AssignUsersModal"
 const ContainerList = () => {
     const { Option } = Select;
 const { Text } = Typography;
+const navigate= useNavigate()
 
 const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     transports: ["websocket","polling"],
@@ -63,6 +65,10 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
           setLoading(false);
         });
     },[])
+
+    useEffect(() => {
+      localStorage.setItem("lastVisitedTab", "/containers");
+    }, []);
 
   useEffect(() => {
     socket.on("connect",()=>{
@@ -212,8 +218,8 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
 
   return (
-
-    <div>
+  <>
+    {!permission ? <div>
     <Button type="primary" onClick={() => setIsEdit(true)}>Add container</Button>
     
 
@@ -336,6 +342,24 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     <div style={{width:"95%",overflow:"auto",marginInline:"auto"}} className="table_scroll"><Table columns={columns} dataSource={containers} rowKey="_id" /></div>
     <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
     </div>
+    :
+     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+          <Result
+            status="403"
+            title="403"
+            subTitle="You are not permitted to view this page."
+            extra={
+              <Button type="primary" onClick={() => {
+                navigate("/")
+                localStorage.removeItem("hasLoggedInBefore"); // Reset first login flag
+                localStorage.removeItem("lastVisitedTab"); // Clear last visited tab
+                }}>
+                Go Home
+              </Button>
+            }
+          />
+        </div>}
+    </>
   );
 };
 

@@ -3,12 +3,13 @@ import { useEffect, useState , useMemo} from "react";
 import {Table, Tag, Button, Spin, message,Card,Typography,Input, Checkbox, Modal, Result, Select} from "antd";
 import io from "socket.io-client";
 import axios from "axios"
-
+import { useNavigate } from "react-router-dom"
 // Connect to Socket.IO server
-const { Title } = Typography;
+
 
 
 const UserList = () => {
+  const { Title } = Typography;
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [loading, setLoading] = useState({}); // Store loading state for each user
@@ -17,12 +18,16 @@ const UserList = () => {
   const [ripple, setRipple] = useState(false);
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const[ripple1,setRipple1] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [permission, setPermission] = useState(false)
+  const navigate = useNavigate()
 
   const socket = useMemo(() =>io("https://api.sfghanalogistics.com/admin",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
   }),[])
+  
 
   useEffect(() => {
     // Fetch initial users
@@ -42,10 +47,40 @@ const UserList = () => {
       
     });
 
+    socket.on("connect_error", (err)=>{
+      console.log(err)
+      if (err.message.includes("404: Refresh token not found")) {
+        setTimeout(()=>{
+        setIsModalOpen(true)
+      },1000)
+    
+     }else if(err.message.includes("403: Unauthorized")) {
+        setTimeout(()=>{
+        setPermission(true)
+      },1000)
+        
+     } else if (err.message.includes("401: Invalid refresh token")) {
+        setTimeout(()=>{
+          setIsModalOpen(true)
+        },1000)
+      }
+    else if(err.message.includes("No cookies found")) {
+      setTimeout(()=>{
+      setIsModalOpen(true)
+    },1000)
+      
+   }
+    });
+
     return () => {
       socket.off("userList");
       socket.off("userDeleted");
+      socket.off("connect_error")
     };
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("lastVisitedTab", "/users");
   }, []);
 
   // Handle user deletion
@@ -140,6 +175,8 @@ const UserList = () => {
 
 
   return (
+    <>
+    {!permission ?
     <div style={{ padding: "20px" }}>
     <button className="direction-button" onMouseEnter={(e)=> handleClick(e,0)} onClick={(e)=>{ 
       handleClick(e,0);
@@ -179,7 +216,27 @@ const UserList = () => {
       </Button>
     </Card>
       </section>}
-    </div>
+    
+  </div>
+  :
+
+ <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+          <Result
+            status="403"
+            title="403"
+            subTitle="You are not permitted to view this page."
+            extra={
+              <Button type="primary" onClick={() => {
+                navigate("/")
+                localStorage.removeItem("hasLoggedInBefore"); // Reset first login flag
+                localStorage.removeItem("lastVisitedTab"); // Clear last visited tab
+                }}>
+                Go Home
+              </Button>
+            }
+          />
+        </div>}
+    </>
   );
 };
 

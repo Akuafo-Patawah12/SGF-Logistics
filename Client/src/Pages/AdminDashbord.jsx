@@ -65,7 +65,9 @@ const AdminDashboard = () => {
   )
   const [shipmentData, setShipmentData] = useState(null);
  
-     
+  useEffect(() => {
+    localStorage.setItem("lastVisitedTab", "/Admindasboard");
+  }, []);   
   
   const statusOptions = ["All","Pending...", "In Transit", "Delivered", "Cancelled"]; 
   const [filterStatus, setFilterStatus] = useState("All");
@@ -788,7 +790,11 @@ const handleSelectSingle = (e, shipment) => {
         title="403"
         subTitle="You are not permitted to view this page."
         extra={
-          <Button type="primary" onClick={() => navigate("/")}>
+          <Button type="primary" onClick={() => {
+            navigate("/")
+            localStorage.removeItem("hasLoggedInBefore"); // Reset first login flag
+            localStorage.removeItem("lastVisitedTab"); // Clear last visited tab
+            }}>
             Go Home
           </Button>
         }

@@ -64,7 +64,9 @@ const Invoice = () => {
         }
     },[socket,orders])
     
-    
+    useEffect(() => {
+      localStorage.setItem("lastVisitedTab", "/get_a_quote");
+    }, []);
     
     
     

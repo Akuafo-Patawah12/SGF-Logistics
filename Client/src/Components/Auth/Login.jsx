@@ -119,8 +119,17 @@ const Login = ({getEmail}) => {
             setLoader(false)
           setSuccess(true);
           message.success("login successful")
-         
-          navigate(`/MyOrders`)
+          const isFirstLogin = !localStorage.getItem("hasLoggedInBefore");
+
+          if (isFirstLogin) {
+            localStorage.setItem("hasLoggedInBefore", "true"); // Mark as not first login
+            navigate(`/MyOrders`); // Redirect first-time users to Orders
+          } else {
+            // Redirect returning users to their last visited tab
+            const lastTab = localStorage.getItem("lastVisitedTab") || "/orders";
+            navigate(lastTab);
+          }
+          
           
           }
           if(data.message==="Logged in as an admin"){
