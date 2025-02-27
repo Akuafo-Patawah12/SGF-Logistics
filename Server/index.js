@@ -18,7 +18,7 @@ const router = require("./Router/Router")
 
 
 app.use(cors({
-    origin:["http://localhost:3000"],
+    origin:["https://sfghanalogistics.com"],
     credentials: true,
     methods:["POST,GET,PUT,DELETE"], 
     allowedHeaders: ["Content-Type"] // Common headers
