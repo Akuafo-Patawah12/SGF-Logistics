@@ -37,6 +37,12 @@ const AllOrders=()=>{
   }, []);
   
 
+  const [activeId, setActiveId] = useState(null);
+
+  const handleClick = (id) => {
+    setActiveId(id);
+  };
+
       useEffect(() => {
         socket.on("connect",()=>{
             console.log("connected to server")
@@ -44,7 +50,48 @@ const AllOrders=()=>{
 
         socket.on("assign_to_container",(data)=>{
             message.success("You order has been assigned to a container")
+            let updatedOrder = null; // Store a single updated order
+        
+          setMyOrders((prev) =>
+            prev.map((order) => {
+              const foundOrder = data.find((newItem) => newItem._id === order._id);
+              if (foundOrder) {
+                updatedOrder = foundOrder; // Store the first updated order found
+              }
+              return foundOrder ? { ...order, ...foundOrder } : order;
+            })
+          );
+        
+          if (updatedOrder) {
+            handleClick(updatedOrder._id); // Ensure updatedOrder is valid
+            message.success("Order updated");
+          }
+        
         })
+
+        socket.on("orders_updated", (data) => {
+          console.log(data);
+        
+          let updatedOrder = null; // Store a single updated order
+        
+          setMyOrders((prev) =>
+            prev.map((order) => {
+              const foundOrder = data.find((newItem) => newItem._id === order._id);
+              if (foundOrder) {
+                updatedOrder = foundOrder; // Store the first updated order found
+              }
+              return foundOrder ? { ...order, ...foundOrder } : order;
+            })
+          );
+        
+          if (updatedOrder) {
+            handleClick(updatedOrder._id); // Ensure updatedOrder is valid
+            message.success("Order updated");
+          }
+        });
+
+
+        
         
         socket.on('ordersByUser', (data)=>{
           setMyOrders(data)
@@ -71,6 +118,7 @@ const AllOrders=()=>{
             socket.off("connect")
             socket.off('ordersByUser')
             socket.off("assign_to_container")
+            socket.off("orders_updated")
             socket.off("connect_error")
             socket.off("disconnect")
         }
@@ -153,7 +201,7 @@ const AllOrders=()=>{
         
         <main className="order_container">
         <section
-         className="filter_gap"
+         className={`filter_gap `}
       style={{
         
         
@@ -187,6 +235,8 @@ const AllOrders=()=>{
            <Card
       key={index}
       bordered={false}
+      id={order._id}
+      className={activeId ===order._id  ? "active_3" : ""}
       style={{
         
         borderRadius: "8px",
@@ -197,7 +247,7 @@ const AllOrders=()=>{
       }}
     >
       {/* Three-dot icon */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div  style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <Text strong>Invoice to:  </Text>
         <Text>{order.fullname}</Text>
       </div>
@@ -218,7 +268,7 @@ const AllOrders=()=>{
 
       {/* Order ID */}
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: "8px" }}>
-        <Text strong>#TrackingNo.:</Text>
+        <Text strong>TrackingNo.:</Text>
         <Text>{order.items[0].trackingNo}</Text>
       </div>
 

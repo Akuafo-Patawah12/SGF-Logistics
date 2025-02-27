@@ -1,32 +1,35 @@
 import React, { useState } from "react";
 import { Modal, Input, Button, Form ,message} from "antd";
-import axios from "axios"
 
-const CBMInputModal = ({ isVisible, onClose, onSubmit ,selectedOrder ,updateCBM}) => {
+const CBMInputModal = ({ isVisible, onClose, onSubmit ,selectedOrder ,setShipments,socket}) => {
   const [form] = Form.useForm(); // Ant Design form instance
   const [cbm,setCbm] = useState()
-  const handleSubmit = async() => {
-    try{
-        const response= await axios.post("http://localhost:4040/addCbm",{cbm,selectedOrder })
-        if(response.status===200){
+  const [ctn,setCtn] = useState()
+ 
+  const handleSubmit = () => {
+    
+        socket.emit("addCBM",{cbm,ctn,selectedOrder },(response)=>{
+          if(response.status==="ok"){
             form.resetFields(); // Reset form after submission
             onClose();
             message.success("Cbm updated")
-            updateCBM(response.data.newData)
-            console.log(response.data.newData)
+            setShipments((prev) => 
+              prev.map((shipment) => {
+                const updatedShipment = response.data.find((newItem) => newItem._id === shipment._id);
+                return updatedShipment ? { ...shipment, ...updatedShipment } : shipment;
+              })
+            );
+            console.log(response.data)
         }else{
-            message.error(response.data.message)
+            message.error(response.message)
         }
-    
-     // Close modal
-    }catch(error){
-        console.log(error)
-    }
+        })
+        
   };
 
   return (
     <Modal
-      title="Enter CBM Amount"
+      title="Enter CTN & CBM Amount"
       open={isVisible}
       onCancel={onClose}
       footer={null} // Remove default footer buttons
@@ -42,6 +45,18 @@ const CBMInputModal = ({ isVisible, onClose, onSubmit ,selectedOrder ,updateCBM}
         >
           <Input type="number" placeholder="Enter CBM Amount" value={cbm} onChange={(e)=> setCbm(e.target.value)}/>
         </Form.Item>
+
+        <Form.Item
+          label="CTN"
+          name="ctn"
+          rules={[
+            { required: true, message: "Please enter CBM amount!" },
+            { pattern: /^\d+(\.\d+)?$/, message: "Enter a valid number!" },
+          ]}
+        >
+          <Input type="number" placeholder="Enter CTN " value={ctn} onChange={(e)=> setCtn(e.target.value)}/>
+        </Form.Item>
+
         <Form.Item>
           <Button type="primary" htmlType="submit" block>
             Submit

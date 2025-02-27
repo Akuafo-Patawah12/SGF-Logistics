@@ -22,7 +22,7 @@ const TrackContainer = () => {
         <div className="tracking-container">
       <input
         type="text"
-        placeholder="Enter tracking number..."
+        placeholder="Enter container number..."
         value={trackingNumber}
         onChange={handleChange}
         className="tracking-input"

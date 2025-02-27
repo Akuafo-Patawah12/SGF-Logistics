@@ -5,7 +5,7 @@ import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 import { EyeOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
 import AssignUsersModal from "./Components/AssignUsersModal"
-
+import "./ContainerPage.css"
 
 
 
@@ -22,19 +22,32 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     secure: true
   }),[])
   const [containers, setContainers] = useState([]);
+  const [filteredContainers, setFilteredContainers] = useState(containers);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    if (!search) {
+      setFilteredContainers(containers); // Reset if search is empty
+    } else {
+      setFilteredContainers(
+        containers.filter((container) =>
+          container.containerNumber.toString().toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+  }, [search, containers]); 
 
   useEffect(()=>{
     socket.emit("get_all_container")
   },[])
 
   const routes = {
-      A: ["China", "Sri Lanka", "Yemen", "Egypt", "Algeria", "Sierra Leone", "Ghana"], 
-      B: ["China", "Saudi Arabia", "Egypt", "Lybia", "Morocco", "Guinea", "Ghana"],
-      C: ["China", "Sri Lanka", "Tunisia", "Mauritania", "Guinea Bissau", "Cote D’Ivoire", "Ghana"],
-      D: ["China", "Yemen", "Egypt", "Morocco", "Senegal", "Liberia", "Ghana"],
-      E: ["China", "Saudi Arabia", "Egypt", "Algeria", "Spain", "Gambia", "Ghana"],
+      A: ["Guangzhou Port", "Colombo Port", "Port of Aden", "Port of Alexandria", "Port of Algiers", "Port of Freetown", "Tema Port"], 
+      B: ["Ningbo – Zhoushan Port, Yiwu", "Jeddah Islamic Port", "Port Said (Suez Canal)", "Port of Tripoli", "Port of Tangier Med", "Port of Conakry", "Tema Port"],
+      C: ["Guangzhou Port", "Colombo Port", "Port of Tunis", "Port of Nouakchott", "Port of Bissau", "Port of Abidjan", "Tema Port"],
+      D: ["Guangzhou Port", "Port of Aden", "Port of Alexandria", "Port of Tangier Med", "Port of Dakar", "Port of Monrovia", "Tema Port"],
+      E: ["Ningbo – Zhoushan Port, Yiwu", "Colombo Port", "Suez Port (Port Tawfiq)", "Port of Algiers", "Port of Las Palmas", "Port of Banjul", "Tema Port"],
     };
   
     const statusOptions = ["All","Pending...", "In Transit", "Delivered", "Cancelled"]; 
@@ -47,7 +60,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     const [shipmentStatus, setShipmentStatus] = useState(null);
     const[cbmRate,setCbmRate] = useState(null)
     const[containerNumber,setContainerNumber] = useState()
-    const [containerName,setContainerName] = useState("")
+    
     const [eta,setEta] = useState()
     const[isEdit,setIsEdit]= useState(false)
     const [loadingDate,setLoadingDate] = useState()
@@ -149,8 +162,9 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     // Emit the data to the server
     
     socket.emit("createContainer", {
-      containerName: containerName,
+      
       containerNumber:containerNumber,
+      loadingDate: loadingDate,
       eta:eta,
       cbmRate: parseFloat(cbmRate),
       route: selectedRoute,
@@ -169,7 +183,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
 
   const columns = [
-    { title: "Container Name", dataIndex: "containerName", key: "containerName" },
+    
     { title: "Container Number", dataIndex: "containerNumber", key: "containerNumber" },
     {
       title: "Status",
@@ -188,6 +202,12 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       key: "cbmRate",
       render: (cbmRate) => `$${cbmRate.toFixed(2)}`,
     },
+    {
+      title: "Loading Date",
+      dataIndex: "loadingDate",
+      key: "loadingDate",
+      render: (loadingDate) => new Date(loadingDate).toLocaleDateString()
+      },
     {
       title: "ETA",
       dataIndex: "eta",
@@ -220,23 +240,22 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   return (
   <>
     {!permission ? <div>
-    <Button type="primary" onClick={() => setIsEdit(true)}>Add container</Button>
+    <div className="container_head"><Button type="primary" onClick={() => setIsEdit(true)} className="conta-butt">Add container</Button>
     
-
+    <Input
+        placeholder="Search by Container Number..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        onPaste={(e) => setSearch(e.clipboardData.getData("text"))} // Ensure paste triggers search
+        className="search_input"
+      />
+      </div>
 <Modal title="Add container" visible={isEdit} onCancel={() => setIsEdit(false)} footer={null}>
       <Form layout="vertical">
         
         {/* Select Route */}
         <div style={{ marginBottom: "15px" }}>
-        <Form.Item
-          label="Container Name"
-          name="containerName"
-          value={containerName}
-          onChange={(e)=> setContainerName(e.target.value)}
-          rules={[{ required: true, message: "Please enter container name!" }]}
-        >
-          <Input placeholder="Enter Container Name" />
-        </Form.Item>
+        
 
         {/* Container Number Input */}
         <Form.Item
@@ -339,7 +358,8 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
     <AssignUsersModal isOpen={modalOpen}  assignedOrder_id={assignedOrder_id} onClose={() => setModalOpen(false)}/>
     
-    <div style={{width:"95%",overflow:"auto",marginInline:"auto"}} className="table_scroll"><Table columns={columns} dataSource={containers} rowKey="_id" /></div>
+    
+    <div style={{width:"95%",overflow:"auto",marginInline:"auto"}} className="table_scroll"><Table columns={columns} dataSource={filteredContainers} pagination={{ pageSize: 5 }} bordered rowKey="_id" /></div>
     <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
     </div>
     :

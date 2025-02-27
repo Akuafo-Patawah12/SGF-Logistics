@@ -232,7 +232,7 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    margin-bottom: 50px;
+    
   }
   
   .track-button:hover {

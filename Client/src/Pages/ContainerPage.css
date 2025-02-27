@@ -1,0 +1,19 @@
+.container_head{
+    display:flex;
+    gap:10px;
+    margin-top:30px;
+    margin-inline:  auto;
+    width: 95%;
+}
+
+.conta-butt{
+    padding: 17px 10px;
+}
+.search_input {
+    margin-bottom: 20px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }

@@ -21,27 +21,55 @@ try {
     }
 
      const update = await Container.findOne({containerNumber:containerNumber})
-     
+     console.log(data)
      
      if(!update){
          callback({status:"error", message:"Container does not exist"})
          return
      }
-     const updated= await Container.findOneAndUpdate(
+     const updated = await Container.findOneAndUpdate(
       { containerNumber: update.containerNumber },
-      { $set: { assignedOrders: selectedShipments.map(s => ({
-          orderId: new mongoose.Types.ObjectId(s.orderId),
-          userId: new mongoose.Types.ObjectId(s.userId),
-        }))
-      } },
+      { 
+        $push: { 
+          assignedOrders: { 
+            $each: selectedShipments.map(s => ({
+              orderId: new mongoose.Types.ObjectId(s.orderId),
+              userId: new mongoose.Types.ObjectId(s.userId),
+            }))
+          } 
+        } 
+      },
       { new: true } // Return the updated document
     );
 console.log(updated)
+
+const userIds = updated.assignedOrders.map(order => order.userId); // Extract user IDs
+const orderIds = updated.assignedOrders.map(order => order.orderId);
+
+    // Update all users with the new containerNumber
+    const result = await Shipment.updateMany(
+      { userId: { $in: userIds } },
+      { $set: { container_number: containerNumber,status: update.status, route: update.route, selected_country: update.port } }
+    );
+    
+    let updatedUsers= null;
+    if (result.modifiedCount > 0) {
+      // Fetch the updated user list
+       updatedUsers = await Shipment.find({ _id: { $in: orderIds } });
+
+    }
+
+    console.log("users updated",updatedUsers)
+
+
+
+
     
 selectedShipments.forEach((selectedShipment) => {
-  const socketId = users[selectedShipment.userId];
+   const socketId = users[selectedShipment.userId];
   if (socketId) {
-    ordersNamespace.to(socketId).emit("assign_to_container", "hello world");
+    const findOrder = updatedUsers.find((order) => order._id.toString() === selectedShipment.orderId)
+    ordersNamespace.to(socketId).emit("assign_to_container",  [findOrder]);
   } else {
     console.error(`User ${selectedShipment.userId} is not connected.`);
   }
@@ -50,7 +78,7 @@ selectedShipments.forEach((selectedShipment) => {
     
     
     callback({status: "ok", message: "Shipments updated successfully" });
-    socket.emit("updated_shipment",data)
+    socket.emit("updated_shipment",updatedUsers)
   } catch (error) {
     console.log("shipment update error",error)
     callback({ message: "Internal server error" });
@@ -138,10 +166,10 @@ socket.on("deleteShipments", async (data,callback) => {
 
   socket.on("createContainer", async (data, callback) => {
     try {
-      const { containerName, containerNumber, status, port, route, eta, cbmRate } = data;
-      console.log({ containerName, containerNumber, status, port, route, eta, cbmRate });
+      const {  containerNumber,loadingDate, status, port, route, eta, cbmRate } = data;
+      console.log({  containerNumber,loadingDate, status, port, route, eta, cbmRate });
   
-      if (!containerName || !containerNumber) {
+      if ( !containerNumber) {
         return callback({ status: "error", message: "All fields are required." });
       }
   
@@ -153,8 +181,9 @@ socket.on("deleteShipments", async (data,callback) => {
       }
   
       const newContainer = new Container({
-        containerName,
+        
         containerNumber,
+        loadingDate,
         status,
         port,
         route,
@@ -180,6 +209,7 @@ socket.on("deleteShipments", async (data,callback) => {
   socket.on("fetchContainers", async (callback) => {
     try {
       const containers = await Container.find({})
+      console.log(containers)
         
       callback({ status: "ok", containers });
     } catch (error) {
@@ -215,7 +245,7 @@ socket.on("deleteShipments", async (data,callback) => {
           { _id: update.orderId},
           {
             $set: {
-              "items.$.port": update.port,
+              "items.$.country": update.port,
               "items.$.status": update.status,
             },
           }
@@ -241,6 +271,31 @@ socket.on("deleteShipments", async (data,callback) => {
   });
 
 
+  socket.on("findContainer", async (containerNumber,callback) => {
+    console.log("Finding container:", containerNumber);
+    try {
+
+      if (containerNumber === ""){
+          socket.emit("ContainerInvoice", {container_number:"-",loadingDate:"-",eta:"-",cbmRate:"-"})
+          return
+        }
+      const container = await Container.findOne(
+        { containerNumber: containerNumber },
+        { containerNumber: 1, loadingDate: 1, eta: 1,cbmRate: 1,_id: 0 } // Select only required fields
+      );
+
+      if (!container) {
+        return callback({status:"error", message: "Container not found" });
+      }
+
+      socket.emit("ContainerInvoice", container);
+    } catch (error) {
+      console.error("Error finding container:", error);
+      socket.emit("error", { message: "Server error" });
+    }
+  });
+
+
 socket.on("get_orders",async(data,callback)=>{
     
     
@@ -255,6 +310,59 @@ socket.on("get_orders",async(data,callback)=>{
     }
 })
 
+socket.on('addCBM', async ({ cbm,ctn, selectedOrder }, callback) => {
+  console.log(selectedOrder)
+  try {
+    if (!cbm || !ctn || !selectedOrder) {
+      return callback({ status: "error", message: "Missing required fields" });
+    }
+
+    // Find the order by ID
+    
+
+    // Find the container that has this order assigned
+    const container = await Container.findOne({ "assignedOrders.orderId": selectedOrder });
+    if (!container) {
+      return callback({ status: "error", message: "Container not found for this order" });
+    }
+
+    // Get the cbmRate from the container
+    const cbmRate = container.cbmRate;
+    if (!cbmRate) {
+      return callback({ status: "error", message: "CBM Rate not found in container" });
+    }
+
+    const order = await Shipment.findById(selectedOrder);
+    if (!order) {
+      return callback({ status: "error", message: "Order not found" });
+    }
+
+    // Calculate the amount
+    const amount = cbm * cbmRate;
+
+    // Update the order with CBM and calculated amount
+
+    order.items[0].cbm = parseInt(cbm);
+    order.items[0].ctn = parseInt(ctn);
+    order.items[0].amount = amount;
+    const saved_data= await order.save();
+    console.log(saved_data)
+    // Prepare the updated data
+    
+
+    // Emit updated order data to all clients
+   
+
+    // Send success response to the sender
+    callback({ status: "ok", message: "Order updated successfully", data: [saved_data] });
+    const recipientSocketId = users[order.userId];
+    console.log(recipientSocketId)
+    ordersNamespace.to(recipientSocketId).emit("orders_updated", [saved_data])
+  } catch (error) {
+    console.error("Error processing request:", error);
+    callback({ status: "error", message: "Server error" });
+  }
+});
 
 
 socket.on("disconnect",()=>{

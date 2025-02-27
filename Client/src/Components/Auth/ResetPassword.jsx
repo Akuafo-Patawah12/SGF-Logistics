@@ -13,7 +13,7 @@ const ResetPassword = () => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const res = await axios.put(`https://api.sfghanalogistics.com/reset-password/${token}`, {
+      const res = await axios.put(`http://localhost:4040/reset-password/${token}`, {
         newPassword: values.newPassword,
       });
       

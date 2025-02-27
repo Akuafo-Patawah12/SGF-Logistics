@@ -17,11 +17,11 @@ const orderFunc=(socket,adminNamespace,users)=>{
 
   socket.on("createOrder",async(data,callback)=>{
     const user_id= socket.user.id
-      console.log(data)
+      console.log("hello",data)
       try {
         const orders = new Order({ ...data, userId: user_id }); // Include userId in the order
         await orders.save();
-          await orders.save();
+          
           console.log("Shipment created successfully", orders);
           callback({ status: "ok" })
           socket.to("adminRoom").emit('newOrder', orders)

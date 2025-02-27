@@ -18,6 +18,22 @@
     width: 50%;
 }
 
+.active_3{
+    animation: blinkShadow 1s infinite alternate;
+}
+
+@keyframes blinkShadow {
+    0% { 
+        box-shadow: 0 0 10px rgba(180, 224, 0, 0.9); 
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(180, 224, 0, 0.4);
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(180, 224, 0, 0.9);
+      }
+  }
+
 .nav_button{
     display: flex;
     justify-content: space-between;

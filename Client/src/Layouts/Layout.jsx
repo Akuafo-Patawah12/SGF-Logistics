@@ -51,7 +51,7 @@ const Layout = () => {
 
 
     
-    const hideFooterOn = ["/Orders", "/get_a_quote", "/MyOrders"]
+    const hideFooterOn = ["/Orders", "/More/get_a_qoute", "/MyOrders"]
    
 
 

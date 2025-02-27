@@ -1,14 +1,89 @@
-import React ,{useState} from "react";
+import React ,{useState,useEffect,useMemo} from "react";
 import "./Invoice.css";
-import { Button } from "antd"
+import { Button,message } from "antd"
+import { CloseOutlined } from "@ant-design/icons";
+import io from "socket.io-client"
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 
-const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs}) => {
+const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs,containerNumber}) => {
+  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
+    transports: ["websocket","polling"],
+    withCredentials: true,
+    secure: true
+  }),[])
+
+
+  const [invoiceNumber,setInvoiceNumber] = useState("")
+  const [invoiceDate, setInvoiceDate ] = useState("")
+  const [ invoiceInfo , setInvoiceInfo]= useState({})
+
+  useEffect(()=>{
+    socket.emit("findContainer",containerNumber,(response)=>{
+       message.warning(response.message)
+    })
+  },[])
+
+  useEffect(()=>{
+    socket.on('connect',()=>{
+        console.log("Connected to server")
+        
+    });
+    socket.on("ContainerInvoice",(data)=>{
+      
+      setInvoiceInfo(data)
+      console.log(data)
+      
+      console.log("order data",data)
+    })
+
+    
+
+    socket.on('disconnect',(reasons)=>{
+        console.log(reasons)
+      })
+
+      
+      
+    
+    return()=>{
+        socket.off('connect');
+        socket.off("ContainerInvoice")
+     
+        socket.off('disconnect');
+              
+    }
+},[socket])
+
+
 
   
+
+  const formatDateToDDMMYYYY = (date) => {
+    let dd = date.getDate();
+    let mm = date.getMonth() + 1; // Months are zero-based
+    const yyyy = date.getFullYear();
+
+    // Ensure two digits for day and month
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    return `${dd}/${mm}/${yyyy}`;
+};
+
+  useEffect(()=>{
+    const generateInvoiceNumber = () => {
+      const today = new Date();
+      setInvoiceDate(formatDateToDDMMYYYY(today));
+      const invNumber = 'INV-' + Math.floor(100000 + Math.random() * 900000);
+      setInvoiceNumber(invNumber);
+  };
+  generateInvoiceNumber()
+  },[])
+  
+
   const invoiceData = {
-    invoiceNumber: "INV-2025001",
-    date: "February 3, 2025",
+    invoiceNumber: `${invoiceNumber}`,
+    
     sender: {
       name: "SF Ghana Logistics",
       address: "George Bush Highway, Dzorwulu,Accra-Ghana",
@@ -16,28 +91,25 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs}) => {
       email: "sfghanalogistics24@gmail.com",
     },
     receiver: {
-      invoice_date: "1st February",
-      Loading_date: "456 Business Ave, Lagos, Nigeria",
-      arrival_time: "2nd March 2025",
-      Container: "99786gg",
+      invoice_date: invoiceDate,
+      Loading_date: invoiceInfo.loadingDate,
+      cbmRate: invoiceInfo.cbmRate,
+      arrival_time: invoiceInfo.eta,
+      Container: invoiceInfo.containerNumber,
     },
-    shipmentDetails: [
-      { description: "Electronics", cbm:34,ctn:31,tracking_no: 20977554, weight: "15kg", price: 150.0 },
-      { description: "Furniture",cbm:74,ctn:43, tracking_no: 1867564, weight: "30kg", price: 250.0 },
-    ],
-    total: 400.0,
+    
   };
 
   return (
     <div className="Invoice">
-   <Button onClick={()=> setShowInvoice(false)}>Close</Button>
+   <Button onClick={()=> setShowInvoice(false)} style={{height:"50px",width:"50px",float:"right"}}><CloseOutlined /></Button>
     
 {invoice ?  <div  ref={divRef} className="invoice-container">
-       <SvgIcon/>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> <SvgIcon/>  <span style={{color:"red",fontWeight:"500"}}>PROVISIONAL INVOICE <br/> <p style={{color:"#333",fontSize:"14px"}}>020 811 6360 / 053 948 0433</p></span></div>
       <div className="invoice-header">
-        <h2>Invoice</h2>
+        
         <p>Invoice #: {invoiceData.invoiceNumber}</p>
-        <p>Date: {invoiceData.date}</p>
+        
       </div>
 
       <div className="invoice-section">
@@ -48,13 +120,14 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs}) => {
           <p>Phone: {invoiceData.sender.phone}</p>
           <p>Email: sfghanalogistics24@gmail.com</p>
         </div>
-
+        
         <div className="invoice-details">
           
-          <p>Invoice date<strong>{invoiceData.receiver.invoice_date}</strong></p>
-          <p>Loading date: {invoiceData.receiver.Loading_date}</p>
-          <p>Arrival time: {invoiceData.receiver.arrival_time}</p>
-          <p>Container number: {invoiceData.receiver.Container}</p>
+          <p>Invoice date: <span style={{transform:"translateX(10px)"}}>{invoiceData.receiver.invoice_date}</span></p>
+          <p>Loading date: <span style={{transform:"translateX(10px)"}}>{new Date(invoiceData.receiver.Loading_date).toLocaleDateString()}</span></p>
+          <p>CBM Rate: <span style={{transform:"translateX(10px)"}}>{invoiceData.receiver.cbmRate}</span></p>
+          <p>Arrival time: <span style={{transform:"translateX(10px)"}}>{new Date(invoiceData.receiver.arrival_time).toLocaleDateString()}</span></p>
+          <p>Container number: <span style={{transform:"translateX(10px)"}}>{invoiceData.receiver.Container}</span></p>
         </div>
       </div>
 
@@ -144,9 +217,11 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs}) => {
         generateAndSendPDFs(invoice.email);
         setShowInvoice(false)
       }
+     
     }
-    style={{marginBottom:"30px"}}
-    >
+    disabled={invoice ? false : true}
+    style={{marginBottom:"30px",background:"var(--purple)",color:"white"}}
+    className="send_invoice_btn">
     Send Invoice
     </Button>
     </div>

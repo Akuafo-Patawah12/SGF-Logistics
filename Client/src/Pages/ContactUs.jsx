@@ -12,7 +12,7 @@ const ContactUs = () => {
   })
   const onFinish = async() => {
     try{
-    const response = await axios.post("http://localhost:4040/contact_us", {formData})
+    const response = await axios.post("https://api.sfghanalogistics.com/contact_us", {formData})
     if ( response.status===200){
       message.success(response.data.message)
     }else{

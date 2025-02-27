@@ -298,7 +298,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           
           
           <section style={{display:"flex",gap:"1rem"}}>
-            <Link to={"/Invoice"}><button className='btn'>Get A Quote</button></Link>
+            <Link to={"/MyOrders"}><button className='btn'>Get A Quote</button></Link>
             <button onClick={()=> setIsVideo(true)} style={{border: "var(--green)",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
           </section>
           </div>
@@ -409,7 +409,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           className='welcome_container' >
             <section style={{display:"flex",flexDirection:"column",gap:"10px",marginBottom:"10px"}}>
                 <div className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p style={{color:"white"}}>Join us for <br/> seamless logistics.</p><Link to={"/Auth/login"}><button>Login</button></Link></div> </div>
-                <div  className="flexbox_1"style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p className="p-info" style={{color:"white"}}>Track your shipment. <br/> in realtime </p><Link to={"/Track_order"}><button>Track</button></Link></div> </div>
+                <div  className="flexbox_1"style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p className="p-info" style={{color:"white"}}>Track your shipment. <br/> in realtime </p><Link to={"/More/Track_order"}><button>Track</button></Link></div> </div>
             </section>
            <h3 style={{marginLeft:"2.5%",marginTop:"10px"}}>Welcome to SF Ghana Logistics.</h3>
           <p style={{textAlign:"justify",marginInline:"auto",width:"95%"}}>

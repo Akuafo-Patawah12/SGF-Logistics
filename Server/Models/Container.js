@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const ContainerSchema = new mongoose.Schema({
-  containerName: { type: String, required: true },  
+const ContainerSchema = new mongoose.Schema({  
   containerNumber: { type: Number, required: true, unique: true },
   loadingDate: { type: Date },  // Date when the shipment is loaded
   eta: { type: Date, required: true },

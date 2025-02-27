@@ -11,6 +11,7 @@ import { Link } from "react-router-dom"
 import CBMInputModal from "./Components/CBMInputModal"
 import axios from "axios"
 import Invoice from "./Invoice"
+import "./MyOrders.css"
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
@@ -66,7 +67,7 @@ const AdminDashboard = () => {
   const [shipmentData, setShipmentData] = useState(null);
  
   useEffect(() => {
-    localStorage.setItem("lastVisitedTab", "/Admindasboard");
+    localStorage.setItem("lastVisitedTab", "/Admindashboard");
   }, []);   
   
   const statusOptions = ["All","Pending...", "In Transit", "Delivered", "Cancelled"]; 
@@ -92,7 +93,12 @@ const AdminDashboard = () => {
 
  
 
+ const [activeId, setActiveId] = useState(null);
  
+   function handleActiveClick(id){
+     setActiveId(id);
+   };
+
  useEffect(()=>{
   socket.emit('get_orders',"sent");
 
@@ -108,6 +114,7 @@ const AdminDashboard = () => {
 
    socket1.on("newOrder",(data)=>{
       setShipments(prev => [data,...prev])
+      handleActiveClick(data._id);
       message.success(`New order received from ${data.fullname}`)
    })
    socket1.on('disconnect',()=>{
@@ -147,9 +154,17 @@ const AdminDashboard = () => {
       setShipments((prev) => [data,...prev, ]);
     });
 
-    socket.on('update-shipment', (data) => {
-      setShipments((prev) => prev.map((s) => (s._id === data._id ? data : s)));
+   
+
+    socket.on('updated_shipment', (data) => {
+      setShipments((prev) => 
+        prev.map((shipment) => {
+          const updatedShipment = data.find((newItem) => newItem._id === shipment._id);
+          return updatedShipment ? { ...shipment, ...updatedShipment } : shipment;
+        })
+      );
     });
+    
 
     socket.on('delete-shipment', (id) => {
       setShipments((prev) => prev.filter((s) => s._id !== id));
@@ -297,7 +312,7 @@ const AdminDashboard = () => {
       if (response.status === "ok") {
                   message.success("Shipment updated successfully");
                 } else {
-                  message.error(response.error.message);
+                  message.warning(response.message);
                 }})
     
 
@@ -305,25 +320,7 @@ const AdminDashboard = () => {
   };
 
 
-  function updateCBM(data) {
-    console.log("Before Update:", shipments);
-    setShipments((prevOrders) => {
-      const updatedOrders = prevOrders.map((order) =>
-        order.orderId === data.selectedOrder
-          ? {
-              ...order,
-              items: order.items.map((item, index) =>
-                index === 0
-                  ? { ...item, cbm: item.cbm === data.newCBM  }
-                  : item
-              ),
-            }
-          : order
-      );
-      console.log("After Update:", updatedOrders);
-      return updatedOrders;
-    });
-  }
+  
   
   useEffect(() => {
     console.log("Shipments Updated:", shipments);
@@ -369,9 +366,10 @@ const handleSelectSingle = (e, shipment) => {
   );
 };
 
-  
+  const [passContainerNumber,setPassContainerNumber] = useState("")
   function viewInvoice(){
     setShowInvoice(true)
+    
    }
   
 
@@ -449,6 +447,7 @@ const handleSelectSingle = (e, shipment) => {
                               description: shipment.items[0].description,
                               Amount: shipment.items[0].amount,
                               cbm: shipment.items[0].cbm,
+                              ctn: shipment.items[0].ctn,
                               trackingNo: shipment.items[0].trackingNo,
                             },
                           ],
@@ -465,11 +464,12 @@ const handleSelectSingle = (e, shipment) => {
                       description: shipment.items[0].description,
                       email:shipment.email,
                       trackingNo: shipment.items[0].trackingNo,
-                      ctn:shipment.items[0].ctnNo,
+                      ctn:shipment.items[0].ctn,
                       cbm:shipment.items[0].cbm,
                       amount:shipment.items[0].amount,
                     })
                     viewInvoice();
+                    setPassContainerNumber(shipment.container_number)
                    }}
                     />
                   </Tooltip>
@@ -635,7 +635,9 @@ const handleSelectSingle = (e, shipment) => {
         isVisible={isCBMVisible}
         onClose={cbmModalClose}
         selectedOrder={selectedOrder}
-        updateCBM={updateCBM}
+       
+        setShipments={setShipments}
+        socket={socket}
         onSubmit={handleSubmit}
       />
 
@@ -669,7 +671,15 @@ const handleSelectSingle = (e, shipment) => {
             {loading ? (
                 <Spin size="large" />
             ) : (
-                <div style={{width:"95%",overflow:"auto",}} className="table_scroll"><Table dataSource={filteredShipments} columns={columns} rowKey="_id" style={{width:"100%"}}/></div>
+                <div style={{width:"95%",overflow:"auto",}} className="table_scroll">
+                  <Table
+                    dataSource={filteredShipments}
+                    columns={columns}
+                    rowKey="_id"
+                    style={{ width: "100%" }}
+                    rowClassName={(record) => (activeId === record._id ? "active_3" : "")}
+                  />
+                </div>
             )}
         </div>
     
@@ -768,7 +778,7 @@ const handleSelectSingle = (e, shipment) => {
      
 
      
-    {showInvoice && <Invoice invoice={invoice} divRef={divRef} setShowInvoice={setShowInvoice} generateAndSendPDFs={generateAndSendPDFs}/>}
+    {showInvoice && <Invoice invoice={invoice} divRef={divRef} containerNumber={passContainerNumber} setShowInvoice={setShowInvoice} generateAndSendPDFs={generateAndSendPDFs}/>}
     
     <div style={{ textAlign: "center", marginTop: "50px" }}>
     

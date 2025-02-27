@@ -10,7 +10,7 @@ import ButtonLoader from '../Icons/ButtonLoader'
 import { PlusOutlined, SendOutlined } from '@ant-design/icons'
 import PaymentPopUp from './Components/PaymentPopUp'
 
-import "./Invoice.css"
+import "./GetQuote.css"
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 
 const Invoice = () => {
@@ -93,9 +93,7 @@ const Invoice = () => {
     
     
     
-    const addItem = () => {
-      setItems([...items, {  description: "", trackingNo: "" }]);
-    };
+    
     
     const removeItem = (index) => {
       setItems(items.filter((_, i) => i !== index));
@@ -107,15 +105,18 @@ const Invoice = () => {
       setTimeout(()=>{
         socket.emit("createOrder",{items,...orderInfo},(response) => {
           if (response.status === "ok") {
+            setCreatingOrder(false)
             message.success("Order created successfully");
+
           } else {
+            setCreatingOrder(false)
             message.error("Failed to fetch orders");
           }})
       },1000)
       
       // Reset form
       
-      setItems([{ description: "", trackingNo: ""}]);
+      setItems([{ description: "Unclassified", trackingNo: ""}]);
       togglePopup();
     };
     
@@ -133,7 +134,7 @@ const Invoice = () => {
       
       
       const [items, setItems] = useState([
-          { description: "", trackingNo: ""}
+          { description:"Unclassified", trackingNo: ""}
       ]);
     
       // Generate a random invoice number
@@ -272,6 +273,8 @@ const Invoice = () => {
             type="text"
             name="description"
             value={item.description}
+            disabled={true}
+            style={{cursor:"not-allowed"}}
             onChange={(e) => handleInputChange(index, e)}
           />
         </td>
@@ -286,15 +289,7 @@ const Invoice = () => {
         
         
         
-        <td>
-          <button
-            type="button"
-            className="remove-item-button"
-            onClick={() => removeItem(index)}
-          >
-            &times;
-          </button>
-        </td>
+        
       </tr>
     ))}
   </tbody>
@@ -310,6 +305,8 @@ const Invoice = () => {
             name="description"
             placeholder="Description"
             value={item.description}
+            disabled={true}
+            style={{cursor:"not-allowed"}}
             onChange={(e) => handleInputChange(index, e)}
           />
         </div>
@@ -328,28 +325,13 @@ const Invoice = () => {
         
 
 
-        <section>
-          <button
-            type="button"
-            className="remove-item-button"
-            onClick={() => removeItem(index)}
-          >
-            &times;
-          </button>
-        </section>
+        
         <div className='table-index'>{index + 1}</div>
   </div>
 ))}
                  
    
-                  <button
-                    type="button"
-                    className="add_btn"
-                    onClick={addItem}
-                  >
-                    <PlusOutlined />
-                    Add Item
-                  </button>
+                  
                  
                   </section>
                 </div>
@@ -392,7 +374,7 @@ const Invoice = () => {
                   >
                    Submit
                   </button>
-                  <Link to={"/AllOrders"}><button className="view">View Orders</button></Link>
+                  <Link to={"/MyOrders"}><button className="view">View Orders</button></Link>
                 </div>
               </form>
             </div>
