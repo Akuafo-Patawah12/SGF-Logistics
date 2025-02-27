@@ -15,7 +15,7 @@ const ForgotPassword = () => {
   const onFinish = async() => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:4040/forget_password", { email });
+      const res = await axios.post("https://api.sfghanalogistics.com/forget_password", { email });
 
       if(res.status===200){
       message.success("Password reset email sent")
