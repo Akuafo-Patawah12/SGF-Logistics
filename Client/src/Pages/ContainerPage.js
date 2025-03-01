@@ -4,6 +4,7 @@ import { List, Card,Result ,Button,Select,Modal,DatePicker,Form,message, Input,T
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 import { EyeOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
+import ButtonLoader from '../Icons/ButtonLoader'
 import AssignUsersModal from "./Components/AssignUsersModal"
 import "./ContainerPage.css"
 
@@ -21,6 +22,13 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     withCredentials: true,
     secure: true
   }),[])
+
+  const socket1 = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
+    transports: ["websocket","polling"],
+    withCredentials: true,
+    secure: true
+  }),[])
+
   const [containers, setContainers] = useState([]);
   const [filteredContainers, setFilteredContainers] = useState(containers);
   const [loading, setLoading] = useState(true);
@@ -40,7 +48,10 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
   useEffect(()=>{
     socket.emit("get_all_container")
+    socket1.emit("joinRoom", "adminRoom")
   },[])
+
+  
 
   const routes = {
       A: ["Guangzhou Port", "Colombo Port", "Port of Aden", "Port of Alexandria", "Port of Algiers", "Port of Freetown", "Tema Port"], 
@@ -64,7 +75,31 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     const [eta,setEta] = useState()
     const[isEdit,setIsEdit]= useState(false)
     const [loadingDate,setLoadingDate] = useState()
+    const [creatingOrder,setCreatingOrder]= useState(false);
     const [assignedOrder_id,setAssignedOrder_id]= useState([])
+    const [containerId,setContainerId] = useState(null)
+    const [orderInfo,setOrderInfo] = useState(
+      {
+        fullname:"",
+        email:"",
+        shipment_type:"",
+        container_id:""
+      }
+    )
+
+    const [items, setItems] = useState([
+      { description:"Unclassified", trackingNo: "",cbm:"",ctn:""}
+  ]);
+
+  const handleInputChange = (index, field, event) => {
+    const { value } = event.target;
+    setItems((prevItems) =>
+      prevItems.map((item, i) =>
+        i === index ? { ...item, [field]: value } : item
+      )
+    );
+  };
+  
     
 
     useEffect(() => {
@@ -108,6 +143,13 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       setContainers(prev => [data,...prev])
     })
 
+    socket.on("receive",(data)=>{
+      setCreatingOrder(false)
+      
+      message.success("New order")
+      console.log("order data",data)
+    })
+
     socket.on("connect_error", (err)=>{
           console.log(err)
           if (err.message.includes("404: Refresh token not found")) {
@@ -148,6 +190,49 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     };
   }, [socket]);
 
+  useEffect(() => {
+    socket1.on("connect",()=>{
+        console.log("connected to container page")
+    })
+    socket1.on("receive",(data)=>{
+      setCreatingOrder(false)
+      
+      message.success("New order")
+      console.log("order data",data)
+    })
+
+    socket.on("updatedShipment", (data)=>{
+       setContainers((prev) => 
+        prev.map((container) => {
+          const updatedShipment = data.find((newItem) => newItem._id === container._id);
+          return updatedShipment ? { ...container, ...updatedShipment } : container;
+        })
+      );
+    })
+
+    socket1.on("new",(data)=>{
+      setContainers((prev) => 
+        prev.map((container) => {
+          const updatedShipment = data.find((newItem) => newItem._id === container._id);
+          return updatedShipment ? { ...container, ...updatedShipment } : container;
+        })
+      );
+      console.log(data)
+    })
+
+    socket1.on("disconnect",(reason)=>{
+         console.log(reason)
+    })
+
+
+    return()=>{
+      socket1.off("connect")
+      socket1.off("receive")
+      socket1.off("diconnect")
+    }
+
+  },[socket1])
+
   const handleRouteChange = (route) => {
     setSelectedRoute(route);
     setSelectedCountry(null); // Reset country selection when route changes
@@ -181,6 +266,54 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     setIsEdit(false);
   };
 
+  const [isModalVisible3, setIsModalVisible3] = useState(false);
+
+  const handleOpen3 = () => setIsModalVisible3(true);
+  const handleClose3 = () => setIsModalVisible3(false);
+
+   
+    const handleSubmit1 = () => {
+     
+      setCreatingOrder(true)
+      setTimeout(()=>{
+        socket1.emit("createOrder",{items,...orderInfo},(response) => {
+          if (response.status === "ok") {
+            setCreatingOrder(false)
+            message.success("Order created successfully");
+
+          } else {
+            setCreatingOrder(false)
+            message.error("Failed to fetch orders");
+          }})
+      },1000)
+      
+    };
+
+    function editOrderStatus(){
+        socket1.emit("editOrderStatus",{containerId,selectedRoute,selectedCountry,shipmentStatus},(response)=>{
+          if (response.status === "ok") {
+            message.success(response.message);
+            setIsEditContainer(false)
+            const data= response.data;
+            setContainers(prev =>
+              prev.map(item =>{
+                  const updated = data.find(list =>  list._id === item._id)
+
+                   return updated ? {...item,...updated} : item;
+              })
+            )
+          } else {
+            message.error(response.message);
+          }})
+    }
+
+  
+
+     const [isEditContainer,setIsEditContainer] = useState(false)
+
+     const handleEditContainer = () => {
+      setIsEditContainer(true);
+     }
 
   const columns = [
     
@@ -219,7 +352,9 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       dataIndex: "assignedOrders",
       key: "assignedOrders",
       render: (orders) =>
-        orders.length > 0 ? (
+         <div>
+        {orders.length > 0 ? (
+          
           <>
           <Tag>{orders.length}</Tag> 
           <button onClick={() =>{ 
@@ -232,7 +367,27 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
           </>
         ) : (
           <Tag color="gray">No Orders</Tag>
-        ),
+        )}
+       
+        </div>,
+    },
+    {
+      title: "Actions",
+      key: "actions",
+      render: (_,container) =>
+       <div style={{display:"flex"}}>
+        <Button onClick={()=>{
+          handleOpen3();
+          setOrderInfo({...orderInfo,container_id: container._id})
+         
+          
+        }}>Add Order</Button>
+
+        <Button onClick={()=> {
+          handleEditContainer()
+          setContainerId(container._id)
+        }}>Edit</Button>
+        </div>,
     },
   ];
 
@@ -348,6 +503,8 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     </div>
       </Form>
 
+      
+
       <Button type="primary" style={{ marginTop: "10px",height:"40px", width: "100%" }} 
       onClick={ handleSave  }
       disabled={!selectedRoute || !selectedCountry || !shipmentStatus}>
@@ -356,6 +513,170 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     </Modal>
     
 
+  {/* Edit Container Modal */}
+  <Modal title="Edit container" open={isEditContainer} onCancel={() => setIsEditContainer(false)} footer={null}>
+     <Form>
+      <div style={{ marginBottom: "16px" }}>
+      <Text strong>Select Route:</Text>
+      <Select
+        style={{ width: "100%", height: "40px", marginTop: "5px" }}
+        placeholder="Select Route"
+        value={selectedRoute}
+        onChange={handleRouteChange}
+      >
+        {Object.keys(routes).map((route) => (
+          <Option key={route} value={route}>
+            Route {route}
+          </Option>
+        ))}
+      </Select>
+    </div>
+        
+
+
+        {/* Select Country (Only if Route is selected) */}
+        {selectedRoute && (
+          <div style={{ marginBottom: "15px" }}>
+            <label style={{ fontWeight: "600", display: "block", marginBottom: "5px" }}>
+              Select Country in Route {selectedRoute}:
+            </label>
+            <Select
+              style={{ width: "100%",height:"40px" }}
+              onChange={(country) => setSelectedCountry(country)}
+              placeholder="Select Country"
+              value={selectedCountry}
+            >
+              {routes[selectedRoute].map((country) => (
+                <Select.Option key={country} value={country}>
+                  {country}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
+        )}
+
+        {/* Select Shipment Status (Applies to all selected shipments) */}
+        <div style={{ marginBottom: "15px" }}>
+      <Text strong>Update Status:</Text>
+      <Select
+        style={{ width: "100%", marginTop: "5px" }}
+        onChange={(status) => setShipmentStatus(status)}
+        placeholder="Select Status"
+        value={shipmentStatus}
+      >
+        {statusOptions.map((status) => (
+          <Option key={status} value={status}>
+            {status}
+          </Option>
+        ))}
+      </Select>
+    </div>
+
+     <Button type="primary" style={{ marginTop: "10px",height:"40px", width: "100%" }}
+      disabled={!selectedRoute || !selectedCountry || !shipmentStatus}
+      onClick={editOrderStatus}>Save change</Button>
+      </Form>
+
+      
+
+      
+    </Modal>
+
+    <Modal
+  title="Submit Shipment"
+  open={isModalVisible3}
+  onCancel={handleClose3}
+  footer={[
+    <Button key="cancel" onClick={handleClose3}>
+      Cancel
+    </Button>,
+    <Button key="submit" type="primary" onClick={handleSubmit1}>
+      Submit
+    </Button>,
+  ]}
+>
+  <Form layout="vertical">
+    {/* Shipping Mark Input */}
+    <Form.Item
+      label="Shipping Mark"
+      name="shippingMark"
+      rules={[{ required: true, message: "Please enter shipping mark!" }]}
+    >
+      <Input
+        placeholder="Enter shipping mark"
+        value={orderInfo.fullname || ""}
+        onChange={(e) =>
+          setOrderInfo({ ...orderInfo, fullname: e.target.value })
+        }
+      />
+    </Form.Item>
+
+    {/* Email Input */}
+    <Form.Item
+      label="Email"
+      name="email"
+      rules={[
+        { required: true, message: "Please enter email!" },
+        { type: "email", message: "Enter a valid email!" },
+      ]}
+    >
+      <Input
+        placeholder="Enter email"
+        value={orderInfo.email || ""}
+        onChange={(e) =>
+          setOrderInfo({ ...orderInfo, email: e.target.value })
+        }
+      />
+    </Form.Item>
+
+    {/* Dynamic Items Inputs */}
+    {items.map((item, index) => (
+      <div key={index} style={{ marginBottom: "10px", padding: "10px", border: "1px solid #ddd", borderRadius: "5px" }}>
+        {/* CBM Input */}
+        <Form.Item
+          label="CBM"
+          name={[index, "cbm"]} // Unique field for each item
+          rules={[{ required: true, message: "Please enter CBM!" }]}
+        >
+          <Input
+            placeholder="Enter CBM"
+            value={item.cbm || ""}
+            onChange={(e) => handleInputChange(index, "cbm", e)}
+          />
+        </Form.Item>
+
+        {/* CTN Input */}
+        <Form.Item
+          label="CTN"
+          name={[index, "ctn"]} // Unique field for each item
+          rules={[{ required: true, message: "Please enter CTN!" }]}
+        >
+          <Input
+            placeholder="Enter CTN"
+            value={item.ctn || ""}
+            onChange={(e) => handleInputChange(index, "ctn", e)}
+          />
+        </Form.Item>
+
+        {/* Tracking Number Input */}
+        <Form.Item
+          label="Tracking Number"
+          name={[index, "trackingNo"]} // Unique field for each item
+          rules={[{ required: true, message: "Please enter tracking number!" }]}
+        >
+          <Input
+            placeholder="Enter tracking number"
+            value={item.trackingNo || ""}
+            onChange={(e) => handleInputChange(index, "trackingNo", e)}
+          />
+        </Form.Item>
+      </div>
+    ))}
+  </Form>
+</Modal>
+
+
+    {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
     <AssignUsersModal isOpen={modalOpen}  assignedOrder_id={assignedOrder_id} onClose={() => setModalOpen(false)}/>
     
     

@@ -221,7 +221,7 @@ useEffect(() => {
           )}
       </div>
       <p style={{ height: "33px" }} ref={(el) => (pRefs.current[index] = el)}>
-        {port.country}
+        {port.countryPort}
       </p>
     </div>
 

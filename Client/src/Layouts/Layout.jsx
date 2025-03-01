@@ -13,11 +13,12 @@ import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '
 import HowItWorksVideo from '../Pages/Components/HowItWorksVideo'
 import PageNotFound from '../Pages/PageNotFound'
 import More from "../Pages/More/More"
+import PricingPage from '../Pages/Pricing'
 const Privacy = lazy(()=> import('../Pages/More/Privacy')) 
 const Gallery = lazy(()=> import('../Pages/More/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
-const GetQuote = lazy(()=> import( '../Pages/GetQuote'))
+
 
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
@@ -116,7 +117,13 @@ const Layout = () => {
                         <HomePage setShowAuth={setShowAuth} showAuth={showAuth} setIsVideo={setIsVideo}/>
                     </Suspense> }
                 />
+                
 
+                <Route path='/More/pricing' element={
+                    <Suspense fallback={<Loader />}>
+                        <PricingPage/>
+                    </Suspense> }
+                />
                 
 
                 
@@ -158,11 +165,7 @@ const Layout = () => {
                         </Suspense>} 
                     />
 
-                 <Route path='/More/get_a_qoute' element={
-                        <Suspense fallback={<Loader />}>
-                          <GetQuote />   
-                        </Suspense>} 
-                    />
+                
 
                     <Route path='/About' element={
                         <Suspense fallback={<Loader />}>

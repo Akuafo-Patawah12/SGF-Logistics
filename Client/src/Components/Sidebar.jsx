@@ -134,9 +134,10 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
             >
               {showdrop3 && (
                 <>
-                  <Menu.Item key="5  -1"><Link to="/More/FAQs">FAQs</Link></Menu.Item>
-                  <Menu.Item key="5-2"><Link to="/More/Gallery">Gallery</Link></Menu.Item>
-                  <Menu.Item key="5-3"><Link to="/More/Privacy">Privacy & Policy</Link></Menu.Item>
+                  <Menu.Item key="5-1"><Link to="/More/FAQs">FAQs</Link></Menu.Item>
+                  <Menu.Item key="5-2"><Link to="/More/pricing">Pricing</Link></Menu.Item>
+                  <Menu.Item key="5-3"><Link to="/More/Gallery">Gallery</Link></Menu.Item>
+                  <Menu.Item key="5-4"><Link to="/More/Privacy">Privacy & Policy</Link></Menu.Item>
                 </>
               )}
             </Menu.SubMenu>

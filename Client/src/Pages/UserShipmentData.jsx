@@ -9,7 +9,7 @@ const UserShipmentData = ({visible, onClose, shipmentData, loading3}) => {
     const {
         fullname,
         email,
-        phone,
+        
         status,
         
         updatedAt,
@@ -40,8 +40,7 @@ const UserShipmentData = ({visible, onClose, shipmentData, loading3}) => {
           <Descriptions bordered column={1} size="small">
             <Descriptions.Item label="Shipping mark">{fullname}</Descriptions.Item>
             <Descriptions.Item label="Email">{email}</Descriptions.Item>
-            <Descriptions.Item label="Phone">{phone}</Descriptions.Item>
-            <Descriptions.Item label="Country">{selected_country==="" ? "-": selected_country}</Descriptions.Item>
+            <Descriptions.Item label="Port">{selected_country==="" ? "-": selected_country}</Descriptions.Item>
             <Descriptions.Item label="Route">{route==="" ? "-": route}</Descriptions.Item>
             <Descriptions.Item label="Status">{status}</Descriptions.Item>
             
@@ -57,7 +56,7 @@ const UserShipmentData = ({visible, onClose, shipmentData, loading3}) => {
               <Text strong>Description:</Text> <Text>{item.description}</Text><br />
               <Text strong>Amount:</Text> <Text>${item.Amount===0 ? "-": item.Amount }</Text><br />
               <Text strong>CBM:</Text> <Text>{!item.cbm ? "-": item.cbm}</Text><br />
-              <Text strong>CTN:</Text> <Text>{!item.ctn ? "-": item.ctn}</Text><br />
+              <Text strong>CTN:</Text> <Text>{ item.ctn}</Text><br />
               <Text strong>Tracking No:</Text> <Text>{item.trackingNo}</Text>
             </Card>
           ))}

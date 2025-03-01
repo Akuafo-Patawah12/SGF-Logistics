@@ -298,7 +298,6 @@ const [value, setValue] = useState(0);  // State to hold the value
           
           
           <section style={{display:"flex",gap:"1rem"}}>
-            <Link to={"/MyOrders"}><button className='btn'>Get A Quote</button></Link>
             <button onClick={()=> setIsVideo(true)} style={{border: "var(--green)",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
           </section>
           </div>
@@ -551,9 +550,9 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
         <div className='rate'>
-           <div style={{borderRight:"1px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px",color:"#111"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}> $220 PER CBM</span></div>
+           <div style={{borderRight:"1px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px",color:"#111"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}> $ 230 PER CBM</span></div>
            <div style={{borderRight:"1px solid #222"}}><CargoPlane style={{transform:"translateX(3px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>$18 PER KILO</span></div>
-           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>0.425</span></div>
+           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>0.435</span></div>
         </div>
 
       </motion.div>

@@ -14,7 +14,7 @@ const OrderSchema = new mongoose.Schema({
   userId: { type: mongoose.Types.ObjectId, ref: "user" },
   items: { type: [ItemSchema], required: true },
   fullname: { type: String, required: true },
-  phone: { type: String, required: true },
+  
   email: { type: String, required: true },
   route:{type:String,default:""},
   selected_country:{type:String,default:""},

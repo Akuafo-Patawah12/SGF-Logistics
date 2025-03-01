@@ -27,7 +27,7 @@ const SessionExpiredModal = ({isModalOpen,setIsModalOpen}) => {
       <LockOutlined style={{ fontSize: "50px", color: "#faad14" }} />
       <Title level={3}>Login Expired</Title>
       <Paragraph>Your session has expired, Please login to continue.</Paragraph>
-      <Button type="primary" size="large" onClick={handleOk}>
+      <Button type="primary" style={{background:"var(--purple)"}} size="large" onClick={handleOk}>
         Login
       </Button>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect ,useMemo } from "react";
-import { Modal, List, Spin, Avatar ,Tooltip ,message} from "antd";
-import { CopyOutlined } from "@ant-design/icons";
+import { Modal, List, Avatar, Spin, Tooltip, Input ,message,Row, Col, Card  } from "antd";
+import { CopyOutlined, SearchOutlined } from "@ant-design/icons";
 import { io } from "socket.io-client";
 
 
@@ -24,6 +24,7 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
 
       socket.on("fetchAssignedOrders", (data) => {
         setUsers(data);
+        
         setLoading(false);
       });
 
@@ -33,42 +34,161 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
     }
   }, [isOpen]);
 
+  console.log(users)
+
   const handleCopy = (trackingNo) => {
     navigator.clipboard.writeText(trackingNo);
     message.success("Tracking number copied!");
   };
+  
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter users by tracking number
+  const filteredUsers = users.filter((user) =>
+    user.userId.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    user.items[0].trackingNo.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <Modal title="Assigned Users" open={isOpen} onCancel={onClose} footer={null}>
+    <Modal
+      title ={`Assigned Users in container.  Total of ${users.length} users `}
+      open={isOpen}
+      onCancel={onClose}
+      footer={null}
+      width={"80%"} // Ensures good width on desktop
+      centered
+    >
       {loading ? (
         <div style={{ textAlign: "center", padding: "20px" }}>
           <Spin size="large" />
         </div>
       ) : users.length > 0 ? (
-        <List
-          itemLayout="horizontal"
-          dataSource={users}
-          renderItem={(user) => (
-        <List.Item>
-      <List.Item.Meta
-        avatar={<Avatar>{user.userId.username.charAt(0)}</Avatar>}
-        title={user.userId.username}
-        description={user.userId.email}
-      />
-      <div>
-        <span style={{fontWeight:"400",fontSize:"14px"}}>{user.items[0].trackingNo}</span>
-        <Tooltip title="Copy Tracking No">
-          <CopyOutlined
-            style={{ marginLeft: 8, cursor: "pointer" }}
-            onClick={() => handleCopy(user.items[0].trackingNo)}
+        <>
+          {/* Search Input */}
+          <Input
+            placeholder="Search by Tracking Number or Shipping mark"
+            prefix={<SearchOutlined />}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              marginBottom: "15px",
+              borderRadius: "8px",
+              padding: "10px",
+              fontSize: "16px",
+              width: "100%",
+            }}
           />
-        </Tooltip>
-      </div>
-    </List.Item>
-      )}
-      />    
+
+          {/* Filtered List */}
+          <List
+            itemLayout="vertical"
+            dataSource={filteredUsers}
+            renderItem={(user) => (
+              <Card
+                hoverable
+                style={{
+                  marginBottom: "10px",
+                  borderRadius: "10px",
+                  padding: "15px",
+                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <List.Item>
+                  <Row
+                    gutter={[16, 16]}
+                    align="middle"
+                    justify="space-between"
+                    style={{
+                      width: "100%",
+                      textAlign: "center",
+                    }}
+                  >
+                    {/* Avatar and User Info */}
+                    <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+                      <List.Item.Meta
+                        avatar={
+                          <Avatar
+                            style={{ backgroundColor: "#1890ff", color: "#fff" }}
+                          >
+                            {user.userId.username.charAt(0)}
+                          </Avatar>
+                        }
+                        title={
+                          <strong style={{ fontSize: "16px" }}>
+                            {user.userId.username}
+                          </strong>
+                        }
+                        description={
+                          <span style={{ fontSize: "14px", color: "#666" }}>
+                            {user.userId.email}
+                          </span>
+                        }
+                      />
+                    </Col>
+
+                    {/* CTN, CBM, Amount, Tracking No */}
+                    <Col xs={24} sm={12} md={4} lg={4} xl={4}>
+                      <h4 style={{ marginBottom: "5px", color: "#555" }}>CTN</h4>
+                      <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                        {user.items[0].ctn}
+                      </span>
+                    </Col>
+
+                    <Col xs={24} sm={12} md={4} lg={4} xl={4}>
+                      <h4 style={{ marginBottom: "5px", color: "#555" }}>CBM</h4>
+                      <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                        {user.items[0].cbm}
+                      </span>
+                    </Col>
+
+                    <Col xs={24} sm={12} md={4} lg={4} xl={4}>
+                      <h4 style={{ marginBottom: "5px", color: "#555" }}>
+                        Amount
+                      </h4>
+                      <span style={{ fontSize: "14px", fontWeight: "500" }}>
+                        ${user.items[0].amount}
+                      </span>
+                    </Col>
+
+                    {/* Tracking Number */}
+                    <Col xs={24} sm={12} md={6} lg={6} xl={6}>
+                      <h4 style={{ marginBottom: "5px", color: "#555" }}>
+                        Tracking No.
+                      </h4>
+                      <span
+                        style={{
+                          fontSize: "14px",
+                          fontWeight: "bold",
+                          color: "#1890ff",
+                        }}
+                      >
+                        {user.items[0].trackingNo}
+                      </span>
+                      <Tooltip title="Copy Tracking No">
+                        <CopyOutlined
+                          style={{
+                            marginLeft: 8,
+                            cursor: "pointer",
+                            color: "#1890ff",
+                          }}
+                          onClick={() => handleCopy(user.items[0].trackingNo)}
+                        />
+                      </Tooltip>
+                    </Col>
+                  </Row>
+                </List.Item>
+              </Card>
+            )}
+          />
+
+          {/* No results found */}
+          {filteredUsers.length === 0 && (
+            <p style={{ textAlign: "center", marginTop: "10px", color: "#888" }}>
+              No matching tracking numbers.
+            </p>
+          )}
+        </>
       ) : (
-        <p style={{ textAlign: "center" }}>No assigned users.</p>
+        <p style={{ textAlign: "center", color: "#888" }}>No assigned users.</p>
       )}
     </Modal>
   );

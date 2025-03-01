@@ -58,7 +58,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
          <NavLink to={"/More"} style={Link_text} className=" click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",padding:"8px" ,width:"100px",isolation:"isolate",zIndex:"99"}}>
                 <p><Link to={"/More/FAQs"} style={Link_text}>FAQs</Link></p>
-                <p><Link to={"/Orders"} style={Link_text}>Get a quote</Link></p>
+                <p><Link to={"/More/pricing"} style={Link_text}>Pricing</Link></p>
                 <p><Link to={"/More/Gallery"} style={Link_text}>Gallery</Link></p>
                 <p><Link to={"/More/Privacy"} style={Link_text}>Privacy & Policy</Link></p>
                 

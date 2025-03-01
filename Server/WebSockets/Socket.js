@@ -148,7 +148,7 @@ function initializeSocket(server){
 
       ordersNamespace.on("connection",(socket)=>{
         setUser(socket)
-          orderFunc(socket,adminNamespace,users)
+          orderFunc(socket,io,adminNamespace,users)
         console.log("connected to the order namespace")
       })
 

@@ -20,13 +20,13 @@ const { Title } = Typography;
 
 const AdminDashboard = () => {
 
-  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
+  const socket = useMemo(() =>io("http://localhost:4040/shipment",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
   }),[])
 
-  const socket1 = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
+  const socket1 = useMemo(() =>io("http://localhost:4040/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -241,7 +241,7 @@ const AdminDashboard = () => {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [ripple, setRipple] = useState(false);
   const [ripple1, setRipple1] = useState(false);
-  
+  const [ripple2, setRipple2] = useState(false);
 
 
   const handleClick = (e,index) => {
@@ -254,9 +254,12 @@ const AdminDashboard = () => {
     if(index===0){
     setRipple(true);
     setTimeout(() => setRipple(false), 600); // Remove ripple effect after 600ms
-    }else {
+    }else if(index===1) {
       setRipple1(true);
     setTimeout(() => setRipple1(false), 600);
+    }else{
+      setRipple2(true);
+      setTimeout(() => setRipple2(false), 600);
     }
   };
 
@@ -588,7 +591,7 @@ const handleSelectSingle = (e, shipment) => {
       console.log("Submitted CBM:", cbm); // Handle submission
     };
 
-
+   
   return (
     <>
     {!permission ? <div className="admin-page">
@@ -614,7 +617,7 @@ const handleSelectSingle = (e, shipment) => {
 
       <div className="shipment-container-buttons">
       <section style={{marginBottom:"auto",display:"flex",gap:"10px",justifyContent:"center",alignItems:"flex-end"}}>
-      
+       
 
     <Link to={"/users"}>
     <button className="direction-button" onMouseEnter={(e)=> handleClick(e,1)} onClick={(e)=> handleClick(e,1)}>
@@ -772,6 +775,7 @@ const handleSelectSingle = (e, shipment) => {
               justifyContent: "center",
             }}
           />
+          
         </div>
       )}
 
@@ -791,6 +795,9 @@ const handleSelectSingle = (e, shipment) => {
     />
       
     </div>
+
+    
+
     <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
     </div> :
 

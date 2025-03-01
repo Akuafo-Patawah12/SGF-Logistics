@@ -6,7 +6,7 @@ import { formatDistanceToNow, subDays } from "date-fns";
 import UserShipmentData from "./UserShipmentData"
 import LogisticFooter from "../Components/LogisticFooter"
 
-import { EyeOutlined ,DeleteOutlined } from "@ant-design/icons";
+import { EyeOutlined ,DownloadOutlined } from "@ant-design/icons";
 
 
 import "./MyOrders.css"
@@ -16,7 +16,7 @@ const AllOrders=()=>{
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noresult,setNoresult] = useState(false)
     const { Text } = Typography;
-    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
+    const socket = useMemo(() =>io("http://localhost:4040/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -47,11 +47,15 @@ const AllOrders=()=>{
         socket.on("connect",()=>{
             console.log("connected to server")
         })
-
-        socket.on("assign_to_container",(data)=>{
+        
+        socket.on("sent_to_client", data =>{
+           message.success("New shipment")
+           setMyOrders(prev => [data,...prev])
+        })
+        socket.on("updatedShipment",(data)=>{
             message.success("You order has been assigned to a container")
             let updatedOrder = null; // Store a single updated order
-        
+          
           setMyOrders((prev) =>
             prev.map((order) => {
               const foundOrder = data.find((newItem) => newItem._id === order._id);
@@ -94,6 +98,7 @@ const AllOrders=()=>{
         
         
         socket.on('ordersByUser', (data)=>{
+          console.log(data)
           setMyOrders(data)
           setLoadingProgress(false)
           if(data.length===0){
@@ -220,12 +225,7 @@ const AllOrders=()=>{
         <Button onClick={sortAscending}>Old</Button>
       </Space>
 
-      {/* Create Order Button */}
-      <Link to="/More/get_a_qoute" className="create_order_button">
-        <Button type="primary" className="create_order-btn">
-          Create Order
-        </Button>
-      </Link>
+      
     </section>
 
     {!noresult ?<>
@@ -285,7 +285,6 @@ const AllOrders=()=>{
             setViewData ({
                           fullname: order.fullname,
                           email: order.email,
-                          phone: order.phone,
                           status: order.status,
                           createdAt: order.createdAt,
                           updatedAt: order.updatedAt,
@@ -294,8 +293,8 @@ const AllOrders=()=>{
                           items: [
                             {
                               description: order.items[0].description,
-                              Amount: order.items[0].Amount,
-                              ctnNo: order.items[0].ctnNo,
+                              Amount: order.items[0].amount,
+                              ctnNo: order.items[0].ctn,
                               cbm: order.items[0].cbm,
                               trackingNo: order.items[0].trackingNo,
                             },
@@ -306,7 +305,7 @@ const AllOrders=()=>{
            }
 
         >View</Button>
-        <Button onClick={()=> cancelOrder(order._id)} type="text" icon={<DeleteOutlined style={{transform:"translateX(2px)"}}/>} style={{backgroundColor:" #ffcccc"}} />
+        <Button onClick={()=> cancelOrder(order._id)} type="text" icon={<DownloadOutlined style={{transform:"translateX(2px)"}}/>} style={{backgroundColor:" #ffcccc"}} />
       </div>
     </Card>  
         ))}

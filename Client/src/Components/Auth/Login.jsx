@@ -137,7 +137,7 @@ const Login = ({getEmail}) => {
           setSuccess(true);
           message.success("login successful")
           localStorage.setItem('accesstoken', data.accessToken);
-          navigate("/AdminDashboard")
+          navigate("/containers")
         }
       }
 

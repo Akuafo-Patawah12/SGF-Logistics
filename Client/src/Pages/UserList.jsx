@@ -22,7 +22,7 @@ const UserList = () => {
   const [permission, setPermission] = useState(false)
   const navigate = useNavigate()
 
-  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/admin",{
+  const socket = useMemo(() => io("https://api.sfghanalogistics.com/admin",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
