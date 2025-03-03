@@ -97,9 +97,7 @@
   }
 
   @media (max-width:500px){
-    .faq-container {
-      margin-top: 90px;
-    }
+    
     .faq-content {
       width: 95%;
       padding: 2rem 0.5rem;

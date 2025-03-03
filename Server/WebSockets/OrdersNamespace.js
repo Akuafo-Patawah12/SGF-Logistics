@@ -81,7 +81,15 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
   
       // Send order to client if the user is online
       if (users[order.userId]) {
-        socket.to(users[order.userId]).emit("sent_to_client", order);
+        socket.to(users[order.userId]).emit("sent_to_client", {
+              ...order,
+              containerNumber: add_user_to_container ? add_user_to_container.containerNumber : "Not Assigned",
+              cbmRate: add_user_to_container ? add_user_to_container.cbmRate : 0,
+              loadingDate: add_user_to_container ? add_user_to_container.loadingDate : "N/A",
+              eta: add_user_to_container ? add_user_to_container.eta : "N/A"
+            }
+            );
+        
       }
   
       // Notify AdminRoom about the new assignment
@@ -166,19 +174,107 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
 
       });
 
-      socket.on("getOrdersByUser", async (data,callback) => {
-        const userId= socket.user.id
-        
+      socket.on("getOrdersByUser", async (data, callback) => {
+        const userId = socket.user.id;
+      
         try {
-          const orders = await Order.find({ userId }).sort({ createdAt: -1 }); // Fetch orders by user ID
-          console.log(orders)
-          socket.emit("ordersByUser", orders); // Send the orders back to the client
+          // 1️⃣ Get all orders for the user
+          const orders = await Order.find({ userId }).sort({ createdAt: -1 }).lean();
+      
+          if (!orders.length) {
+            return callback({ status: "error", message: "No orders found for user" });
+          }
+      
+          // 2️⃣ Extract order IDs from the fetched orders
+          const orderIds = orders.map(order => order._id);
+      
+          // 3️⃣ Find all containers that have these order IDs
+          const containers = await Container.find({ "assignedOrders.orderId": { $in: orderIds } }).lean();
+      
+          // 4️⃣ Attach container details to each order
+          const ordersWithContainerDetails = orders.map(order => {
+            // Find the container that includes this order ID
+            const container = containers.find(cont => 
+              cont.assignedOrders.some(a => a.orderId.toString() === order._id.toString())
+            );
+      
+            return {
+              ...order,
+              containerNumber: container ? container.containerNumber : "Not Assigned",
+              cbmRate: container ? container.cbmRate : 0,
+              loadingDate: container ? container.loadingDate : "N/A",
+              eta: container ? container.eta : "N/A"
+            };
+          });
+      
+          // 5️⃣ Send enriched orders to the client
+          socket.emit("ordersByUser", ordersWithContainerDetails);
+      
         } catch (error) {
-          callback( {status:"error" ,message: "Failed to fetch orders", error });
+          console.error(error);
+          callback({ status: "error", message: "Failed to fetch orders with container details", error });
+        }
+      });
+
+      socket.on("removeOrderFromContainer", async ({ containerId, orderId }) => {
+        console.log("Removing order from container:", containerId, orderId);
+        try {
+          const container = await Container.findById(containerId);
+          if (!container) {
+            socket.emit("removeError", "Container not found");
+            return;
+          }
+      
+          // Remove the order from the assignedOrders array
+          const updatedContainer = await Container.findByIdAndUpdate(
+            containerId,
+            { $pull: { assignedOrders: { orderId: orderId } } },
+            { new: true }
+          );
+    
+          const updatedOrder = await Order.findOneAndDelete({ _id: orderId});
+      
+          if (!updatedContainer) {
+            socket.emit("removeError", "Failed to remove order");
+            return;
+          }
+      
+          socket.emit("orderRemovedFromContainer", { containerId, orderId });
+          socket.to("AdminRoom").emit("orderRemovedFromContainer",  orderId );
+          socket.to(updatedOrder.userId).emit("orderRemovedFromContainer",  orderId );
+      
+        } catch (error) {
+          console.error("Error removing order from container:", error);
+          socket.emit("removeError", "Error removing order");
         }
       });
 
 
+      socket.on("deleteContainer", async (containerId) => {
+        try {
+          const container = await Container.findById(containerId);
+          if (!container) {
+            socket.emit("deleteError", "Container not found");
+            return;
+          }
+      
+          // Delete assigned orders
+          await Order.deleteMany({ _id: { $in: container.assignedOrders.map(o => o.orderId) } });
+      
+          // Delete the container itself
+          await Container.findByIdAndDelete(containerId);
+      
+          // Notify all clients
+          socket.emit("delete_container", containerId)
+          socket.to("AdminRoom").emit("delete_container", containerId)
+          io.emit("containerDeleted", { container_number: container.containerNumber });  // 🔥 Fixed here
+        } catch (error) {
+          console.error("Error deleting container:", error);
+          socket.emit("deleteError", "Error deleting container");
+        }
+      });
+      
+      
       socket.on("cancelOrder", async (orderId,callback) => {
         try {
           const order = await Order.findById(orderId);

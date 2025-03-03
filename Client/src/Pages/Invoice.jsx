@@ -2,57 +2,18 @@ import React ,{useState,useEffect,useMemo} from "react";
 import "./Invoice.css";
 import { Button,message } from "antd"
 import { CloseOutlined } from "@ant-design/icons";
-import io from "socket.io-client"
+
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 
-const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs,containerNumber}) => {
-  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
-    transports: ["websocket","polling"],
-    withCredentials: true,
-    secure: true
-  }),[])
+const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
+  
 
 
   const [invoiceNumber,setInvoiceNumber] = useState("")
   const [invoiceDate, setInvoiceDate ] = useState("")
   const [ invoiceInfo , setInvoiceInfo]= useState({})
 
-  useEffect(()=>{
-    socket.emit("findContainer",containerNumber,(response)=>{
-       message.warning(response.message)
-    })
-  },[])
-
-  useEffect(()=>{
-    socket.on('connect',()=>{
-        console.log("Connected to server")
-        
-    });
-    socket.on("ContainerInvoice",(data)=>{
-      
-      setInvoiceInfo(data)
-      console.log(data)
-      
-      console.log("order data",data)
-    })
-
-    
-
-    socket.on('disconnect',(reasons)=>{
-        console.log(reasons)
-      })
-
-      
-      
-    
-    return()=>{
-        socket.off('connect');
-        socket.off("ContainerInvoice")
-     
-        socket.off('disconnect');
-              
-    }
-},[socket])
+  
 
 
 
@@ -81,7 +42,7 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs,containerNumber}
   },[])
   
 
-  const invoiceData = {
+  const invoiceData1 = {
     invoiceNumber: `${invoiceNumber}`,
     
     sender: {
@@ -91,43 +52,43 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs,containerNumber}
       email: "sfghanalogistics24@gmail.com",
     },
     receiver: {
-      invoice_date: invoiceDate,
-      Loading_date: invoiceInfo.loadingDate,
-      cbmRate: invoiceInfo.cbmRate,
-      arrival_time: invoiceInfo.eta,
-      Container: invoiceInfo.containerNumber,
+      invoice_date: invoiceDate || 7,
+      Loading_date: invoiceData?.loadingDate,
+      cbmRate: invoiceData?.cbmRate || 5,
+      arrival_time: invoiceData?.eta || 0,
+      Container: invoiceData?.containerNumber || 98876,
     },
     
   };
 
   return (
     <div className="Invoice">
-   <Button onClick={()=> setShowInvoice(false)} style={{height:"50px",width:"50px",float:"right"}}><CloseOutlined /></Button>
+   
     
-{invoice ?  <div  ref={divRef} className="invoice-container">
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> <SvgIcon/>  <span style={{color:"red",fontWeight:"500"}}>PROVISIONAL INVOICE <br/> <p style={{color:"#333",fontSize:"14px"}}>020 811 6360 / 053 948 0433</p></span></div>
+  <div ref={divRef} className="invoice-container">
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> <SvgIcon style={{transform:"translateX(0px)"}}/>  <span style={{color:"red",fontWeight:"500"}}>PROVISIONAL INVOICE <br/> <p style={{color:"#333",fontSize:"14px"}}>020 811 6360 / 053 948 0433</p></span></div>
       <div className="invoice-header">
         
-        <p>Invoice #: {invoiceData.invoiceNumber}</p>
+        <p>Invoice #: {invoiceData1.invoiceNumber}</p>
         
       </div>
 
       <div className="invoice-section">
         <div className="invoice-details">
           <h3>Sender</h3>
-          <p><strong>{invoiceData.sender.name}</strong></p>
-          <p>{invoiceData.sender.address}</p>
-          <p>Phone: {invoiceData.sender.phone}</p>
+          <p><strong>{invoiceData1.sender.name}</strong></p>
+          <p>{invoiceData1.sender.address}</p>
+          <p>Phone: {invoiceData1.sender.phone}</p>
           <p>Email: sfghanalogistics24@gmail.com</p>
         </div>
         
         <div className="invoice-details">
           
-          <p>Invoice date: <span style={{transform:"translateX(10px)"}}>{invoiceData.receiver.invoice_date}</span></p>
-          <p>Loading date: <span style={{transform:"translateX(10px)"}}>{new Date(invoiceData.receiver.Loading_date).toLocaleDateString()}</span></p>
-          <p>CBM Rate: <span style={{transform:"translateX(10px)"}}>{invoiceData.receiver.cbmRate}</span></p>
-          <p>Arrival time: <span style={{transform:"translateX(10px)"}}>{new Date(invoiceData.receiver.arrival_time).toLocaleDateString()}</span></p>
-          <p>Container number: <span style={{transform:"translateX(10px)"}}>{invoiceData.receiver.Container}</span></p>
+          <p>Invoice date: <span style={{transform:"translateX(10px)"}}>{invoiceData1.receiver.invoice_date}</span></p>
+          <p>Loading date: <span style={{transform:"translateX(10px)"}}>{new Date(invoiceData1.receiver.Loading_date).toLocaleDateString()}</span></p>
+          <p>CBM Rate: <span style={{transform:"translateX(10px)"}}>{invoiceData1.receiver.cbmRate}</span></p>
+          <p>Arrival time: <span style={{transform:"translateX(10px)"}}>{new Date(invoiceData1.receiver.arrival_time).toLocaleDateString()}</span></p>
+          <p>Container number: <span style={{transform:"translateX(10px)"}}>{invoiceData1.receiver.Container}</span></p>
         </div>
       </div>
 
@@ -145,11 +106,11 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs,containerNumber}
           <tbody>
             
               <tr>
-                <td>{invoice.description}</td>
-                <td>{invoice.trackingNo}</td>
-                <td>{invoice.cbm}</td>
-                <td>{invoice.ctn}</td>
-                <td>${invoice.amount}</td>
+                <td>{invoiceData?.description || "unclassified"}</td>
+                <td>{invoiceData?.trackingNo }</td>
+                <td>{invoiceData?.cbm }</td>
+                <td>{invoiceData?.ctn}</td>
+                <td>${invoiceData?.amount}</td>
               </tr>
             
           </tbody>
@@ -157,7 +118,7 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs,containerNumber}
       </div>
        
       <div className="invoice-footer">
-        <h3>Total: ${invoice.amount}</h3>
+        <h3>Total: ${invoiceData?.amount}</h3>
         
       </div>
       <div className="information">
@@ -209,21 +170,10 @@ const New = ({invoice,divRef,setShowInvoice,generateAndSendPDFs,containerNumber}
         </section>
         </div>
       </div>
-    </div>   :
-    <div>No data</div>}
+    </div>   
+    
 
-    <Button onClick={
-      ()=>{
-        generateAndSendPDFs(invoice.email);
-        setShowInvoice(false)
-      }
-     
-    }
-    disabled={invoice ? false : true}
-    style={{marginBottom:"30px",background:"var(--purple)",color:"white"}}
-    className="send_invoice_btn">
-    Send Invoice
-    </Button>
+   
     </div>
   );
 };

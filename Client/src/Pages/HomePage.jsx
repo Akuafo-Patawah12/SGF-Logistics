@@ -581,7 +581,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         ))}
       </div>
 
-      <button className="carousel_button next" onClick={nextSlide}>&#10095;</button>
+      <button className="carousel_button next_1" onClick={nextSlide}>&#10095;</button>
 
       <div className="dots">
         {images.map((_, index) => (
@@ -604,7 +604,7 @@ const [value, setValue] = useState(0);  // State to hold the value
               transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
 
-        style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto", backgroundColor: '#a0c444', fontSize:"22px",fontWeight:"bold"}}
+        style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto",borderRadius:"8px", backgroundColor: '#a0c444', fontSize:"22px",fontWeight:"bold"}}
       >
        <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}+ </span> <br/> Satisfied customers</p>
       </motion.div>

@@ -79,7 +79,7 @@ body{
   width: inherit;
   height:80px;
   gap: 10px;
-  background: rgb(2,0,36);
+  
   background: var(--green);
 
   & button{
@@ -88,6 +88,15 @@ body{
   background-color: transparent;
   color:white;
   }
+
+  & button:hover{
+    background: transparent !important;
+ }
+
+ & section{
+    align-self: center;
+    margin-block: auto ;
+ }
 }
 
 .logo{
@@ -247,6 +256,8 @@ footer a{
     font-weight:500;
     font-size: medium;
   }
+
+ 
 }
 
 .details{

@@ -1,16 +1,14 @@
 import React, { useState, useEffect ,useMemo } from "react";
-import { Modal, List, Avatar, Spin, Tooltip, Input ,message,Row, Col, Card  } from "antd";
+import { Modal, List, Avatar, Spin, Tooltip, Input ,message,Row, Col, Card , Button  } from "antd";
 import { CopyOutlined, SearchOutlined } from "@ant-design/icons";
 import { io } from "socket.io-client";
 
 
-const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
+const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id ,containerId,socket ,socket1 }) => {
 
-    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
-        transports: ["websocket","polling"],
-        withCredentials: true,
-        secure: true
-      }),[])
+    
+
+    
 
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,11 +26,30 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
         setLoading(false);
       });
 
+      
+
       return () => {
         socket.off("assignedUsers");
       };
     }
   }, [isOpen]);
+
+
+  useEffect(()=>{
+    socket1.on("orderRemovedFromContainer", ( { orderId }) => {
+      console.log(orderId)
+     
+        setUsers(prevOrders => prevOrders.filter(order => order._id !== orderId));
+      
+    });
+    return()=>{
+      socket.off("orderRemovedFromContainer")
+    }
+  },[socket1])
+
+  const removeOrder = (orderId) => {
+    socket1.emit("removeOrderFromContainer", { containerId, orderId });
+  };
 
   console.log(users)
 
@@ -51,7 +68,7 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
 
   return (
     <Modal
-      title ={`Assigned Users in container.  Total of ${users.length} users `}
+      title ={`Assigned Users in container.  Total of ${users.length} shipments `}
       open={isOpen}
       onCancel={onClose}
       footer={null}
@@ -83,6 +100,7 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
             itemLayout="vertical"
             dataSource={filteredUsers}
             renderItem={(user) => (
+
               <Card
                 hoverable
                 style={{
@@ -91,6 +109,10 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id }) => {
                   padding: "15px",
                   boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
                 }}
+
+                actions={[
+                    <Button type="primary" onClick={() => removeOrder(user._id)}>Remove</Button>,
+                  ]}
               >
                 <List.Item>
                   <Row

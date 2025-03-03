@@ -1,10 +1,10 @@
 .Invoice{
-   position: fixed;
+   position: absolute;
+   left: -999px;
    background-color: #fff;
-   top:0;
-   width: 100%;
-   overflow: auto;
-   height: 100vh;
+   
+   width: fit-content;
+   
    padding: 30px 0;
 }
 .invoice-container {

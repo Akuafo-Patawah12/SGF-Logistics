@@ -53,7 +53,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
               </div>
          </NavLink>
          
-         <NavLink to={"/Contact_us"} style={Link_text} className="header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >Contact</span> </NavLink>
+         <NavLink to={"/Contact"} style={Link_text} className="header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >Contact</span> </NavLink>
  
          <NavLink to={"/More"} style={Link_text} className=" click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
               <div className="drop" style={{position:"absolute",background:"white",padding:"8px" ,width:"100px",isolation:"isolate",zIndex:"99"}}>

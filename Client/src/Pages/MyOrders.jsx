@@ -1,31 +1,49 @@
-import React,{useState, useMemo, useEffect} from "react"
+import React,{useState, useMemo, useEffect, useRef} from "react"
 import {Link} from "react-router-dom"
-import { message,Empty, Spin ,Card, Typography, Space,Button}  from "antd"
+import { message,Empty, Spin ,Card, Typography, Space,Button,Segmented ,Input}  from "antd"
 import io from "socket.io-client"
+import Invoice from "./Invoice"
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { formatDistanceToNow, subDays } from "date-fns";
 import UserShipmentData from "./UserShipmentData"
 import LogisticFooter from "../Components/LogisticFooter"
 
-import { EyeOutlined ,DownloadOutlined } from "@ant-design/icons";
+import { EyeOutlined ,DownloadOutlined , SearchOutlined} from "@ant-design/icons";
 
 
 import "./MyOrders.css"
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
 const AllOrders=()=>{
+  const [myorders,setMyOrders]  = useState([])
   const [loadingProgress, setLoadingProgress] = useState(true);
+  const [loadingIndex, setLoadingIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [noresult,setNoresult] = useState(false)
+  const [search,setSearch] = useState("")
+  const [filteredOrders, setFilteredOrders] = useState(myorders);
+  const [invoiceData,setInvoiceData] = useState({
+    eta: null,
+    loadingDate: null,
+    containerNumber: null,
+    cbmRate: null,
+    cbm: null,
+    ctn: null,
+    amount: null,
+    trackingNo:null
+  })
     const { Text } = Typography;
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
       }),[])
-   const [myorders,setMyOrders]  = useState([])
+   
    const [ viewData,setViewData] = useState(null)
 
    useEffect(()=>{
       socket.emit("getOrdersByUser","hello",(response)=>{
+
           if (response.status==="error"){
             message.error("Error fetching orders")
           }
@@ -52,6 +70,14 @@ const AllOrders=()=>{
            message.success("New shipment")
            setMyOrders(prev => [data,...prev])
         })
+
+        socket.on("orderRemovedFromContainer", ({  orderId }) => {
+          console.log(orderId)
+         
+          setMyOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
+          
+        });
+
         socket.on("updatedShipment",(data)=>{
             message.success("You order has been assigned to a container")
             let updatedOrder = null; // Store a single updated order
@@ -73,6 +99,14 @@ const AllOrders=()=>{
         
         })
 
+        socket.on("containerDeleted", ({ container_number }) => {
+          console.log("Container Deleted:", container_number);
+        
+          setMyOrders(prevContainers =>
+            prevContainers.filter(order => order.containerNumber !== container_number)
+          );
+        });
+        
         socket.on("orders_updated", (data) => {
           console.log(data);
         
@@ -123,16 +157,41 @@ const AllOrders=()=>{
             socket.off("connect")
             socket.off('ordersByUser')
             socket.off("assign_to_container")
+            socket.off("orderRemovedFromContainer")
             socket.off("orders_updated")
             socket.off("connect_error")
             socket.off("disconnect")
         }
     }, [socket]);
 
-    
 
-
+    useEffect(() => {
+      if (!search) {
+        setFilteredOrders(myorders); // Reset if search is empty
+      } else {
+        setFilteredOrders(
+          myorders.filter((myOrder) =>
+            myOrder.items[0].trackingNo.toString().toLowerCase().includes(search.toLowerCase())
+          )
+        );
+      }
+    }, [search, myorders]); 
     
+  const divRef = useRef(null)
+
+    const handleDownload = () => {
+      const input = divRef.current;
+  
+      html2canvas(input, { scale: 2 }).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+        const imgWidth = 210; // A4 size in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Scale height accordingly
+  
+        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+        pdf.save("download.pdf");
+      });
+    };
 
     
     
@@ -178,15 +237,7 @@ const AllOrders=()=>{
         return `${Math.floor(diffInDays / 365)}+ yr ago`;
       };
 
-    function cancelOrder(orderId){
-        socket.emit("cancelOrder",orderId,(response)=>{
-            if(response.status==="ok"){
-                message.success("Order cancelled")
-            }else if(response.message==="Cannot delete order"){
-                message.error("Delivered or in transit orders cannot be deleted")
-            }
-        })
-    }
+    
 
 
     const sortAscending = () => {
@@ -202,12 +253,13 @@ const AllOrders=()=>{
       );
     };
     
+    const [activeTab,setActiveTab] = useState("new")
     return(
         
         <main className="order_container">
         <section
          className={`filter_gap `}
-      style={{
+       style={{
         
         
         width: "95%",
@@ -221,17 +273,41 @@ const AllOrders=()=>{
       {/* Sort By Section */}
       <Space wrap className="buttons_1"> {/* Ensures buttons wrap on small screens */}
         <Typography.Text strong>Sort by:</Typography.Text>
-        <Button type="primary" onClick={sortDescending}>New</Button>
-        <Button onClick={sortAscending}>Old</Button>
+        <Segmented
+      options={[
+        { label: 'New', value: 'new' },
+        { label: 'Old', value: 'old' }
+      ]}
+      value={activeTab}
+      onChange={(value) => {
+        setActiveTab(value);
+        value === 'new' ? sortDescending() : sortAscending();
+      }}
+      style={{
+        background: '#ccc', // Light background
+        padding: '7px',
+        borderRadius: '8px',
+      }}
+    />
+     
+     
+      
       </Space>
 
-      
+      <Input
+        placeholder="Search by tracking number..."
+        prefix={<SearchOutlined />}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        onPaste={(e) => setSearch(e.clipboardData.getData("text"))} // Ensure paste triggers search
+        className="search_input1"
+      />
     </section>
 
     {!noresult ?<>
     {!loadingProgress ? 
       <div className="my_item_grid">
-        {myorders && myorders.map((order,index)=>(
+        {filteredOrders && filteredOrders.map((order,index)=>(
            <Card
       key={index}
       bordered={false}
@@ -248,27 +324,27 @@ const AllOrders=()=>{
     >
       {/* Three-dot icon */}
       <div  style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Text strong>Invoice to:  </Text>
+        <Text style={{fontWeight:"500"}}>Invoice to:  </Text>
         <Text>{order.fullname}</Text>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Text strong>Status:  </Text>
+        <Text style={{fontWeight:"500"}}>Status:  </Text>
         <Text>{order.status}</Text>
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Text strong>CBM:  </Text>
+        <Text style={{fontWeight:"500"}}>CBM:  </Text>
         <Text>{order.items[0].cbm}</Text>
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Text strong>CTN:  </Text>
-        <Text>{order.items[0].ctnNo}</Text>
+        <Text style={{fontWeight:"500"}}>CTN:  </Text>
+        <Text>{order.items[0].ctn}</Text>
       </div>
 
       {/* Order ID */}
       <div style={{ display: "flex", justifyContent: "space-between", marginTop: "8px" }}>
-        <Text strong>TrackingNo.:</Text>
+        <Text style={{fontWeight:"500"}}>TrackingNo.:</Text>
         <Text>{order.items[0].trackingNo}</Text>
       </div>
 
@@ -278,9 +354,9 @@ const AllOrders=()=>{
       </Text>
 
       {/* Action Buttons */}
-      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" , padding:"0"}}>
 
-        <Button type="text"  icon={<EyeOutlined />} style={{ marginLeft: "8px",background:"#ddd" }} 
+        <Button type="text"  icon={<EyeOutlined />} style={{ marginLeft: "8px",background:"#ddd" ,fontSize:"11px !important",fontWeight:"500"}} 
            onClick={()=>{
             setViewData ({
                           fullname: order.fullname,
@@ -294,7 +370,7 @@ const AllOrders=()=>{
                             {
                               description: order.items[0].description,
                               Amount: order.items[0].amount,
-                              ctnNo: order.items[0].ctn,
+                              ctn: order.items[0].ctn,
                               cbm: order.items[0].cbm,
                               trackingNo: order.items[0].trackingNo,
                             },
@@ -305,7 +381,45 @@ const AllOrders=()=>{
            }
 
         >View</Button>
-        <Button onClick={()=> cancelOrder(order._id)} type="text" icon={<DownloadOutlined style={{transform:"translateX(2px)"}}/>} style={{backgroundColor:" #ffcccc"}} />
+       <Button
+  onClick={() => {
+    setLoadingIndex(index)
+    const data = {
+      eta: order.eta,
+      loadingDate: order.loadingDate,
+      containerNumber: order.containerNumber,
+      cbmRate: order.cbmRate,
+      cbm: order.items[0]?.cbm,
+      ctn: order.items[0]?.ctn,
+      amount: order.items[0]?.amount,
+      trackingNo: order.items[0]?.trackingNo
+    };
+    
+    
+    setInvoiceData(data);
+
+    // Ensure `handleDownload` runs AFTER `invoiceData` is updated
+    setTimeout(() => {
+      handleDownload();
+      setLoadingIndex(null)
+      // Reset state after download
+      setInvoiceData({
+        eta: null,
+        loadingDate: null,
+        containerNumber: null,
+        cbmRate: null,
+        cbm: null,
+        ctn: null,
+        amount: null,
+        trackingNo:null
+      });
+    }, 100); // Small delay to allow state update
+  }}
+  icon={loadingIndex===index ? <Spin size="small" style={{transform:"translateY(-3px)"}}/> : <DownloadOutlined style={{ transform: "translateX(2px)" }} />}
+  style={{ backgroundColor: "#ffcccc" }}
+/>
+
+
       </div>
     </Card>  
         ))}
@@ -320,6 +434,8 @@ const AllOrders=()=>{
         loading3={loading3}
    
     />
+
+    <Invoice  invoiceData={invoiceData} divRef={divRef}/>
 
 <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> <SessionExpiredModal />
            <LogisticFooter />

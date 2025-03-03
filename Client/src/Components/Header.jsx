@@ -15,7 +15,7 @@ const Header = () => {
           <button style={{border:"none"}}><PhoneOutlined style={{rotate:"90deg"}}/> 020 811 6360 / 053 948 0433</button>
           <button style={{border:"none"}}><MailOutlined /> sfghanalogistics24@gmail.com</button>
           
-          <section style={{display:"flex" ,gap:"5px",color:"white"}} className="icon_link">
+          <section style={{display:"flex", alignItems:"center",justifyContent:"center",gap:"5px",color:"white"}} className="icon_link">
          
           <a href="https://www.instagram.com/sfghanalogistic?igsh=bnlyd3R2d3FyN2du" target="_blank"><InstagramOutlined /> </a>
           <a href="https://www.youtube.com/@SFGhanaLogistics" target="_blank"><YoutubeOutlined/> </a>

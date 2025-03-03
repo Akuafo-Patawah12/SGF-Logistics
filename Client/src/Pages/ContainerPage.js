@@ -2,7 +2,7 @@ import React, { useEffect, useState ,useMemo} from "react";
 import { io } from "socket.io-client";
 import { List, Card,Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
 import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
-import { EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined , DeleteOutlined , EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
 import ButtonLoader from '../Icons/ButtonLoader'
 import AssignUsersModal from "./Components/AssignUsersModal"
@@ -77,7 +77,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     const [loadingDate,setLoadingDate] = useState()
     const [creatingOrder,setCreatingOrder]= useState(false);
     const [assignedOrder_id,setAssignedOrder_id]= useState([])
-    const [containerId,setContainerId] = useState(null)
+    const [containerid,setContainerId] = useState(null)
     const [orderInfo,setOrderInfo] = useState(
       {
         fullname:"",
@@ -167,7 +167,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
               setIsModalOpen(true)
             },1000)
           }
-        else if(err.message.includes("No cookies found")) {
+        else if(err.message.includes("No cookies found")){
           setTimeout(()=>{
           setIsModalOpen(true)
         },1000)
@@ -200,6 +200,16 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       message.success("New order")
       console.log("order data",data)
     })
+
+    socket1.on("orderRemovedFromContainer", ({ orderId } ) => {
+      console.log(orderId)  
+      setContainers(prevContainers =>
+        prevContainers.map(container => ({
+          ...container,
+          assignedOrders: container.assignedOrders.filter(order => order.orderId !== orderId)
+        }))
+      );
+    });
 
     socket.on("updatedShipment", (data)=>{
        setContainers((prev) => 
@@ -308,7 +318,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     }
 
   
-
+     const [containerId,setContainer_id] = useState(null)
      const [isEditContainer,setIsEditContainer] = useState(false)
 
      const handleEditContainer = () => {
@@ -349,21 +359,30 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     },
     {
       title: "Assigned Orders",
-      dataIndex: "assignedOrders",
+     
       key: "assignedOrders",
-      render: (orders) =>
-         <div>
-        {orders.length > 0 ? (
+      render: (_,orders) =>
+         <div >
+        {orders.assignedOrders.length > 0 ? (
           
           <>
-          <Tag>{orders.length}</Tag> 
-          <button onClick={() =>{ 
-            setModalOpen(true)
-            setAssignedOrder_id(orders.map((order)=> order.orderId))
+          <Tag style={{float:"left"}}>{orders.assignedOrders.length}</Tag> 
+          <Tag
+          
+           style={{cursor:"pointer",float:"left"}}
+           onClick={() =>{ 
+             setContainerId(orders._id)
+            
+            setTimeout(()=>{
+              setModalOpen(true)
+              setAssignedOrder_id(orders.assignedOrders.map((order)=> order.orderId))
+            },50)
+            
+            
             }}
             >
             View
-            </button>
+            </Tag>
           </>
         ) : (
           <Tag color="gray">No Orders</Tag>
@@ -375,19 +394,39 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       title: "Actions",
       key: "actions",
       render: (_,container) =>
-       <div style={{display:"flex"}}>
-        <Button onClick={()=>{
-          handleOpen3();
-          setOrderInfo({...orderInfo,container_id: container._id})
-         
-          
-        }}>Add Order</Button>
+        <div style={{ display: "flex", gap: "3px" }}>
+  <Button 
+    size="small" 
+    type="primary" 
+    onClick={() => {
+      handleOpen3();
+      setOrderInfo({ ...orderInfo, container_id: container._id });
+    }}
+  >
+    Add Order
+  </Button>
 
-        <Button onClick={()=> {
-          handleEditContainer()
-          setContainerId(container._id)
-        }}>Edit</Button>
-        </div>,
+  <Button 
+    size="small" 
+    type="default" 
+    style={{fontSize:"12px"}}
+    onClick={() => {
+      handleEditContainer();
+      setContainerId(container._id);
+    }}
+  >
+    <EditOutlined />
+  </Button>
+
+  <Button 
+    size="small" 
+    type="danger" 
+    
+  >
+    <DeleteOutlined style={{ color:"red"}}/>
+  </Button>
+</div>
+,
     },
   ];
 
@@ -677,7 +716,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
 
     {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
-    <AssignUsersModal isOpen={modalOpen}  assignedOrder_id={assignedOrder_id} onClose={() => setModalOpen(false)}/>
+    <AssignUsersModal isOpen={modalOpen} containerId={containerid} socket={socket} socket1={socket1} assignedOrder_id={assignedOrder_id} onClose={() => setModalOpen(false)}/>
     
     
     <div style={{width:"95%",overflow:"auto",marginInline:"auto"}} className="table_scroll"><Table columns={columns} dataSource={filteredContainers} pagination={{ pageSize: 5 }} bordered rowKey="_id" /></div>

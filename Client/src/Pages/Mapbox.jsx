@@ -87,9 +87,19 @@ const [bound, setBound] = useState(0);
 const [Index,setIndex] = useState(0)
 const [scroll,setScroll] = useState(0)
 
-function Scroll(){
+function Scroll() {
   if (parent.current) {
-  setScroll(parent.current.scrollLeft)
+    const { scrollLeft, scrollTop } = parent.current;
+
+    // Check if horizontal scroll changed
+    if (scrollLeft !== scroll) {
+      setScroll(scrollLeft);
+    }
+
+    // Prevent vertical scrolling
+    if (scrollTop !== 0) {
+      parent.current.scrollTop = 0;
+    }
   }
 }
 useEffect(() => {
@@ -106,17 +116,23 @@ useEffect(() => {
 }, [scroll,xPosition]);
 
 const countRef = useRef(null);
+
 // Function to update bound when the country is found
 const updateBound = () => {
   if (!pRefs.current) return;
 
-  pRefs.current.forEach((p,index) => {
-    setIndex(pRefs.current.findIndex(p => p && p.innerHTML.trim() === country))
+  pRefs.current.forEach((p, index) => {
+    const foundIndex = pRefs.current.findIndex(p => p && p.innerHTML.trim() === country);
+    setIndex(foundIndex);
+
     if (p && p.innerHTML.trim() === country) {
       const rect = p.getBoundingClientRect();
-      const newBound = Math.round(rect.left + window.pageXOffset); // Adjust for scroll
+      const newBound = Math.round(rect.left + scroll); // Adjust for scroll
       setBound(newBound);
+
+      // Immediately update position to match the new bound
       
+
       // Reset animation if already running
       if (countRef.current) clearInterval(countRef.current);
 
@@ -129,23 +145,30 @@ const updateBound = () => {
 
           return previousNumber < newBound ? previousNumber + 1 : previousNumber - 1;
         });
-      }, 50);
+    },10)
     }
-  });
-};
+    })
+    return()=>{
+      clearInterval(countRef.current)
+    }
+    }
 
-// Runs when country changes
+
+// Runs when country or index changes
 useEffect(() => {
   updateBound();
-}, [country,Index]);
+}, [country, Index]);
 
 // Runs when window is resized
 useEffect(() => {
-  const handleResize = () => updateBound();
+  const handleResize = () => {
+    updateBound(); // Ensure updated position on resize
+  };
   window.addEventListener("resize", handleResize);
 
   return () => window.removeEventListener("resize", handleResize);
-}, [bound,xPosition]);
+},[xPosition]);
+
 
 
       const [scrollPosition, setScrollPosition] = useState(0); // Track scroll position
@@ -195,7 +218,7 @@ useEffect(() => {
         
         <div className="line_map" ref={parent}>
         <div className="line_inner" >
-          {scroll} {xPosition} {bound}
+          
         <div  className="ship" style={{background:"yellow !important",position:"relative"}}><ShipIcon style={{ position: "absolute",top:"-40px", left: `${xPosition-5}px` }} />
          </div>
         <section className="line" style={{position:"relative"}} >

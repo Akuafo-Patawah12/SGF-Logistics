@@ -78,7 +78,13 @@
 
 .filter_gap{
     display: grid;
+    
     grid-template-columns: repeat(2,1fr);
+}
+
+.search_input1{
+    align-self: end;
+    height: 95%;
 }
 
 @media (max-width: 768px){
@@ -88,15 +94,20 @@
 }
 
 @media (max-width: 689px){
-    .create_order_button{
-        
-        width: 100%;
-    }
+    
     .create_order-btn{
         width: 100%;
     }
     .filter_gap{
         grid-template-columns: 1fr;
+      
+    }
+
+    .search_input1{
+        align-self: center;
+        width: 96%;
+        margin-block: 8px;
+        margin-inline: auto;
     }
 
     .buttons_1{

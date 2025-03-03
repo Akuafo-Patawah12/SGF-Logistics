@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Space } from "antd";
 import "./More.css"
 import {
-  FileDoneOutlined,
+  TagOutlined,
   PictureOutlined,
   LockOutlined,
   QuestionCircleOutlined,
@@ -13,7 +13,7 @@ const More = () => {
   const navigate = useNavigate();
 
   const options = [
-    { label: "Get a Quote", path: "/Invoice", icon: <FileDoneOutlined /> },
+    { label: "Pricing", path: "/More/pricing", icon: <TagOutlined /> },
     { label: "Gallery", path: "/More/Gallery", icon: <PictureOutlined /> },
     { label: "Privacy Policy", path: "/More/Privacy", icon: <LockOutlined /> },
     { label: "FAQs", path: "/More/FAQs", icon: <QuestionCircleOutlined /> },
