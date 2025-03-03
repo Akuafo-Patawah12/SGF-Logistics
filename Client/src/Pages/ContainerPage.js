@@ -318,7 +318,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     }
 
   
-     const [containerId,setContainer_id] = useState(null)
+     const [containerId,setContainerIds] = useState(null)
      const [isEditContainer,setIsEditContainer] = useState(false)
 
      const handleEditContainer = () => {
@@ -412,7 +412,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     style={{fontSize:"12px"}}
     onClick={() => {
       handleEditContainer();
-      setContainerId(container._id);
+      setContainerIds(container._id);
     }}
   >
     <EditOutlined />
