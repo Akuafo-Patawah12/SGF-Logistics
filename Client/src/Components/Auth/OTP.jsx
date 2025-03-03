@@ -78,7 +78,7 @@ const OTP = ({mail}) => {
         return
      
       }else if(response.status===200){
-        navigate(`/AllOrders`)
+        navigate(`/MyOrders`)
       }else if(response.status===201){
         navigate("/AdminDashboard")
       }
@@ -101,7 +101,7 @@ const OTP = ({mail}) => {
    async function resendOtp(){
       try{
         if(email==="") return 
-        const response= axios.post("https://api.sfghanalogistics.com/resend-otp", email)
+        const response= axios.post("http://localhost:4040/resend-otp", email)
         if (response.status===429){
           message.error("Too many login attempts. Try again in 5 minutes.")
           
