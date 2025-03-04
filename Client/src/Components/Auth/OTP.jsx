@@ -79,6 +79,7 @@ const OTP = ({mail}) => {
      
       }else if(response.status===200){
         navigate(`/MyOrders`)
+        
       }else if(response.status===201){
         navigate("/AdminDashboard")
       }

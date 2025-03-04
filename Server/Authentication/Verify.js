@@ -40,7 +40,7 @@ const sendCookie = require("../Utils/Cookie");
       };
     
 
-    if (record.verification_code === null) {
+    if (record.verification_code === null || record.verification_code !== otp) {
         return res.status(403).json({ success: false, message: "Invalid OTP!" });
     }
     
