@@ -103,7 +103,7 @@ const AllOrders=()=>{
           console.log("Container Deleted:", container_number);
         
           setMyOrders(prevContainers =>
-            prevContainers.filter(order => order.containerNumber !== container_number)
+            prevContainers.filter(container => container.containerNumber !== container_number)
           );
         });
         
@@ -237,7 +237,15 @@ const AllOrders=()=>{
         return `${Math.floor(diffInDays / 365)}+ yr ago`;
       };
 
-    
+    function cancelOrder(orderId){
+        socket.emit("cancelOrder",orderId,(response)=>{
+            if(response.status==="ok"){
+                message.success("Order cancelled")
+            }else if(response.message==="Cannot delete order"){
+                message.error("Delivered or in transit orders cannot be deleted")
+            }
+        })
+    }
 
 
     const sortAscending = () => {

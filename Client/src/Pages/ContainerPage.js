@@ -82,7 +82,6 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       {
         fullname:"",
         email:"",
-        shipment_type:"",
         container_id:""
       }
     )
@@ -139,9 +138,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       setContainers((prev) => [...prev, updatedContainer]);
     });
 
-    socket.on("newContainerAdded",(data)=>{
-      setContainers(prev => [data,...prev])
-    })
+    
 
     socket.on("receive",(data)=>{
       setCreatingOrder(false)
@@ -201,8 +198,13 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       console.log("order data",data)
     })
 
+    socket1.on("newContainerAdded",(data)=>{
+      message.success("new container added")
+      setContainers(prev => [data,...prev])
+    })
+
     socket1.on("orderRemovedFromContainer", ({ orderId } ) => {
-      console.log(orderId)  
+      message.success("1 shipment removed from container"); 
       setContainers(prevContainers =>
         prevContainers.map(container => ({
           ...container,
@@ -211,16 +213,19 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       );
     });
 
-    socket.on("updatedShipment", (data)=>{
-       setContainers((prev) => 
-        prev.map((container) => {
-          const updatedShipment = data.find((newItem) => newItem._id === container._id);
-          return updatedShipment ? { ...container, ...updatedShipment } : container;
+    socket1.on("updatedShipment", (data)=>{
+      message.success("Shipment updated")
+      setContainers(prev =>
+        prev.map(item =>{
+            const updated = data.find(list =>  list._id === item._id)
+
+             return updated ? {...item,...updated} : item;
         })
-      );
+      )
     })
 
     socket1.on("new",(data)=>{
+      message.success("New shipment added")
       setContainers((prev) => 
         prev.map((container) => {
           const updatedShipment = data.find((newItem) => newItem._id === container._id);
@@ -238,6 +243,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     return()=>{
       socket1.off("connect")
       socket1.off("receive")
+      socket1.off("new")
       socket1.off("diconnect")
     }
 
@@ -249,8 +255,8 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   };
 
   const handleSave = () => {
-    if ( !selectedCountry || !shipmentStatus) {
-      console.error("Please select a country, and a status before updating.");
+    if ( !selectedCountry || !shipmentStatus || !containerNumber || !cbmRate || !eta || !loadingDate) {
+      message("All fields are required");
       return;
     }
 
@@ -266,11 +272,11 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       port: selectedCountry,
       status: shipmentStatus,
     },(response)=>{
-      if (response.status === "ok") {
-          message.success("Shipment updated successfully");
-      } else {
-          message.error(response.message);
-      }})
+      if (response.status === "error") {
+        message.error(response.message);
+      } 
+         
+      })
     
 
     setIsEdit(false);
@@ -280,20 +286,55 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
   const handleOpen3 = () => setIsModalVisible3(true);
   const handleClose3 = () => setIsModalVisible3(false);
+  
 
+  const validateForm = () => {
+    // Check if any orderInfo field is empty
+    for (const key in orderInfo) {
+      if (!orderInfo[key].trim()) {
+        message.warning(`Please fill in the ${key.replace("_", " ")}`);
+        return false;
+      }
+    }
+  
+    // Validate each item in the items array
+    for (let i = 0; i < items.length; i++) {
+      const { trackingNo, cbm, ctn } = items[i];
+  
+      if (!trackingNo.trim()) {
+        message.warning(`Tracking number is required for item ${i + 1}`);
+        return false;
+      }
+  
+      if (!cbm.trim() || isNaN(cbm) || Number(cbm) <= 0) {
+        message.warning(`Valid CBM is required for item ${i + 1}`);
+        return false;
+      }
+  
+      if (!ctn.trim() || isNaN(ctn) || Number(ctn) <= 0) {
+        message.warning(`Valid CTN is required for item ${i + 1}`);
+        return false;
+      }
+    }
+  
+    return true;
+  };
+  
    
     const handleSubmit1 = () => {
+      if (!validateForm()) return;
      
       setCreatingOrder(true)
       setTimeout(()=>{
         socket1.emit("createOrder",{items,...orderInfo},(response) => {
           if (response.status === "ok") {
             setCreatingOrder(false)
-            message.success("Order created successfully");
+            handleClose3()
+            
 
           } else {
             setCreatingOrder(false)
-            message.error("Failed to fetch orders");
+            message.error(response.message);
           }})
       },1000)
       

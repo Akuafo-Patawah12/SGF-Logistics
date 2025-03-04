@@ -95,7 +95,7 @@ socket.on("deleteShipments", async (data,callback) => {
       const {  containerNumber,loadingDate, status, port, route, eta, cbmRate } = data;
       console.log({  containerNumber,loadingDate, status, port, route, eta, cbmRate });
   
-      if ( !containerNumber) {
+      if ( !containerNumber || !containerNumber || !loadingDate || !status || !port || !route || !eta || !cbmRate) {
         return callback({ status: "error", message: "All fields are required." });
       }
   
@@ -124,6 +124,7 @@ socket.on("deleteShipments", async (data,callback) => {
   
       // Emit event to all connected users
       socket.emit("newContainerAdded", newContainer);
+      ordersNamespace.in("adminRoom").emit("newContainerAdded", newContainer);
   
     } catch (error) {
       console.error("Error creating container:", error);

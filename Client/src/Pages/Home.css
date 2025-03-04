@@ -82,8 +82,8 @@
 /* HTML: <div class="loader"></div> */
 
 .assist {
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: medium;
   color: #ffffff; /* Adjust based on your theme */
   text-align: center;
   letter-spacing: 1.5px;
@@ -543,7 +543,8 @@
 
  .image-container {
    background: url("../../public/SFG_images/Door-to-door.jpg") repeat fixed 100%;
-}
+
+  }
 
 /* The background image */
 .background-image {
@@ -587,10 +588,10 @@
 }
 
 .scroll-content-btn{
-   border: 3px solid var(--green);
+   border: 2px solid var(--green);
    padding: 8px 5px;
    font-size: 20px;
-   font-weight: 600;
+   font-weight: 500;
    background: transparent;
    border-radius: 5px;
    color: var(--green);
@@ -802,7 +803,7 @@ animation: animat 10s linear infinite;
   gap: 20px;
   flex-wrap: wrap;
   background: linear-gradient(135deg, #ac9ce9, var(--purple));
-  padding: 50px 20px;
+  padding: 80px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin: 40px 0;

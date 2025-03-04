@@ -52,11 +52,11 @@ const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
       email: "sfghanalogistics24@gmail.com",
     },
     receiver: {
-      invoice_date: invoiceDate || 7,
+      invoice_date: invoiceDate,
       Loading_date: invoiceData?.loadingDate,
-      cbmRate: invoiceData?.cbmRate || 5,
-      arrival_time: invoiceData?.eta || 0,
-      Container: invoiceData?.containerNumber || 98876,
+      cbmRate: invoiceData?.cbmRate ,
+      arrival_time: invoiceData?.eta || "N/A",
+      Container: invoiceData?.containerNumber  || "N/A",
     },
     
   };

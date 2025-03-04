@@ -134,4 +134,13 @@
       align-items: center;
     }
   }
+
+  @media (max-width: 678px) {
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about_info:last-child{
+      grid-column: span 2;
+    }
+  }
   

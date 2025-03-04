@@ -106,8 +106,9 @@ const PricingPage = () => {
       </Row>
 
       {/* Pricing Table */}
-      <TableContainer>
-        <h2>Shipping Rates</h2>
+      <h2 style={{marginInline:"auto",marginTop:"40px",width:"fit-content"}}>Shipping Rates</h2>
+      <TableContainer style={{width:"100%",overflowX:"auto",scrollbarWidth:"none"}}>
+        
         <Table
           columns={columns}
           dataSource={pricingData}

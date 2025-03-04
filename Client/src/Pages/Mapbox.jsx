@@ -14,7 +14,7 @@ import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 const Mapbox = () => {
 
   const parent= useRef(null)
-  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/tracking",{
+  const socket = useMemo(() =>io("http://localhost:4040/tracking",{
     transports: ["websocket","polling"],
     withCredentials: true,
   secure: true

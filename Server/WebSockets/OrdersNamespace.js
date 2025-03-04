@@ -26,6 +26,11 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
       if (!findUser) {
         return callback({ status: "error", message: "User not found" });
       }
+        
+      const compare_trackingNo = await Order.findOne({ items: { $elemMatch: { trackingNo: data.items[0].trackingNo } } });
+      if (compare_trackingNo) {
+        return callback({ status: "error", message: "Tracking number already exists" });
+      }
   
       // Create order instance
       const order = new Order({
@@ -36,7 +41,7 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
       });
   
       // Save order first before referencing its _id
-      await order.save();
+      const newOrder = await order.save();
   
       // Check if container_id is provided
       if (!data.container_id) {
@@ -54,7 +59,7 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
             },
           },
         },
-        { new: true } // Return updated document
+        {new:true } // Return updated document
       );
   
       // Check if container was found
@@ -75,32 +80,35 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
       order.route = add_user_to_container.route;
       order.selected_country = add_user_to_container.port;
       order.status = add_user_to_container.status;
-  
+      
+
+      await order.save()
       // Save updated order
-      await order.save();
+    
   
       // Send order to client if the user is online
       if (users[order.userId]) {
         socket.to(users[order.userId]).emit("sent_to_client", {
-              ...order,
+              ...newOrder._doc,
               containerNumber: add_user_to_container ? add_user_to_container.containerNumber : "Not Assigned",
               cbmRate: add_user_to_container ? add_user_to_container.cbmRate : 0,
               loadingDate: add_user_to_container ? add_user_to_container.loadingDate : "N/A",
               eta: add_user_to_container ? add_user_to_container.eta : "N/A"
             }
+            
             );
         
       }
   
       // Notify AdminRoom about the new assignment
-      socket.to("AdminRoom").emit("new", [add_user_to_container]);
+      socket.to("adminRoom").emit("new", [add_user_to_container]);
       socket.emit("new", [add_user_to_container]);
   
       // Send success response
       callback({ status: "ok", message: "Order created successfully", data: order });
     } catch (error) {
       console.error("Error creating shipment:", error);
-      callback({ status: "error", message: error.message });
+      callback({ status: "error", message: "Internal server error" });
     }
   });
   
@@ -150,10 +158,10 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
     
   
       callback({ status: "ok", message: "Order status updated successfully", data: [container] });
-      socket.to("AdminRoom").emit("updatedShipment", [container])
+      socket.to("adminRoom").emit("updatedShipment", [container])
     } catch (error) {
       console.error("Error updating order status:", error);
-      callback({ status: "error", message: error.message });
+      callback({ status: "error", message: "Internal server error, can't edit" });
     }
   })
 
@@ -240,7 +248,7 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
           }
       
           socket.emit("orderRemovedFromContainer", { containerId, orderId });
-          socket.to("AdminRoom").emit("orderRemovedFromContainer",  orderId );
+          socket.to("adminRoom").emit("orderRemovedFromContainer",  { containerId, orderId } );
           socket.to(updatedOrder.userId).emit("orderRemovedFromContainer",  orderId );
       
         } catch (error) {
