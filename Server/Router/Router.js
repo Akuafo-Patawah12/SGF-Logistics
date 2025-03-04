@@ -27,6 +27,12 @@ const Limiter = rateLimit({
     message: { error: "Too many requests. Try again later." }, 
   });
 
+  const verifyLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000, // 5 minutes
+    max: 5, // Limit to 5 login attempts per IP
+    message: { error: "Too many requests. Try again later." }, 
+  });
+
 
 
 
@@ -37,7 +43,7 @@ router.post("/",Limiter, login)
 router.put("/reset-password/:token",Limiter, updatePassword)
 router.post("/forget_password",Limiter,forgetPassword)
 router.post("/sign_up",signUpLimiter, SignUp)
-router.post("/verify-otp",Limiter, verify)
+router.post("/verify-otp",verifyLimiter, verify)
 router.post("/asked_question", AskedQuestion)
 router.post("/send-pdf", upload.single("pdf"), pdf)
 router.post("/resend-otp",Limiter, resendOtp)
