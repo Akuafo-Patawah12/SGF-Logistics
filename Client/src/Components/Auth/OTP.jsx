@@ -79,14 +79,14 @@ const OTP = ({mail}) => {
      
       }else if(response.status===200){
         navigate(`/MyOrders`)
-        
+
       }else if(response.status===201){
         navigate("/AdminDashboard")
       }
       message.success(response.data.message); // Show success message
     } catch (error) {
       if(error.message==="Request failed with status code 403"){
-        message.error("Too many attempts, try in 5 minutes")
+        message.error("Invalid OTP!")
         return
       }
       message.error(error.message || "Verification failed!");
