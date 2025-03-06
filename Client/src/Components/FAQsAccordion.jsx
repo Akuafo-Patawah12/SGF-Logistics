@@ -1,6 +1,6 @@
 import { UpOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
-import "./FAQ.css"
+import "../Styles/FAQ.css"
 
 const FAQsAccordion = (props) => {
     const[accordion,setAccordion] = useState(false)

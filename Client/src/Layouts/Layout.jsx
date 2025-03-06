@@ -6,11 +6,10 @@ import Footer from '../Components/Footer'
 import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
-import Tracking from '../Components/Tracking'
 import LoginPrompt from '../Components/LoginPrompt'
 import Header2 from '../Components/Header2'
-import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
-import HowItWorksVideo from '../Pages/Components/HowItWorksVideo'
+import {  CloseOutlined } from '@ant-design/icons'
+import HowItWorksVideo from '../Components/HowItWorksVideo'
 import PageNotFound from '../Pages/PageNotFound'
 import More from "../Pages/More/More"
 import PricingPage from '../Pages/Pricing'
@@ -18,8 +17,6 @@ const Privacy = lazy(()=> import('../Pages/More/Privacy'))
 const Gallery = lazy(()=> import('../Pages/More/Gallery')) 
 const TrackGoods =lazy(()=> import('../Pages/TrackGoods'))
 const TrackContainer = lazy(()=> import('../Pages/TrackContainer')) 
-
-
 const TrackOrder= lazy(()=> import( '../Pages/TrackOrder'))
 const About= lazy(()=> import ('../Pages/About'))
 const SeaFreight = lazy(()=> import('../Pages/Services/SeaFreight'))
@@ -30,8 +27,6 @@ const ContainerClearance = lazy(()=> import('../Pages/Services/ContainerClearanc
 const ContactUs =lazy(()=> import('../Pages/ContactUs'))
 const AirFreight = lazy(()=> import('../Pages/Services/AirFreight'))
 const Services= lazy(()=> import('../Pages/Services/Services'))
-const AdminDashboard = lazy(()=> import('../Pages/AdminDashbord'))
-const Orders = lazy(()=> import( '../Pages/Orders'))
 const Mapbox = lazy(()=> import('../Pages/Mapbox'))
 const MyOrders = lazy(()=> import( '../Pages/MyOrders'))
 const HomePage= lazy(()=>import('../Pages/HomePage'))
@@ -54,10 +49,6 @@ const Layout = () => {
     
     const hideFooterOn = ["/Orders", "/More/get_a_qoute", "/MyOrders"]
    
-
-
-    const[showAuth,setShowAuth] = useState(false)
-
 
     const[popUp1,setPopUp1]= useState(false)
         function pop1(){
@@ -96,7 +87,7 @@ const Layout = () => {
     <div>
 
         <Header />
-        <Header2 buttonDisplay={buttonDisplay} setShowAuth={setShowAuth} popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop} />
+        <Header2 buttonDisplay={buttonDisplay}  popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop} />
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
         {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"99",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
           <button onClick={()=> setIsVideo(false)} style={{background:"transparent",color:"#fff",border:"none",position:"absolute",top:"10px",right:"10px",fontSize:"30px"}}><CloseOutlined /></button>
@@ -105,7 +96,7 @@ const Layout = () => {
         
         <LoginPrompt prompt={[isPrompt,setPrompt]}/>
       
-        <Tracking track_comp={[trackPop,setTrackPop]} trackRef={trackRef}/>
+        
             <Routes>
 
             
@@ -114,7 +105,7 @@ const Layout = () => {
 
                 <Route path='/' element={
                     <Suspense fallback={<Loader />}>
-                        <HomePage setShowAuth={setShowAuth} showAuth={showAuth} setIsVideo={setIsVideo}/>
+                        <HomePage  setIsVideo={setIsVideo}/>
                     </Suspense> }
                 />
                 
@@ -130,11 +121,7 @@ const Layout = () => {
                 <Route path='/More' element={<More/>}/>
                 <Route path='/TermsAndCondition' element={<TermsAndCondition />} />
                 <Route path='/More/FAQs' element={<FAQs />}/>
-                <Route path='/Orders' element={
-                    <Suspense fallback={<Loader />}>
-                        <Orders />
-                    </Suspense>} 
-                />
+                
 
                 <Route path='/MyOrders' element={
                     <Suspense fallback={<Loader />}>
@@ -155,9 +142,6 @@ const Layout = () => {
                 />
 
 
-                    
-
-                    
 
                     <Route path='/Services' element={
                         <Suspense fallback={<Loader />}>

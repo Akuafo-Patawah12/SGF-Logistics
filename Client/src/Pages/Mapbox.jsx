@@ -1,10 +1,10 @@
 import React,{useState,useMemo,useEffect,useRef} from 'react'
 import {useSearchParams} from "react-router-dom"
-import "./TrackOrder&Map.css"
+import "../Styles/TrackOrder&Map.css"
 import io from "socket.io-client"
 import { message,Empty } from "antd"
 
-import {route1,route2,route3,route4,route5} from "./Components/Routes"
+import {route1,route2,route3,route4,route5} from "../Components/Routes"
 import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
 import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
 import { CheckCircleOutlined,RightCircleFilled,ArrowRightOutlined, UpOutlined ,CheckOutlined ,EnvironmentOutlined } from '@ant-design/icons'
@@ -14,7 +14,7 @@ import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 const Mapbox = () => {
 
   const parent= useRef(null)
-  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/tracking",{
+  const socket = useMemo(() =>io("http://localhost:4040/tracking",{
     transports: ["websocket","polling"],
     withCredentials: true,
   secure: true
@@ -207,6 +207,8 @@ useEffect(() => {
  },[])
   
 
+ 
+
 
   return (
     <>
@@ -273,7 +275,7 @@ useEffect(() => {
       }}
       style={{ width: "100%", height:"400px",marginTop:"30px" }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken="pk.eyJ1IjoiYWt1YWZvLTEiLCJhIjoiY200MXhxNnJrMDQzNjJrcjAzbXg4cTliMCJ9.6cwG6dff4E2UjnQz7q963A"
+      mapboxAccessToken= {process.env.REACT_APP_MAPBOX_TOKEN}
       id="Map"
     >
       <Marker latitude={routesMap[route][Index].Latitude} longitude={routesMap[route][Index].Longitude}>

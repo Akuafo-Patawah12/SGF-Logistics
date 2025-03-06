@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import "./TrackOrder&Map.css"
+import "../Styles/TrackOrder&Map.css"
 const TrackContainer = () => {
   const [trackingNumber, setTrackingNumber] = useState("");
   

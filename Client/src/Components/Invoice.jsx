@@ -1,5 +1,5 @@
 import React ,{useState,useEffect,useMemo} from "react";
-import "./Invoice.css";
+import "../Styles/Invoice.css";
 import { Button,message } from "antd"
 import { CloseOutlined } from "@ant-design/icons";
 

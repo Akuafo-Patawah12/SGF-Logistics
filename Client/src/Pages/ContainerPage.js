@@ -1,12 +1,12 @@
 import React, { useEffect, useState ,useMemo} from "react";
 import { io } from "socket.io-client";
 import { List, Card,Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
-import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
+import SessionExpiredModal from "../Components/SessionEpiredModal";
 import { EyeOutlined , DeleteOutlined , EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
 import ButtonLoader from '../Icons/ButtonLoader'
-import AssignUsersModal from "./Components/AssignUsersModal"
-import "./ContainerPage.css"
+import AssignUsersModal from "../Components/AssignUsersModal"
+import "../Styles/ContainerPage.css"
 
 
 
@@ -17,13 +17,13 @@ const ContainerList = () => {
 const { Text } = Typography;
 const navigate= useNavigate()
 
-const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
+const socket = useMemo(() =>io("http://localhost:4040/shipment",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
   }),[])
 
-  const socket1 = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
+  const socket1 = useMemo(() =>io("http://localhost:4040/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -235,6 +235,16 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       console.log(data)
     })
 
+    socket1.on("delete_container",(containerId)=>{
+      setContainers((prev) => {
+        
+         const fliteredContainer= prev.filter((container) => container._id !== containerId);
+          return fliteredContainer 
+        
+     });
+     
+    })
+
     socket1.on("disconnect",(reason)=>{
          console.log(reason)
     })
@@ -366,6 +376,16 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
       setIsEditContainer(true);
      }
 
+     function deleteContainer(containerId){
+        socket1.emit("deleteContainer",containerId,(response)=>{
+            if(response.status==="ok"){
+              message.success("Container deleted")
+            }else{
+               message.error(response.message)
+            }
+        })
+     }
+
   const columns = [
     
     { title: "Container Number", dataIndex: "containerNumber", key: "containerNumber" },
@@ -462,7 +482,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   <Button 
     size="small" 
     type="danger" 
-    
+    onClick={()=> deleteContainer(container._id)}
   >
     <DeleteOutlined style={{ color:"red"}}/>
   </Button>

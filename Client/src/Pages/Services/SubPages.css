@@ -4,6 +4,77 @@
 
 /* filepath: /C:/Users/maxwe/OneDrive/Desktop/SGF-Logistics/Client/src/Pages/Services/AirFreight.css */
 
+/* Groupage.css */
+.groupage-container {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.header-banner {
+  background: url('../../../public/SFG_images/Air2.jpg') no-repeat center center/cover;
+  height: 250px;
+  position: relative;
+}
+
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}
+
+.breadcrumb {
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.breadcrumb a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb span {
+  color: #555;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.text-section {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.benefits ul, .ideal-for ul {
+  list-style: none;
+  padding: 0;
+}
+
+.benefits li, .ideal-for li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  color: #004d80;
+}
 
 
 

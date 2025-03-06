@@ -13,19 +13,33 @@ const ResetPassword = () => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const res = await axios.put(`https://api.sfghanalogistics.com/reset-password/${token}`, {
+      const res = await axios.put(`http://localhost:4040/reset-password/${token}`, {
         newPassword: values.newPassword,
       });
       
-      
+      if(res.status===200){
       message.success(res.data.message);
       navigate("/Auth/login")
+      }
     } catch (error) {
-        if(error.message==="Request failed with status code 429"){
-                message.error("Too many attempts, try in 5 minutes")
-                return
-              }
-      message.error(error.message || "Something went wrong");
+      if (error.response) {
+        // Switch statement to handle different status codes
+        switch (error.response.status) {
+            case 429:
+                message.error("Too many attempts, try in 5 minutes");
+                break;
+            case 404:
+            case 400:
+                message.error(error.response.data.message || "Invalid or expired reset token");
+                break;
+            default:
+                message.error(error.response.data.message || "Something went wrong");
+        }
+    } else if (error.request) {
+        message.error("No response from server. Please try again later.");
+    } else {
+        message.error(error.message || "Something went wrong");
+    }
     } finally {
       setLoading(false);
     }

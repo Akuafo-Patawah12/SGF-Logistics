@@ -1,7 +1,7 @@
 // filepath: /C:/Users/maxwe/OneDrive/Desktop/SGF-Logistics/Client/src/Pages/Services/AirFreight.jsx
 import React from "react";
 import "./SubPages.css";
-
+import { Link } from "react-router-dom"
 import {ReactComponent as Secure } from "../../Icons/Secure.svg"
 import {ReactComponent as Speed } from "../../Icons/Speed.svg"
 import {ReactComponent as Global } from "../../Icons/Global.svg"
@@ -97,9 +97,11 @@ const AirFreight = () => {
         <p>
           Get in touch with us today and experience the best air freight services.
         </p>
+        <Link to={"/Contact"}>
         <button>
-          Get a Quote
+          Contact us
         </button>
+        </Link>
       </section>
       </div>
     </div>

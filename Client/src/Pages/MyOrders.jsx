@@ -2,18 +2,18 @@ import React,{useState, useMemo, useEffect, useRef} from "react"
 import {Link} from "react-router-dom"
 import { message,Empty, Spin ,Card, Typography, Space,Button,Segmented ,Input}  from "antd"
 import io from "socket.io-client"
-import Invoice from "./Invoice"
+import Invoice from "../Components/Invoice"
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { formatDistanceToNow, subDays } from "date-fns";
-import UserShipmentData from "./UserShipmentData"
+import UserShipmentData from "../Components/UserShipmentData"
 import LogisticFooter from "../Components/LogisticFooter"
 
 import { EyeOutlined ,DownloadOutlined , SearchOutlined} from "@ant-design/icons";
 
 
-import "./MyOrders.css"
-import SessionExpiredModal from "../Components/Auth/SessionEpiredModal";
+import "../Styles/MyOrders.css"
+import SessionExpiredModal from "../Components/SessionEpiredModal";
 const AllOrders=()=>{
   const [myorders,setMyOrders]  = useState([])
   const [loadingProgress, setLoadingProgress] = useState(true);
@@ -33,7 +33,7 @@ const AllOrders=()=>{
     trackingNo:null
   })
     const { Text } = Typography;
-    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
+    const socket = useMemo(() =>io("http://localhost:4040/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -45,7 +45,9 @@ const AllOrders=()=>{
       socket.emit("getOrdersByUser","hello",(response)=>{
 
           if (response.status==="error"){
-            message.error("Error fetching orders")
+            setNoresult(true)
+            setMyOrders([])
+            setLoadingProgress(false)
           }
       })
    },[])
@@ -68,14 +70,19 @@ const AllOrders=()=>{
         
         socket.on("sent_to_client", data =>{
            message.success("New shipment")
+           setNoresult(false)
            setMyOrders(prev => [data,...prev])
+           
+          
         })
 
-        socket.on("orderRemovedFromContainer", ({  orderId }) => {
+        socket.on("orderRemovedFromContainer", ( orderId ) => {
           console.log(orderId)
-         
+          message.success("1 Order removed from container")
           setMyOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
-          
+          if(myorders.length === 0){
+            setNoresult(true)
+           }
         });
 
         socket.on("updatedShipment",(data)=>{
@@ -106,6 +113,8 @@ const AllOrders=()=>{
             prevContainers.filter(container => container.containerNumber !== container_number)
           );
         });
+
+        
         
         socket.on("orders_updated", (data) => {
           console.log(data);
@@ -135,9 +144,7 @@ const AllOrders=()=>{
           console.log(data)
           setMyOrders(data)
           setLoadingProgress(false)
-          if(data.length===0){
-            setNoresult(true)
-          }
+          
         })
 
         socket.on("disconnect",(reason)=>{
@@ -156,6 +163,7 @@ const AllOrders=()=>{
         return()=>{
             socket.off("connect")
             socket.off('ordersByUser')
+            socket.off("containerDeleted")
             socket.off("assign_to_container")
             socket.off("orderRemovedFromContainer")
             socket.off("orders_updated")

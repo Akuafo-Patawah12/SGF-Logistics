@@ -1,5 +1,5 @@
 import React,{useEffect,useMemo} from 'react'
-import "./TrackOrder&Map.css"
+import "../Styles/TrackOrder&Map.css"
 import { Space, Button } from "antd"
 import { useParams,Link } from 'react-router-dom'
 

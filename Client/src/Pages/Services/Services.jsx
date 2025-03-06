@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
-import "../Components/Services.css"
-import ServicesComponent from '../Components/ServicesComponent'
+import "../../Styles/Services.css"
+import ServicesComponent from '../../Components/ServicesComponent'
 
 import Map, { Marker,  NavigationControl } from "react-map-gl";
 import Rocket from '../../Icons/Rocket'
@@ -52,7 +52,7 @@ const Services = () => {
       initialViewState={viewport}
       style={{ width: "100%", height:"400px",marginTop:"30px" }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken="pk.eyJ1IjoiYWt1YWZvLTEiLCJhIjoiY200MXhxNnJrMDQzNjJrcjAzbXg4cTliMCJ9.6cwG6dff4E2UjnQz7q963A"
+      mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       id="Map"
       
       scrollZoom={{

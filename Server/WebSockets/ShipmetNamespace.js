@@ -39,21 +39,7 @@ socket.on("fetchAssignedOrderIds", async (assignedOrderIds, callback) => {
 
 
 
-socket.on("deleteShipments", async (data,callback) => {
-    console.log("Deleting shipments:", data);
 
-    const { shipmentIds } = data;
-
-    try {
-      await Shipment.deleteMany({ _id: { $in: shipmentIds } });
-      callback({status: "ok",message:`${shipmentIds.length}, shipments deleted`});
-
-      // Notify all clients about the deletion
-      socket.emit("shipmentsDeleted", { shipmentIds });
-    } catch (error) {
-      console.error("Error deleting shipments:", error);
-    }
-  });
 
 
 
@@ -223,19 +209,7 @@ socket.on("deleteShipments", async (data,callback) => {
   });
 
 
-socket.on("get_orders",async(data,callback)=>{
-    
-    
-    try {
-        const orders = await Shipment.find({});
-        
-        
-        socket.emit("all_orders",orders)
-    } catch (error) {
-        console.error("Error creating shipment", error);
-        callback({ status: "error", message: "failed to load shippments" })
-    }
-})
+
 
 
 

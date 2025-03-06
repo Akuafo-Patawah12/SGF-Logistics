@@ -40,7 +40,7 @@ const sendCookie = require("../Utils/Cookie");
       };
     
 
-    if (record.verification_code === null || record.verification_code !== otp) {
+    if (record.verification_code === null || record.verification_code !== parseInt(otp)) {
         return res.status(403).json({ success: false, message: "Invalid OTP!" });
     }
     
@@ -58,8 +58,8 @@ const sendCookie = require("../Utils/Cookie");
         record.device_info.push(userDeviceInfo);
     }
     await record.save()
-    let rememberMe;
-    sendCookie(payload,rememberMe=true,res)
+    let rememberMe=true;
+    sendCookie(payload,rememberMe,res)
 
     if(record.account_type==="User"){
       res.status(200).json({ success: true, message: "OTP verified!" });

@@ -18,14 +18,14 @@ const LogisticFooter=()=>{
           </a>
           </div>
           <nav className="log_footer" style={{fontSize:"11px" ,display:"flex",flexWrap:"wrap",width:"70%",marginTop:"6px",marginInline:"auto",justifyContent:"center"}}>
-           <Link to={""}><span className="link">Contact</span></Link>
-           <Link to={""}><span className="link">FAQ's</span></Link>
-           <Link to={""}><span className="link link_3">Services</span></Link>
-           <Link to={""}><span className="link">Terms & Conditions</span></Link>
-           <Link to={""}><span className="link link_5">About</span></Link>
+           <Link to={"/Contact"}><span className="link">Contact</span></Link>
+           <Link to={"/More/FAQs"}><span className="link">FAQ's</span></Link>
+           <Link to={"/Services"}><span className="link link_3">Services</span></Link>
+           <Link to={"/TermsAndCondition"}><span className="link">Terms & Conditions</span></Link>
+           <Link to={"/About"}><span className="link link_5">About</span></Link>
           </nav>
 
-          <div style={{fontSize:"14px",padding:"10px 0",width:"fit-content",marginInline:"auto ",marginTop:"13px"}}>© 2024 SFGL | developed by @Anej High Tech</div>
+          <div style={{fontSize:"14px",padding:"10px 0",width:"fit-content",marginInline:"auto ",marginTop:"13px"}}>© 2024 SFGL | developed by <a href="https://wa.me/qr/J67ECZFBZBBAF1" target="_blank" rel="noreferrer" style={{fontSize:"14px"}}>@Anej High Tech</a></div>
         </section>
     )
 }

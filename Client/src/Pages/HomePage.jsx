@@ -12,23 +12,23 @@ import{ ReactComponent as CargoPlane } from "../Icons/CargoPlane.svg"
 import{ ReactComponent as RMBrate } from "../Icons/RMBrate.svg"
 
  
-import "./Home.css"
+import "../Styles/Home.css"
 
-import "./Components/AnimatedBubbles.css"
+import "../Styles/AnimatedBubbles.css"
 import io from "socket.io-client"
 
 import {Link} from "react-router-dom"
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css'; 
-import Authentication from "../Components/Authentication"
+
 import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
 
-import HowItWorksVideo from './Components/HowItWorksVideo'
+import HowItWorksVideo from '../Components/HowItWorksVideo'
 import EndUsersIcon from '../Icons/EndUsersIcon'
 import TrackingIcon from '../Icons/TrackingIcon'
 import ServicesIcon from '../Icons/ServicesIcon'
-import ServicesComponent from './Components/ServicesComponent'
-const HomePage = ({setShowAuth,showAuth,setIsVideo}) => {
+import ServicesComponent from '../Components/ServicesComponent'
+const HomePage = ({setIsVideo}) => {
   const socket= useMemo(() => io("http://localhost:4040",{
     transports: ["websocket","polling"],
     withCredentials: true,
@@ -288,7 +288,7 @@ const [value, setValue] = useState(0);  // State to hold the value
     animate="animate"
     exit="exit"
      style={{overflow:"hidden",background:"#fff"}} className='Home'>
-        {showAuth&& <Authentication  authShow={[showAuth,setShowAuth]}/>}
+        
         <div
         style={{
           width: "100%",
@@ -460,7 +460,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           </p>
           
 
-          <Link to={"/Contact_us"}><button className="scroll-content-btn">Contact Us</button></Link>
+          <Link to={"/Contact"}><button className="scroll-content-btn">Contact Us</button></Link>
         </div>
         </div>
     

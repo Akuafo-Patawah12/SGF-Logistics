@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AimOutlined, BulbOutlined, RocketOutlined, GlobalOutlined } from '@ant-design/icons';
-import './About.css';
+import '../Styles/About.css';
 import { motion } from 'framer-motion';
 
 const About = () => {

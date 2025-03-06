@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Components/FAQ.css"; // Import the CSS file for styling
+import "../Styles/FAQ.css"; // Import the CSS file for styling
 
 const FAQs = () => {
   const faqs = [

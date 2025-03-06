@@ -178,9 +178,7 @@ const Footer = () => {
     >
      
       <div style={{ display: "flex", justifyContent: "center", gap: "10px" }}>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          <InstagramOutlined style={{ fontSize: "24px", color: "#E1306C" }} />
-        </a>
+        
         <a href="https://www.youtube.com/@SFGhanaLogistics" target="_blank" rel="noopener noreferrer">
           <YoutubeOutlined style={{ fontSize: "24px", color: "#FF0000" }} />
         </a>

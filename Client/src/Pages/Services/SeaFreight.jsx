@@ -97,9 +97,11 @@ const SeaFreight = () => {
         <p>
           Get in touch with us today and experience the best air freight services.
         </p>
+        <Link to={"/Contact"}>
         <button>
-          Get a Quote
+          Contact us
         </button>
+        </Link>
       </section>
       </div>
     </div>

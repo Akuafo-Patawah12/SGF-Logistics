@@ -246,10 +246,11 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
             socket.emit("removeError", "Failed to remove order");
             return;
           }
-      
+         
+          console.log("Order removed from container:", updatedOrder.userId.toString());
           socket.emit("orderRemovedFromContainer", { containerId, orderId });
           socket.to("adminRoom").emit("orderRemovedFromContainer",  { containerId, orderId } );
-          socket.to(updatedOrder.userId).emit("orderRemovedFromContainer",  orderId );
+          socket.to(users[updatedOrder.userId.toString()]).emit("orderRemovedFromContainer",  orderId );
       
         } catch (error) {
           console.error("Error removing order from container:", error);
@@ -258,11 +259,12 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
       });
 
 
-      socket.on("deleteContainer", async (containerId) => {
+      socket.on("deleteContainer", async (containerId,callback) => {
+        console.log(containerId)
         try {
           const container = await Container.findById(containerId);
           if (!container) {
-            socket.emit("deleteError", "Container not found");
+            callback({status:"error",message: "Container not found"});
             return;
           }
       

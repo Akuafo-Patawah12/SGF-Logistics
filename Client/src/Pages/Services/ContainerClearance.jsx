@@ -101,9 +101,11 @@ const ContainerClearance = () => {
           <p>
             Get in touch with us today and experience the best air freight services.
           </p>
-          <button>
-            Get a Quote
-          </button>
+          <Link to={"/Contact"}>
+                  <button>
+                    Contact us
+                  </button>
+                  </Link>
         </section>
         </div>
       </div>
