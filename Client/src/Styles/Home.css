@@ -831,14 +831,7 @@ animation: animat 10s linear infinite;
   transform: translateY(-10px);
 }
 
-/* Testimonial Image */
-.testimonial-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 15px;
-  border: 3px solid #fff;
-}
+
 
 /* Text Styles */
 .testimonial-content {

@@ -8,6 +8,7 @@ import{ ReactComponent as Anchor } from "../Icons/Anchor.svg"
 import{ ReactComponent as Container } from "../Icons/Container.svg"
 import { message} from "antd"
 import{ ReactComponent as CargoShip } from "../Icons/CargoShip.svg"
+import { ReactComponent as StarHollow } from "../Icons/StarHollow.svg"
 import{ ReactComponent as CargoPlane } from "../Icons/CargoPlane.svg"
 import{ ReactComponent as RMBrate } from "../Icons/RMBrate.svg"
 
@@ -485,7 +486,8 @@ const [value, setValue] = useState(0);  // State to hold the value
     </div>
       {testimonials.map((testimonial, index) => (
         <div className="testimonial" key={index}>
-          <img className="testimonial-image" src={testimonial.image} alt={testimonial.name} />
+          
+          <div style={{marginBlock:"30px"}}><StarHollow /> <StarHollow /> <StarHollow /> <StarHollow /> <StarHollow /></div>
           <div className="testimonial-content">
             <p className="testimonial-text">"{testimonial.text}"</p>
             <p className="testimonial-name">{testimonial.name}</p>
