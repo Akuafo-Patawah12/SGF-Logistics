@@ -5,6 +5,7 @@ const orderFunc = require("./OrdersNamespace");
 const AdminPath = require("./AdminNamespace");
 const Tracking = require("./TrackingNamespace");
 const Shipping = require("./ShipmetNamespace");
+const rates = require("./DefaultSocket");
 
 
 
@@ -12,7 +13,7 @@ function initializeSocket(server){
     const io = socketIo(server, {   //Creating connect between server and User Interface  "Realtime WebApp"
       transports: ['websocket',"polling"],
         cors: {
-          origin:["http://localhost:3000"],
+          origin:["https://sfghanalogistics.com","http://localhost:3000"],
           methods:["POST,GET,PUT,DELETE"],
           allowedHeaders: ['Content-Type'],
           credentials: true
@@ -80,9 +81,7 @@ function initializeSocket(server){
       
 
    
-      io.of("/").use((socket,next)=>{
-         middleware(socket,next)
-      })
+      
       trackingNamespace.use((socket,next)=>{
         middleware(socket,next)
       })
@@ -107,7 +106,9 @@ function initializeSocket(server){
       
       io.of("/").on("connection",(socket)=>{
         console.log("connected to the default namespace")
-        setUser(socket)
+       
+
+        rates(socket)
         socket.on("greet",(data)=>{
           console.log(data)
         })

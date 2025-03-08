@@ -1,6 +1,6 @@
 import React, { useEffect, useState ,useMemo} from "react";
 import { io } from "socket.io-client";
-import { List, Card,Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
+import { List, Card,InputNumber,Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
 import SessionExpiredModal from "../Components/SessionEpiredModal";
 import { EyeOutlined , DeleteOutlined , EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
@@ -17,13 +17,13 @@ const ContainerList = () => {
 const { Text } = Typography;
 const navigate= useNavigate()
 
-const socket = useMemo(() =>io("http://localhost:4040/shipment",{
+const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
   }),[])
 
-  const socket1 = useMemo(() =>io("http://localhost:4040/orders",{
+  const socket1 = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -54,14 +54,14 @@ const socket = useMemo(() =>io("http://localhost:4040/shipment",{
   
 
   const routes = {
-      A: ["Guangzhou Port", "Colombo Port", "Port of Aden", "Port of Alexandria", "Port of Algiers", "Port of Freetown", "Tema Port"], 
-      B: ["Ningbo – Zhoushan Port, Yiwu", "Jeddah Islamic Port", "Port Said (Suez Canal)", "Port of Tripoli", "Port of Tangier Med", "Port of Conakry", "Tema Port"],
-      C: ["Guangzhou Port", "Colombo Port", "Port of Tunis", "Port of Nouakchott", "Port of Bissau", "Port of Abidjan", "Tema Port"],
-      D: ["Guangzhou Port", "Port of Aden", "Port of Alexandria", "Port of Tangier Med", "Port of Dakar", "Port of Monrovia", "Tema Port"],
-      E: ["Ningbo – Zhoushan Port, Yiwu", "Colombo Port", "Suez Port (Port Tawfiq)", "Port of Algiers", "Port of Las Palmas", "Port of Banjul", "Tema Port"],
+      Guangzhou_Route_1: ["Guangzhou Port", "Colombo Port", "Port of Aden", "Port of Alexandria", "Port of Algiers", "Port of Freetown", "Tema Port"], 
+      Yiwu_Route_1: ["Ningbo – Zhoushan Port, Yiwu", "Jeddah Islamic Port", "Port Said (Suez Canal)", "Port of Tripoli", "Port of Tangier Med", "Port of Conakry", "Tema Port"],
+      Guangzhou_Route_2: ["Guangzhou Port", "Colombo Port", "Port of Tunis", "Port of Nouakchott", "Port of Bissau", "Port of Abidjan", "Tema Port"],
+      Guangzhou_Route_3: ["Guangzhou Port", "Port of Aden", "Port of Alexandria", "Port of Tangier Med", "Port of Dakar", "Port of Monrovia", "Tema Port"],
+      Yiwu_Route_2: ["Ningbo – Zhoushan Port, Yiwu", "Colombo Port", "Suez Port (Port Tawfiq)", "Port of Algiers", "Port of Las Palmas", "Port of Banjul", "Tema Port"],
     };
   
-    const statusOptions = ["All","Pending...", "In Transit", "Delivered", "Cancelled"]; 
+    const statusOptions = ["All", "In Transit", "At Tema Port waiting for clearance", "At our warehouse"]; 
     const [filterStatus, setFilterStatus] = useState("All");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
@@ -492,11 +492,44 @@ const socket = useMemo(() =>io("http://localhost:4040/shipment",{
   ];
 
 
+  const [isRateModalOpen, setIsRateModalOpen] = useState(false);
+  const [form] = Form.useForm();
+
+  const showModal = () => {
+    setIsRateModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsRateModalOpen(false);
+    form.resetFields();
+  };
+
+  const handleSubmit = (values) => {
+    console.log("Form Data:", values);
+    const numberValues = Object.fromEntries(
+      Object.entries(values).map(([key, value]) => [key, Number(value)])
+    );
+    socket1.emit("update_rates",numberValues,(response)=>{
+      if (response.status==="ok")
+      {
+        message.success(response.message)
+
+      }else{
+        message.error("Failed")
+      }
+  })
+    setIsRateModalOpen(false);
+    form.resetFields();
+  };
+
+
   return (
   <>
     {!permission ? <div>
     <div className="container_head"><Button type="primary" onClick={() => setIsEdit(true)} className="conta-butt">Add container</Button>
-    
+    <Button type="primary" onClick={showModal}>
+        Update Rates
+      </Button>
     <Input
         placeholder="Search by Container Number..."
         value={search}
@@ -626,7 +659,7 @@ const socket = useMemo(() =>io("http://localhost:4040/shipment",{
       >
         {Object.keys(routes).map((route) => (
           <Option key={route} value={route}>
-            Route {route}
+             {route}
           </Option>
         ))}
       </Select>
@@ -774,6 +807,61 @@ const socket = useMemo(() =>io("http://localhost:4040/shipment",{
     ))}
   </Form>
 </Modal>
+
+
+<Modal
+        title="Enter Details"
+        open={isRateModalOpen}
+        onCancel={handleCancel}
+        footer={null} // Remove default footer buttons
+      >
+        <Form form={form} layout="vertical" onFinish={handleSubmit}>
+          
+
+          <Form.Item
+            label="Sea Freight rate"
+            name="Sea_freight"
+            min={0} 
+            step={0.01}
+            
+            rules={[
+              { required: true, message: "Please enter Sea Freight rate" }
+              
+            ]}
+          >
+            <Input type="number" placeholder="Enter Sea freight rate" style={{width:"100%"}}/>
+          </Form.Item>
+          
+          <Form.Item
+            label="Air Freight rate"
+            name="Air_freight"
+            min={0} 
+            step={0.01}
+            
+            rules={[{ required: true, message: "Please enter your name" }]}
+          >
+            <Input type="number" placeholder="Enter Air freight rate" style={{width:"100%"}}/>
+          </Form.Item>
+
+          <Form.Item
+            label="RMB Rate"
+            name="RMB_rate"
+            min="0"
+            step={0.01}
+            
+            rules={[{ required: true, message: "Please enter a RMB rate" }]}
+          >
+             <Input type="number" placeholder="Enter RMB rate" style={{width:"100%"}}/>
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block style={{background:"var(--purple)"}}>
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+
 
 
     {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }

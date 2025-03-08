@@ -33,7 +33,7 @@ const AllOrders=()=>{
     trackingNo:null
   })
     const { Text } = Typography;
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
+    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
         withCredentials: true,
         secure: true
@@ -370,9 +370,9 @@ const AllOrders=()=>{
       </Text>
 
       {/* Action Buttons */}
-      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" , padding:"0"}}>
+      <div style={{ display: "flex", gap:"6px",justifyContent: "flex-end", marginTop: "16px" , padding:"0"}}>
 
-        <Button type="text"  icon={<EyeOutlined />} style={{ marginLeft: "8px",background:"#ddd" ,fontSize:"11px !important",fontWeight:"500"}} 
+        <Button type="text"  icon={<EyeOutlined />} style={{ marginLeft: "8px",background:"#ddd" ,fontSize:"11px !important",fontWeight:"400"}} 
            onClick={()=>{
             setViewData ({
                           fullname: order.fullname,
@@ -401,6 +401,7 @@ const AllOrders=()=>{
   onClick={() => {
     setLoadingIndex(index)
     const data = {
+      shippingMark: order.fullname,
       eta: order.eta,
       loadingDate: order.loadingDate,
       containerNumber: order.containerNumber,
@@ -420,6 +421,7 @@ const AllOrders=()=>{
       setLoadingIndex(null)
       // Reset state after download
       setInvoiceData({
+        shippingMark: null,
         eta: null,
         loadingDate: null,
         containerNumber: null,
@@ -440,8 +442,14 @@ const AllOrders=()=>{
     </Card>  
         ))}
         </div> 
-        : <Spin size="medium"/>}
-        </> : <Empty style={{paddingBlock:"70px"}}/>}
+        : <Spin size="medium" style={{marginTop:"50px"}}/>}
+        </> : 
+        <Empty 
+        description="No Shipment" 
+        style={{ paddingBlock: "70px" }}
+        styles={{ image: { transform:"translateX(18px)", display: "block" } }}
+       
+         />}
         
         <UserShipmentData
        visible={visible2}

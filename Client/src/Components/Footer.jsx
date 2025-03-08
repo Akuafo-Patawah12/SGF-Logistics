@@ -165,7 +165,7 @@ const Footer = () => {
         
         </main>
         <div className="copyright_header">
-          <p>© 2024 SFGL | developed by <a href="https://wa.me/qr/J67ECZFBZBBAF1" target="_blank">@Anej High Tech</a></p>
+          <p>© 2024 SFGL | developed by <a href="https://wa.me/qr/J67ECZFBZBBAF1" target="_blank" rel="noopener noreferrer" style={{fontSize:"14px"}}>@Anej High Tech</a></p>
           <Card
           className="social_media_handles"
       style={{

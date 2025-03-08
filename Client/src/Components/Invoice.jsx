@@ -46,12 +46,13 @@ const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
     invoiceNumber: `${invoiceNumber}`,
     
     sender: {
-      name: "SF Ghana Logistics",
+      name: "Shun Feng Ghana Logistics",
       address: "George Bush Highway, Dzorwulu,Accra-Ghana",
       phone: "053 948 0433",
       email: "sfghanalogistics24@gmail.com",
     },
     receiver: {
+      shippingMark: invoiceData?.shippingMark || "N/A",
       invoice_date: invoiceDate,
       Loading_date: invoiceData?.loadingDate,
       cbmRate: invoiceData?.cbmRate ,
@@ -66,7 +67,7 @@ const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
    
     
   <div ref={divRef} className="invoice-container">
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> <SvgIcon style={{transform:"translateX(0px)"}}/>  <span style={{color:"red",fontWeight:"500"}}>PROVISIONAL INVOICE <br/> <p style={{color:"#333",fontSize:"14px"}}>020 811 6360 / 053 948 0433</p></span></div>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> <SvgIcon style={{transform:"translateX(0px)"}}/>  <span style={{color:"red",fontWeight:"500"}}>PROVISIONAL INVOICE </span></div>
       <div className="invoice-header">
         
         <p>Invoice #: {invoiceData1.invoiceNumber}</p>
@@ -75,7 +76,7 @@ const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
 
       <div className="invoice-section">
         <div className="invoice-details">
-          <h3>Sender</h3>
+          
           <p><strong>{invoiceData1.sender.name}</strong></p>
           <p>{invoiceData1.sender.address}</p>
           <p>Phone: {invoiceData1.sender.phone}</p>
@@ -83,7 +84,7 @@ const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
         </div>
         
         <div className="invoice-details">
-          
+        <p>Invoice to: <span style={{transform:"translateX(10px)"}}>{invoiceData1.receiver.shippingMark}</span></p>
           <p>Invoice date: <span style={{transform:"translateX(10px)"}}>{invoiceData1.receiver.invoice_date}</span></p>
           <p>Loading date: <span style={{transform:"translateX(10px)"}}>{new Date(invoiceData1.receiver.Loading_date).toLocaleDateString()}</span></p>
           <p>CBM Rate: <span style={{transform:"translateX(10px)"}}>{invoiceData1.receiver.cbmRate}</span></p>

@@ -6,7 +6,7 @@ import { ReactComponent as Web3star } from "../Icons/Web3star.svg"
 import{ ReactComponent as Truck } from "../Icons/Truck.svg"
 import{ ReactComponent as Anchor } from "../Icons/Anchor.svg"
 import{ ReactComponent as Container } from "../Icons/Container.svg"
-
+import { message} from "antd"
 import{ ReactComponent as CargoShip } from "../Icons/CargoShip.svg"
 import{ ReactComponent as CargoPlane } from "../Icons/CargoPlane.svg"
 import{ ReactComponent as RMBrate } from "../Icons/RMBrate.svg"
@@ -29,15 +29,21 @@ import TrackingIcon from '../Icons/TrackingIcon'
 import ServicesIcon from '../Icons/ServicesIcon'
 import ServicesComponent from '../Components/ServicesComponent'
 const HomePage = ({setIsVideo}) => {
-  const socket= useMemo(() => io("http://localhost:4040",{
+  const socket= useMemo(() => io("https://api.sfghanalogistics.com",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
   }),[])
 
-  
+ const [ rate, setRate] = useState([]);
 useEffect(()=>{
   socket.emit("greet", "hello world")
+  
+  socket.emit("getRates","data",(response)=>{
+    if(response.status==="ok"){
+    setRate(response.data)
+    }
+  })
   console.log(socket)
 },[socket])
 
@@ -47,7 +53,9 @@ useEffect(()=>{
       console.log("connected to the default namespace")
     })
 
-
+   socket.on("orderUpdated",(data)=>{
+    setRate([data])
+   })
     
     socket.on("disconnect",(reasons)=>{
         console.log(reasons)
@@ -56,6 +64,7 @@ useEffect(()=>{
    
     return()=>{
        socket.off("connection")
+       socket.off("orderUpdated")
        socket.off("disconnect")
     }
  },[socket])
@@ -550,9 +559,9 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
         <div className='rate'>
-           <div style={{borderRight:"1px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px",color:"#111"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}> $ 230 PER CBM</span></div>
-           <div style={{borderRight:"1px solid #222"}}><CargoPlane style={{transform:"translateX(3px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>$18 PER KILO</span></div>
-           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>0.435</span></div>
+           <div style={{borderRight:"1px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px",color:"#111"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}> $ {rate[0]?.Sea_freight} PER CBM</span></div>
+           <div style={{borderRight:"1px solid #222"}}><CargoPlane style={{transform:"translateX(3px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>$ {rate[0]?.Air_freight} PER KILO</span></div>
+           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>{rate[0]?.RMB_rate}</span></div>
         </div>
 
       </motion.div>

@@ -19,7 +19,7 @@ const OrderSchema = new mongoose.Schema({
   route:{type:String,default:""},
   selected_country:{type:String,default:""},
   container_number:{type:String, default:""},
-  status:{type:String,enum:["Pending...","In Transit","Delivered","Cancelled"],default:"Pending..."},
+  status:{type:String,enum:["Pending...","In Transit", "At Tema Port waiting for clearance", "At our warehouse"],default:"Pending..."},
 
 },{ timestamps: true });
 

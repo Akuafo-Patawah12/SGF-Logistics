@@ -73,6 +73,7 @@
     display: grid;
     gap: 15px;
     width: 95%;
+    margin-top: 20px;
     grid-template-columns: 1fr 1fr 1fr;
 }
 

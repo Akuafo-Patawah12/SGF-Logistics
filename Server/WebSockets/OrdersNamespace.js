@@ -1,4 +1,5 @@
  const Order= require("../Models/Order")
+ const getRates = require("../Models/CBMRate")
  const User= require("../Models/UsersSchema")
  const Container= require("../Models/Container")
  const moment = require('moment');
@@ -15,7 +16,28 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
       console.log("Room name is required to join a room.");
     }
   });
+  
 
+
+  socket.on("update_rates", async (newData,callback) => {
+    console.log(newData)
+    try {
+      const firstOrder = await getRates.findOne().sort({createdAt: 1}); // Ensures consistent retrieval
+      if (!firstOrder) {
+        console.log("No orders found");
+        return;
+      }
+  
+      const updatedOrder = await getRates.findByIdAndUpdate(firstOrder._id, newData, { new: true });
+      callback({ status: "ok", message: "Order updated successfully",  });
+      console.log("Order updated successfully:", updatedOrder);
+      io.emit("orderUpdated", updatedOrder);
+    } catch (error) {
+      console.error("Error updating order:", error);
+      callback({status: "error", message: "Error updating order" });
+    }
+  });
+  
 
   socket.on("createOrder", async (data, callback) => {
     console.log("hello", data);
@@ -183,7 +205,9 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
       });
 
       socket.on("getOrdersByUser", async (data, callback) => {
+        console.log(data)
         const userId = socket.user.id;
+        console.log(userId)
       
         try {
           // 1️⃣ Get all orders for the user
@@ -217,6 +241,7 @@ const orderFunc=(socket,io,adminNamespace,users)=>{
       
           // 5️⃣ Send enriched orders to the client
           socket.emit("ordersByUser", ordersWithContainerDetails);
+          console.log(ordersWithContainerDetails)
       
         } catch (error) {
           console.error(error);

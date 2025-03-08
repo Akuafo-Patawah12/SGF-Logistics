@@ -14,7 +14,7 @@ import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 const Mapbox = () => {
 
   const parent= useRef(null)
-  const socket = useMemo(() =>io("http://localhost:4040/tracking",{
+  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/tracking",{
     transports: ["websocket","polling"],
     withCredentials: true,
   secure: true
@@ -53,11 +53,11 @@ const trackingId = searchParams.get("tracking_id");
       
       const child= useRef([])
       const routesMap = {
-        A: route1,
-        B: route2,
-        C: route3,
-        D: route4,
-        E: route5,
+        Guangzhou_Route_1: route1,
+        Yiwu_Route_1: route2,
+        Guangzhou_Route_2: route3,
+        Guangzhou_Route_3: route4,
+        Yiwu_Route_2: route5,
         
       };
  
