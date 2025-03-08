@@ -82,7 +82,7 @@ const ContactUs = () => {
           <div style={{ marginTop: "30px", textAlign: "center" }}>
             <Text strong>Or reach us at:</Text>
             <div style={{ marginTop: "10px" }}>
-              <PhoneOutlined /> <Text type="secondary">020 811 6360 / 053 948 0433</Text>
+              <PhoneOutlined style={{transform:"rotate(90deg) translate(4px, 0)"}}/> <Text type="secondary">020 811 6360 / 053 948 0433</Text>
             </div>
             <div>
               <MailOutlined /> <Text type="secondary">sfghanalogistics24@gmail.com</Text>
