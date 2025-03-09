@@ -86,7 +86,7 @@
 
 .line_header{
     position: absolute;
-    bottom: -70px;
+    bottom: -80px;
     font-weight: 600;
     text-align: center;
     left:50%;
@@ -193,7 +193,7 @@
         text-align: center;
         width: fit-content;
         margin-inline: auto;
-        font-size: 15px;
+        font-size: 16px;
     }
 }
 
