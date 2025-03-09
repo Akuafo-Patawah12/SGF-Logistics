@@ -176,12 +176,16 @@ const AllOrders=()=>{
     useEffect(() => {
       if (!search) {
         setFilteredOrders(myorders); // Reset if search is empty
+        setNoresult(false)
       } else {
         setFilteredOrders(
           myorders.filter((myOrder) =>
             myOrder.items[0].trackingNo.toString().toLowerCase().includes(search.toLowerCase())
           )
         );
+        if (filteredOrders.length === 0){
+          setNoresult(true)
+        }
       }
     }, [search, myorders]); 
     

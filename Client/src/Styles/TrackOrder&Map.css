@@ -77,7 +77,8 @@
     overflow-x: auto;
     margin-inline: auto;
     display: block;
-    height: 500px;
+    height: 350px;
+    margin-top: 20px;
     
     
 }
@@ -85,7 +86,7 @@
 
 .line_header{
     position: absolute;
-    bottom: -100px;
+    bottom: -70px;
     font-weight: 600;
     text-align: center;
     left:50%;
@@ -135,7 +136,7 @@
         position: absolute;
         left: 50%;
         transform: translate(-50%,-50%);
-        top: 500%;
+        top: 1400%;
         width: 80px;
     }
 }
@@ -164,16 +165,36 @@
 
     
     
-    & p{
+     
+    
+}
+
+.cordinates{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-inline: auto;
+    margin-top: 5px;
+    height: 100px;
+    
+
+    &  p{
         
         font-size: 14px;
         font-weight: 500;
-        max-width: 80px;
         text-align: center;
         color: #444;
+        width: fit-content;
+        margin-inline: auto;
         
-    }   
+    } 
     
+    & main{
+        text-align: center;
+        width: fit-content;
+        margin-inline: auto;
+        font-size: 15px;
+    }
 }
 
 .route_button{
@@ -187,7 +208,7 @@
 
 .Map{
     
-    height: 300px;
+    height: 350px;
     width: 80%;
     background-color: #ddd;
     margin-top: 200px;
@@ -197,6 +218,7 @@
     background: transparent !important;
     transform: translate(-50%,50%);
     height: 50px;
+    margin-top: 10px;
       
 }
 

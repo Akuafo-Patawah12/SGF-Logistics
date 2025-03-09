@@ -6,8 +6,9 @@ import { message,Empty } from "antd"
 
 import {route1,route2,route3,route4,route5} from "../Components/Routes"
 import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
+import{ ReactComponent as MapShipIcon } from "../Icons/MapShip.svg"
 import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
-import { CheckCircleOutlined,RightCircleFilled,ArrowRightOutlined, UpOutlined ,CheckOutlined ,EnvironmentOutlined } from '@ant-design/icons'
+import { RightCircleFilled,ArrowRightOutlined, UpOutlined ,CheckOutlined  } from '@ant-design/icons'
 import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 
 
@@ -51,7 +52,7 @@ const trackingId = searchParams.get("tracking_id");
 
       const pRefs = useRef([]);
       
-      const child= useRef([])
+      
       const routesMap = {
         Guangzhou_Route_1: route1,
         Yiwu_Route_1: route2,
@@ -64,23 +65,63 @@ const trackingId = searchParams.get("tracking_id");
 
       
        
-      const selectedRoute = routesMap[route] || [];
+      
       
   
+      const getSeaRoute = async (start, end) => {
+        const accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+        
+        
+        
+        try {
+          const response = await fetch(
+            `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?access_token=${accessToken}&geometries=geojson`
+          );
+      
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+      
+          const data = await response.json();
+      
+          if (!data.routes || data.routes.length === 0) {
+            console.warn("No sea route found, using default route.");
+            return []; // Return empty array to trigger fallback
+          }
+      
+          return data.routes[0].geometry.coordinates; // Valid coordinates
+        } catch (error) {
+          console.error("Error fetching sea route:", error);
+          return []; // Return empty array on error
+        }
+      };
+      
+      
       useEffect(() => {
         if (route && routesMap[route]) {
-          setLineGeoJSON({
-            type: "Feature",
-            geometry: {
-              type: "LineString",
-              coordinates: routesMap[route].map(({ Longitude, Latitude }) => [
-                Longitude,
-                Latitude,
-              ]),
-            },
-          });
+          const rerouteThroughSea = async () => {
+            const landCoordinates = routesMap[route].map(({ Longitude, Latitude }) => [Longitude, Latitude]);
+      
+            const seaCoordinates = await getSeaRoute(
+              landCoordinates[0], 
+              landCoordinates[landCoordinates.length - 1]
+            );
+      
+            setLineGeoJSON({
+              type: "Feature",
+              geometry: {
+                type: "LineString",
+                coordinates: seaCoordinates.length > 0 ? seaCoordinates : landCoordinates, // Fallback
+              },
+            });
+          };
+      
+          rerouteThroughSea();
         }
       }, [route]);
+      
+
+      
 
 const [xPosition, setXposition] = useState(0);
 const [bound, setBound] = useState(0);
@@ -235,6 +276,7 @@ useEffect(() => {
           position: "relative",
           height: "30px",
           width: "30px",
+          border:"2px solid #444",
           borderRadius:"50%",
         }}
       >
@@ -245,9 +287,12 @@ useEffect(() => {
             <CheckOutlined style={{ position: "relative", top: "0", left: "0" }} />
           )}
       </div>
-      <p style={{ height: "33px" }} ref={(el) => (pRefs.current[index] = el)}>
-        {port.countryPort}
+      <div className="cordinates">
+      <p  ref={(el) => (pRefs.current[index] = el)}>
+        {port.countryPort} 
       </p>
+      <main>{port.country}</main>
+      </div>
     </div>
 
     {/* Insert Arrow After Every Ship-Cont Except the Last One */}
@@ -279,7 +324,7 @@ useEffect(() => {
       id="Map"
     >
       <Marker latitude={routesMap[route][Index].Latitude} longitude={routesMap[route][Index].Longitude}>
-        <div><ShipIcon/></div>
+        <div><MapShipIcon/></div>
       </Marker>
 
       <Marker longitude={routesMap[route][0].Longitude} latitude={routesMap[route][0].Latitude} color="blue">
@@ -328,7 +373,7 @@ useEffect(() => {
           id="line-layer"
           type="line"
           paint={{
-            "line-color": "#FF5733", // Line color (orange-red)
+            "line-color": "#8A2BE2", // BlueViolet line color
             "line-width": 3, // Line thickness
           }}
         />
