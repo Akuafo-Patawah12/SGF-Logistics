@@ -47,9 +47,10 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   }, [search, containers]); 
 
   useEffect(()=>{
-    socket.connect()
+    
     socket.emit("get_all_container")
     socket1.emit("joinRoom", "adminRoom")
+    socket.connect()
   },[])
 
   
