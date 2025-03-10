@@ -453,11 +453,11 @@ const [value, setValue] = useState(0);  // State to hold the value
        <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
              <ServicesComponent />
 
-             <div style={{paddingBlock:"6px",display:"flex",textDecoration:"none",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444",}}><Link to={"/Services"} style={{border:"2px solid #444",borderRadius:"5px",marginInline:"auto",padding:"10px 7px"}}>  SEE ALL OUR SERVICES</Link></div>
+             <div style={{paddingBlock:"30px",display:"flex",textDecoration:"none",alignItems:"flex-start",justifyContent:"center",height:"100px" ,background:"#a0c444",}}><Link to={"/Services"} style={{border:"2px solid #444",borderRadius:"5px",marginInline:"auto",padding:"10px 7px"}}>  SEE ALL OUR SERVICES</Link></div>
        
       
 
-       
+       <div>
       <div className="image-container">
         <div className="scrolling-content">
         
@@ -471,6 +471,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           
 
           <Link to={"/Contact"}><button className="scroll-content-btn">Contact Us</button></Link>
+        </div>
         </div>
         </div>
     

@@ -86,7 +86,7 @@ const SignUp = ({slide}) => {
     <div className="form-container form_cont2">
          <header className='auth_header'>
            <Link to={"/"}><SvgIcon/></Link>
-           <h3>Login</h3>
+           <Link to={"/Auth/login"}><h3>Login</h3></Link>
          </header> 
     
     <Card className="auth_card ">
@@ -101,6 +101,8 @@ const SignUp = ({slide}) => {
           placeholder="Enter username"
           value={formData.username}
           onChange={handleChange}
+          style={{height:"45px"}}
+          onFocus={slide}
         />
       </Form.Item>
 
@@ -112,6 +114,8 @@ const SignUp = ({slide}) => {
           placeholder="Enter email"
           value={formData.email}
           onChange={handleChange}
+          style={{height:"45px"}}
+          
         />
       </Form.Item>
 
@@ -122,6 +126,7 @@ const SignUp = ({slide}) => {
           placeholder="Enter password"
           value={formData.password}
           onChange={handleChange}
+          style={{height:"45px"}}
         />
       </Form.Item>
 
@@ -132,6 +137,7 @@ const SignUp = ({slide}) => {
           placeholder="Confirm password"
           value={formData.confirmPassword}
           onChange={handleChange}
+          style={{height:"45px"}}
         />
       </Form.Item>
 

@@ -18,7 +18,7 @@ const TrackContainer = () => {
     <div className='Track_cont2'>
     <div className="track_2">
         <p>TRACK YOUR SHIPMENTS</p>
-        <p>Enter upto 10 digits of your container number</p>
+        
         <div className="tracking-container">
       <input
         type="text"

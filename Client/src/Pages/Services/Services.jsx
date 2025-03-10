@@ -32,7 +32,7 @@ const Services = () => {
         <div className='Infor'>
             
         <p className="get_start">Get Star<Rocket /><span className="ed">ed</span></p>
-            <p style={{fontSize:"18px",color:"#333",marginTop:"20px",fontSize:"16px",textAlign:"justify"}}>
+            <p style={{color:"#333",marginTop:"20px",fontSize:"16px",textAlign:"justify"}}>
             Looking to optimize your logistics and shipping operations? At SFG logistics, we're excited to collaborate with you to ensure your goods are transported smoothly and efficiently worldwide.
             </p>
             <div className='contacts'>

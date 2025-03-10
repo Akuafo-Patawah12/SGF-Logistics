@@ -38,10 +38,13 @@ const AllOrders=()=>{
         withCredentials: true,
         secure: true
       }),[])
+
+     
    
    const [ viewData,setViewData] = useState(null)
 
    useEffect(()=>{
+    socket.connect()
       socket.emit("getOrdersByUser","hello",(response)=>{
 
           if (response.status==="error"){
@@ -52,9 +55,7 @@ const AllOrders=()=>{
       })
    },[])
 
-   useEffect(() => {
-    localStorage.setItem("lastVisitedTab", "/MyOrders");
-  }, []);
+   
   
 
   const [activeId, setActiveId] = useState(null);
@@ -170,7 +171,7 @@ const AllOrders=()=>{
             socket.off("connect_error")
             socket.off("disconnect")
         }
-    }, [socket]);
+    }, [socket,myorders.length]);
 
 
     useEffect(() => {

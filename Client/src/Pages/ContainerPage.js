@@ -1,8 +1,8 @@
 import React, { useEffect, useState ,useMemo} from "react";
 import { io } from "socket.io-client";
-import { List, Card,InputNumber,Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
+import { Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
 import SessionExpiredModal from "../Components/SessionEpiredModal";
-import { EyeOutlined , DeleteOutlined , EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined , EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
 import ButtonLoader from '../Icons/ButtonLoader'
 import AssignUsersModal from "../Components/AssignUsersModal"
@@ -47,6 +47,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   }, [search, containers]); 
 
   useEffect(()=>{
+    socket.connect()
     socket.emit("get_all_container")
     socket1.emit("joinRoom", "adminRoom")
   },[])

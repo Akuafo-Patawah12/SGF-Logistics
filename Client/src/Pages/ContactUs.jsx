@@ -49,7 +49,7 @@ const ContactUs = () => {
               name="name"
               rules={[{ required: true, message: "Please enter your name" }]}
             >
-              <Input placeholder="John Doe" value={formData.name} onChange={(e)=> setFormData({...formData, name: e.target.value})} />
+              <Input placeholder="Andrew Patawah" value={formData.name} onChange={(e)=> setFormData({...formData, name: e.target.value})} />
             </Form.Item>
 
             <Form.Item

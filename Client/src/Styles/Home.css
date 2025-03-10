@@ -542,7 +542,10 @@
  }
 
  .image-container {
+   position: relative;
    background: url("../../public/SFG_images/Door-to-door.jpg") repeat fixed 100%;
+   background-size: cover;
+   height: 420px;
 
   }
 
@@ -564,10 +567,10 @@
   gap: 10px;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 350px;
+  inset: 0;
+  height: 100%;
   text-align: center;
- 
+  position: absolute;
   color: white;
   background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
 

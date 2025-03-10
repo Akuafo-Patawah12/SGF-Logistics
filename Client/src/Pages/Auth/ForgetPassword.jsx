@@ -55,7 +55,7 @@ const ForgotPassword = () => {
               { type: "email", message: "Enter a valid email!" }
             ]}
           >
-            <Input placeholder="Enter your email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+            <Input placeholder="Enter your email" value={email} onChange={(e)=> setEmail(e.target.value)} style={{height:"45px"}}/>
           </Form.Item>
 
           <Form.Item>

@@ -16,6 +16,7 @@
   background: url('../../../public/SFG_images/Air2.jpg') no-repeat center center/cover;
   height: 250px;
   position: relative;
+  border-radius: 8px;
 }
 
 .header-overlay {
@@ -25,6 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
 }
 
 .header-title {

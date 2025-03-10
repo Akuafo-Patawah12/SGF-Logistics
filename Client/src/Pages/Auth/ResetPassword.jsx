@@ -55,7 +55,7 @@ const ResetPassword = () => {
             name="newPassword"
             rules={[{ required: true, message: "Please enter your new password!" }]}
           >
-            <Input.Password placeholder="Enter new password" />
+            <Input.Password placeholder="Enter new password" style={{height:"45px"}}/>
           </Form.Item>
           <Button type="primary" htmlType="submit" style={{background:'var(--purple)',height:"45px"}} block loading={loading}>
             Reset Password

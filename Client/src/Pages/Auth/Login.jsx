@@ -1,12 +1,10 @@
 import React,{useState} from 'react'
 import './Auth.css'; 
-import axios from "axios"
 import {Link, useNavigate} from "react-router-dom"
-import ButtonLoader from '../../Icons/ButtonLoader';
 import { Form, Input, Button, Checkbox, Typography, Card, message } from "antd";
 import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
 
-const { Title, Text } = Typography;
+const {  Text } = Typography;
 
 
 const Login = ({getEmail}) => {
@@ -118,25 +116,17 @@ const Login = ({getEmail}) => {
           if(data.message==="Logged in as a client" ){
             setLoader(false)
           setSuccess(true);
-          message.success("login successful")
-          const isFirstLogin = !localStorage.getItem("hasLoggedInBefore");
-
-          if (isFirstLogin) {
-            localStorage.setItem("hasLoggedInBefore", "true"); // Mark as not first login
+           message.success("login successful")
+        
             navigate(`/MyOrders`); // Redirect first-time users to Orders
-          } else {
-            // Redirect returning users to their last visited tab
-            const lastTab = localStorage.getItem("lastVisitedTab") ;
-            navigate(lastTab);
-          }
-          
-          
+
+              
           }
           if(data.message==="Logged in as an admin"){
             setLoader(false)
           setSuccess(true);
           message.success("login successful")
-          localStorage.setItem('accesstoken', data.accessToken);
+         
           navigate("/containers")
         }
       }
@@ -162,7 +152,7 @@ const Login = ({getEmail}) => {
     <div className="form-container">
      <header className='auth_header'>
        <Link to={"/"}><SvgIcon/></Link>
-       <h3>Sign up</h3>
+       <Link to={"/Auth/sign_up"}><h3>Sign up</h3></Link>
      </header> 
      <Card  className="auth_card">
       
@@ -177,6 +167,7 @@ const Login = ({getEmail}) => {
             value={formData.email}
             onFocus={handleFocus}
             onChange={handleChange}
+            style={{height:"45px"}}
           />
         </Form.Item>
 
@@ -188,6 +179,7 @@ const Login = ({getEmail}) => {
             value={formData.password}
             onFocus={handleFocus}
             onChange={handleChange}
+            style={{height:"45px"}}
           />
         </Form.Item>
 
