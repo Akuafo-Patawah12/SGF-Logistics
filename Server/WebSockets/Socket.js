@@ -37,7 +37,7 @@ function initializeSocket(server){
         if (cookieHeader) {
           const cookies = cookie.parse(cookieHeader); // Parse cookies from the header
           const token = cookies.refreshToken; // Extract the refresh token
-          if (!token) return next(new Error('Refresh token expired'));
+         
     
            //decoding the token to extract user information
           jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => { 
