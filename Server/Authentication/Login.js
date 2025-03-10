@@ -12,24 +12,7 @@ async function login(req,res){
     
     const {email,password,rememberMe }= req.body.formData   //grabing user credentials from the client side.
      console.log({email,password,rememberMe })
-     const userAgent = req.headers["user-agent"];
-       const parser = new UAParser(userAgent);
-       
-       
-       const deviceInfo = {
-         device: parser.getDevice().model || "Unknown Device",
-         brand: parser.getDevice().vendor || "Unknown Brand",
-         type: parser.getDevice().type || "PC",
-         os: parser.getOS().name + " " + parser.getOS().version,
-         browser: parser.getBrowser().name + " " + parser.getBrowser().version,
-         Agent: userAgent,
-       };
-       console.log(deviceInfo)
-       const {device,brand,type,os,browser,Agent}=deviceInfo
-     const userDeviceInfo = `${device},${brand},${type},${os},${browser},${Agent}`; // User's device info
-     const generateOTP = () => Math.floor(1000 + Math.random() * 9000).toString();
-     const otp = generateOTP();
-    
+     
 // Find a user whose device_info array contains the same string
 
     try{
@@ -76,7 +59,12 @@ async function login(req,res){
         
 
         const password_Is_Correct = await  bcrypt.compare(password, email_Exist.password);
-       
+         
+
+        if (!password_Is_Correct) {
+            return res.status(401).json({ message: 'Invalid password' }); // Incorrect password
+        }
+
          const protected= email_Exist.account_type // find the user's account type "whether it's a personal or business account"
 
          const payload = {
@@ -90,21 +78,19 @@ async function login(req,res){
         })
 
         
-       
-        if (!password_Is_Correct) {
-            return res.status(401).json({ message: 'Invalid password' }); // Incorrect password
-        }
+        sendCookie(payload,rememberMe,res)
+        
 
         switch (protected) {
             case "User":
-                sendCookie(payload,rememberMe,res) // Set the refresh token cookie
+                // Set the refresh token cookie
                 return res.json({
                     message: "Logged in as a client",
                     accessToken: access_token
                 });
 
             case "Admin":
-                sendCookie(payload,rememberMe,res); // Set the refresh token cookie
+               
                 return res.json({
                     message: "Logged in as an admin",
                     accessToken: access_token
