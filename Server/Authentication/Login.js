@@ -34,7 +34,25 @@ async function login(req,res){
 
     try{
 
-
+        const userAgent = req.headers["user-agent"];
+        const parser = new UAParser(userAgent);
+        
+        
+        const deviceInfo = {
+          device: parser.getDevice().model || "Unknown Device",
+          brand: parser.getDevice().vendor || "Unknown Brand",
+          type: parser.getDevice().type || "PC",
+          os: parser.getOS().name + " " + parser.getOS().version,
+          browser: parser.getBrowser().name + " " + parser.getBrowser().version,
+          Agent: userAgent,
+        };
+        console.log(deviceInfo)
+        const {device,brand,type,os,browser,Agent}=deviceInfo
+      const userDeviceInfo = `${device},${brand},${type},${os},${browser},${Agent}`; // User's device info
+      const generateOTP = () => Math.floor(1000 + Math.random() * 9000).toString();
+      const otp = generateOTP();
+     
+ // Find a user whose device_info array contains the same string
         
         const email_Exist=  await data.findOne({email:email}); /* check whether the email exist in the database 
        and store it in email exist variable */

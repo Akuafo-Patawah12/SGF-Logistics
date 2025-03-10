@@ -87,7 +87,10 @@ function initializeSocket(server){
       })
       
       ordersNamespace.use((socket,next)=>{
-         middleware(socket,next)
+        setTimout(()=>{
+          middleware(socket,next)
+        },50)
+         
       })
 
       
