@@ -81,7 +81,7 @@ const OTP = ({mail}) => {
         navigate(`/MyOrders`)
 
       }else if(response.status===201){
-        navigate("/AdminDashboard")
+        navigate("/containers")
       }
       message.success(response.data.message); // Show success message
     } catch (error) {
