@@ -1,4 +1,5 @@
 import React,{useState,useMemo,useEffect,useRef} from 'react'
+import SessionExpiredModal from "../Components/SessionEpiredModal";
 import {useSearchParams} from "react-router-dom"
 import "../Styles/TrackOrder&Map.css"
 import io from "socket.io-client"
@@ -24,6 +25,7 @@ const Mapbox = () => {
   const [route,setRoute] = useState("")
   const [country , setCountry] = useState("")
   const [lineGeoJSON, setLineGeoJSON] = useState(null);
+  const [isModalOpen,setIsModalOpen]= useState(false)
 useEffect(()=>{
 socket.on('connect',()=>{
     console.log("Connected to server")
@@ -35,10 +37,20 @@ socket.on('get_item_location',(data)=>{
   setCountry(data.country || "")
 })
 
+socket.on("connect_error",(error)=>{
+          console.log(error)
+          if(error.message.includes("Refresh token expired")){
+            setTimeout(()=>{
+              setIsModalOpen(true)
+            },1000)
+          }
+        })
+
 socket.on("disconnect", reason => console.log(reason))
 return()=>{
 socket.off("connect")
 socket.off("get_item_location")
+socket.off("connect_error")
 socket.off("disconnect")
 
 }
@@ -404,6 +416,7 @@ useEffect(() => {
      <Empty description={<span style={{ fontSize: "16px", fontWeight: "500",marginLeft:"-25px" }}>No Data Available</span>} />
      </div>
     }
+    <SessionExpiredModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> 
     </>
   )
 }

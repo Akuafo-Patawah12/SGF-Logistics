@@ -88,7 +88,7 @@ const ContactUs = () => {
               <MailOutlined /> <Text type="secondary">sfghanalogistics24@gmail.com</Text>
             </div>
             <div>
-              <EnvironmentOutlined /> <Text type="secondary">George Bush Highway, Dzorwulu, Accra-Ghana</Text>
+              <EnvironmentOutlined /> <Text type="secondary">Kwei Okyerema St, Dzorwulu Accra</Text>
             </div>
           </div>
         </Card>

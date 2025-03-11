@@ -44,7 +44,7 @@ const AllOrders=()=>{
    const [ viewData,setViewData] = useState(null)
 
    useEffect(()=>{
-    socket.connect()
+      socket.connect()
       socket.emit("getOrdersByUser","hello",(response)=>{
 
           if (response.status==="error"){
@@ -250,15 +250,7 @@ const AllOrders=()=>{
         return `${Math.floor(diffInDays / 365)}+ yr ago`;
       };
 
-    function cancelOrder(orderId){
-        socket.emit("cancelOrder",orderId,(response)=>{
-            if(response.status==="ok"){
-                message.success("Order cancelled")
-            }else if(response.message==="Cannot delete order"){
-                message.error("Delivered or in transit orders cannot be deleted")
-            }
-        })
-    }
+    
 
 
     const sortAscending = () => {

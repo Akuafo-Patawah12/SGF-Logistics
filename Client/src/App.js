@@ -47,25 +47,13 @@ function getEmail(mail){
         
         <Route path="/verify" element={<OTP mail={email}/>} />
 
-        <Route path='/Auth/login' element={
-                    <Suspense fallback={<Loader />}>
-                        <Login getEmail={getEmail}/>
-                    </Suspense> }
-                />
+        <Route path='/Auth/login' element={<Login getEmail={getEmail}/>}/>
 
-<Route path='/Auth/forget_password' element={
-                    <Suspense fallback={<Loader />}>
-                       <ForgetPassword /> 
-                    </Suspense> }
-                />
+                <Route path='/Auth/forget_password' element={<ForgetPassword />  } />
                 <Route path="/Auth/reset_password/:token" element={<ResetPassword />} />
 
-                <Route path='/Auth/sign_up' element={
-                    <Suspense fallback={<Loader />}>
-                        <SignUp />
-                    </Suspense> }
-                />
-         <Route path="/*" element={<Layout />} />
+                <Route path='/Auth/sign_up' element={<SignUp /> }/>
+                <Route path="/*" element={<Layout />} />
       </Routes>
 
      

@@ -1,10 +1,10 @@
 import React, { useState, useEffect ,useMemo } from "react";
 import { Modal, List, Avatar, Spin, Tooltip, Input ,message,Row, Col, Card , Button  } from "antd";
-import { CopyOutlined, SearchOutlined } from "@ant-design/icons";
+import { CopyOutlined, DownloadOutlined, SearchOutlined } from "@ant-design/icons";
 import { io } from "socket.io-client";
 
 
-const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id ,containerId,socket ,socket1 }) => {
+const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id ,containerId,handleDownload,setInvoiceData,socket ,socket1 }) => {
 
     
 
@@ -12,6 +12,7 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id ,containerId,socke
 
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingIndex ,setLoadingIndex] = useState(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -99,7 +100,7 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id ,containerId,socke
           <List
             itemLayout="vertical"
             dataSource={filteredUsers}
-            renderItem={(user) => (
+            renderItem={(user,index) => (
 
               <Card
                 hoverable
@@ -111,7 +112,32 @@ const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id ,containerId,socke
                 }}
 
                 actions={[
-                    <Button type="primary" onClick={() => removeOrder(user._id)}>Remove</Button>,
+                <div style={{display:"flex",gap:"5px"}}>
+                    <Button type="primary" onClick={() => removeOrder(user._id)}>Remove</Button>
+                    <Button onClick={()=>{
+                      setInvoiceData((prev)=>({...prev,shippingMark: user.userId.username,cbm: user.items[0].cbm,trackingNo: user.items[0].trackingNo,ctn: user.items[0].ctn,amount: user.items[0].amount}))
+    
+                      setTimeout(() => {
+      handleDownload();
+      setLoadingIndex(null)
+      // Reset state after download
+      setInvoiceData({
+        shippingMark: null,
+        eta: null,
+        loadingDate: null,
+        containerNumber: null,
+        cbmRate: null,
+        cbm: null,
+        ctn: null,
+        amount: null,
+        trackingNo:null
+      });
+    }, 100); 
+                    }}
+
+                      icon={loadingIndex===index ? <Spin size="small" style={{transform:"translateY(-3px)"}}/> : <DownloadOutlined style={{ transform: "translateX(2px)" }} />}
+                    />
+                    </div>
                   ]}
               >
                 <List.Item>

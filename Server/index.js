@@ -18,7 +18,7 @@ const router = require("./Router/Router")
 
 
 app.use(cors({
-    origin:["https://sfghanalogistics.com","http://localhost:3000"],
+    origin:["https://sfghanalogistics.com","http://localhost:3001"],
     credentials: true,
     methods:["POST,GET,PUT,DELETE"], 
     allowedHeaders: ["Content-Type"] // Common headers
@@ -50,7 +50,7 @@ const server= http.createServer(app)
 initializeSocket(server)  // This function return all the websockets
 
 
-const port= process.env.PORT || 4040
+const port= process.env.PORT || 5040
 
 async function start_Server(){
 try{

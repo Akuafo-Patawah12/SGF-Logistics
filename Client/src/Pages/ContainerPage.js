@@ -1,9 +1,12 @@
-import React, { useEffect, useState ,useMemo} from "react";
+import React, { useEffect, useState ,useMemo,useRef} from "react";
 import { io } from "socket.io-client";
 import { Result ,Button,Select,Modal,DatePicker,Form,message, Input,Typography,Table, Tag, Spin, Alert} from "antd";
 import SessionExpiredModal from "../Components/SessionEpiredModal";
 import { DeleteOutlined , EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"
+import Invoice from "../Components/Invoice"
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import ButtonLoader from '../Icons/ButtonLoader'
 import AssignUsersModal from "../Components/AssignUsersModal"
 import "../Styles/ContainerPage.css"
@@ -34,6 +37,18 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
+
+  const [invoiceData,setInvoiceData] = useState({
+      shippingMark: null,
+      eta: null,
+      loadingDate: null,
+      containerNumber: null,
+      cbmRate: null,
+      cbm: null,
+      ctn: null,
+      amount: null,
+      trackingNo:null
+    })
   useEffect(() => {
     if (!search) {
       setFilteredContainers(containers); // Reset if search is empty
@@ -47,7 +62,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   }, [search, containers]); 
 
   useEffect(()=>{
-    
+    socket.connect()
     socket.emit("get_all_container")
     socket1.emit("joinRoom", "adminRoom")
     socket.connect()
@@ -261,6 +276,23 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
   },[socket1])
 
+  const divRef = useRef(null)
+  
+      const handleDownload = () => {
+        const input = divRef.current;
+    
+        html2canvas(input, { scale: 2 }).then((canvas) => {
+          const imgData = canvas.toDataURL("image/png");
+          const pdf = new jsPDF("p", "mm", "a4");
+          const imgWidth = 210; // A4 size in mm
+          const imgHeight = (canvas.height * imgWidth) / canvas.width; // Scale height accordingly
+    
+          pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+          pdf.save("download.pdf");
+        });
+      };
+  
+
   const handleRouteChange = (route) => {
     setSelectedRoute(route);
     setSelectedCountry(null); // Reset country selection when route changes
@@ -435,6 +467,9 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
            style={{cursor:"pointer",float:"left"}}
            onClick={() =>{ 
              setContainerId(orders._id)
+             
+             
+             setInvoiceData((prev) => ({...prev ,containerNumber: orders.containerNumber,cbmRate: orders.cbmRate,loadingDate: orders.loadingDate,eta: orders.eta}))
             
             setTimeout(()=>{
               setModalOpen(true)
@@ -867,7 +902,8 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
 
 
     {creatingOrder && <div className='creating_order'>Creating Order... <ButtonLoader /></div> }
-    <AssignUsersModal isOpen={modalOpen} containerId={containerid} socket={socket} socket1={socket1} assignedOrder_id={assignedOrder_id} onClose={() => setModalOpen(false)}/>
+    <Invoice  invoiceData={invoiceData} divRef={divRef}/>
+    <AssignUsersModal isOpen={modalOpen} containerId={containerid} handleDownload={handleDownload} setInvoiceData={setInvoiceData} socket={socket} socket1={socket1} assignedOrder_id={assignedOrder_id} onClose={() => setModalOpen(false)}/>
     
     
     <div style={{width:"95%",overflow:"auto",marginInline:"auto"}} className="table_scroll"><Table columns={columns} dataSource={filteredContainers} pagination={{ pageSize: 5 }} bordered rowKey="_id" /></div>

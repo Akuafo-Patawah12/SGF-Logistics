@@ -38,7 +38,7 @@ const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
       const invNumber = 'INV-' + Math.floor(100000 + Math.random() * 900000);
       setInvoiceNumber(invNumber);
   };
-  generateInvoiceNumber()
+   generateInvoiceNumber()
   },[])
   
 

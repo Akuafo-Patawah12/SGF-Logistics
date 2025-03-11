@@ -1,6 +1,7 @@
 const socketIo= require("socket.io")
 const cookie= require("cookie")
 const jwt= require("jsonwebtoken");
+const util= require("util")
 const orderFunc = require("./OrdersNamespace");
 const AdminPath = require("./AdminNamespace");
 const Tracking = require("./TrackingNamespace");
@@ -13,7 +14,7 @@ function initializeSocket(server){
     const io = socketIo(server, {   //Creating connect between server and User Interface  "Realtime WebApp"
       transports: ['websocket',"polling"],
         cors: {
-          origin:["https://sfghanalogistics.com","http://localhost:3000"],
+          origin:["https://sfghanalogistics.com","http://localhost:3001"],
           methods:["POST,GET,PUT,DELETE"],
           allowedHeaders: ['Content-Type'],
           credentials: true
@@ -26,53 +27,80 @@ function initializeSocket(server){
 
       const users={}
 
-      function middleware(socket,next){
-        const cookieHeader = socket.request.headers.cookie; //getting http only cookies from socket
-        
-        if (!cookieHeader) {  //checking of the cookie exist in the headers
-          
-          return next(new Error('Refresh token expired'));
-        }
       
-        if (cookieHeader) {
-          const cookies = cookie.parse(cookieHeader); // Parse cookies from the header
-          const token = cookies.refreshToken; // Extract the refresh token
-         
-    
-           //decoding the token to extract user information
-          jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => { 
-            if (err) return next(new Error("Refresh token expired"));
-            socket.user = user; // Attach user to the socket
-            next(); //proceed if there's no error
-          });
-        } else {
-          next(new Error('Refresh token expired'));
-        }
-      }
 
-      function middleware2(socket,next){
-        const cookieHeader = socket.request.headers.cookie; //getting http only cookies from socket
-        
-        if (!cookieHeader) {  //checking of the cookie exist in the headers
-          
-          return next(new Error('No cookies found'));
-        }
-      
-       
-          const cookies = cookie.parse(cookieHeader); // Parse cookies from the header
-          const token = cookies.refreshToken; // Extract the refresh token
-          if (!token) return next(new Error('404: Refresh token not found'));
-    
-           //decoding the token to extract user information
-          jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => { 
-            if (err) return next(new Error("404: Refresh token not found"));
-            socket.user = user; // Attach user to the socket
-            if (socket.user.role !== "Admin") {
-              return next(new Error(`403: Unauthorized`));
-            }
-            next(); //proceed if there's no error
-          });
-       }
+const verifyToken = util.promisify(jwt.verify); // Convert jwt.verify into async/await
+
+async function middleware(socket, next) {
+  try {
+    const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
+    console.log("Cookie Header:", cookieHeader);
+
+    if (!cookieHeader) {
+      return next(new Error("Refresh token expired"));
+    }
+
+    const cookies = cookie.parse(cookieHeader); // Parse cookies from the header
+    const token = cookies.refreshToken; // Extract the refresh token
+
+    console.log("Extracted Token:", token);
+    if (!token) {
+      return next(new Error("Refresh token expired"));
+    }
+
+    // Verify the token (now async)
+    const user = await verifyToken(token, process.env.REFRESH_TOKEN_SECRET).catch((err) => {
+      console.error("JWT Verification Error:", err.message);
+      throw new Error("Refresh token expired");
+    });
+
+    console.log("Verified User:", user);
+    socket.user = user; // Attach user to the socket
+    next(); // Proceed if no errors
+  } catch (err) {
+    console.error("Socket Middleware Error:", err.message);
+    return next(new Error("Refresh token expired"));
+  }
+}
+
+
+
+async function middleware2(socket, next) {
+  try {
+    const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
+    console.log("Cookie Header:", cookieHeader);
+
+    if (!cookieHeader) {
+      return next(new Error("No cookies found"));
+    }
+
+    const cookies = cookie.parse(cookieHeader); // Parse cookies from the header
+    const token = cookies.refreshToken; // Extract the refresh token
+
+    console.log("Extracted Token:", token);
+    if (!token) {
+      return next(new Error("404: Refresh token not found"));
+    }
+
+    // Verify the token (now async)
+    const user = await verifyToken(token, process.env.REFRESH_TOKEN_SECRET).catch((err) => {
+      console.error("JWT Verification Error:", err.message);
+      throw new Error("404: Refresh token not found");
+    });
+
+    console.log("Verified User:", user);
+    socket.user = user; // Attach user to the socket
+
+    if (socket.user.role !== "Admin") {
+      return next(new Error("403: Unauthorized"));
+    }
+
+    next(); // Proceed if no errors
+  } catch (err) {
+    console.error("Socket Middleware Error:", err.message);
+    return next(err); // Pass the original error
+  }
+}
 
       const trackingNamespace= io.of("/tracking")
       const ordersNamespace= io.of("/orders")
@@ -87,10 +115,8 @@ function initializeSocket(server){
       })
       
       ordersNamespace.use((socket,next)=>{
-        setTimout(()=>{
           middleware(socket,next)
-        },50)
-         
+        
       })
 
       
