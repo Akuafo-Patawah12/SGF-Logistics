@@ -41,6 +41,18 @@ app.post('/add-admin', async (req, res) => {
     }
   });
 
+
+  app.get('/auth-status', (req, res) => {
+    const token = req.cookies.refreshToken;
+  
+    if (!token) {
+      return res.status(401).json({ authenticated: false });
+    }
+  
+    return res.json({ authenticated: true });
+  });
+  
+
   
   
      

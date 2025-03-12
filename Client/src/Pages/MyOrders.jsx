@@ -37,13 +37,25 @@ const AllOrders=()=>{
         secure: true
       }),[])
 
+
+
      
    
    const [ viewData,setViewData] = useState(null)
 
-   useEffect(()=>{
-      socket.connect()
-      socket.emit("getOrdersByUser","hello",(response)=>{
+   useEffect(() => {
+    const checkAuthAndConnect = async () => {
+      try {
+        const res = await fetch("https://api.sfghanalogistics.com/auth-status", {
+          credentials: "include", // Ensure cookies are sent
+        });
+
+        const data = await res.json();
+
+        if (data.authenticated) {
+         
+          socket.connect()
+          socket.emit("getOrdersByUser","hello",(response)=>{
 
           if (response.status==="error"){
             setNoresult(true)
@@ -51,7 +63,18 @@ const AllOrders=()=>{
             setLoadingProgress(false)
           }
       })
-   },[])
+
+          
+        }
+      } catch (error) {
+        console.error("Auth check failed", error);
+      }
+    };
+
+    checkAuthAndConnect();
+  }, []);
+
+  
 
    
   
