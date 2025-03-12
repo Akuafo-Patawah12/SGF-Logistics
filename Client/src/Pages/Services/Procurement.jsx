@@ -34,7 +34,7 @@ const Procurement = () => {
             Why Choose Our Door to door Services?
           </h2>
           <p>
-            Our air freight solutions are designed to provide you with fast, secure, and flexible delivery options for your cargo. With an extensive global network, real-time tracking, and professional handling, we ensure that your shipments are delivered on time and in perfect condition. Whether you're shipping small parcels or large cargo, we have the expertise to meet your needs.
+          Our training programs are completely free of charge, allowing participants to gain valuable knowledge without any cost. Led by industry experts with years of experience in procurement and international trade, these sessions provide deep insights and practical guidance. Participants will learn actionable strategies to optimize procurement processes and make informed sourcing decisions, ensuring efficiency and success in their operations.
           </p>
         </section>
   
