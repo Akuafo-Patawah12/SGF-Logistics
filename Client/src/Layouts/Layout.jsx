@@ -6,7 +6,7 @@ import Footer from '../Components/Footer'
 import FAQs from '../Pages/FAQs'
 import Loader from '../Icons/Loader'
 import TermsAndCondition from '../Pages/TermsAndCondition'
-import LoginPrompt from '../Components/LoginPrompt'
+
 import Header2 from '../Components/Header2'
 import {  CloseOutlined } from '@ant-design/icons'
 import HowItWorksVideo from '../Components/HowItWorksVideo'
@@ -94,7 +94,7 @@ const Layout = () => {
            <HowItWorksVideo />
        </div>}
         
-        <LoginPrompt prompt={[isPrompt,setPrompt]}/>
+        
       
         
             <Routes>

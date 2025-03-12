@@ -1,19 +1,17 @@
 import React,{useEffect,useMemo} from 'react'
 import "../Styles/TrackOrder&Map.css"
 import { Space, Button } from "antd"
-import { useParams,Link } from 'react-router-dom'
+import {Link } from 'react-router-dom'
 
 
 
-import { transform } from 'framer-motion';
-import { useNavigate} from "react-router-dom"
+
 import io from "socket.io-client"
 
 const TrackOrder = () => {
 
 
-    const {id}= useParams()
-    const navigate= useNavigate()
+  
 
     const socket = useMemo(() =>io("http://localhost:4040/orders",{
       transports: ["websocket","polling"],

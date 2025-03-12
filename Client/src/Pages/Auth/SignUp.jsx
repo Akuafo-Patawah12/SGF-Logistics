@@ -85,10 +85,10 @@ const SignUp = ({slide}) => {
   return (
     <div className="form-container form_cont2">
          <header className='auth_header'>
-           <Link to={"/"}><SvgIcon/></Link>
+           <Link to={"/"} ><SvgIcon style={{marginTop:"9px"}}/></Link>
            <Link to={"/Auth/login"}><h3>Login</h3></Link>
          </header> 
-    
+    <section className="auth_section">
     <Card className="auth_card ">
 
 
@@ -157,6 +157,7 @@ const SignUp = ({slide}) => {
       {success && <Text type="success" style={{ display: "block", textAlign: "center", marginTop: 10 }}>Sign-up successful!</Text>}
     </Form>
   </Card>
+  </section>
   </div>
      
     

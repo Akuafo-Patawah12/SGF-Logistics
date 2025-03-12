@@ -1,22 +1,15 @@
-import React ,{useState,useEffect,useMemo} from "react";
+import React ,{useState,useEffect} from "react";
 import "../Styles/Invoice.css";
-import { Button,message } from "antd"
-import { CloseOutlined } from "@ant-design/icons";
+
 
 import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
 
-const New = ({invoiceData,generateAndSendPDFs,divRef}) => {
+const New = ({invoiceData,divRef}) => {
   
 
 
   const [invoiceNumber,setInvoiceNumber] = useState("")
   const [invoiceDate, setInvoiceDate ] = useState("")
-  const [ invoiceInfo , setInvoiceInfo]= useState({})
-
-  
-
-
-
   
 
   const formatDateToDDMMYYYY = (date) => {

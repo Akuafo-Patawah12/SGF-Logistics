@@ -1,11 +1,9 @@
 import React,{useState, useMemo, useEffect, useRef} from "react"
-import {Link} from "react-router-dom"
 import { message,Empty, Spin ,Card, Typography, Space,Button,Segmented ,Input}  from "antd"
 import io from "socket.io-client"
 import Invoice from "../Components/Invoice"
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import { formatDistanceToNow, subDays } from "date-fns";
 import UserShipmentData from "../Components/UserShipmentData"
 import LogisticFooter from "../Components/LogisticFooter"
 

@@ -1,7 +1,6 @@
 import React,{useState,useRef,useEffect,useMemo} from 'react'
-import {motion,transform,useAnimation} from "framer-motion"
-import{ ReactComponent as OpenQuote } from "../Icons/OpenQuote.svg"
-import{ ReactComponent as CloseQuote } from "../Icons/CloseQuote.svg"
+import {motion,useAnimation} from "framer-motion"
+
 import { ReactComponent as Web3star } from "../Icons/Web3star.svg" 
 import{ ReactComponent as Truck } from "../Icons/Truck.svg"
 import{ ReactComponent as Anchor } from "../Icons/Anchor.svg"
@@ -22,12 +21,10 @@ import {Link} from "react-router-dom"
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css'; 
 
-import {  CloseOutlined, PlayCircleFilled,RightCircleFilled, StarFilled } from '@ant-design/icons'
+import {  PlayCircleFilled } from '@ant-design/icons'
 
 import HowItWorksVideo from '../Components/HowItWorksVideo'
 import EndUsersIcon from '../Icons/EndUsersIcon'
-import TrackingIcon from '../Icons/TrackingIcon'
-import ServicesIcon from '../Icons/ServicesIcon'
 import ServicesComponent from '../Components/ServicesComponent'
 const HomePage = ({setIsVideo}) => {
   const socket= useMemo(() => io("https://api.sfghanalogistics.com",{
@@ -72,19 +69,6 @@ useEffect(()=>{
   
   
 
-
-    const[text,setText]= useState("Open")
-
-
-
-function changeText(){
-  setText("David")
-}
-
-const [isVisible, setIsVisible] = useState(false);
-
-
-
   const parentRef = useRef(null);
 
   const childRef1 = useRef(null);
@@ -94,14 +78,9 @@ const [isVisible, setIsVisible] = useState(false);
   
 
   const [index,setIndex]= useState(0)
+  const [disable,setDisable] = useState(false)
 
-  const scrollToLeft = (n) => {
-
-    setIndex(n)
-  };
-
-
-  const [disable,setDisable]= useState(false)
+  
   useEffect(()=>{
     
     const auto_slider=setInterval(()=>{
@@ -135,35 +114,8 @@ const [isVisible, setIsVisible] = useState(false);
     }
   },[index])
 
-  function setindex(char){
-    
-  
-    if(char==="+"){
-        setIndex(prev=> prev + 1)
-    }else{
-      setIndex(prev=> prev - 1);
-    }
-    
-  }
-
-
-  
   
 
-
-
-  const[seeMore,setSeeMore] =useState("Read More...")
-  const[ see,setSee] = useState(false)
-
-  function ToggleMore(){
-    if(!see){
-      setSeeMore("Read Less...")
-      setSee(true)
-    return
-  }
-  setSeeMore("Read More...")
-  setSee(false)
-}
 
 
 const [divWidth, setDivWidth] = useState(0);

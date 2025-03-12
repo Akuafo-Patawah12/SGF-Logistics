@@ -151,9 +151,11 @@ const Login = ({getEmail}) => {
   return (
     <div className="form-container">
      <header className='auth_header'>
-       <Link to={"/"}><SvgIcon/></Link>
+       <Link to={"/"}><SvgIcon style={{marginTop:"9px"}}/></Link>
        <Link to={"/Auth/sign_up"}><h3>Sign up</h3></Link>
      </header> 
+
+     <section className="auth_section">
      <Card  className="auth_card">
       
 
@@ -214,6 +216,7 @@ const Login = ({getEmail}) => {
         {success && <Text type="success" style={{ display: "block", textAlign: "center", marginTop: 10 }}>Login successful!</Text>}
       </Form>
     </Card>
+    </section>
   </div>
   )
 }

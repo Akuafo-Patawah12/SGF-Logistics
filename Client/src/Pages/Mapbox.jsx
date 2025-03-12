@@ -174,7 +174,7 @@ const countRef = useRef(null);
 const updateBound = () => {
   if (!pRefs.current) return;
 
-  pRefs.current.forEach((p, index) => {
+  pRefs.current.forEach((p) => {
     const foundIndex = pRefs.current.findIndex(p => p && p.innerHTML.trim() === country);
     setIndex(foundIndex);
 

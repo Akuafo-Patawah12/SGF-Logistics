@@ -1,7 +1,7 @@
-import React, { useState, useEffect ,useMemo } from "react";
+import React, { useState, useEffect  } from "react";
 import { Modal, List, Avatar, Spin, Tooltip, Input ,message,Row, Col, Card , Button  } from "antd";
 import { CopyOutlined, DownloadOutlined, SearchOutlined } from "@ant-design/icons";
-import { io } from "socket.io-client";
+
 
 
 const AssignUsersModal = ({ isOpen, onClose ,assignedOrder_id ,containerId,handleDownload,setInvoiceData,socket ,socket1 }) => {

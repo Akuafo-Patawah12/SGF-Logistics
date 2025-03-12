@@ -575,7 +575,7 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
         className="search_input"
       />
       </div>
-<Modal title="Add container" visible={isEdit} onCancel={() => setIsEdit(false)} footer={null}>
+<Modal title="Add container" open={isEdit} onCancel={() => setIsEdit(false)} footer={null}>
       <Form layout="vertical">
         
         {/* Select Route */}

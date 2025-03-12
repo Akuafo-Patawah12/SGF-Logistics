@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Form, Input, Button, Card, Typography, message } from "antd";
+import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
+import {Link} from "react-router-dom"
+import './Auth.css'; 
 
 const { Title } = Typography;
 
@@ -46,7 +49,12 @@ const ResetPassword = () => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+    <div className="form-container">
+         <header className='auth_header'>
+           <Link to={"/"}><SvgIcon style={{marginTop:"9px"}}/></Link>
+           <Link to={"/Auth/login"}><h3>Login</h3></Link>
+         </header>
+    <section className="auth_section">
       <Card style={{ width: 400, textAlign: "center" }}>
         <Title level={3}>Reset Password</Title>
         <Form onFinish={handleSubmit} layout="vertical">
@@ -62,6 +70,7 @@ const ResetPassword = () => {
           </Button>
         </Form>
       </Card>
+      </section>
     </div>
   );
 };

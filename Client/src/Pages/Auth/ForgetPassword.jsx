@@ -34,9 +34,12 @@ const ForgotPassword = () => {
   return (
     <div className="form-container">
          <header className='auth_header'>
-           <Link to={"/"}><SvgIcon/></Link>
-           <h3>Sign up</h3>
+           <Link to={"/"}><SvgIcon style={{marginTop:"9px"}}/></Link>
+           <Link to={"/Auth/login"}><h3>Login</h3></Link>
+          
          </header> 
+
+         <section className="auth_section">
       <Card className="auth_card">
         <Title level={3} className="title">Forgot Password</Title>
         <Text className="subtitle">Enter your email to receive a reset link</Text>
@@ -65,6 +68,7 @@ const ForgotPassword = () => {
           </Form.Item>
         </Form>
       </Card>
+      </section>
     </div>
   );
 };

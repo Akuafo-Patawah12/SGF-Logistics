@@ -1,5 +1,5 @@
 import React from 'react'
-import {DoubleRightOutlined, VideoCameraOutlined,EnvironmentOutlined, FacebookOutlined, GlobalOutlined, HomeOutlined, InstagramOutlined, LeftCircleFilled, MailOutlined, PhoneOutlined, RightCircleFilled,  WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
+import {DoubleRightOutlined,EnvironmentOutlined, FacebookOutlined,  MailOutlined, PhoneOutlined, WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
 import { ReactComponent as Tiktok} from "../Icons/Tiktok.svg"
 import Accordion from './Accordion'
 import { Link } from 'react-router-dom'
@@ -144,7 +144,7 @@ const Footer = () => {
         <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}} className='details'>
           <div style={contact_style}><EnvironmentOutlined /></div>
           <h3>Address</h3>
-          <p>George Bush Highway, Dzorwulu,<br/> Accra-Ghana </p>
+          <p> Kwei Okyerema St, Dzorwulu <br/> Accra-Ghana </p>
           </div>
         
         <div style={{color:"white",marginBlock:"20px",fontSize:"18px"}} className='details'>

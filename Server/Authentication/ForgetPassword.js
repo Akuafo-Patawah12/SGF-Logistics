@@ -33,7 +33,7 @@ const forgetPassword = async(req,res)=>{
             <div style="text-align: center; font-family: Arial, sans-serif; padding: 20px;">
               <h2 style="color: #333;">Reset Your Password</h2>
               <p style="color: #555;">Click the button below to reset your password:</p>
-              <a href="http://localhost:3000/Auth/reset_password/${resetToken}" 
+              <a href="https://sfghanalogistics.com/Auth/reset_password/${resetToken}" 
                  style="background-color: #a422d0; color: #fff; padding: 12px 20px; 
                         text-decoration: none; border-radius: 5px; display: inline-block;
                         font-size: 16px; font-weight: bold;">

@@ -99,18 +99,34 @@ const OTP = ({mail}) => {
       verifyOTP(pasteData); // Auto-send OTP when pasting
     }
   };
-   async function resendOtp(){
-      try{
-        if(email==="") return 
-        const response= axios.post("https://api.sfghanalogistics.com/resend-otp", email)
-        if (response.status===429){
-          message.error("Too many login attempts. Try again in 5 minutes.")
-          
-       }
-      }catch(error){
-        console.error(error)
+  async function resendOtp(email) {
+    try {
+      if (!email) return message.error("Email is required"); 
+  
+      const response = await axios.post("https://api.sfghanalogistics.com/resend-otp", { email });
+  
+      if (response.status === 200) {
+        message.success(`Verification code sent to ${email}`);
       }
-   }
+  
+    } catch (error) {
+      console.error(error);
+  
+      if (error.response) {
+        const { status } = error.response;
+        
+        if (status === 429) {
+          message.error("Too many login attempts. Try again in 5 minutes.");
+        } else if (status === 404) {
+          message.error("Email not found. Please check and try again.");
+        } else {
+          message.error("Something went wrong. Please try again.");
+        }
+      } else {
+        message.error("Network error. Please check your connection.");
+      }
+    }
+  }
 
   return (
     <div className="otp_background">
