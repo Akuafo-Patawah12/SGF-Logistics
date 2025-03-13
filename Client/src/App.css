@@ -218,7 +218,7 @@ body{
   
   padding-block-start: 3rem;
   background-color: #312c2c;
-  
+  min-height: 300px;
   
 
 }
@@ -486,6 +486,8 @@ footer a{
   }
   .nav_1{
   display: none;
+  aspect-ratio: 16/9;
+ 
 }
 .footer_nav{
   flex-direction: column;

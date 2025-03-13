@@ -1,4 +1,4 @@
-import {useState,Suspense,lazy} from "react"
+import {useState,Suspense,lazy,useEffect} from "react"
 import { Routes,Route } from "react-router-dom";
 import './App.css';
 import Layout from "./Layouts/Layout";
@@ -15,6 +15,17 @@ import ResetPassword from "./Pages/Auth/ResetPassword";
 const ForgetPassword=lazy(()=> import('./Pages/Auth/ForgetPassword'))
 
 function App() {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://third-party.com/script.js";
+    script.defer = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script); // Clean up when component unmounts
+    };
+  }, []);
+
 const [email,setEmail] = useState("")
 function getEmail(mail){
     setEmail(mail)

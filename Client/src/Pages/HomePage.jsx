@@ -241,7 +241,11 @@ const [value, setValue] = useState(0);  // State to hold the value
       image: 'https://via.placeholder.com/100',
     },
   ];
-
+  
+  const transition = useMemo(() => ({
+    duration: 0.5,
+    ease: "easeOut"
+  }), []);
   return (
     
     <motion.div
@@ -282,7 +286,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
               whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
               exit={{ opacity: 0, x: -100 }} 
-              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+              transition={transition} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.2 }}
             >
             
@@ -304,7 +308,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        initial={{ opacity: 0, x:-100 }} // Start off-screen to the left (-200px)
              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
              exit={{ opacity: 0, x: -100 }} 
-             transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+             transition={transition} // Adjust the duration and easing
              viewport={{ once: true, amount: 0.2 }}
            >
             
@@ -321,7 +325,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
              exit={{ opacity: 0, x: -100 }} 
-             transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+             transition={transition} // Adjust the duration and easing
              viewport={{ once: true, amount: 0.2 }}
            >
            
@@ -338,7 +342,7 @@ const [value, setValue] = useState(0);  // State to hold the value
        initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
              exit={{ opacity: 0, x: -100 }} 
-             transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+             transition={transition} // Adjust the duration and easing
              viewport={{ once: true, amount: 0.2 }}
             >
 
@@ -482,29 +486,29 @@ const [value, setValue] = useState(0);  // State to hold the value
         initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
               whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
               exit={{ opacity: 0, x: -100 }} 
-              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
-              viewport={{ once: true, amount: 0.2 }}
+              transition={transition} // Adjust the duration and easing
+              viewport={{ once: true, amount: 0.5 }}
 
        >
 
        <div className='scattered'>
         <section>
         
-            <p style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/money-bag.gif" style={{width:"100px",height:"100px"}} /></p>
+            <p style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/money-bag.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></p>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
               
           
         </section>
         <section>
         
-            <div style={{marginInline:"auto",width:"max-content"}}><img src="../SFG_images/container.gif" style={{width:"100px",height:"100px"}} /></div>
+            <div style={{marginInline:"auto",width:"max-content"}}><img src="../SFG_images/container.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Expert Handling</h4>
               
            
         </section>
         <section>
         
-            <div style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/route.gif" style={{width:"100px",height:"100px"}} /></div>
+            <div style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/route.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
               
         </section>
@@ -565,7 +569,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         initial={{ opacity: 0, x: 100 }} // Start off-screen to the left (-200px)
               whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
               exit={{ opacity: 0, x: 100 }} 
-              transition={{ duration: 0.8, ease: "easeOut" }} // Adjust the duration and easing
+              transition={transition} // Adjust the duration and easing
               viewport={{ once: true, amount: 0.5 }}
 
         style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto",borderRadius:"8px", backgroundColor: '#a0c444', fontSize:"22px",fontWeight:"bold"}}

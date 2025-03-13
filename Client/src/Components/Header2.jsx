@@ -72,7 +72,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
 
 
 
-       <button  onClick={pop1} className="open">
+       <button  onClick={pop1} aria-label="Open menu" className="open">
           <div style={{rotate:`${popUp1 ? "45deg":""}`,top:`${popUp1 ? "75%":"4px"}`,left:`${popUp1 ? "35%":""}`,marginTop:"2px",width:"90%"}}></div>
           <div style={{display:`${popUp1 ? "none":"block"}`}}></div>
           <div style={{rotate:`${popUp1 ? "-45deg":""}`,top:`${popUp1 ? "15%":"23px"}`,left:`${popUp1 ? "40%":""}`,marginBottom:"8px"}}></div>
@@ -82,12 +82,7 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
          {/*Toggle navigation */}
          
 
-         <nav style={{animation:`${popUp?"navAnimate 0.3s linear":""}`,visibility:`${popUp?"visible":"hidden"}`}} className="nav">
-          <p style={{width:"95%",height:"25px",borderBottom: "1px solid #ddd",fontWeight:"700",marginLeft:"auto",marginBottom:"10px"}}>Menu</p>
-          <NavLink to={"/"}><span>Home</span> <HomeOutlined/></NavLink>
-          <a><span>About</span><GlobalOutlined/> </a>
-          <a><span>Contact</span> <PhoneOutlined /></a>
-        </nav>
+         
         </div>
   )
 }

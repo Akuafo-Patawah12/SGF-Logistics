@@ -39,40 +39,40 @@ const ContactUs = () => {
           style={{ borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}
           title={<Title level={2} style={{ textAlign: "center", marginBottom: 0 }}>Contact Us</Title>}
         >
-          <Text type="secondary" style={{ display: "block", textAlign: "center", marginBottom: "20px" }}>
+          <Text style={{ display: "block", textAlign: "center", marginBottom: "20px", color: "#222" }}>
             We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
           </Text>
 
           <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
-              label="Full Name"
+              label={<Text style={{ color: "#333" }}>Full Name</Text>}
               name="name"
               rules={[{ required: true, message: "Please enter your name" }]}
             >
-              <Input placeholder="Andrew Patawah" value={formData.name} onChange={(e)=> setFormData({...formData, name: e.target.value})} />
+              <Input placeholder="Andrew Patawah" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
             </Form.Item>
 
             <Form.Item
-              label="Email Address"
+              label={<Text style={{ color: "#333" }}>Email Address</Text>}
               name="email"
               rules={[
                 { required: true, message: "Please enter your email" },
                 { type: "email", message: "Please enter a valid email" }
               ]}
             >
-              <Input placeholder="example@email.com" value={formData.email} onChange={(e)=> setFormData({...formData, email: e.target.value})} />
+              <Input placeholder="example@email.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
             </Form.Item>
 
             <Form.Item
-              label="Message"
+              label={<Text style={{ color: "#333" }}>Message</Text>}
               name="message"
               rules={[{ required: true, message: "Please enter your message" }]}
             >
-              <Input.TextArea rows={4} placeholder="Write your message here..." value={formData.message} onChange={(e)=> setFormData({...formData, message: e.target.value})}  />
+              <Input.TextArea rows={4} placeholder="Write your message here..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} />
             </Form.Item>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{background:'var(--purple)'}} block>
+              <Button type="primary" htmlType="submit" style={{ background: "var(--purple)" }} block>
                 Send Message
               </Button>
             </Form.Item>
@@ -80,15 +80,16 @@ const ContactUs = () => {
 
           {/* Contact Info Section */}
           <div style={{ marginTop: "30px", textAlign: "center" }}>
-            <Text strong>Or reach us at:</Text>
+            <Text strong style={{ color: "#222" }}>Or reach us at:</Text>
             <div style={{ marginTop: "10px" }}>
-              <PhoneOutlined style={{transform:"rotate(90deg) translate(4px, 0)"}}/> <Text type="secondary">020 811 6360 / 053 948 0433</Text>
+              <PhoneOutlined style={{ transform: "rotate(90deg) translate(4px, 0)" }} />
+              <Text style={{ color: "#222" }}> 020 811 6360 / 053 948 0433</Text>
             </div>
             <div>
-              <MailOutlined /> <Text type="secondary">sfghanalogistics24@gmail.com</Text>
+              <MailOutlined /> <Text style={{ color: "#222" }}> sfghanalogistics24@gmail.com</Text>
             </div>
             <div>
-              <EnvironmentOutlined /> <Text type="secondary">Kwei Okyerema St, Dzorwulu Accra</Text>
+              <EnvironmentOutlined /> <Text style={{ color: "#222" }}> Kwei Okyerema St, Dzorwulu Accra</Text>
             </div>
           </div>
         </Card>

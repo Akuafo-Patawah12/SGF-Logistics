@@ -21,7 +21,19 @@ const About = () => {
           </p>
         </motion.div>
 
-        <motion.img src="../SFG_images/s.jpg" alt="Shipping Logistics" className="about-image" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2 }} />
+        
+        
+        <motion.img
+          src="../SFG_images/s.webp" // Use optimized WebP format
+          alt="Shipping Logistics"
+          className="about-image"
+          width="400"
+          height="250"
+          loading="lazy"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        />
       </section>
 
       <section className="mission-vision">

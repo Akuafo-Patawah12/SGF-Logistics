@@ -33,6 +33,7 @@ const AllOrders=()=>{
     const { Text } = Typography;
     const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
         transports: ["websocket","polling"],
+        autoConnect: false,
         withCredentials: true,
         secure: true
       }),[])
