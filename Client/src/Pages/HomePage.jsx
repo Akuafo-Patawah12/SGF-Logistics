@@ -277,7 +277,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           
           
       
-       src='/SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
+       src='/SFG_images/slider1.webp' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
        </div>
 
        <div ref={childRef2} style={{position:"relative"}}>
@@ -294,7 +294,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Track your shipment in real-time! With SF Ghana Logistics, know exactly where your cargo is at every moment.</p>
        </motion.div>
         </div>
-       <LazyLoadImage src='/SFG_images/Slide_Plane.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
+       <LazyLoadImage src='/SFG_images/Slide_Plane.webp' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
        </div>
          
          <div ref={childRef3} style={{position:"relative"}} >
@@ -367,7 +367,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
 
          <div className='welcome_image'>
-         <LazyLoadImage src="./SFG_images/Get_in_Touch.jpg" alt="welcome image"  style={{width:"100%",height:"100%"}}/>
+         <LazyLoadImage src="./SFG_images/Get_in_Touch.webp" alt="welcome image"  style={{width:"100%",height:"100%"}}/>
              <div title="welcome image"></div>
          </div>
 
