@@ -115,7 +115,7 @@ body{
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  
+  margin-top: 0;
   align-items: center;
  
  
@@ -496,7 +496,9 @@ footer a{
 }
 
 
-
+.h_child2{
+  top: 0;
+}
 
 
 .h_child2 a{

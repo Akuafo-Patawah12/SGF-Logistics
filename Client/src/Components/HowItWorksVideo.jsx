@@ -4,12 +4,12 @@ const HowItWorksVideo = () => {
   return (
     <div>
         <video
-        src="./SFG_images/How_it_works.mp4"
+        src="/SFG_images/How_it_works.mp4"
         autoPlay
         loop
         muted
         controls
-        style={{ width: "400px", height:"auto" }}
+        className="video"
       />
     </div>
   )

@@ -39,7 +39,7 @@ const ContactUs = () => {
           style={{ borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}
           title={<Title level={2} style={{ textAlign: "center", marginBottom: 0 }}>Contact Us</Title>}
         >
-          <Text style={{ display: "block", textAlign: "center", marginBottom: "20px", color: "#222" }}>
+          <Text style={{ display: "block",fontSize:"15px", textAlign: "center", marginBottom: "20px", color: "#222" }}>
             We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
           </Text>
 
@@ -83,13 +83,13 @@ const ContactUs = () => {
             <Text strong style={{ color: "#222" }}>Or reach us at:</Text>
             <div style={{ marginTop: "10px" }}>
               <PhoneOutlined style={{ transform: "rotate(90deg) translate(4px, 0)" }} />
-              <Text style={{ color: "#222" }}> 020 811 6360 / 053 948 0433</Text>
+              <Text style={{ color: "#222",fontSize:"15px" }}> 020 811 6360 / 053 948 0433</Text>
             </div>
             <div>
-              <MailOutlined /> <Text style={{ color: "#222" }}> sfghanalogistics24@gmail.com</Text>
+              <MailOutlined /> <Text style={{ color: "#222",fontSize:"15px" }}> sfghanalogistics24@gmail.com</Text>
             </div>
-            <div>
-              <EnvironmentOutlined /> <Text style={{ color: "#222" }}> Kwei Okyerema St, Dzorwulu Accra</Text>
+            <div >
+              <EnvironmentOutlined />  <Text style={{ color: "#222",fontSize:"15px" }}>Kwei Okyerema St, Dzorwulu Accra</Text>
             </div>
           </div>
         </Card>

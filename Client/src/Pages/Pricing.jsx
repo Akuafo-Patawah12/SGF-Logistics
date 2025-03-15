@@ -97,7 +97,7 @@ const PricingPage = () => {
           <Col xs={24} sm={12} md={6} key={index}>
             <StyledCard>
               <h3>{service.title}</h3>
-              <p>{service.description}</p>
+              <p style={{fontSize:"15px"}}>{service.description}</p>
               <h4>{service.price}</h4>
               <Link to={"/Contact"}><Button type="primary" style={{background:"#ddd",color:"#333"}}>Contact us</Button></Link>
             </StyledCard>

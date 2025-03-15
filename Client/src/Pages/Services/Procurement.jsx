@@ -17,6 +17,12 @@ const Procurement = () => {
           </h1>
         </section>
       </div>
+
+      <nav className="breadcrumb" style={{marginLeft:"2.5%"}}>
+              <Link to="/">Home</Link> /
+              <Link to="/Services"> Services</Link> /
+              <span>Procurement</span>
+            </nav>
         {/* Page Header */}
         <div className="page_section">
         <header className="freight_head">
@@ -42,7 +48,9 @@ const Procurement = () => {
         <section className="grid">
           <div className="card">
             <div className="icon icon-blue">
-              <Global style={{transform:"translateX(1px)"}}/>
+            <div style={{transform:"translate(4px,2px)"}}>
+                           <Global />
+                           </div>
             </div>
             <h3>Global Reach</h3>
             <p>
@@ -52,7 +60,9 @@ const Procurement = () => {
   
           <div className="card">
             <div className="icon icon-green">
-              <Speed style={{transform:"translateX(1px)"}}/>
+            <div style={{transform:"translate(5px,2px)"}}>
+                            <Speed />
+                            </div>
             </div>
             <h3>Speed & Reliability</h3>
             <p>
@@ -62,7 +72,9 @@ const Procurement = () => {
   
           <div className="card">
             <div className="icon icon-yellow">
-              <Secure style={{transform:"translateX(1px)"}}/>
+            <div style={{transform:"translate(4px,2px)"}}>
+              <Secure />
+              </div>
             </div>
             <h3>Secure Handling</h3>
             <p>

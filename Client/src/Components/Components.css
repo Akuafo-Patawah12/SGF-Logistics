@@ -74,7 +74,10 @@
     to{transform: translateX(-60%);}
 }
 
-
+.video{
+    width: 400px;
+    height: auto;
+}
 
 .Track_pop_container{
     position: fixed;
@@ -212,6 +215,11 @@ aside{
         & button{
             border: none;
             font-size: 20px;
+            
+        }
+
+        .video{
+            width: 95%;
             
         }
     }

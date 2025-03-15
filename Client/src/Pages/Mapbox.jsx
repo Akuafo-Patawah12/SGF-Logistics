@@ -274,7 +274,7 @@ useEffect(() => {
         <div className="line_map" ref={parent}>
         <div className="line_inner" >
           
-        <div  className="ship" style={{background:"yellow !important",position:"relative"}}><ShipIcon style={{ position: "absolute",top:"-40px", left: `${xPosition-5}px` }} />
+        <div  className="ship" style={{background:"yellow !important",position:"relative"}}><span tyle={{ position: "absolute",top:"-40px", left: `${xPosition-5}px` }}><ShipIcon  /></span>
          </div>
         <section className="line" style={{position:"relative"}} >
           

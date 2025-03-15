@@ -8,7 +8,7 @@ const LogisticFooter=()=>{
     return(
         <section style={{marginTop:"50px"}}>
            <div style={{color:"#222",marginInline:"auto",width:"fit-content"}}>
-          <a href="https://www.instagram.com/sfghanalogistic?igsh=bnlyd3R2d3FyN2du" target="_blank"><InstagramOutlined /> </a>
+          
           <a href="https://www.youtube.com/@SFGhanaLogistics" target="_blank"><YoutubeOutlined/> </a>
           <a href="https://www.facebook.com/profile.php?id=61560412809015&mibextid=ZbWKwL" target="_blank"><FacebookOutlined /> </a>
           <a href="https://t.me/sfghanalogistics" target="_blank"> </a>
