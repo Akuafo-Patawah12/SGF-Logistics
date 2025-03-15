@@ -18,7 +18,7 @@ const router = require("./Router/Router")
 
 
 app.use(cors({
-    origin:["https://sfghanalogistics.com","http://localhost:3001"],
+    origin:["https://sfghanalogistics.com","http://localhost:5173"],
     credentials: true,
     methods:["POST,GET,PUT,DELETE"], 
     allowedHeaders: ["Content-Type"] // Common headers
@@ -42,15 +42,6 @@ app.post('/add-admin', async (req, res) => {
   });
 
 
-  app.get('/auth-status', (req, res) => {
-    const token = req.cookies.refreshToken;
-  
-    if (!token) {
-      return res.status(401).json({ authenticated: false });
-    }
-  
-    return res.json({ authenticated: true });
-  });
   
 
   

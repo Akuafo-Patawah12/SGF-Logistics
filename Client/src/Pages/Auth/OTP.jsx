@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import "./Auth.css"; // Import the CSS file
 import { message } from "antd"
 import { useNavigate} from "react-router-dom"
-import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
+import  SvgIcon  from "../../Icons/svgl_svg_format_2.svg"
 import axios from "axios"
 
 const OTP = ({mail}) => {
@@ -133,7 +133,7 @@ const OTP = ({mail}) => {
     
     <div className="otp-container">
     
-    <span><SvgIcon/></span>
+    <span><img src={SvgIcon} alt="svg-image" /></span>
     <div class="verification-container">
   <h3>Enter Verification Code</h3>
   <p>We have sent a code to <span class="email-text">{email}</span></p>

@@ -3,9 +3,9 @@ import {Link} from "react-router-dom"
 
 import "./SubPages.css"
 
-import {ReactComponent as Secure } from "../../Icons/Secure.svg"
-import {ReactComponent as Speed } from "../../Icons/Speed.svg"
-import {ReactComponent as Global } from "../../Icons/Global.svg"
+import  Secure  from "../../Icons/Secure.jsx"
+import  Speed  from "../../Icons/Speed.jsx"
+import  Global  from "../../Icons/Global.jsx"
 
 const Door2door = () => {
   return (

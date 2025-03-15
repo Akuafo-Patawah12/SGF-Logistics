@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Layout, Menu, Button, Drawer } from "antd";
-import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg";
+import SvgIcon from "../Icons/svgl_svg_format_2.svg";
 import {
   HomeOutlined,
   InfoCircleOutlined,
@@ -71,7 +71,7 @@ const Sidebar = ({ popUp, setPopUp1 }) => {
         <Drawer
           title={
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span className="text-xl font-semibold"><SvgIcon /></span>
+              <span className="text-xl font-semibold"><img src={SvgIcon} alt="SVG Icon" /></span>
               
               <Button icon={<CloseOutlined />} className="close-btn" onClick={closeSidebar} />
             </div>

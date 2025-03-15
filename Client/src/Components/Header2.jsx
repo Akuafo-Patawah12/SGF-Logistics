@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
-import { HomeOutlined,TriangleFilled,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
+import { HomeOutlined,GlobalOutlined,PhoneOutlined, DownOutlined, WhatsAppOutlined, FacebookFilled, EnvironmentOutlined, MailOutlined } from '@ant-design/icons'
 import { Link, NavLink } from 'react-router-dom'
-import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
-import { ReactComponent as Triangle } from "../Icons/Triangle.svg"
-const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
+import  SvgIcon  from "../Icons/svgl_svg_format_2.svg"
+import  Triangle  from "../Icons/Triangle.jsx"
+const Header2 = ({popDetails}) => {
 
     const [pop1,popUp1,setPopUp1] = popDetails
     const[popUp,setPopUp]= useState(false)
@@ -30,20 +30,20 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
 
 
   return (
-    <div className="h_child2">
-        <Link to={"/"} className="logo"><SvgIcon /></Link>
+    <div className="h_child2" >
+        <Link to={"/"} className="logo" style={{height:"100%", overflow:"hidden"}}><img src={SvgIcon} alt="SVG Icon" /></Link>
     
     <nav  className="nav1" style={{transform:"translateY(10px)"}}>
          <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"500",}}>Home</span> </NavLink>
-         <NavLink to={"/About"} style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>About  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
-              <div className="drop" style={{position:"absolute",background:"white",width:"200%",padding:"8px",zIndex:"40"}}>
-                <a href='#why_choose_us'><p ><Link to={"/"} style={{fontSize:"15px"}}>Mission</Link></p></a>
-                <p><Link to={"/About"} style={{fontSize:"15px"}}>Vision</Link></p>
-                
-         </div>
+         <NavLink to={"/About"} style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}>About   
+              
          </NavLink>
          
-         <NavLink to={"/Services"} style={{position:"relative",}} className="click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
+         <NavLink to={"/Services"} style={{position:"relative",}} className="click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  
+         <div style={{ transform: "translateY(4px) rotate(180deg)" }}>
+  <Triangle />
+</div>
+         </span> 
               <div className="drop" style={{position:"absolute",background:"white",width:"170%",padding:"8px",isolation:"isolate",zIndex:"99"}}>
                 <p><Link to={"/Services/AirFreight"} style={Link_text}>Air freight</Link></p>
                 <p><Link to={"/Services/SeaFreight"} style={Link_text}>Sea freight</Link></p>
@@ -55,7 +55,11 @@ const Header2 = ({setShowAuth,buttonDisplay,popDetails,setTrack}) => {
          
          <NavLink to={"/Contact"} style={Link_text} className="header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >Contact</span> </NavLink>
  
-         <NavLink to={"/More"} style={Link_text} className=" click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  <Triangle style={{rotate:"180deg",transform:"translateY(-6px)"}}/></span> 
+         <NavLink to={"/More"} style={Link_text} className=" click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  
+         <div style={{ transform: "translateY(4px) rotate(180deg)" }}>
+            <Triangle />
+          </div>
+         </span> 
               <div className="drop" style={{position:"absolute",background:"white",padding:"8px" ,width:"100px",isolation:"isolate",zIndex:"99"}}>
                 <p><Link to={"/More/FAQs"} style={Link_text}>FAQs</Link></p>
                 <p><Link to={"/More/pricing"} style={Link_text}>Pricing</Link></p>

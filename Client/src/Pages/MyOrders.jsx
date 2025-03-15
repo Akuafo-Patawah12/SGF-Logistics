@@ -13,6 +13,13 @@ import { EyeOutlined ,DownloadOutlined , SearchOutlined} from "@ant-design/icons
 import "../Styles/MyOrders.css"
 import SessionExpiredModal from "../Components/SessionEpiredModal";
 const AllOrders=()=>{
+  const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
+    transports: ["websocket","polling"],
+    
+    withCredentials: true,
+    secure: true
+  }),[])
+
   const [myorders,setMyOrders]  = useState([])
   const [loadingProgress, setLoadingProgress] = useState(true);
   const [loadingIndex, setLoadingIndex] = useState(null);
@@ -31,12 +38,7 @@ const AllOrders=()=>{
     trackingNo:null
   })
     const { Text } = Typography;
-    const socket = useMemo(() =>io("https://api.sfghanalogistics.com/orders",{
-        transports: ["websocket","polling"],
-        autoConnect: false,
-        withCredentials: true,
-        secure: true
-      }),[])
+   
 
 
 
@@ -44,18 +46,8 @@ const AllOrders=()=>{
    
    const [ viewData,setViewData] = useState(null)
 
-   useEffect(() => {
-    const checkAuthAndConnect = async () => {
-      try {
-        const res = await fetch("https://api.sfghanalogistics.com/auth-status", {
-          credentials: "include", // Ensure cookies are sent
-        });
-
-        const data = await res.json();
-
-        if (data.authenticated) {
-         
-          socket.connect()
+  useEffect(()=>{
+    
           socket.emit("getOrdersByUser","hello",(response)=>{
 
           if (response.status==="error"){
@@ -63,17 +55,8 @@ const AllOrders=()=>{
             setMyOrders([])
             setLoadingProgress(false)
           }
-      })
-
-          
-        }
-      } catch (error) {
-        console.error("Auth check failed", error);
-      }
-    };
-
-    checkAuthAndConnect();
-  }, []);
+        })
+  },[])
 
   
 

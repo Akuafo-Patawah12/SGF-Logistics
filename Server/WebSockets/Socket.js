@@ -14,7 +14,7 @@ function initializeSocket(server){
     const io = socketIo(server, {   //Creating connect between server and User Interface  "Realtime WebApp"
       transports: ['websocket',"polling"],
         cors: {
-          origin:["https://sfghanalogistics.com","http://localhost:3001"],
+          origin:["https://sfghanalogistics.com","http://localhost:5173"],
           methods:["POST,GET,PUT,DELETE"],
           allowedHeaders: ['Content-Type'],
           credentials: true
@@ -32,6 +32,7 @@ function initializeSocket(server){
 const verifyToken = util.promisify(jwt.verify); // Convert jwt.verify into async/await
 
 async function middleware(socket, next) {
+  await new Promise(resolve => setTimeout(resolve, 200));
   try {
     const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
     console.log("Cookie Header:", cookieHeader);
@@ -66,6 +67,7 @@ async function middleware(socket, next) {
 
 
 async function middleware2(socket, next) {
+  await new Promise(resolve => setTimeout(resolve, 200));
   try {
     const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
     console.log("Cookie Header:", cookieHeader);

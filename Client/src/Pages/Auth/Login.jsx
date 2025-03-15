@@ -2,7 +2,8 @@ import React,{useState} from 'react'
 import './Auth.css'; 
 import {Link, useNavigate} from "react-router-dom"
 import { Form, Input, Button, Checkbox, Typography, Card, message } from "antd";
-import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
+import  SvgIcon  from "../../Icons/svgl_svg_format_2.svg"
+
 
 const {  Text } = Typography;
 
@@ -151,7 +152,7 @@ const Login = ({getEmail}) => {
   return (
     <div className="form-container">
      <header className='auth_header'>
-       <Link to={"/"}><SvgIcon style={{marginTop:"9px"}}/></Link>
+       <Link to={"/"}><img src={SvgIcon} alt="SVG Icon" /></Link>
        <Link to={"/Auth/sign_up"}><h3>Sign up</h3></Link>
      </header> 
 

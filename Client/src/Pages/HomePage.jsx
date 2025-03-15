@@ -1,15 +1,15 @@
-import React,{useState,useRef,useEffect,useMemo} from 'react'
+import React,{useState,useRef,useEffect,useMemo,Suspense} from 'react'
 import {motion,useAnimation} from "framer-motion"
 
-import { ReactComponent as Web3star } from "../Icons/Web3star.svg" 
-import{ ReactComponent as Truck } from "../Icons/Truck.svg"
-import{ ReactComponent as Anchor } from "../Icons/Anchor.svg"
-import{ ReactComponent as Container } from "../Icons/Container.svg"
-import { message} from "antd"
-import{ ReactComponent as CargoShip } from "../Icons/CargoShip.svg"
-import { ReactComponent as StarHollow } from "../Icons/StarHollow.svg"
-import{ ReactComponent as CargoPlane } from "../Icons/CargoPlane.svg"
-import{ ReactComponent as RMBrate } from "../Icons/RMBrate.svg"
+import  Web3star from "../Icons/Web3star" 
+import Truck  from "../Icons/Truck"
+import Anchor  from "../Icons/Anchor"
+import Container  from "../Icons/Container"
+
+import CargoShip from "../Icons/CargoShip"
+import  StarHollow  from "../Icons/StarHollow"
+import CargoPlane  from "../Icons/CargoPlane"
+import RMBrate  from "../Icons/RMBrate"
 
  
 import "../Styles/Home.css"
@@ -27,7 +27,7 @@ import HowItWorksVideo from '../Components/HowItWorksVideo'
 import EndUsersIcon from '../Icons/EndUsersIcon'
 import ServicesComponent from '../Components/ServicesComponent'
 const HomePage = ({setIsVideo}) => {
-  const socket= useMemo(() => io("https://api.sfghanalogistics.com",{
+  const socket= useMemo(() => io("http://localhost:5040",{
     transports: ["websocket","polling"],
     withCredentials: true,
     secure: true
@@ -66,10 +66,9 @@ useEffect(()=>{
        socket.off("disconnect")
     }
  },[socket])
-  
-  
 
-  const parentRef = useRef(null);
+
+ const parentRef = useRef(null);
 
   const childRef1 = useRef(null);
   const childRef2 = useRef(null);
@@ -114,11 +113,7 @@ useEffect(()=>{
     }
   },[index])
 
-  
-
-
-
-const [divWidth, setDivWidth] = useState(0);
+  const [divWidth, setDivWidth] = useState(0);
 
 useEffect(() => {
   const handleResize = () => {
@@ -136,42 +131,27 @@ useEffect(() => {
     window.removeEventListener('resize', handleResize);
   };
 }, [divWidth]);
-
-
-
-
-
-
-
-
-const images = [
-  { src: "/SFG_images/Air.jpg", title: "Reliable Sea Freight Services" },
-  { src: "/SFG_images/Sea.jpg", title: "Optimized Freight Forwarding Services" },
-  { src: "/SFG_images/Slider2.jpg", title: "Real-Time Shipment Tracking & Visibility " },
-  { src: "/SFG_images/Slider3.jpg", title: "Efficient Air Freight Solutions" },
-];
-
-const [currentIndex, setCurrentIndex] = useState(0);
-
-// Auto-slide every 3 seconds
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  }, 3000);
-
-  return () => clearInterval(interval);
-}, []);
-
-const prevSlide = () => {
-  setCurrentIndex((prevIndex) =>
-    prevIndex === 0 ? images.length - 1 : prevIndex - 1
-  );
-};
-
-const nextSlide = () => {
-  setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-};
   
+ const testimonials = [
+  {
+    name: 'Linda Asare',
+    role: 'Operations Manager at DEF Enterprises',
+    text: 'The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly where our goods are at all times.',
+    
+  },
+  {
+    name: 'Kwame Mensah',
+    role: 'CEO of ABC Trading',
+    text: 'SF Ghana Logistics has become an indispensable part of our supply chain. Their dedication to efficiency and reliability is unparalleled.',
+    
+  },
+  {
+    name: 'Michael Osei',
+    role: 'Owner of GHI Retailers',
+    text: 'Exceptional service and timely deliveries! SFGL truly lives up to its motto, "Whatever the load, we carry it."',
+    
+  },
+];
 
 const [value, setValue] = useState(0);  // State to hold the value
   const controls = useAnimation();  // Controls for the animation
@@ -214,57 +194,56 @@ const [value, setValue] = useState(0);  // State to hold the value
     };
   }, [controls,value]);
 
-  const pageVariants = {
-    initial: { opacity: 0, x: "-100vw" },
-    animate: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-    exit: { opacity: 0, x: "100vw", transition: { duration: 0.5 } },
-  };
-
-
-  const testimonials = [
-    {
-      name: 'Linda Asare',
-      role: 'Operations Manager at DEF Enterprises',
-      text: 'The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly where our goods are at all times.',
-      image: 'https://via.placeholder.com/100',
-    },
-    {
-      name: 'Kwame Mensah',
-      role: 'CEO of ABC Trading',
-      text: 'SF Ghana Logistics has become an indispensable part of our supply chain. Their dedication to efficiency and reliability is unparalleled.',
-      image: 'https://via.placeholder.com/100',
-    },
-    {
-      name: 'Michael Osei',
-      role: 'Owner of GHI Retailers',
-      text: 'Exceptional service and timely deliveries! SFGL truly lives up to its motto, "Whatever the load, we carry it."',
-      image: 'https://via.placeholder.com/100',
-    },
+  const images = [
+    { src: "/SFG_images/Air.jpg", title: "Reliable Sea Freight Services" },
+    { src: "/SFG_images/Sea.jpg", title: "Optimized Freight Forwarding Services" },
+    { src: "/SFG_images/Slider2.jpg", title: "Real-Time Shipment Tracking & Visibility " },
+    { src: "/SFG_images/Slider3.jpg", title: "Efficient Air Freight Solutions" },
   ];
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Auto-slide every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
+  
+    return () => clearInterval(interval);
+  }, []);
+  
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+  
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+    
+
+
+  
   
   const transition = useMemo(() => ({
     duration: 0.5,
     ease: "easeOut"
   }), []);
+  
+
+
   return (
     
-    <motion.div
-    variants={pageVariants}
-    initial="initial"
-    animate="animate"
-    exit="exit"
+    <div
+    
      style={{overflow:"hidden",background:"#fff"}} className='Home'>
-        
-        <div
-        style={{
-          width: "100%",
-          position:"relative"
-        }}>
+        <div>
         <div className='Image_Text'>
           
           
           <section style={{display:"flex",gap:"1rem"}}>
-            <button onClick={()=> setIsVideo(true)} style={{border: "var(--green)",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
+            <button onClick={()=> setIsVideo(true)} style={{border:"none",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
           </section>
           </div>
       <div
@@ -298,7 +277,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           
           
       
-       src='../SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
+       src='/SFG_images/slider1.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
        </div>
 
        <div ref={childRef2} style={{position:"relative"}}>
@@ -315,7 +294,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Track your shipment in real-time! With SF Ghana Logistics, know exactly where your cargo is at every moment.</p>
        </motion.div>
         </div>
-       <LazyLoadImage src='../SFG_images/Slide_Plane.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
+       <LazyLoadImage src='/SFG_images/Slide_Plane.jpg' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
        </div>
          
          <div ref={childRef3} style={{position:"relative"}} >
@@ -332,7 +311,7 @@ const [value, setValue] = useState(0);  // State to hold the value
            <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Reliable logistics, no matter the load.</p>
            </motion.div>
           </div>
-          <LazyLoadImage src='../SFG_images/Seaport.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
+          <LazyLoadImage src='/SFG_images/Seaport.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
           </div>
 
           <div ref={childRef4} style={{position:"relative"}} >
@@ -350,7 +329,7 @@ const [value, setValue] = useState(0);  // State to hold the value
              
           </motion.div>
         </div>
-            <LazyLoadImage src='../SFG_images/Ware.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} /> 
+            <LazyLoadImage src='./SFG_images/Ware.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} /> 
           </div>
           
         
@@ -358,13 +337,12 @@ const [value, setValue] = useState(0);  // State to hold the value
       </div>
 
       <p className='Description' style={{position:"relative",isolation:"isolate"}}>We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
-         <Truck style={{position:"absolute",zIndex:"-1",bottom:"0",left:"-20px"}}/> <Anchor style={{position:"absolute",top:"-35px",left:"48%",zIndex:"-1",rotate:"45deg"}}/> <Container style={{zIndex:"-1",position:"absolute",right:"10px",rotate:"45deg"}}/>
-      </p>
+         
+      </p> 
       
       <section className='welcome_hero' >
 
             
-   
       <motion.div
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -374,7 +352,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           className='welcome_container' >
             <section style={{display:"flex",flexDirection:"column",gap:"10px",marginBottom:"10px"}}>
                 <div className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p style={{color:"white"}}>Join us for <br/> seamless logistics.</p><Link to={"/Auth/login"}><button>Login</button></Link></div> </div>
-                <div  className="flexbox_1"style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p className="p-info" style={{color:"white"}}>Track your shipment. <br/> in realtime </p><Link to={"/More/Track_order"}><button>Track</button></Link></div> </div>
+                <div  className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p className="p-info" style={{color:"white"}}>Track your shipment. <br/> in realtime </p><Link to={"/More/Track_order"}><button>Track</button></Link></div> </div>
             </section>
            <h3 style={{marginLeft:"2.5%",marginTop:"30px"}}>Welcome to SF Ghana Logistics.</h3>
           <p style={{textAlign:"justify",marginInline:"auto",marginTop:"10px",width:"95%",fontSize:"0.9rem"}}>
@@ -385,16 +363,17 @@ const [value, setValue] = useState(0);  // State to hold the value
           <Link to={"/Auth/sign_up"} className='welcome_button'><button className='welcome_butt'><span>GET STARTED</span>
           <div className='liquid'></div></button></Link>
          </motion.div>
+      
 
 
          <div className='welcome_image'>
-             <div></div>
+         <LazyLoadImage src="./SFG_images/Get_in_Touch.jpg" alt="welcome image"  style={{width:"100%",height:"100%"}}/>
+             <div title="welcome image"></div>
          </div>
 
       </section>
 
-
-      <div style={{marginInline:"auto",width:"290px",}}>
+        <div style={{marginInline:"auto",width:"290px",}}>
       <h3 style={{color:"#1C1818",marginLeft:"0",display:"flex",gap:"10px",width:"fit-content",textAlign:"center",marginTop:"100px",fontSize:"25px"}}>OUR MAJOR
           <div className="content">
               <h3>SERVICES.</h3>
@@ -407,13 +386,18 @@ const [value, setValue] = useState(0);  // State to hold the value
 
       <p className="Service-title">Fast and Affordable Services.</p>
        <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
+             <Suspense fallback="Loading...">
              <ServicesComponent />
-
+             </Suspense>
              <div style={{paddingBlock:"30px",display:"flex",textDecoration:"none",alignItems:"flex-start",justifyContent:"center",height:"100px" ,background:"#a0c444",}}><Link to={"/Services"} style={{border:"2px solid #444",borderRadius:"5px",marginInline:"auto",padding:"10px 7px"}}>  SEE ALL OUR SERVICES</Link></div>
        
       
 
-       <div>
+       <div></div>
+
+
+
+        <div>
       <div className="image-container">
         <div className="scrolling-content">
         
@@ -426,7 +410,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           </p>
           
 
-          <Link to={"/Contact"}><button className="scroll-content-btn">Contact Us</button></Link>
+          <Link to="/Contact"><button className="scroll-content-btn">Contact Us</button></Link>
         </div>
         </div>
         </div>
@@ -453,11 +437,9 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
       ))}
     </div>
+  
 
-        
-       
-       
-       <p id="why_choose_us" style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
+    <p id="why_choose_us" style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
        <p
   style={{
     width: "90%",
@@ -494,21 +476,21 @@ const [value, setValue] = useState(0);  // State to hold the value
        <div className='scattered'>
         <section>
         
-            <p style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/money-bag.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></p>
+            <p style={{marginInline:"auto",width:"fit-content"}}><img src="/SFG_images/money-bag.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></p>
               <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
               
           
         </section>
         <section>
         
-            <div style={{marginInline:"auto",width:"max-content"}}><img src="../SFG_images/container.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
+            <div style={{marginInline:"auto",width:"max-content"}}><img src="/SFG_images/container.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Expert Handling</h4>
               
            
         </section>
         <section>
         
-            <div style={{marginInline:"auto",width:"fit-content"}}><img src="../SFG_images/route.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
+            <div style={{marginInline:"auto",width:"fit-content"}}><img src="/SFG_images/route.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
            <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
               
         </section>
@@ -524,9 +506,8 @@ const [value, setValue] = useState(0);  // State to hold the value
         </div>
 
       </motion.div>
+        
 
-
-      
       <div className='Why_choose_slider'>
       <div style={{ marginTop:"50px",border:"3px solid #a0c444",borderRadius:"8px",paddingBottom: "5px",width:"100%"}} >
        
@@ -581,9 +562,7 @@ const [value, setValue] = useState(0);  // State to hold the value
       </div>
        <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444"}}></div>
       
-
-        
-    </motion.div>
+    </div>
   )
 }
 

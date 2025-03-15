@@ -14,17 +14,9 @@ import ResetPassword from "./Pages/Auth/ResetPassword";
  const SignUp= lazy(()=> import('./Pages/Auth/SignUp'))
 const ForgetPassword=lazy(()=> import('./Pages/Auth/ForgetPassword'))
 
-function App() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://third-party.com/script.js";
-    script.defer = true;
-    document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script); // Clean up when component unmounts
-    };
-  }, []);
+function App() {
+ 
 
 const [email,setEmail] = useState("")
 function getEmail(mail){

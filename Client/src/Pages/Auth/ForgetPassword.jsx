@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import { Form, Input, Button, Card, Typography, message } from "antd";
-import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
+import  SvgIcon  from "../../Icons/svgl_svg_format_2.svg"
+
 import {Link} from "react-router-dom"
 import './Auth.css'; 
 import axios from "axios"
@@ -34,7 +35,7 @@ const ForgotPassword = () => {
   return (
     <div className="form-container">
          <header className='auth_header'>
-           <Link to={"/"}><SvgIcon style={{marginTop:"9px"}}/></Link>
+           <Link to={"/"}><img src={SvgIcon} alt="SVG Icon" /></Link>
            <Link to={"/Auth/login"}><h3>Login</h3></Link>
           
          </header> 

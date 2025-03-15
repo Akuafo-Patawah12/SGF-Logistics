@@ -99,8 +99,8 @@ body{
  }
 }
 
-.logo{
-  transform: translateY(8px);
+.logo > img{
+  transform: translateY(-15px);
 }
 .h_child2{
   border-top: 8px solid #111;
@@ -108,6 +108,7 @@ body{
   top: 0;
   z-index: 98;
   background: #fff;
+  isolation: isolate;
   padding-inline: 2% 0 !important;
   border-bottom: 2px solid #ddd;
   display: flex;
@@ -497,7 +498,9 @@ footer a{
 
 
 .h_child2{
-  
+  position: fixed;
+  width: 100%;
+  background: white;
   z-index: 30;
 }
 

@@ -6,9 +6,9 @@ import io from "socket.io-client"
 import { message,Empty } from "antd"
 
 import {route1,route2,route3,route4,route5} from "../Components/Routes"
-import{ ReactComponent as ShipIcon } from "../Icons/ShipIcon.svg"
-import{ ReactComponent as MapShipIcon } from "../Icons/MapShip.svg"
-import{ ReactComponent as Ship2Icon } from "../Icons/Ship2.svg"
+import  ShipIcon  from "../Icons/ShipIcon"
+import  MapShipIcon  from "../Icons/MapShip"
+import  Ship2Icon  from "../Icons/Ship2"
 import { RightCircleFilled,ArrowRightOutlined, UpOutlined ,CheckOutlined  } from '@ant-design/icons'
 import Map, { Marker,  NavigationControl,Source,Layer } from "react-map-gl";
 

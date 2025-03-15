@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from "react";
 import "../Styles/Invoice.css";
 
 
-import { ReactComponent as SvgIcon } from "../Icons/svgl_svg_format_2.svg"
+import SvgIcon  from "../Icons/svgl_svg_format_2.svg"
 
 const New = ({invoiceData,divRef}) => {
   
@@ -60,7 +60,7 @@ const New = ({invoiceData,divRef}) => {
    
     
   <div ref={divRef} className="invoice-container">
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> <SvgIcon style={{transform:"translateX(0px)"}}/>  <span style={{color:"red",fontWeight:"500"}}>PROVISIONAL INVOICE </span></div>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> <img src={SvgIcon} style={{transform:"translateX(0px)"}}/>  <span style={{color:"red",fontWeight:"500"}}>PROVISIONAL INVOICE </span></div>
       <div className="invoice-header">
         
         <p>Invoice #: {invoiceData1.invoiceNumber}</p>

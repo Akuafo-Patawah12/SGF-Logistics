@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,Suspense} from 'react'
 import "../../Styles/Services.css"
 import ServicesComponent from '../../Components/ServicesComponent'
 
@@ -7,7 +7,7 @@ import Rocket from '../../Icons/Rocket'
 import Callicon from '../../Icons/Callicon'
 import MailIcon from '../../Icons/MailIcon'
 import {EnvironmentOutlined} from "@ant-design/icons"
-import { transform } from 'framer-motion'
+
 
 const Services = () => {
   const [viewport,setViewport] = useState({
@@ -25,8 +25,9 @@ const Services = () => {
            
         </div>
         <p className="title">Fast & Affordable <span style={{color:"var(--purple)",fontSize:"40px"}}>Services</span> For You.</p>
+        <Suspense fallback="Loading.."> 
         <ServicesComponent />
-      
+        </Suspense>
        
         <section className="Contact_info" style={{marginInline:"auto"}}>
         <div className='Infor'>
@@ -52,7 +53,7 @@ const Services = () => {
       initialViewState={viewport}
       style={{ width: "100%", height:"400px",marginTop:"30px" }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+      mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
       id="Map"
       
       scrollZoom={{

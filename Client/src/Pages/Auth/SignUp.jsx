@@ -3,7 +3,8 @@ import {useNavigate} from "react-router-dom"
 import './Auth.css'; // Import the CSS file
 import axios from "axios"
 import { Link } from "react-router-dom";
-import { ReactComponent as SvgIcon } from "../../Icons/svgl_svg_format_2.svg"
+import  SvgIcon  from "../../Icons/svgl_svg_format_2.svg"
+
 import { Form, Input, Button, Typography, Card ,message } from "antd";
 const { Title, Text } = Typography;
 
@@ -85,7 +86,7 @@ const SignUp = ({slide}) => {
   return (
     <div className="form-container form_cont2">
          <header className='auth_header'>
-           <Link to={"/"} ><SvgIcon style={{marginTop:"9px"}}/></Link>
+           <Link to={"/"} ><img src={SvgIcon} alt="SVG Icon" /></Link>
            <Link to={"/Auth/login"}><h3>Login</h3></Link>
          </header> 
     <section className="auth_section">

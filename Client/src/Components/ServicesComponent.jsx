@@ -48,7 +48,7 @@ const ServicesComponent = () => {
           <div
               
            style={{position:"relative"}} className="hover_parent parent1">
-             <img src='./SFG_images/s.jpg' alt=''></img>
+             <img src='./SFG_images/s.webp' alt=''></img>
              <div  className="hover_to_display">
              <h4 style={{color:"white",marginTop:"5px",fontSize:"27px"}}>Container Clearance</h4><br/>
              <Link to={"/Services/Clearance"}><button>View More</button></Link>

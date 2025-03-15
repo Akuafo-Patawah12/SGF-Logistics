@@ -1,6 +1,6 @@
 import React from 'react'
-import {DoubleRightOutlined,EnvironmentOutlined, FacebookOutlined,  MailOutlined, PhoneOutlined, WhatsAppOutlined, YoutubeOutlined} from '@ant-design/icons'
-import { ReactComponent as Tiktok} from "../Icons/Tiktok.svg"
+import {DoubleRightOutlined,EnvironmentOutlined, FacebookOutlined,  MailOutlined, PhoneOutlined, WhatsAppOutlined, YoutubeOutlined,TikTokOutlined} from '@ant-design/icons'
+
 import Accordion from './Accordion'
 import { Link } from 'react-router-dom'
 
@@ -190,7 +190,7 @@ const Footer = () => {
           <WhatsAppOutlined style={{ fontSize: "24px", color: "#25D366" }} />
         </a>
         <a href="https://www.tiktok.com/@sfghanalogistics" target="_blank" rel="noopener noreferrer">
-        <Tiktok style={{transform:"translateY(4px)"}}/>
+        <TikTokOutlined style={{ fontSize: "24px", color: "#25D366" }}/>
         </a>
       </div>
     </Card>
