@@ -243,7 +243,7 @@ const [value, setValue] = useState(0);  // State to hold the value
           
           
           <section style={{display:"flex",gap:"1rem"}}>
-            <button onClick={()=> setIsVideo(true)} style={{border:"none",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}}><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
+            <button onClick={()=> setIsVideo(true)} style={{border:"none",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}} className='how_it_works'><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
           </section>
           </div>
       <div
@@ -360,8 +360,8 @@ const [value, setValue] = useState(0);  // State to hold the value
             China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
             and experience the SFGL difference. 
           </p>
-          <Link to={"/Auth/sign_up"} className='welcome_button'><button className='welcome_butt'><span>GET STARTED</span>
-          <div className='liquid'></div></button></Link>
+          <button className='welcome_button'><Link to={"/Auth/sign_up"} className='welcome_butt'><span>GET STARTED</span>
+          <div className='liquid'></div></Link></button>
          </motion.div>
       
 

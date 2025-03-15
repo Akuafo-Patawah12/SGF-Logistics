@@ -473,6 +473,7 @@
       color: white;
     }
 
+    
   }
 
   .btn{
@@ -739,7 +740,7 @@ animation: animat 10s linear infinite;
 
     .welcome_button{
       height: fit-content;
-      z-index: 70;
+      z-index: 2;
       top: -250px;
       left: 50%;
       border-radius: 5px;
@@ -747,7 +748,7 @@ animation: animat 10s linear infinite;
       transform: translate(-50%,-10%)
     }
 
-    
+   
 
     .why{
       grid-template-columns: 1fr;
