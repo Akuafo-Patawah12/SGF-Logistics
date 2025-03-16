@@ -81,7 +81,7 @@ const trackingId = searchParams.get("tracking_id");
       
   
       const getSeaRoute = async (start, end) => {
-        const accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+        const accessToken = process.env.VITE_MAPBOX_TOKEN;
         
         
         
@@ -332,7 +332,7 @@ useEffect(() => {
       }}
       style={{ width: "100%", height:"400px",marginTop:"30px" }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken= {process.env.REACT_APP_MAPBOX_TOKEN}
+      mapboxAccessToken= {process.env.VITE_MAPBOX_TOKEN}
       id="Map"
     >
       <Marker latitude={routesMap[route][Index].Latitude} longitude={routesMap[route][Index].Longitude}>
