@@ -295,7 +295,7 @@ useEffect(() => {
       }}
       style={{ width: "100%", height:"400px",marginTop:"30px" }}
       mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxAccessToken= {process.env.VITE_MAPBOX_TOKEN}
+      mapboxAccessToken= {import.meta.env.VITE_MAPBOX_TOKEN}
       id="Map"
     >
       <Marker latitude={routesMap[route][Index].Latitude} longitude={routesMap[route][Index].Longitude}>
