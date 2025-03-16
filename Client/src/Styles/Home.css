@@ -34,11 +34,11 @@
   }
 
   .flexbox_1:first-child{
-    background-image: url("../../SFG_images/Air.jpg");
+    background-image: url("/SFG_images/Air.jpg");
   }
 
   .flexbox_1:last-child{
-    background-image: url("../../SFG_images/Slider4.jpg");
+    background-image: url("/SFG_images/Slider4.jpg");
   }
 
   .flexbox_1{
@@ -663,7 +663,8 @@
   background: rgb(20, 20, 20,0.5);
 animation: animat 10s linear infinite;
 }
-@Keyframes animat{
+
+@keyframes animat{
 0%{
   transform: translate(-50%, -75%) rotate(0deg);
 

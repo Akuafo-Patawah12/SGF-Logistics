@@ -1,9 +1,10 @@
-import React,{useState,useRef,useEffect,useMemo,Suspense} from 'react'
+import React,{useState,useRef,useEffect,useMemo,Suspense, lazy} from 'react'
 import {motion,useAnimation} from "framer-motion"
 
 import  Web3star from "../Icons/Web3star" 
 import Truck  from "../Icons/Truck"
 import Anchor  from "../Icons/Anchor"
+
 import Container  from "../Icons/Container"
 
 import CargoShip from "../Icons/CargoShip"
@@ -25,7 +26,7 @@ import {  PlayCircleFilled } from '@ant-design/icons'
 
 import HowItWorksVideo from '../Components/HowItWorksVideo'
 import EndUsersIcon from '../Icons/EndUsersIcon'
-import ServicesComponent from '../Components/ServicesComponent'
+const  ServicesComponent= lazy(()=> import( '../Components/ServicesComponent'))
 const HomePage = ({setIsVideo}) => {
   const socket= useMemo(() => io("https://api.sfghanalogistics.com",{
     transports: ["websocket","polling"],
@@ -329,12 +330,13 @@ const [value, setValue] = useState(0);  // State to hold the value
              
           </motion.div>
         </div>
-            <LazyLoadImage src='./SFG_images/Ware.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} /> 
+            <LazyLoadImage src='/SFG_images/Ware.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} /> 
           </div>
           
         
       </div>
       </div>
+      
 
       <p className='Description' style={{position:"relative",isolation:"isolate"}}>We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
          
@@ -367,7 +369,7 @@ const [value, setValue] = useState(0);  // State to hold the value
 
 
          <div className='welcome_image'>
-         <LazyLoadImage src="./SFG_images/Get_in_Touch.webp" alt="welcome image"  style={{width:"100%",height:"100%"}}/>
+         <LazyLoadImage src="/SFG_images/Get_in_Touch.webp" alt="welcome image"  style={{width:"100%",height:"100%"}}/>
              <div title="welcome image"></div>
          </div>
 
@@ -381,7 +383,9 @@ const [value, setValue] = useState(0);  // State to hold the value
           </div>
       </h3>
       </div>
-      
+        
+
+     
       <div style={{width:"100px",height:"2px",background:"#1C1818",marginInline:"auto",marginTop:"4px"}}></div>
 
       <p className="Service-title">Fast and Affordable Services.</p>
@@ -400,7 +404,7 @@ const [value, setValue] = useState(0);  // State to hold the value
         <div>
       <div className="image-container">
         <div className="scrolling-content">
-        
+         
           
           <h2 className="assist">Do you need assistance?</h2>
           <p>
