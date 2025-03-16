@@ -80,57 +80,20 @@ const trackingId = searchParams.get("tracking_id");
       
       
   
-      const getSeaRoute = async (start, end) => {
-        const accessToken = process.env.VITE_MAPBOX_TOKEN;
-        
-        
-        
-        try {
-          const response = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/driving/${start[0]},${start[1]};${end[0]},${end[1]}?access_token=${accessToken}&geometries=geojson`
-          );
-      
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-      
-          const data = await response.json();
-      
-          if (!data.routes || data.routes.length === 0) {
-            console.warn("No sea route found, using default route.");
-            return []; // Return empty array to trigger fallback
-          }
-      
-          return data.routes[0].geometry.coordinates; // Valid coordinates
-        } catch (error) {
-          console.error("Error fetching sea route:", error);
-          return []; // Return empty array on error
-        }
-      };
-      
-      
       useEffect(() => {
         if (route && routesMap[route]) {
-          const rerouteThroughSea = async () => {
-            const landCoordinates = routesMap[route].map(({ Longitude, Latitude }) => [Longitude, Latitude]);
+          const landCoordinates = routesMap[route].map(({ Longitude, Latitude }) => [Longitude, Latitude]);
       
-            const seaCoordinates = await getSeaRoute(
-              landCoordinates[0], 
-              landCoordinates[landCoordinates.length - 1]
-            );
-      
-            setLineGeoJSON({
-              type: "Feature",
-              geometry: {
-                type: "LineString",
-                coordinates: seaCoordinates.length > 0 ? seaCoordinates : landCoordinates, // Fallback
-              },
-            });
-          };
-      
-          rerouteThroughSea();
+          setLineGeoJSON({
+            type: "Feature",
+            geometry: {
+              type: "LineString",
+              coordinates: landCoordinates, // Only land routes
+            },
+          });
         }
       }, [route]);
+      
       
 
       
