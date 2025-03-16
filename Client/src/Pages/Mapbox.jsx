@@ -344,31 +344,15 @@ useEffect(() => {
 
       {/* Add Line */}
       <Source id="line-source" type="geojson" data={lineGeoJSON}>
-      <Layer
-    id="route-border"
-    type="line"
-    paint={{
-      "line-color": "#333", // Border color
-      "line-width": 2, // Slightly thicker than main line
-    }}
-  />
+      
         <Layer
           id="line-layer"
           type="line"
           paint={{
-            "line-color": "#eee", // BlueViolet line color
+            "line-color": "#8A2BE2", // BlueViolet line color
             "line-width": 3, // Line thickness
           }}
         />
-
-<Layer
-    id="route-border"
-    type="line"
-    paint={{
-      "line-color": "#333", // Border color
-      "line-width": 2, // Slightly thicker than main line
-    }}
-  />
       </Source>
 
      
