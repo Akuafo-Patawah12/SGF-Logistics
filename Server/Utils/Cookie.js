@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-function sendCookie(payload,rememberMe,res){
+async function sendCookie(payload,rememberMe,res){
     // create refresh token
+    try{
     const refresh_token= jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET,{
         expiresIn: rememberMe ? '30d' : '1h' // 30 days if "Remember Me" is checked, else 1 hour  
     })
@@ -16,6 +17,10 @@ function sendCookie(payload,rememberMe,res){
         path: "/",
         maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
     });
+
+}catch(err){
+    console.err("Error sending cookies")
+}
      
 }
 

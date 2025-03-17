@@ -78,7 +78,7 @@ const otp = generateOTP();
         })
 
         
-        sendCookie(payload,rememberMe,res)
+       await sendCookie(payload,rememberMe,res)
         const protected= email_Exist.account_type // find the user's account type "whether it's a personal or business account"
 
         switch (protected) {

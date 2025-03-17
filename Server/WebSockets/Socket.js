@@ -32,7 +32,7 @@ function initializeSocket(server){
 const verifyToken = util.promisify(jwt.verify); // Convert jwt.verify into async/await
 
 async function middleware(socket, next) {
-  await new Promise(resolve => setTimeout(resolve, 200));
+ 
   try {
     const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
     console.log("Cookie Header:", cookieHeader);
@@ -67,7 +67,7 @@ async function middleware(socket, next) {
 
 
 async function middleware2(socket, next) {
-  await new Promise(resolve => setTimeout(resolve, 200));
+  
   try {
     const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
     console.log("Cookie Header:", cookieHeader);
