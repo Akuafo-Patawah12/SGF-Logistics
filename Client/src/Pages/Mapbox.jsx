@@ -6,7 +6,7 @@ import io from "socket.io-client"
 import { message,Empty } from "antd"
 
 import {route1,route2,route3,route4,route5} from "../Components/Routes"
-import  ShipIcon  from "../Icons/ShipIcon"
+import  ShipIcon  from "../Icons/ShipIcon.svg"
 import  MapShipIcon  from "../Icons/MapShip"
 import  Ship2Icon  from "../Icons/Ship2"
 import { RightCircleFilled,ArrowRightOutlined, UpOutlined ,CheckOutlined  } from '@ant-design/icons'
@@ -237,7 +237,7 @@ useEffect(() => {
         <div className="line_map" ref={parent}>
         <div className="line_inner" >
           
-        <div  className="ship" style={{background:"yellow !important",position:"relative"}}><span tyle={{ position: "absolute",top:"-40px", left: `${xPosition-5}px` ,width:"fit-content"}}><ShipIcon  /></span>
+        <div  className="ship" style={{background:"yellow !important",position:"relative"}}><img src={ShipIcon} alt='ship' style={{ position: "absolute",top:"-40px", left: `${xPosition-3}px` ,width:"fit-content"}}/> 
          </div>
         <section className="line" style={{position:"relative"}} >
           
