@@ -186,10 +186,11 @@ const AllOrders=()=>{
       } else {
         setFilteredOrders(
           myorders.filter((myOrder) =>
-            myOrder.items[0].trackingNo.toString().toLowerCase().includes(search.toLowerCase())
-          )
+            myOrder.items[0].trackingNo.toString().toLowerCase().includes(search.toLowerCase()) ||
+           myOrder.status.toString().toLowerCase().includes(search.toLowerCase())
+        ) 
         );
-        if (filteredOrders.length === 0){
+        if (filteredOrders.length < 1){
           setNoresult(true)
         }
       }
@@ -313,7 +314,7 @@ const AllOrders=()=>{
       </Space>
 
       <Input
-        placeholder="Search by tracking number..."
+        placeholder="Search by tracking number or status..."
         prefix={<SearchOutlined />}
         value={search}
         onChange={(e) => setSearch(e.target.value)}

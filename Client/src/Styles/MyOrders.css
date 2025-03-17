@@ -90,12 +90,14 @@
 
 @media (max-width: 768px){
     .my_item_grid{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
 @media (max-width: 689px){
-    
+    .my_item_grid{
+        grid-template-columns: 1fr;
+    }
     .create_order-btn{
         width: 100%;
     }
