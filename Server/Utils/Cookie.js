@@ -10,12 +10,13 @@ function sendCookie(payload,rememberMe,res){
     particular user who is logged in that's what res.cookie does"*/ 
 
     res.cookie('refreshToken', refresh_token, {
-        httpOnly: true,   // Ensures that the cookie is only accessible via HTTP(S) requests
-        path: '/',        // Specifies the path for which the cookie is valid
-        secure: process.env.NODE_ENV === 'production',        // Indicates that the cookie should only be sent over HTTPS
-        sameSite: "None",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Only send over HTTPS
+        sameSite: "None", // Required for cross-origin requests
+        path: "/",
         maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
-});   
+    });
+     
 }
 
 
