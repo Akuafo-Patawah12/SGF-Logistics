@@ -94,10 +94,9 @@
     }
 }
 
+
 @media (max-width: 689px){
-    .my_item_grid{
-        grid-template-columns: 1fr;
-    }
+    
     .create_order-btn{
         width: 100%;
     }
@@ -115,5 +114,11 @@
 
     .buttons_1{
         border-bottom: 1px solid #ddd;
+    }
+}
+
+@media (max-width: 569px){
+    .my_item_grid{
+        grid-template-columns: 1fr;
     }
 }
