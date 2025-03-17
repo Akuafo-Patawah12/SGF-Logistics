@@ -67,7 +67,7 @@ const Login = ({getEmail}) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({formData}), // example payload
+          body: JSON.stringify(formData), // example payload
           credentials: 'include'  // This ensures cookies are sent with the request
         });
     
