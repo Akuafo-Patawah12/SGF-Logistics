@@ -120,7 +120,7 @@ const Login = ({getEmail}) => {
            message.success("login successful")
            setTimeout(()=>{
             navigate(`/MyOrders`); // Redirect first-time users to Orders
-           },50)
+           },1000)
             
 
               
@@ -132,7 +132,7 @@ const Login = ({getEmail}) => {
           message.success("login successful")
           setTimeout(()=>{
           navigate("/containers")
-        },50)
+        },1000)
         }
       }
 
