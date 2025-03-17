@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr';
 import visualizer from "rollup-plugin-visualizer";
+import compression from 'vite-plugin-compression';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -17,6 +18,8 @@ export default defineConfig({
         icon: true, // Optional: Treat SVGs as icons
       },
     }),
+    compression({ algorithm: 'gzip' }), // Enable Gzip compression
+    compression({ algorithm: 'brotliCompress' }) // Enable Brotli compression
   ],
   
   build: {
