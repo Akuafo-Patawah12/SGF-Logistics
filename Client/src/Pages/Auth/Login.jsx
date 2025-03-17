@@ -118,17 +118,21 @@ const Login = ({getEmail}) => {
             setLoader(false)
           setSuccess(true);
            message.success("login successful")
-        
+           setTimeout(()=>{
             navigate(`/MyOrders`); // Redirect first-time users to Orders
+           },50)
+            
 
               
           }
           if(data.message==="Logged in as an admin"){
             setLoader(false)
           setSuccess(true);
+          
           message.success("login successful")
-         
+          setTimeout(()=>{
           navigate("/containers")
+        },50)
         }
       }
 
