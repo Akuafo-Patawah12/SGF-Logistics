@@ -7,6 +7,7 @@ const AdminPath = require("./AdminNamespace");
 const Tracking = require("./TrackingNamespace");
 const Shipping = require("./ShipmetNamespace");
 const rates = require("./DefaultSocket");
+const { resolve } = require("path");
 
 
 
@@ -32,6 +33,7 @@ function initializeSocket(server){
 const verifyToken = util.promisify(jwt.verify); // Convert jwt.verify into async/await
 
 async function middleware(socket, next) {
+  new Promise(resolve => resolve(200))
  
   try {
     const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
@@ -67,7 +69,7 @@ async function middleware(socket, next) {
 
 
 async function middleware2(socket, next) {
-  
+  new Promise(resolve => resolve(200))
   try {
     const cookieHeader = socket.request.headers.cookie; // Getting HTTP-only cookies from socket
     console.log("Cookie Header:", cookieHeader);
