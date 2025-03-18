@@ -46,17 +46,34 @@ const AllOrders=()=>{
    
    const [ viewData,setViewData] = useState(null)
 
-  useEffect(()=>{
-    
-          socket.emit("getOrdersByUser","hello",(response)=>{
+   useEffect(() => {
+    const handleConnect = () => {
+      console.log("Socket connected:", socket.id);
 
-          if (response.status==="error"){
-            setNoresult(true)
-            setMyOrders([])
-            setLoadingProgress(false)
-          }
-        })
-  },[])
+      socket.emit("getOrdersByUser", "hello", (response) => {
+        console.log("Server response:", response);
+
+        if (response.status === "error") {
+          setNoresult(true);
+          setMyOrders([]);
+        } else {
+          setMyOrders(response.orders || []);
+        }
+
+        setLoadingProgress(false);
+      });
+    };
+
+    if (socket.connected) {
+      handleConnect(); // Emit immediately if already connected
+    } else {
+      socket.on("connect", handleConnect);
+    }
+
+    return () => {
+      socket.off("connect", handleConnect);
+    };
+  }, []); // No dependencies needed
 
   
 
