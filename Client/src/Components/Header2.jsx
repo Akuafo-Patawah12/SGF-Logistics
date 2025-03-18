@@ -35,9 +35,7 @@ const Header2 = ({popDetails}) => {
     
     <nav  className="nav1" style={{transform:"translateY(10px)"}}>
          <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"500",}}>Home</span> </NavLink>
-         <NavLink to={"/About"} style={{position:"relative"}} className="click" onClick={()=>{setPopNav(prev => !prev)}}>About   
-              
-         </NavLink>
+         <NavLink to={"/About"} style={Link_text} className="header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >About</span> </NavLink>
          
          <NavLink to={"/Services"} style={{position:"relative",}} className="click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  
          <div style={{ transform: "translateY(4px) rotate(180deg)" }}>
