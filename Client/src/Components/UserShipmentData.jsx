@@ -49,7 +49,7 @@ const UserShipmentData = ({visible, onClose, shipmentData, loading3}) => {
             </Descriptions.Item>
           </Descriptions>
 
-          <Title level={4} style={{ marginTop: "20px" }}>Shipment Items</Title>
+          <Title level={4} style={{ marginTop: "20px" }}>Shipment Info</Title>
 
           {items.map((item, index) => (
             <Card key={index} style={{ marginBottom: "10px", background: "#f9f9f9" }}>
