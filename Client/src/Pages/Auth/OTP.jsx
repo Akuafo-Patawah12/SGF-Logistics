@@ -103,7 +103,7 @@ const OTP = ({mail}) => {
     try {
       if (!email) return message.error("Email is required"); 
   
-      const response = await axios.post("https://api.sfghanalogistics.com/resend-otp", { email });
+      const response = await axios.post("https://api.sfghanalogistics.com/resend-otp", { email: `${email==="" ? mail : email}` });
   
       if (response.status === 200) {
         message.success(`Verification code sent to ${email}`);
