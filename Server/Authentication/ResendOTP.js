@@ -9,7 +9,7 @@ const transport = require("../Utils/MailTransporter");
 async function resendOtp(req,res){
    
     
-    const {email }= req.body.formData   //grabing user credentials from the client side.
+    const {email }= req.body   //grabing user credentials from the client side.
      console.log({email})
 
      const generateOTP = () => Math.floor(1000 + Math.random() * 9000).toString();
