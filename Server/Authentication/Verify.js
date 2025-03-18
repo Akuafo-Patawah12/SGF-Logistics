@@ -59,7 +59,7 @@ const sendCookie = require("../Utils/Cookie");
     }
     await record.save()
     let rememberMe=true;
-    sendCookie(payload,rememberMe,res)
+    await sendCookie(payload,rememberMe,res)
 
     if(record.account_type==="User"){
       res.status(200).json({ success: true, message: "OTP verified!" });
