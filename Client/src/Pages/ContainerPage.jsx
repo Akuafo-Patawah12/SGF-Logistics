@@ -61,12 +61,27 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
     }
   }, [search, containers]); 
 
-  useEffect(()=>{
-    socket.connect()
-    socket.emit("get_all_container")
-    socket1.emit("joinRoom", "adminRoom")
-    socket.connect()
-  },[])
+  useEffect(() => {
+    const handleConnect = () => {
+
+      socket1.emit("joinRoom", "adminRoom");
+      socket.emit("get_all_container");
+    };
+
+    if (socket.connected) {
+      handleConnect();
+    } else {
+      socket.on("connect", handleConnect);
+      socket1.on("connect", handleConnect);
+    }
+
+    return () => {
+      socket.off("connect", handleConnect);
+      socket1.off("connect", handleConnect);
+      socket.disconnect();
+      socket1.disconnect();
+    };
+  }, []);
 
   
 
