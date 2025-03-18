@@ -156,7 +156,7 @@ const OTP = ({mail}) => {
       ))}
     </div>
     <div class="resend-container">
-  <p>Didn't receive a code? <button class="resend-btn" onClick={resendOtp}>Click to resend</button></p>
+  <p>Didn't receive a code? <button class="resend-btn" onClick={()=>resendOtp(email)}>Click to resend</button></p>
 </div>
 </div>
     </div>
