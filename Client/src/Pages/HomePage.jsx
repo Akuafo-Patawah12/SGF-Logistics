@@ -239,11 +239,11 @@ const [value, setValue] = useState(0);  // State to hold the value
     <div
     
      style={{overflow:"hidden",background:"#fff"}} className='Home'>
-        <div>
+        <div style={{position:"relative"}}>
         <div className='Image_Text'>
           
           
-          <section style={{display:"flex",gap:"1rem",transform:"translateY(-10px)"}}>
+          <section style={{display:"flex",gap:"1rem"}}>
             <button onClick={()=> setIsVideo(true)} style={{border:"none",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}} className='how_it_works'><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
           </section>
           </div>

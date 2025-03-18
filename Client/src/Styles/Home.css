@@ -73,7 +73,7 @@
        background-color: var(--green);
     }
   }
-
+  
   .p_info{
     font-weight: 500;
     color:white;
@@ -465,8 +465,9 @@
     bottom: 10%;
     left: 2.5%;
     display: flex;
+    z-index: 30;
     flex-direction: column;
-    gap: 120px;
+    
 
     & h3{
       font-size: x-large;
