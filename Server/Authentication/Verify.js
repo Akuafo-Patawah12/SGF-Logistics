@@ -1,6 +1,6 @@
 const user= require("../Models/UsersSchema")
 const UAParser= require("ua-parser-js");
-const sendCookie = require("../Utils/Cookie");
+const jwt = require("jsonwebtoken")
 
 
   
