@@ -57,7 +57,7 @@ const OTP = ({mail}) => {
     }
   };
 
-
+ axios.defaults.withCredentials=true
   const verifyOTP = async (enteredOtp) => {
     try {
       const response = await axios.post("https://api.sfghanalogistics.com/verify-otp", {
@@ -78,6 +78,7 @@ const OTP = ({mail}) => {
         return
      
       }else if(response.status===200){
+
         navigate(`/MyOrders`)
 
       }else if(response.status===201){
