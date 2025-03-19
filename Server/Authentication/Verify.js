@@ -33,12 +33,7 @@ require("dotenv").config()
       return res.status(404).json({ success: false, message: "OTP not found!" });
     }
 
-    const payload = {
-        id: record._id, // Example user ID
-        role: record.accountype,
-        iat: Math.floor(Date.now() / 1000) // Set issued at timestamp
-        
-      };
+    
     
 
     if (record.verification_code === null || record.verification_code !== parseInt(otp)) {
@@ -59,6 +54,13 @@ require("dotenv").config()
         record.device_info.push(userDeviceInfo);
     }
     await record.save()
+
+    const payload = {
+      id: record._id, // Example user ID
+      role: record.accountype,
+      iat: Math.floor(Date.now() / 1000) // Set issued at timestamp
+      
+    };
     let rememberMe=true;
     const refresh_token= jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET,{
       expiresIn: rememberMe ? '30d' : '1h' // 30 days if "Remember Me" is checked, else 1 hour  
