@@ -54,7 +54,15 @@ require("dotenv").config()
         record.device_info.push(userDeviceInfo);
     }
     await record.save()
+    
 
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+  });
+  
     const payload = {
       id: record._id, // Example user ID
       role: record.accountype,
