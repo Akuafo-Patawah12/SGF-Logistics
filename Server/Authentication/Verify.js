@@ -1,4 +1,4 @@
-const user= require("../Models/UsersSchema")
+const User= require("../Models/UsersSchema")
 const UAParser= require("ua-parser-js");
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -27,7 +27,7 @@ require("dotenv").config()
     console.log({ email, otp })
     try{
 
-    const record = await user.findOne({ email });
+    const record = await User.findOne({ email });
   
     if (!record) {
       return res.status(404).json({ success: false, message: "OTP not found!" });
@@ -62,10 +62,10 @@ require("dotenv").config()
       sameSite: "None",
       path: "/",
   });
-  
+
     const payload = {
       id: record._id, // Example user ID
-      role: record.accountype,
+      role: record.account_type,
       iat: Math.floor(Date.now() / 1000) // Set issued at timestamp
       
     };
