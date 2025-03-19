@@ -4,7 +4,7 @@ const ContainerSchema = new mongoose.Schema({
   containerNumber: { type: Number, required: true, unique: true },
   loadingDate: { type: Date },  // Date when the shipment is loaded
   eta: { type: Date, required: true },
-  status:{type:String, enum:["Pending...","In Transit","Delivered","Cancelled"],default:"Pending..."},
+  status:{type:String, enum:["Pending...","In Transit", "At Tema Port waiting for clearance", "At our warehouse"],default:"Pending..."},
   route: { type: String, required: true },     // Route description (e.g., "Shanghai -> New York")
   port: { type: String, required: true },      // Port of destination
   cbmRate: { type: Number, required: true },   // Cost per CBM (Cubic Meter)
