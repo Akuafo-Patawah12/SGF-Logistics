@@ -1,6 +1,7 @@
 const user= require("../Models/UsersSchema")
 const UAParser= require("ua-parser-js");
 const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 
   
