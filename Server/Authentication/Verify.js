@@ -66,12 +66,12 @@ const jwt = require("jsonwebtoken")
   particular user who is logged in that's what res.cookie does"*/ 
 
   res.cookie('refreshToken', refresh_token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None", // Required for cross-origin requests
-      path: "/",
-      maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
-  });
+    httpOnly: true,
+    secure: true,
+    sameSite: "None", // Required for cross-origin requests
+    path: "/",
+    maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000 // 30 days or 1 hour
+});
 
 
     if(record.account_type==="User"){

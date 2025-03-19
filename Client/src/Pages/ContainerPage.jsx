@@ -132,17 +132,34 @@ const socket = useMemo(() =>io("https://api.sfghanalogistics.com/shipment",{
   };
   
     
+  useEffect(() => {
+    const handleConnect = () => {
+      console.log("Socket connected:", socket.id);
+
+      socket.emit("fetchContainers", (response) => {
+        if (response.status === "ok") {
+          setContainers(response.containers);
+        } else {
+          setError(response.message);
+        }
+        setLoading(false);
+      });
+    };
+
+    if (socket.connected) {
+      handleConnect(); // Emit immediately if already connected
+    } else {
+      socket.on("connect", handleConnect);
+    }
+
+    return () => {
+      socket.off("connect", handleConnect);
+    };
+  }, []); // No dependencies needed
 
     useEffect(() => {
         // Fetch initial container list
-        socket.emit("fetchContainers", (response) => {
-          if (response.status === "ok") {
-            setContainers(response.containers);
-          } else {
-            setError(response.message);
-          }
-          setLoading(false);
-        });
+        
     },[])
 
     useEffect(() => {
