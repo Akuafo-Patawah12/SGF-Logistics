@@ -147,8 +147,8 @@ useEffect(() => {
     
   },
   {
-    name: 'Michael Osei',
-    role: 'Owner of GHI Retailers',
+    name: 'Akuafo Patawah',
+    role: 'Owner of Techscroww',
     text: 'Exceptional service and timely deliveries! SFGL truly lives up to its motto, "Whatever the load, we carry it."',
     
   },
