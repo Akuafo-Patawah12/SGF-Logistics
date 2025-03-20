@@ -27,17 +27,17 @@ const Header2 = ({popDetails}) => {
         const[popNav2,setPopNav2]= useState(false)
 
         const Link_text={textDecoration:"none", fontSize:"16px",fontWeight:"400 !important"}
-
+        const [activeLink, setActiveLink] = useState("");
 
   return (
     <div className="h_child2" >
         <Link to={"/"} className="logo" style={{height:"100%", overflow:"hidden"}}><img src={SvgIcon} alt="SVG Icon" /></Link>
     
     <nav  className="nav1" style={{transform:"translateY(10px)"}}>
-         <a href="/"><span className='active header_links' style={{fontSize:"16px",fontWeight:"500",}}>Home</span> </a>
-         <a href="/About" style={Link_text} className="active header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >About</span> </a>
+         <a href="/"><span className={`header_links ${activeLink === "" ? "active" : ""}`} onClick={()=> setActiveLink("")} style={{fontSize:"16px",fontWeight:"500",}}>Home</span> </a>
+         <a href="/About" style={Link_text} className={`header_links ${activeLink === "About" ? "active" : ""}`} onClick={()=> setActiveLink("About")}><span style={{fontSize:"16px",fontWeight:"500"}} >About</span> </a>
          
-         <a href="/Services" style={{position:"relative",}} className="active click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  
+         <a href="/Services" style={{position:"relative",}} className={`click ${activeLink === "Services" ? "active" : ""}`} onClick={()=> setActiveLink("Services")}><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  
          <div style={{ transform: "translateY(4px) rotate(180deg)" }}>
   <Triangle />
 </div>
@@ -51,9 +51,9 @@ const Header2 = ({popDetails}) => {
               </div>
          </a>
          
-         <a href={"/Contact"} style={Link_text} className="active header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >Contact</span> </a>
+         <a href={"/Contact"} style={Link_text} className={`header_links ${activeLink === "Contact" ? "active" : ""}`} onClick={()=> setActiveLink("Contact")}><span style={{fontSize:"16px",fontWeight:"500"}} >Contact</span> </a>
  
-         <a href="/More" style={Link_text} className="active click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  
+         <a href="/More" style={Link_text} className={`click ${activeLink === "More" ? "active" : ""}`} onClick={()=> setActiveLink("More")}><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  
          <div style={{ transform: "translateY(4px) rotate(180deg)" }}>
             <Triangle />
           </div>
