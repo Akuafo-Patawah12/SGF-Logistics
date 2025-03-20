@@ -119,7 +119,7 @@ const Login = ({getEmail}) => {
           setSuccess(true);
            message.success("login successful")
            setTimeout(()=>{
-            navigate(`/MyOrders`); // Redirect first-time users to Orders
+            window.location.href = "/MyOrders";  // Redirect first-time users to Orders
            },1000)
             
 
@@ -131,7 +131,7 @@ const Login = ({getEmail}) => {
           
           message.success("login successful")
           setTimeout(()=>{
-          navigate("/containers")
+          window.location.href = "/containers";
         },1000)
         }
       }
