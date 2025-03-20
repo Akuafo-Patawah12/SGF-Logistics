@@ -34,10 +34,10 @@ const Header2 = ({popDetails}) => {
         <Link to={"/"} className="logo" style={{height:"100%", overflow:"hidden"}}><img src={SvgIcon} alt="SVG Icon" /></Link>
     
     <nav  className="nav1" style={{transform:"translateY(10px)"}}>
-         <NavLink to={"/"}><span className='header_links' style={{fontSize:"16px",fontWeight:"500",}}>Home</span> </NavLink>
-         <NavLink to={"/About"} style={Link_text} className="header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >About</span> </NavLink>
+         <a href="/"><span className='active header_links' style={{fontSize:"16px",fontWeight:"500",}}>Home</span> </a>
+         <a href="/About" style={Link_text} className="active header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >About</span> </a>
          
-         <NavLink to={"/Services"} style={{position:"relative",}} className="click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  
+         <a href="/Services" style={{position:"relative",}} className="active click "><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>Services  
          <div style={{ transform: "translateY(4px) rotate(180deg)" }}>
   <Triangle />
 </div>
@@ -49,11 +49,11 @@ const Header2 = ({popDetails}) => {
                 <p><Link to={"/Services/Door2door"} style={Link_text}>Door to door delivery</Link></p>
                 <p><Link to={"/Services/Groupage"} style={Link_text}>Groupage</Link></p>
               </div>
-         </NavLink>
+         </a>
          
-         <NavLink to={"/Contact"} style={Link_text} className="header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >Contact</span> </NavLink>
+         <a href={"/Contact"} style={Link_text} className="active header_links"><span style={{fontSize:"16px",fontWeight:"500"}} >Contact</span> </a>
  
-         <NavLink to={"/More"} style={Link_text} className=" click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  
+         <a href="/More" style={Link_text} className="active click"><span style={{display:"flex",fontSize:"16px",fontWeight:"500"}}>More  
          <div style={{ transform: "translateY(4px) rotate(180deg)" }}>
             <Triangle />
           </div>
@@ -66,7 +66,7 @@ const Header2 = ({popDetails}) => {
                 
          
          </div>
-         </NavLink>     
+         </a>     
           </nav> 
      
       <div style={{width:"fit-content",marginRight:"3px",gap:"10px",display:"flex",alignItems:"center"}}>
