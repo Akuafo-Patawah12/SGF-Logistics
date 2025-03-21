@@ -3,16 +3,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh;
+    
+    padding-block: 30px;
     background-color: #f8f9fa;
-    padding: 20px;
+    
   
   }
   
   .contact-card {
-    width: 100%;
-    max-width: 600px;   
-    padding: 20px;
+    width: 95%;
+    margin-inline: auto;
+    padding: 40px 20px;
     background: #ffffff;
     text-align: center;
   }
