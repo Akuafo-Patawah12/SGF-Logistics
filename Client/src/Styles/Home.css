@@ -255,7 +255,7 @@
         right: 0;
         width: 100px;
         height: 100px;
-        background-image: url("../../SFG_images/Air2.jpg");
+        background-image: url("/SFG_images/Air2.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -545,7 +545,7 @@
 
  .image-container {
    position: relative;
-   background: url("../../SFG_images/Door-to-door.jpg") repeat fixed 100%;
+   background: url("/SFG_images/Door-to-door.jpg") repeat fixed 100%;
    background-size: cover;
    height: 420px;
 

@@ -6,7 +6,7 @@
 
 .service_image_header{
    position: relative;
-   background: url("../../SFG_images/Slider2.jpg") no-repeat  fixed 100%;
+   background: url("/SFG_images/Slider2.jpg") no-repeat  fixed 100%;
    background-size: cover;
    height: 350px;
    margin-bottom: 50px;

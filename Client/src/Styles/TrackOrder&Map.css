@@ -72,7 +72,7 @@
 .line_map{
     width: 95%;
     border-radius: 5px;
-    background: url("../../public/SFG_images/map.jpg") no-repeat;
+    background: url("/SFG_images/map.jpg") no-repeat;
     background-size: cover;
     overflow-x: auto;
     margin-inline: auto;

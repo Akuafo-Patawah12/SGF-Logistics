@@ -4,45 +4,9 @@ import { Space, Button } from "antd"
 import {Link } from 'react-router-dom'
 
 
-
-
-import io from "socket.io-client"
-
 const TrackOrder = () => {
 
-
-  
-
-    const socket = useMemo(() =>io("http://localhost:4040/orders",{
-      transports: ["websocket","polling"],
-      withCredentials: true,
-    secure: true
-    }),[])
-    
- useEffect(()=>{
-  socket.on('connect',()=>{
-      console.log("Connected to server")
-      
-  });
  
-
-  socket.on('disconnect',(reasons)=>{
-      console.log(reasons)
-    })
-
-    
-    
-  
-  return()=>{
-      socket.off('connect');
-      socket.off('disconnect');
-            
-  }
-},[socket])
-
-   
-
-    
  
   
   return (
