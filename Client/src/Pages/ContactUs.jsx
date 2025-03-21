@@ -3,7 +3,7 @@ import { PhoneOutlined, MailOutlined, EnvironmentOutlined } from "@ant-design/ic
 import axios from "axios"
 import {useState} from "react"
 const { Title, Text ,Paragraph} = Typography;
-
+import "../Styles/Contact.css"
 const ContactUs = () => {
   const [formData,setFormData]= useState({
     name:"",
@@ -34,9 +34,9 @@ const ContactUs = () => {
 
   return (
     <div>
-       <div className="contact-section">
+       <div className="contact-section1">
       <Card className="contact-card">
-        <Title level={2} className="contact-title">Contact SF Ghana Logistics</Title>
+        <h1 className="contact-title">Contact SF Ghana Logistics</h1>
         <Paragraph className="contact-description" style={{fontSize:"16px"}}>
           At SF Ghana Logistics, we are committed to providing fast, reliable, and affordable shipping solutions tailored to your needs.  
           Whether you require sea freight, air freight, door-to-door delivery, or free procurement services, our expert team is here to assist you every step of the way.
@@ -45,7 +45,7 @@ const ContactUs = () => {
        
       </Card>
     </div>
-    <Row justify="center" style={{ minHeight: "100vh",marginInline:"auto", width:"95%",background: "#f5f5f5", padding: "40px 20px" }}>
+    <Row justify="center" style={{ minHeight: "100vh",borderRadius: "10px",marginInline:"auto", width:"95%",background: "#f5f5f5", padding: "40px 20px" }}>
       <Col xs={24} sm={20} md={16} lg={12}>
         <Card
           style={{ borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}

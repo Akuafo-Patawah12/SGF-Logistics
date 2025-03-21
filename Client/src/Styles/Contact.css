@@ -1,9 +1,9 @@
 
-.contact-section {
+.contact-section1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 50vh;
     background-color: #f8f9fa;
     padding: 20px;
   
