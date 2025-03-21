@@ -15,7 +15,7 @@ const About = () => {
       <section className="about-content">
         <motion.div className="about-text" initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
           <p>
-            Established in February 2019, Shun Feng Ghana Logistics (SFGL) has rapidly grown into one of
+            Established in February 2019, Shun Feng Ghana Logistics (SFGL) popularly known as SF Ghana logistics has rapidly grown into one of
             West Africa's most trusted logistics providers, specializing in the efficient and seamless shipping
             of goods between Ghana and China. Our values focus on reliability, transparency, and customer satisfaction.
           </p>

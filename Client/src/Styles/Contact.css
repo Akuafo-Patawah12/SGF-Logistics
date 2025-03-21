@@ -1,3 +1,40 @@
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+  
+  }
+  
+  .contact-card {
+    width: 100%;
+    max-width: 600px;   
+    padding: 20px;
+    background: #ffffff;
+    text-align: center;
+  }
+  
+  .contact-title {
+    margin-inline: auto;
+    color: #1890ff; 
+    width: fit-content;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .contact-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+
 .order_cont {
     min-height: 100vh;
     background-color: #f7fafc;

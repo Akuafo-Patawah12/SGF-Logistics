@@ -2,7 +2,7 @@ import { Form, Input, Button, Row, Col, Card, Typography , message} from "antd";
 import { PhoneOutlined, MailOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import axios from "axios"
 import {useState} from "react"
-const { Title, Text } = Typography;
+const { Title, Text ,Paragraph} = Typography;
 
 const ContactUs = () => {
   const [formData,setFormData]= useState({
@@ -33,11 +33,23 @@ const ContactUs = () => {
 }
 
   return (
-    <Row justify="center" style={{ minHeight: "100vh", background: "#f5f5f5", padding: "40px 20px" }}>
+    <div>
+       <div className="contact-section">
+      <Card className="contact-card">
+        <Title level={2} className="contact-title">Contact SF Ghana Logistics</Title>
+        <Paragraph className="contact-description" style={{fontSize:"16px"}}>
+          At SF Ghana Logistics, we are committed to providing fast, reliable, and affordable shipping solutions tailored to your needs.  
+          Whether you require sea freight, air freight, door-to-door delivery, or free procurement services, our expert team is here to assist you every step of the way.
+        </Paragraph>
+        
+       
+      </Card>
+    </div>
+    <Row justify="center" style={{ minHeight: "100vh",marginInline:"auto", width:"95%",background: "#f5f5f5", padding: "40px 20px" }}>
       <Col xs={24} sm={20} md={16} lg={12}>
         <Card
           style={{ borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}
-          title={<Title level={2} style={{ textAlign: "center", marginBottom: 0 }}>Contact Us</Title>}
+          
         >
           <Text style={{ display: "block",fontSize:"15px", textAlign: "center", marginBottom: "20px", color: "#222" }}>
             We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
@@ -95,6 +107,7 @@ const ContactUs = () => {
         </Card>
       </Col>
     </Row>
+    </div>
   );
 };
 

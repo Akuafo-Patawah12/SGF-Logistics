@@ -338,7 +338,7 @@ const [value, setValue] = useState(0);  // State to hold the value
       </div>
       
 
-      <p className='Description' style={{position:"relative",isolation:"isolate"}}>We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
+      <p className='Description' style={{position:"relative",isolation:"isolate"}}>At SF Ghana logistics, We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
          
       </p> 
       
