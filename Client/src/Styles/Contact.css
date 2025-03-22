@@ -1,37 +1,4 @@
 
-.contact-section1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    padding-block: 30px;
-    background-color: #f8f9fa;
-    
-  
-  }
-  
-  .contact-card {
-    width: 95%;
-    margin-inline: auto;
-    padding: 40px 20px;
-    background: #ffffff;
-    text-align: center;
-  }
-  
-  .contact-title {
-    margin-inline: auto;
-    color: #1890ff; 
-    width: fit-content;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .contact-description {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 20px;
-  }
   
   
   

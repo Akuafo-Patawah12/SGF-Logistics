@@ -34,17 +34,7 @@ const ContactUs = () => {
 
   return (
     <div>
-       <div className="contact-section1">
-      <Card className="contact-card">
-        <h1 className="contact-title">Contact SF Ghana Logistics</h1>
-        <Paragraph className="contact-description" style={{fontSize:"16px"}}>
-          At SF Ghana Logistics, we are committed to providing fast, reliable, and affordable shipping solutions tailored to your needs.  
-          Whether you require sea freight, air freight, door-to-door delivery, or free procurement services, our expert team is here to assist you every step of the way.
-        </Paragraph>
-        
        
-      </Card>
-    </div>
     <Row justify="center" style={{ minHeight: "100vh",borderRadius: "10px",marginInline:"auto", width:"95%",background: "#f5f5f5", padding: "40px 20px" }}>
       <Col xs={24} sm={20} md={16} lg={12}>
         <Card
