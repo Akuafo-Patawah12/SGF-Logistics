@@ -39,7 +39,7 @@ const ContactUs = () => {
       <Col xs={24} sm={20} md={16} lg={12}>
         <Card
           style={{ borderRadius: "10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" }}
-          
+          title={<Title level={3} style={{ textAlign: "center", color: "#222" }}>Contact Us</Title>}
         >
           <Text style={{ display: "block",fontSize:"15px", textAlign: "center", marginBottom: "20px", color: "#222" }}>
             We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
