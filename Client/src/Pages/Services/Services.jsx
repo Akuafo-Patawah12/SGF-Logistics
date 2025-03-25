@@ -1,7 +1,7 @@
 import React,{useState,Suspense} from 'react'
 import "../../Styles/Services.css"
 import ServicesComponent from '../../Components/ServicesComponent'
-
+import { Helmet } from "react-helmet-async";
 import Map, { Marker,  NavigationControl } from "react-map-gl";
 import Rocket from '../../Icons/Rocket'
 import Callicon from '../../Icons/Callicon'
@@ -17,6 +17,10 @@ const Services = () => {
   });
   return (
     <div className='service_container'>
+    <Helmet>
+        <title>Our Services - SF Ghana Logistics</title>
+        <meta name="description" content="Explore SF Ghana Logistics' reliable sea freight, air freight, door-to-door delivery, and procurement services. Fast, secure, and cost-effective shipping solutions tailored to your needs." />
+      </Helmet>
         <div className='service_image_header'>
            <section style={{position:"absolute",inset:"0",background:"rgb(0,0,0,0.3)",height:"100%",fontSize:"40px",fontWeight:"700",display:"flex",alignItems:"center",justifyContent:"center",color:"white"}}>
                 Services

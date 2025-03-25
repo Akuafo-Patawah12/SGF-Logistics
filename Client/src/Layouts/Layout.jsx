@@ -1,5 +1,6 @@
 import React,{lazy,Suspense,useState,useEffect,useRef} from 'react'
 import{Routes,Route,useLocation} from "react-router-dom"
+import { HelmetProvider } from 'react-helmet-async'
 import Header from '../Components/Header'
 import Sidebar from "../Components/Sidebar"
 import Footer from '../Components/Footer'
@@ -95,7 +96,7 @@ const Layout = () => {
        </div>}
         
         
-      
+       <HelmetProvider>
         
             <Routes>
 
@@ -224,6 +225,7 @@ const Layout = () => {
                 />        
             
             </Routes>
+            </HelmetProvider>
             
             { !hideFooterOn.includes(location.pathname) && <Footer /> }
     </div>

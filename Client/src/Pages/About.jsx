@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AimOutlined, BulbOutlined, RocketOutlined, GlobalOutlined } from '@ant-design/icons';
 import '../Styles/About.css';
+import { Helmet } from "react-helmet-async";
 import { motion } from 'framer-motion';
 
 const About = () => {
@@ -8,6 +9,10 @@ const About = () => {
 
   return (
     <div className="about-container">
+    <Helmet>
+        <title>About Us - SF Ghana Logistics</title>
+        <meta name="description" content="Learn more about SF Ghana Logistics, a trusted provider of freight and logistics solutions. We specialize in sea freight, air freight, door-to-door delivery, and procurement services worldwide." />
+      </Helmet>
       <header className="about-header">
         <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>About Us</motion.h1>
       </header>

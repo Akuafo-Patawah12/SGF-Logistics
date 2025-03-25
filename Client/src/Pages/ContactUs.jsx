@@ -1,6 +1,7 @@
 import { Form, Input, Button, Row, Col, Card, Typography , message} from "antd";
 import { PhoneOutlined, MailOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import axios from "axios"
+import { Helmet } from "react-helmet-async";
 import {useState} from "react"
 const { Title, Text ,Paragraph} = Typography;
 import "../Styles/Contact.css"
@@ -34,7 +35,11 @@ const ContactUs = () => {
 
   return (
     <div>
-       
+       <Helmet>
+        <title>Contact Us - SF Ghana Logistics</title>
+        <meta name="description" content="Get in touch with SF Ghana Logistics for inquiries about our shipping, freight, and logistics services. Reach out via email, phone, or visit our office for assistance." />
+      </Helmet>
+
     <Row justify="center" style={{ minHeight: "100vh",borderRadius: "10px",marginInline:"auto", width:"95%",background: "#f5f5f5", padding: "40px 20px" }}>
       <Col xs={24} sm={20} md={16} lg={12}>
         <Card
