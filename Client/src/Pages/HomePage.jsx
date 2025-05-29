@@ -1,6 +1,24 @@
+
+{/* 
+  List of sub sections for easy navigation:
+  1. Hero section
+  2. About section
+  3. Services section
+  4. Why choose us section
+*/}
+
 import React,{useState,useRef,useEffect,useMemo,Suspense, lazy} from 'react'
 import {motion,useAnimation} from "framer-motion"
-
+import { Plane, Ship, ShoppingCart, Layers } from 'lucide-react';
+import  Rocket from "../assets/Rocket.svg"
+import  Handshake from "../assets/Handshake.svg"
+import  Shield from "../assets/Shield.svg"
+import Team from "../assets/Team.svg"
+import Delivered from "../assets/Delivered.svg"
+import Ship1 from "../assets/Ship1.svg"
+import Correct from "../assets/Correct.svg"
+import Home from "../assets/Home.svg"
+import Load from "../assets/Load.svg"
 import  Web3star from "../Icons/Web3star" 
 import Truck  from "../Icons/Truck"
 import Anchor  from "../Icons/Anchor"
@@ -22,11 +40,8 @@ import {Link} from "react-router-dom"
 import {LazyLoadImage} from "react-lazy-load-image-component"
 import 'react-lazy-load-image-component/src/effects/blur.css'; 
 
-import {  PlayCircleFilled } from '@ant-design/icons'
 
-import HowItWorksVideo from '../Components/HowItWorksVideo'
-import EndUsersIcon from '../Icons/EndUsersIcon'
-const  ServicesComponent= lazy(()=> import( '../Components/ServicesComponent'))
+
 const HomePage = ({setIsVideo}) => {
   const socket= useMemo(() => io("https://api.sfghanalogistics.com",{
     transports: ["websocket","polling"],
@@ -69,504 +84,275 @@ useEffect(()=>{
  },[socket])
 
 
- const parentRef = useRef(null);
-
-  const childRef1 = useRef(null);
-  const childRef2 = useRef(null);
-  const childRef3 = useRef(null);
-  const childRef4 = useRef(null);
+ 
+ 
   
 
-  const [index,setIndex]= useState(0)
-  const [disable,setDisable] = useState(false)
-
   
-  useEffect(()=>{
-    
-    const auto_slider=setInterval(()=>{
-      setIndex(prev => prev + 1)
-    },5000)
-
-    const parent= parentRef.current
-    const child= [
-      childRef1.current,
-      childRef2.current,
-      childRef3.current,
-      childRef4.current,
-      ""
-    ]
-     
-    if(index===0){
-      setDisable(true)
-    }else{
-      setDisable(false)
-    }
-    index >= child.length-1 ? setIndex(0): setIndex(index);
-    
-    const childLeft = child[index].offsetLeft;
-    parent.scrollTo({
-      left: childLeft,
-      behavior: "smooth" // Add smooth scrolling
-    });
-
-    return()=>{
-       clearInterval(auto_slider)
-    }
-  },[index])
-
-  const [divWidth, setDivWidth] = useState(0);
-
-useEffect(() => {
-  const handleResize = () => {
-    if (parentRef.current) { 
-      setDivWidth(parentRef.current.offsetWidth);
-    }
-  };
-
-  window.addEventListener('resize', handleResize);
-
-  // Initial measurement
-  handleResize();
-
-  return () => {
-    window.removeEventListener('resize', handleResize);
-  };
-}, [divWidth]);
-  
- const testimonials = [
-  {
-    name: 'Linda Asare',
-    role: 'Operations Manager at DEF Enterprises',
-    text: 'The real-time tracking feature is invaluable. It gives us the peace of mind of knowing exactly where our goods are at all times.',
-    
-  },
-  {
-    name: 'Kwame Mensah',
-    role: 'CEO of ABC Trading',
-    text: 'SF Ghana Logistics has become an indispensable part of our supply chain. Their dedication to efficiency and reliability is unparalleled.',
-    
-  },
-  {
-    name: 'Akuafo Patawah',
-    role: 'Owner of Techscroww',
-    text: 'Exceptional service and timely deliveries! SFGL truly lives up to its motto, "Whatever the load, we carry it."',
-    
-  },
-];
-
-const [value, setValue] = useState(0);  // State to hold the value
-  const controls = useAnimation();  // Controls for the animation
-  const divRef = useRef(null);  // Ref for the div
-
-  let timer;
-  function name() {
-    if (timer) return; // Prevent multiple intervals from being set
-    timer = setInterval(() => {
-      setValue((prev) => {
-        if (prev >= 6000) {
-          clearInterval(timer);  // Clear interval when value reaches 200
-          return prev;
-        }
-        return prev + 20;
-      });
-    },500);
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.intersectionRatio >= 0.5) {
-          // Call the function when 50% of the div is in the viewport
-          name();
-          controls.start({ opacity: 1 });
-        }
-      },
-      { threshold: [0.5] } // 50% threshold for intersection
-    );
-
-    if (divRef.current) {
-      observer.observe(divRef.current);
-    }
-
-    return () => {
-      if (divRef.current) {
-        observer.unobserve(divRef.current);
-      }
-    };
-  }, [controls,value]);
-
-  const images = [
-    { src: "/SFG_images/Air.jpg", title: "Reliable Sea Freight Services" },
-    { src: "/SFG_images/Sea.jpg", title: "Optimized Freight Forwarding Services" },
-    { src: "/SFG_images/Slider2.jpg", title: "Real-Time Shipment Tracking & Visibility " },
-    { src: "/SFG_images/Slider3.jpg", title: "Efficient Air Freight Solutions" },
-  ];
-  
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  // Auto-slide every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
-  
-    return () => clearInterval(interval);
-  }, []);
-  
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-  
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-    
-
-
-  
-  
-  const transition = useMemo(() => ({
-    duration: 0.5,
-    ease: "easeOut"
-  }), []);
-  
-
 
   return (
     
-    <div
-    
-     style={{overflow:"hidden",background:"#fff"}} className='Home'>
-        <div style={{position:"relative"}}>
-        <div className='Image_Text'>
-          
-          
-          <section style={{display:"flex",gap:"1rem"}}>
-            <button onClick={()=> setIsVideo(true)} style={{border:"none",background:"transparent",isolation:"isolate" ,display:"flex",justifyContent:"center",alignItems:"center"}} className='how_it_works'><span style={{color:"#5cbbf1",fontSize:"x-large"}}><PlayCircleFilled /> </span><span className="btn1" style={{color:"white",background:"#A7C756",padding:"10px",borderRadius:"5px",marginLeft:"20px",fontSize:"18px"}}>How It Works?</span></button>
-          </section>
-          </div>
-      <div
-        ref={parentRef}
-        className="slide-show"
-        style={{
-          width: "100%",
-          height: "450px",
-          
-        }}
-      >
-        
+  <main style={{overflow:"hidden",background:"#fff"}} >
        
-        <div ref={childRef1} style={{position:"relative"}}>
-          <div className="cover">
-            
-          <motion.div
+  {/* Hero section */}
+
+    <section style={{background:"#E4D6ED",height:"400px",width:"100%",backgroundImage: "url('../assets/Load.svg')"}}>
        
-        initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
-              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-              exit={{ opacity: 0, x: -100 }} 
-              transition={transition} // Adjust the duration and easing
-              viewport={{ once: true, amount: 0.2 }}
-            >
-            
-            <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Reliable Shipping Services Between China and Ghana. </p>
-   
-            </motion.div>
-          </div>
-          <LazyLoadImage
-          
-          
-      
-       src='/SFG_images/slider1.webp' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
-       </div>
-
-       <div ref={childRef2} style={{position:"relative"}}>
-        <div className="cover">
-        <motion.div
-       
-       initial={{ opacity: 0, x:-100 }} // Start off-screen to the left (-200px)
-             whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-             exit={{ opacity: 0, x: -100 }} 
-             transition={transition} // Adjust the duration and easing
-             viewport={{ once: true, amount: 0.2 }}
-           >
-            
-          <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Track your shipment in real-time! With SF Ghana Logistics, know exactly where your cargo is at every moment.</p>
-       </motion.div>
-        </div>
-       <LazyLoadImage src='/SFG_images/Slide_Plane.webp' width={divWidth} effect='blur' style={{ objectFit: "cover", height: '450px'}}  />
-       </div>
-         
-         <div ref={childRef3} style={{position:"relative"}} >
-          <div className="cover">
-          <motion.div
-       
-       initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
-             whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-             exit={{ opacity: 0, x: -100 }} 
-             transition={transition} // Adjust the duration and easing
-             viewport={{ once: true, amount: 0.2 }}
-           >
-           
-           <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Reliable logistics, no matter the load.</p>
-           </motion.div>
-          </div>
-          <LazyLoadImage src='/SFG_images/Seaport.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }}  />
-          </div>
-
-          <div ref={childRef4} style={{position:"relative"}} >
-          <div className="cover">
-          <motion.div
-       
-       initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
-             whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-             exit={{ opacity: 0, x: -100 }} 
-             transition={transition} // Adjust the duration and easing
-             viewport={{ once: true, amount: 0.2 }}
-            >
-
-             <p style={{color:"white",fontSize:"30px",fontWeight:"500"}} className='slideheader'>Experience top-notch logistics with SF Ghana Logistics.</p>
-             
-          </motion.div>
-        </div>
-            <LazyLoadImage src='/SFG_images/Ware.jpg' width={divWidth} effect='blur' style={{objectFit: "cover", height: '450px' }} /> 
-          </div>
-          
-        
-      </div>
-      </div>
-      
-
-      <p className='Description' style={{position:"relative",isolation:"isolate"}}>At SF Ghana logistics, We're fast, efficient, cost-effective, and reliable in all areas of shipping, freight forwarding, free procurement and sourcing training, container clearance, and groupage services.  
-         
-      </p> 
-      
-      <section className='welcome_hero' >
-
-            
-      <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 100 }} 
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true, amount: 0.5 }} // Trigger when 50% in view
-          className='welcome_container' >
-            <section style={{display:"flex",flexDirection:"column",gap:"10px",marginBottom:"10px"}}>
-                <div className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p style={{color:"white"}}>Join us for <br/> seamless logistics.</p><Link to={"/Auth/login"}><button>Login</button></Link></div> </div>
-                <div  className="flexbox_1" style={{height:"80px",width:"95%",marginInline:"auto",borderRadius:"5px"}}><div> <p className="p-info" style={{color:"white"}}>Track your shipment. <br/> in realtime </p><Link to={"/More/Track_order"}><button>Track</button></Link></div> </div>
-            </section>
-           <h3 style={{marginLeft:"2.5%",marginTop:"30px"}}>Welcome to SF Ghana Logistics.</h3>
-          <p style={{textAlign:"justify",marginInline:"auto",marginTop:"10px",width:"95%",fontSize:"0.9rem"}}>
-            Your trusted partner in providing seamless and reliable shipping solutions between Ghana and 
-            China. Whether you require air cargo services, groupage shipping, or door-to-door delivery. Discover our comprehensive range of services designed to meet your logistics needs 
-            and experience the SFGL difference. 
-          </p>
-          <button className='welcome_button'><Link to={"/Auth/sign_up"} className='welcome_butt'><span>GET STARTED</span>
-          <div className='liquid'></div></Link></button>
-         </motion.div>
-      
-
-
-         <div className='welcome_image'>
-         <LazyLoadImage src="/SFG_images/Get_in_Touch.webp" alt="welcome image"  style={{width:"100%",height:"100%"}}/>
-             <div title="welcome image"></div>
-         </div>
-
-      </section>
-
-        <div style={{marginInline:"auto",width:"290px",}}>
-      <h3 style={{color:"#1C1818",marginLeft:"0",display:"flex",gap:"10px",width:"fit-content",textAlign:"center",marginTop:"100px",fontSize:"25px"}}>OUR MAJOR
-          <div className="content">
-              <h3>SERVICES.</h3>
-              <h3>SERVICES.</h3>
-          </div>
-      </h3>
-      </div>
-        
-
+    </section>  
      
-      <div style={{width:"100px",height:"2px",background:"#1C1818",marginInline:"auto",marginTop:"4px"}}></div>
 
-      <p className="Service-title">Fast and Affordable Services.</p>
-       <p style={{marginInline:"auto",width:"90%",marginBlock:"10px 30px",textAlign:"center",fontWeight:"600"}}>We offer a complete range of logistical solutions to suit importers and shippers worldwide.</p>
-             <Suspense fallback="Loading...">
-             <ServicesComponent />
-             </Suspense>
-             <div style={{paddingBlock:"30px",display:"flex",textDecoration:"none",alignItems:"flex-start",justifyContent:"center",height:"100px" ,background:"#a0c444",}}><Link to={"/Services"} style={{border:"2px solid #444",borderRadius:"5px",marginInline:"auto",padding:"10px 7px"}}>  SEE ALL OUR SERVICES</Link></div>
-       
-      
+  {/* About section */}
+    <section style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",paddingInline:"10%",marginBlock:"60px",gap:"20px",paddingBlock:"20px",borderRadius:"30px",}}>
 
-       <div></div>
+      {/* About section One*/}
+      <div>
+        <h1 style={{fontSize:"20px",color:"var(--purple)"}}>About SF Ghana Logistics</h1>
+        <p style={{fontSize:"16px"}}>
+          At SF Ghana Logistics, we are committed to delivering reliable, efficient, and innovative logistics solutions across Ghana and beyond. With a strong foundation in supply chain excellence, we specialize in sea freight, air freight, door-to-door delivery, and procurement services, ensuring that every shipment reaches its destination safely and on time.
+        </p>
 
+        <div style={{display:"flex",marginTop:"50px",alignItems:"center",}}>
+          <button className='welcome_button'><Link to={"/Auth/sign_up"} className='welcome_butt'><span style={{fontSize:"15px"}}>GET STARTED</span>
+          <div className='liquid'></div></Link></button>
+          
+          <div style={{height:"4px",width:"30px",background:"#777"}}></div>
+          <button className='welcome_button' onClick={()=> setIsVideo(true)}><span style={{fontSize:"15px"}}></span></button>
+          <div style={{height:"40px",width:"40px",borderRadius:"50% ",border:"3px solid #F0ADFD"}}><img src={Ship1} style={{marginInline:"auto"}} alt="home-icon" /></div>
+          <div style={{height:"4px",width:"30px",background:"#777"}}></div>
+          <div style={{height:"40px",width:"40px",borderRadius:"50%",border:"3px solid #F0ADFD"}}><img src={Home} style={{marginInline:"auto"}} alt="home-icon"/></div>
+        </div>
+      </div>
 
-
+      {/* About section Two*/}
+      <div style={{display:"flex",flexDirection:"column",gap:"20px",border:"2px solid #CE37F8",borderRadius:"15px",background:"#FFEAFE",justifyContent:"space-around",alignItems:"center",paddingBlock:"20px"}}>
+        <div style={{display:"flex",justifyContent:"space-between",background:"#fff",width:"90%",padding:"25px 5%",boxShadow:"2px 3px 3px  #ddd",marginInline:"auto",borderRadius:"20px",alignItems:"center"}}>
+           <div style={{display:"flex",gap:"10px",justifyContent:"center",alignItems:"center"}}><div style={{height:"40px",display:"flex",width:"40px",borderRadius:"50% ",background:"#B4E3CA",border:"3px solid #14AE5C",justifyContent:"center",alignItems:"center"}}><img src={Correct} alt='Correct' style={{height:"20px",width:"20px"}}/></div> <h3>Delivered <br/>Shipment</h3></div>
+            <p style={{fontSize:"20px",fontWeight:"700",color:"#e521f3"}}>5K+</p>
+        </div>
         <div>
-      <div className="image-container">
-        <div className="scrolling-content">
-         
-          
-          <h2 className="assist">Do you need assistance?</h2>
-          <p>
-            We’re here to provide you with the support and information you 
-            need to make your logistics experience seamless and efficient.
-
-          </p>
-          
-
-          <Link to="/Contact"><button className="scroll-content-btn">Contact Us</button></Link>
+          <img src={Delivered} alt="Delivered" style={{width:"150px",height:"150px"}} />
         </div>
-        </div>
-        </div>
-    
-        <h3 style={{color:"#1C1818",marginInline:"auto",width:"fit-content",marginTop:"30px"}} className='testimonial_head'>Clients Testimonals</h3>
+      </div>
+    </section> 
+        
 
-        <div className="testimonial-container">
-        <div className='bubbles'>
-        <div className="bubbles-container">
-      {Array.from({ length: 30 }).map((_, index) => (
-        <Web3star className="bubble" key={index}/>
-      ))}
-    </div>
-    </div>
-      {testimonials.map((testimonial, index) => (
-        <div className="testimonial" key={index}>
-          
-          <div style={{marginBlock:"30px"}}><StarHollow /> <StarHollow /> <StarHollow /> <StarHollow /> <StarHollow /></div>
-          <div className="testimonial-content">
-            <p className="testimonial-text">"{testimonial.text}"</p>
-            <p className="testimonial-name">{testimonial.name}</p>
-            <p className="testimonial-role">{testimonial.role}</p>
+  {/* Services section */}
+    <section className="services_container" style={{paddingBottom:"50px",borderRadius:"30px" ,overflow:"hidden"}}>
+       <div  style={{position:"relative",backgroundImage:"url(/SFG_images/Plane.jpg)",backgroundSize:"cover",backgroundPosition:"center",marginBottom:"50px"}}>
+          <div  style={{paddingBlock:"20px",textAlign:"center",background:"linear-gradient( to bottom, #e521f3 29%, #da82e2 59%)",opacity:"0.8",backdropFilter:"blur(10px)"}}>
+            <h1 style={{fontSize:"30px",fontWeight:"700",textAlign:"center"}}>Our Services</h1>
+            <p style={{textAlign:"center",fontSize:"16px",width:"50%",marginInline:"auto"}}>
+              We offer a wide range of logistics services to meet your needs, from air and sea freight to door-to-door delivery.
+            </p>
           </div>
-        </div>
-      ))}
-    </div>
+          
+       </div>
+       <div style={{display:"grid",gap:"20px",gridTemplateColumns:"repeat(4,1fr)",paddingInline:"5%",justifyContent:"center",alignItems:"center",paddingBlock:"20px"}}>
+       {/* Services section One*/}
+       <div>
+         <img style={{borderRadius:"20px",width:"100%",height:"200px",objectFit:"cover"}} src="/SFG_images/Air.jpg" alt=""/>
+         <div style={{display:"flex",justifyContent:"space-between",padding:"10px",border:"2px solid var(--purple)",marginTop:"30px",borderRadius:"50px",background:"#fff",alignItems:"center"}}>
+          <p style={{fontSize:"15px"}}>Air freight</p>
+          <button title='learn more' style={{display:"flex",justifyContent:"center",alignItems:"center",color:"#E6E6E6",height:"30px",width:"30px",borderRadius:"50%",background:"#e521f3"}}><Plane size={15}/></button>
+         </div>  
+       </div>
+
+        
+
+       {/* Services section Two*/}
+       <div>
+         <img style={{borderRadius:"20px",width:"100%",height:"200px",objectFit:"cover"}} src="/SFG_images/Air2.jpg" alt=""/>
+         <div style={{display:"flex",justifyContent:"space-between",padding:"10px",border:"2px solid var(--purple)",marginTop:"30px",borderRadius:"50px",background:"#fff",alignItems:"center"}}>
+          <p style={{fontSize:"15px"}}>Sea freight</p>
+          <button title='learn more' style={{display:"flex",justifyContent:"center",alignItems:"center",color:"#E6E6E6",height:"30px",width:"30px",borderRadius:"50%",background:"#e521f3"}}><Ship size={15}/></button>
+         </div>  
+       </div>
+
+       {/* Services section Three*/}
+       <div>
+         <img style={{borderRadius:"20px",width:"100%",height:"200px",objectFit:"cover"}} src="/SFG_images/container1.jpg" alt=""/>
+         <div style={{display:"flex",justifyContent:"space-between",padding:"10px",border:"2px solid var(--purple)",marginTop:"30px",borderRadius:"50px",background:"#fff",alignItems:"center"}}>
+          <p style={{fontSize:"15px"}}>Groupage services</p>
+          <button title='learn more' style={{display:"flex",justifyContent:"center",alignItems:"center",color:"#E6E6E6",height:"30px",width:"30px",borderRadius:"50%",background:"#e521f3"}}><Layers size={15}/></button>
+         </div>  
+       </div>
+
+       {/* Services section Four*/}
+       <div>
+         <img style={{borderRadius:"20px",width:"100%",height:"200px",objectFit:"cover"}}  src="/SFG_images/Door-to-door.jpg" alt=""/>
+         <div style={{display:"flex",justifyContent:"space-between",padding:"10px",border:"2px solid var(--purple)",marginTop:"30px",borderRadius:"50px",background:"#fff",alignItems:"center"}}>
+          <p style={{fontSize:"15px"}}>Procurement</p>
+          <button title='learn more' style={{display:"flex",justifyContent:"center",alignItems:"center",color:"#E6E6E6",height:"30px",width:"30px",borderRadius:"50%",background:"#e521f3"}}><ShoppingCart size={15}/></button>
+         </div>  
+       </div>
+      </div>
+    </section>
   
-
-    <p id="why_choose_us" style={{marginInline:"auto" ,width:"fit-content",marginBlock:"20px",fontSize:"30px" ,fontWeight:"500"}}>WHY CHOOSE US?</p>
-       <p
-  style={{
-    width: "90%",
-    background: " #E6E6FA", // Light purple background
-    color: "#444",
-    borderRadius: "7px",
-    border: "1px solid #f0a7f0", // Slightly deeper purple border
-    fontSize: "15px",
-    fontWeight: "400",
-    padding: "20px 10px",
-    textAlign: "justify",
-    marginInline: "auto",
-    marginBottom:"20px"
-  }}
->
-  At SF Ghana Logistics (SFGL), we are committed to delivering exceptional logistics 
-  solutions tailored to your specific needs. Here's why we stand out in the industry:
-</p>
-
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#A7C756"}}></div>
-
-       <div className='why'>
-       <motion.div
-        ref={divRef}
-        animate={controls}
-        initial={{ opacity: 0, x: -100 }} // Start off-screen to the left (-200px)
-              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-              exit={{ opacity: 0, x: -100 }} 
-              transition={transition} // Adjust the duration and easing
-              viewport={{ once: true, amount: 0.5 }}
-
-       >
-
-       <div className='scattered'>
-        <section>
-        
-            <p style={{marginInline:"auto",width:"fit-content"}}><img src="/SFG_images/money-bag.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></p>
-              <h4 style={{marginInline:"auto",width:"fit-content"}}>Competitive Pricing</h4>
-              
-          
-        </section>
-        <section>
-        
-            <div style={{marginInline:"auto",width:"max-content"}}><img src="/SFG_images/container.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
-           <h4 style={{marginInline:"auto",width:"fit-content"}}>Expert Handling</h4>
-              
-           
-        </section>
-        <section>
-        
-            <div style={{marginInline:"auto",width:"fit-content"}}><img src="/SFG_images/route.webp" alt="Fallback GIF" style={{width:"100px",height:"100px"}} /></div>
-           <h4 style={{marginInline:"auto",width:"fit-content"}}>Timely Delivery</h4>
-              
-        </section>
-        <div className="bar"></div>
-
-
-        </div>
-
-        <div className='rate'>
-           <div style={{borderRight:"1px solid #222"}}><CargoShip style={{transform:"translateX(3px)"}}/> <br/><span style={{fontSize:"14px",color:"#111"}}>SEA FREIGHT</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}> $ {rate[0]?.Sea_freight} PER CBM</span></div>
-           <div style={{borderRight:"1px solid #222"}}><CargoPlane style={{transform:"translateX(3px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>AIR FREIGHT</span> <br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>$ {rate[0]?.Air_freight} PER KILO</span></div>
-           <div><RMBrate style={{transform:"translateX(1px)"}}/><br/><span style={{fontSize:"14px",color:"#111"}}>RMB RATE</span><br/><span style={{fontSize:"14px",fontWeight:"500",color:"#111"}}>{rate[0]?.RMB_rate}</span></div>
-        </div>
-
-      </motion.div>
-        
-
-      <div className='Why_choose_slider'>
-      <div style={{ marginTop:"50px",border:"3px solid #a0c444",borderRadius:"8px",paddingBottom: "5px",width:"100%"}} >
-       
-
-      <div className="carousel">
-      <button className="carousel_button prev" onClick={prevSlide}>&#10094;</button>
-
-      <div
-        className="carousel-inner"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`carousel-item ${index === currentIndex ? "active1" : ""}`}
-          >
-            <img src={image.src} alt={image.title} />
-            <h2 className="carousel-title">{image.title}</h2>
-          </div>
-        ))}
-      </div>
-
-      <button className="carousel_button next_1" onClick={nextSlide}>&#10095;</button>
-
-      <div className="dots">
-        {images.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === currentIndex ? "active1" : ""}`}
-            onClick={() => setCurrentIndex(index)}
-          ></span>
-        ))}
-      </div>
-    </div>
-
-
-       <motion.div
-        ref={divRef}
-        animate={controls}
-        initial={{ opacity: 0, x: 100 }} // Start off-screen to the left (-200px)
-              whileInView={{ opacity: 1, x: 0 }} // Animate to the original position (x: 0)
-              exit={{ opacity: 0, x: 100 }} 
-              transition={transition} // Adjust the duration and easing
-              viewport={{ once: true, amount: 0.5 }}
-
-        style={{textAlign:"center",paddingBlock:"20px",width:"98%",marginInline:"auto",borderRadius:"8px", backgroundColor: '#a0c444', fontSize:"22px",fontWeight:"bold"}}
-      >
-       <EndUsersIcon /> <p><span style={{fontSize:"30px"}}>{value}+ </span> <br/> Satisfied customers</p>
-      </motion.div>
-        </div>
-      </div>
-      </div>
-       <div style={{display:"flex",alignItems:"center",justifyContent: "flex-start",height:"60px" ,background:"#a0c444"}}></div>
+   
+  {/* Why choose us section */}
+    <h3 style={{margin:"30px auto",width:"fit-content",fontSize:"40px",fontWeight:"800"}}>Why Choose Us?</h3>
+    <p style={{marginInline:" auto",width:"fit-content"}}>
+      Trusted, fast, and customer-focused we deliver your goods with care and precision.
+    </p>
+    <div style={{display:"flex",gap:"10px",justifyContent:"center",alignItems:"center",paddingBlock:"20px"}}>
+      <section style={{background:"#ddd",border:"2px solid #ccc",width:"20%",height:"3px"}}></section>
+      <section style={{display:"flex",justifyContent:"space-around",alignItems:"center",background:"#ddd",border:"2px solid #ccc",width:"60%",height:"100px"}}>
+        <section style={{}}>Affordable Rates</section>
+      <section style={{}}>
+        <h3>CBM Rate</h3>
+        <p>22.07</p>
+      </section>
+      <section style={{background:"#ccc"}}>
+        <h3>RMB Rate</h3>
+        <p>14.02</p>
+      </section>
+      </section>
+      <section style={{background:"#ddd",border:"2px solid #ccc",width:"20%",height:"3px"}}></section>
       
     </div>
+
+    <div className='why_choose_us' style={{justifyContent:"space-around"}}>
+        {/* Why choose us section One */}
+       <section >
+           <div style={{paddingBlock:"10px",width:"250px",borderBottom:"3px solid var(--purple)"}}>
+             <h1 style={{fontSize:"30px",fontWeight:"600",color:"var(--purple)"}}>100%</h1>
+             <p style={{fontSize:"16px"}}>Customer Satisfaction</p>
+           </div>
+           <div style={{paddingBlock:"10px",width:"250px",borderBottom:"3px solid var(--purple)"}}>
+             <h1 style={{fontSize:"30px",fontWeight:"600",color:"var(--purple)"}}>98%</h1>
+             <p style={{fontSize:"16px"}}>Best Logistics Offers</p>
+           </div>
+           <div style={{paddingBlock:"10px",width:"250px",borderBottom:"3px solid var(--purple)"}}>
+             <h1 style={{fontSize:"30px",fontWeight:"600",color:"var(--purple)"}}>99%</h1>
+             <p style={{fontSize:"16px"}}>Secure Handling</p>
+           </div>
+           <div style={{paddingBlock:"10px",width:"200px",borderBottom:"3px solid var(--purple)"}}>
+             <div style={{ position: "relative", height: "36px", width: "144px" }}>
+  <img
+    src="/SFG_images/Air.jpg"
+    loading="lazy"
+    alt="air"
+    style={{
+      height: "32px",
+      width: "32px",
+      border: "2px solid white",
+      borderRadius: "9999px",
+      position: "absolute",
+      left: "0px",
+      zIndex: 10,
+    }}
+  />
+  <img
+    src="/SFG_images/Air2.jpg"
+    loading="lazy"
+    alt="air2"
+    style={{
+      height: "32px",
+      width: "32px",
+      border: "2px solid white",
+      borderRadius: "9999px",
+      position: "absolute",
+      left: "20px",
+      zIndex: 20,
+    }}
+  />
+  <img
+    src="/SFG_images/Air2.jpg"
+    loading="lazy"
+    alt="air2"
+    style={{
+      height: "32px",
+      width: "32px",
+      border: "2px solid white",
+      borderRadius: "9999px",
+      position: "absolute",
+      left: "40px",
+      zIndex: 30,
+    }}
+  />
+  <img
+    src="/SFG_images/Air.jpg"
+    loading="lazy"
+    alt="air"
+    style={{
+      height: "32px",
+      width: "32px",
+      border: "2px solid white",
+      borderRadius: "9999px",
+      position: "absolute",
+      left: "60px",
+      zIndex: 40,
+    }}
+  />
+
+   <div
+    
+    
+    
+    style={{
+      height: "29px",
+      width: "29px",
+      outline: "2px solid white",
+      border: "2px solid #667",
+      borderRadius: "9999px",
+      position: "absolute",
+      background: "#888",
+      left: "60px",
+      fontSize: "15px",
+      textAlign: "center",
+      lineHeight: "29px",
+      zIndex: 41,
+    }}
+  >
+   9+
+  </div>
+  
+</div>
+<p style={{fontSize:"16px"}}>Experienced Team</p>
+           </div>
+       </section>
+
+       {/* Why choose us section Two*/}
+       <section style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:"10px",justifyContent:"center"}}>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",paddingBlock:"20px",width:"200px",borderRadius:"10px",background:"#f2b7f1",border:"2px solid #ec7df3"}} className='bg-purple-200'>
+            <img src={Rocket} alt="rocket" style={{width:"80px",height:"80px"}} />
+            <p>Fast & reliable</p>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",paddingBlock:"20px",width:"200px",borderRadius:"10px",background:"#f2b7f1",border:"2px solid #ec7df3"}}>
+            <img src={Handshake} alt="Handshake" style={{width:"80px",height:"80px"}} />
+            <p>Best Logistics Offers</p>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",paddingBlock:"20px",width:"200px",borderRadius:"10px",background:"#f2b7f1",border:"2px solid #ec7df3"}}>
+            <img src={Shield} alt="Shield" style={{width:"80px",height:"80px"}} />
+            <p>Secure & safe</p>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",paddingBlock:"20px",width:"200px",borderRadius:"10px",background:"#f2b7f1",border:"2px solid #ec7df3"}}>
+            <img src={Team} alt="Team" style={{width:"80px",height:"80px"}} />
+            <p>Experienced Team</p>
+          </div>
+       </section>
+    </div>
+    
+
+      
+       <div style={{display:"flex",alignItems:"center",paddingBlock:"50px",justifyContent: "space-around",background:"#6e11b0"}}>
+           <section style={{display:"flex",gap:"15px",flexDirection:"column",alignItems:"center",justifyContent:"center",width:"100px",height:"100px",color:"#fff"}}>
+              <h3 style={{color:"oklch(90.2% 0.063 306.703)",fontSize:"30px"}} >3K+</h3>
+              <p style={{textAlign:"center",fontSize:"16px"}}>Satisfied Customers</p>
+           </section>
+
+           <section style={{display:"flex",gap:"15px",flexDirection:"column",alignItems:"center",justifyContent:"center",width:"100px",height:"100px",color:"#fff"}}>
+              <h3 style={{color:"oklch(90.2% 0.063 306.703)",fontSize:"30px"}}>50+</h3>
+              <p style={{textAlign:"center",fontSize:"16px"}}>Global partners</p>
+           </section>
+
+           <section style={{display:"flex",gap:"15px",flexDirection:"column",alignItems:"center",justifyContent:"center",width:"100px",height:"100px",color:"#fff"}}>
+              <h3 style={{color:"oklch(90.2% 0.063 306.703)",fontSize:"30px"}}>5K+</h3>
+              <p style={{textAlign:"center",fontSize:"16px"}}>Delivered Shipments</p>
+           </section>
+       </div>
+      
+    </main>
   )
 }
 

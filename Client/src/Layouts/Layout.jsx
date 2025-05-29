@@ -1,7 +1,7 @@
 import React,{lazy,Suspense,useState,useEffect,useRef} from 'react'
 import{Routes,Route,useLocation} from "react-router-dom"
 import { HelmetProvider } from 'react-helmet-async'
-import Header from '../Components/Header'
+
 import Sidebar from "../Components/Sidebar"
 import Footer from '../Components/Footer'
 import FAQs from '../Pages/FAQs'
@@ -87,7 +87,7 @@ const Layout = () => {
   return (
     <div>
 
-        <Header />
+       
         <Header2 buttonDisplay={buttonDisplay}  popDetails={[pop1,popUp1,setPopUp1]} setTrack={setTrackPop} />
         <Sidebar popUp={popUp1} setPopUp1={setPopUp1} popRef={popRef}/>
         {isVideo && <div style={{position:"fixed",inset:"0",zIndex:"99",background:"rgb(0,0,0,0.9)",backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"}}>
