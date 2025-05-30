@@ -369,11 +369,11 @@ useEffect(()=>{
       borderRadius: "9999px",
       position: "absolute",
       background: "#888",
-      left: "60px",
+      left: "80px",
       fontSize: "15px",
       textAlign: "center",
       lineHeight: "29px",
-      zIndex: 41,
+      zIndex: 50,
     }}
   >
    9+
